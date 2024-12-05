@@ -14,7 +14,7 @@ interface SearchFormProps {
 function Switch({ checked, onChange }: { checked: boolean; onChange: (checked: boolean) => void }) {
     return (
         <div
-            className={`w-11 h-6 flex items-center rounded-full p-1 cursor-pointer ${checked ? 'bg-lime-600' : 'bg-gray-300'
+            className={`w-11 h-6 flex items-center rounded-full p-1 cursor-pointer ${checked ? 'bg-gray-300' : 'bg-gray-300'
             }`}
             onClick={() => onChange(!checked)}
         >
@@ -76,7 +76,7 @@ export default function SearchForm({ onSearch, areas, fields, schools }: SearchF
                         ))}
                     </div>
                 </div>
-                <div className="mb-4 flex items-center justify-between bg-gray-900 text-white p-3 rounded-md">
+                <div className="mb-4 flex items-center justify-between bg-lime-600 text-white p-3 rounded-md">
                     <span className="text-sm font-medium">Tarkempi haku</span>
                     <Switch
                         checked={advancedSearch}
