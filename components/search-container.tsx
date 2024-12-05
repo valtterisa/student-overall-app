@@ -4,23 +4,47 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import SearchForm from './search-form'
 import ResultsDisplay from './result-display'
-import { University, universities, allColors } from '../data/mockData'
+import { colorData } from '../data/mockData'
 
-export default function SearchContainer() {
+export type University = {
+    id: number;
+    väri: string;
+    hex: string;
+    alue: string;
+    ala: string;
+    ainejärjestö: string;
+    oppilaitos: string;
+}
+
+
+
+interface SearchContainerProps {
+    initialUniversities: University[];
+}
+
+export default function SearchContainer({ initialUniversities }: SearchContainerProps) {
+    console.log(initialUniversities)
+
+    const getAreas = (initialUniversities: University[]) => Array.from(new Set(initialUniversities.map(u => u.alue)));
+    const getFields = (initialUniversities: University[]) =>
+        Array.from(
+            new Set(
+                initialUniversities
+                    .flatMap(u => (u.ala ? u.ala.split(', ') : [])) // Handle null or undefined
+            )
+        );
+
     const [results, setResults] = useState<University[]>([])
     const [hasSearched, setHasSearched] = useState(false)
 
-    const handleSearch = (criteria: { trouserColor: string; city: string; fieldOfStudy: string }) => {
-        const filteredResults = universities.filter(uni => {
-            const colorMatch = criteria.trouserColor
-                ? allColors.some(color =>
-                    color.toLowerCase().includes(criteria.trouserColor.toLowerCase()) &&
-                    uni.trouserColor.toLowerCase().includes(color.toLowerCase())
-                )
+    const handleSearch = (criteria: { color: string; area: string; field: string }) => {
+        const filteredResults = initialUniversities.filter(uni => {
+            const colorMatch = criteria.color
+                ? colorData.colors[criteria.color].main.concat(colorData.colors[criteria.color].shades).some(c => uni.väri.toLowerCase().includes(c.toLowerCase()))
                 : true;
-            const cityMatch = !criteria.city || uni.city === criteria.city;
-            const fieldMatch = !criteria.fieldOfStudy || uni.fieldOfStudy === criteria.fieldOfStudy;
-            return colorMatch && cityMatch && fieldMatch;
+            const areaMatch = !criteria.area || uni.alue.toLowerCase() === criteria.area.toLowerCase();
+            const fieldMatch = !criteria.field || uni.ala.toLowerCase().includes(criteria.field.toLowerCase());
+            return colorMatch && areaMatch && fieldMatch;
         });
         setResults(filteredResults)
         setHasSearched(true)
@@ -28,7 +52,7 @@ export default function SearchContainer() {
 
     return (
         <>
-            <SearchForm onSearch={handleSearch} />
+            <SearchForm onSearch={handleSearch} areas={getAreas(initialUniversities)} fields={getFields(initialUniversities)} />
             {hasSearched && (
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}

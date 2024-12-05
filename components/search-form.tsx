@@ -1,60 +1,50 @@
 'use client'
 
-import { useState, useCallback } from 'react'
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { colorPalette, cities, fieldsOfStudy } from '../data/mockData'
+import { lightenColor } from '@/lib/utils'
+import { colorData } from '../data/mockData'
 
 interface SearchFormProps {
-    onSearch: (criteria: { trouserColor: string; city: string; fieldOfStudy: string }) => void
+    onSearch: (criteria: { color: string; area: string; field: string }) => void;
+    areas: string[];
+    fields: string[];
 }
 
-export default function SearchForm({ onSearch }: SearchFormProps) {
+function Switch({ checked, onChange }: { checked: boolean; onChange: (checked: boolean) => void }) {
+    return (
+        <div
+            className={`w-11 h-6 flex items-center rounded-full p-1 cursor-pointer ${checked ? 'bg-blue-600' : 'bg-gray-300'
+                }`}
+            onClick={() => onChange(!checked)}
+        >
+            <motion.div
+                className="bg-white w-4 h-4 rounded-full shadow-md"
+                animate={{ x: checked ? 20 : 0 }}
+            />
+        </div>
+    )
+}
 
-    // 1. Should not ask user for the shade. Should show chosen color first and then shades
-    // 2. Switch is not working. Fuck. Ask v0 for the code.
-    // 3. Internationalization
-    // 4. Footer redesign. Check Saucesoft "made with love". That looks cool. 
-    // 5. Add plausible analytics.
-    // 6. Add proper SEO.
-    // 7. Fetch the data from Supabase.
-
-    // -- LAUNCH --
-    // Add domain, host on Vercel
-
-    // -- POST-MVP --
-    // 1. Maybe add fucking wall where everyone can post. Moderate it
-    // 2. Admin dashboard and add roles.
-
-    const [selectedMainColor, setSelectedMainColor] = useState('')
-    const [selectedShade, setSelectedShade] = useState('')
-    const [city, setCity] = useState('')
-    const [fieldOfStudy, setFieldOfStudy] = useState('')
+export default function SearchForm({ onSearch, areas, fields }: SearchFormProps) {
+    const [selectedColor, setSelectedColor] = useState('')
+    const [area, setArea] = useState('')
+    const [field, setField] = useState('')
     const [advancedSearch, setAdvancedSearch] = useState(false)
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
-        onSearch({ trouserColor: selectedShade || selectedMainColor, city, fieldOfStudy })
+        onSearch({ color: selectedColor, area, field })
     }
 
     const handleColorClick = (color: string) => {
-        if (selectedMainColor === color) {
-            setSelectedMainColor('')
-            setSelectedShade('')
-        } else {
-            setSelectedMainColor(color)
-            setSelectedShade('')
-        }
-    }
-
-    const handleShadeClick = (shade: string) => {
-        setSelectedShade(shade)
+        setSelectedColor(selectedColor === color ? '' : color)
     }
 
     const handleReset = () => {
-        setSelectedMainColor('')
-        setSelectedShade('')
-        setCity('')
-        setFieldOfStudy('')
+        setSelectedColor('')
+        setArea('')
+        setField('')
         setAdvancedSearch(false)
     }
 
@@ -68,50 +58,28 @@ export default function SearchForm({ onSearch }: SearchFormProps) {
             <form onSubmit={handleSubmit}>
                 <div className="mb-4">
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Select Trouser Color:
+                        Valitse väri:
                     </label>
-                    <div className="grid grid-cols-4 gap-2 mb-2">
-                        {colorPalette.map((color) => (
+                    <div className="grid grid-cols-3 gap-2 mb-2">
+                        {Object.entries(colorData.colors).map(([color, data]) => (
                             <button
-                                key={color.main}
+                                key={color}
                                 type="button"
-                                onClick={() => handleColorClick(color.main)}
-                                className={`w-full aspect-square rounded-md ${selectedMainColor === color.main ? 'ring-2 ring-blue-500' : ''
+                                onClick={() => handleColorClick(color)}
+                                className={`w-full aspect-square rounded-md ${selectedColor === color ? 'ring-2 ring-blue-500' : ''
                                     }`}
-                                style={{ backgroundColor: color.main.toLowerCase() }}
-                                aria-label={color.main}
+                                style={{ backgroundImage: `linear-gradient(to bottom right, ${color}, ${data.alt})` }}
+                                aria-label={data.main[0]}
                             />
                         ))}
                     </div>
-                    {selectedMainColor && (
-                        <div className="mt-2">
-                            <label className="block text-sm font-medium text-gray-700 mb-2">
-                                Select Shade:
-                            </label>
-                            <div className="flex gap-2">
-                                {colorPalette.find(c => c.main === selectedMainColor)?.shades.map((shade) => (
-                                    <button
-                                        key={shade}
-                                        type="button"
-                                        onClick={() => handleShadeClick(shade)}
-                                        className={`flex-1 py-2 rounded-md ${selectedShade === shade ? 'ring-2 ring-blue-500' : ''
-                                            }`}
-                                        style={{ backgroundColor: shade.toLowerCase() }}
-                                    >
-                                        {shade}
-                                    </button>
-                                ))}
-                            </div>
-                        </div>
-                    )}
                 </div>
-                <div className="mb-4 flex items-center justify-between text-black p-3 rounded-md">
+                <div className="mb-4 flex items-center justify-between bg-gray-900 text-white p-3 rounded-md">
                     <span className="text-sm font-medium">Advanced Search</span>
-                    {/* <Switch
+                    <Switch
                         checked={advancedSearch}
-                        onCheckedChange={setAdvancedSearch}
-                        className="data-[state=checked]:bg-blue-600"
-                    /> */}
+                        onChange={setAdvancedSearch}
+                    />
                 </div>
                 <AnimatePresence>
                     {advancedSearch && (
@@ -123,37 +91,37 @@ export default function SearchForm({ onSearch }: SearchFormProps) {
                             className="mb-4 bg-gray-200 p-4 rounded-md overflow-hidden"
                         >
                             <div className="mb-4">
-                                <label htmlFor="city" className="block text-sm font-medium text-gray-700 mb-2">
-                                    City:
+                                <label htmlFor="area" className="block text-sm font-medium text-gray-700 mb-2">
+                                    Area:
                                 </label>
                                 <select
-                                    id="city"
-                                    value={city}
-                                    onChange={(e) => setCity(e.target.value)}
+                                    id="area"
+                                    value={area}
+                                    onChange={(e) => setArea(e.target.value)}
                                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 >
-                                    <option value="">Select a city</option>
-                                    {cities.map((c) => (
-                                        <option key={c} value={c}>
-                                            {c}
+                                    <option value="">Select an area</option>
+                                    {areas.map((a) => (
+                                        <option key={a} value={a}>
+                                            {a}
                                         </option>
                                     ))}
                                 </select>
                             </div>
                             <div className="mb-4">
-                                <label htmlFor="fieldOfStudy" className="block text-sm font-medium text-gray-700 mb-2">
+                                <label htmlFor="field" className="block text-sm font-medium text-gray-700 mb-2">
                                     Field of Study:
                                 </label>
                                 <select
-                                    id="fieldOfStudy"
-                                    value={fieldOfStudy}
-                                    onChange={(e) => setFieldOfStudy(e.target.value)}
+                                    id="field"
+                                    value={field}
+                                    onChange={(e) => setField(e.target.value)}
                                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 >
                                     <option value="">Select a field of study</option>
-                                    {fieldsOfStudy.map((field) => (
-                                        <option key={field} value={field}>
-                                            {field}
+                                    {fields.map((f) => (
+                                        <option key={f} value={f}>
+                                            {f}
                                         </option>
                                     ))}
                                 </select>

@@ -1,15 +1,22 @@
 import Link from 'next/link'
-import { ThemeSwitcher } from './theme-switcher'
 
 export default function Footer() {
     return (
-        <footer className="w-full flex items-center justify-between bg-gray-800 text-white p-4 ">
-            <div className="max-w-screen-xl space-x-4 flex items-center mx-auto">
-                <Link href="https://www.buymeacoffee.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors">
-                    Help us pay rent
-                </Link>
-                <span>Created by Bittive</span>
-                <ThemeSwitcher />
+        <footer className="bg-white text-white py-8 w-full">
+            <div className="container mx-auto px-4">
+                <div className="flex flex-col items-center space-y-4">
+                    <Link
+                        href="https://www.buymeacoffee.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out transform hover:scale-105 flex items-center"
+                    >
+                        ☕ Help us pay rent
+                    </Link>
+                    <p className="text-sm text-black">
+                        Made with 💖 by <a href='https://bittive.com' className="font-semibold hover:underline">Bittive</a>
+                    </p>
+                </div>
             </div>
         </footer>
     )
