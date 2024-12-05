@@ -13,16 +13,16 @@ export const parseStyles = (hex: string | null): React.CSSProperties => {
     return { backgroundColor: '#ffffff' }; // Fallback to black if null or invalid hex
   }
 
-  // Check for background-color
-  const backgroundColorMatch = hex.match(/background:\s*([^;]+);/);
-  if (backgroundColorMatch) {    
-    return { backgroundColor: backgroundColorMatch[1] }; // Extract background color
-  }
-
   // Check for background-image (e.g., gradient)
   const backgroundImageMatch = hex.match(/background-image:\s*([^;]+);/);
   if (backgroundImageMatch) {
     return { backgroundImage: backgroundImageMatch[1] }; // Extract background image (e.g., gradient)
+  }
+
+  // Check for background-color
+  const backgroundColorMatch = hex.match(/background:\s*([^;]+);/);
+  if (backgroundColorMatch) {    
+    return { background: backgroundColorMatch[1] }; // Extract background color
   }
 
   // If no match found, return a fallback (black) background

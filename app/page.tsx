@@ -16,13 +16,11 @@ export default async function Index() {
 
   return (
     <>
-      <div className="bg-white flex flex-col">
-        <main className="flex-grow">
-          <h1 className="text-4xl md:text-6xl font-bold text-center text-white mb-8">
+      <div className="bg-white w-full min-h-screen flex flex-col">
+        {/* <h1 className="text-4xl md:text-6xl font-bold text-center text-white mb-8">
             Student Overall Search
-          </h1>
-          <SearchContainer initialUniversities={universities} />
-        </main>
+          </h1> */}
+        <SearchContainer initialUniversities={universities} />
       </div>
     </>
   );

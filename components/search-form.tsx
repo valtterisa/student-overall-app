@@ -52,7 +52,7 @@ export default function SearchForm({ onSearch, areas, fields }: SearchFormProps)
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
-            className="bg-gray-100 rounded-lg shadow-lg p-6 max-w-md mx-auto mb-8"
+            className="bg-gray-100 rounded-lg shadow-lg p-6 max-w-xl w-full mx-auto mb-8"
         >
             <form onSubmit={handleSubmit}>
                 <div className="mb-4">

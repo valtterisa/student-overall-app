@@ -25,14 +25,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={GeistSans.className} suppressHydrationWarning>
-      <body className="bg-white text-foreground">
-
+    <html lang="fi" className={GeistSans.className} suppressHydrationWarning>
+      <body className="min-h-screen bg-white text-foreground">
         <main className="flex flex-col items-center">
           <div className="flex-1 w-full flex flex-col gap-20 items-center">
-            <div className="flex flex-col gap-20 max-w-5xl p-5">
-              {children}
-            </div>
+            {children}
             <Footer />
           </div>
         </main>
