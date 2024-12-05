@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { lightenColor } from '@/lib/utils'
 import { colorData } from '../data/mockData'
 
 interface SearchFormProps {

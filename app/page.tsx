@@ -12,6 +12,8 @@ export default async function Index() {
     return []
   }
 
+  const universities = overall_colors ?? [];
+
   return (
     <>
       <div className="bg-white flex flex-col">
@@ -19,7 +21,7 @@ export default async function Index() {
           <h1 className="text-4xl md:text-6xl font-bold text-center text-white mb-8">
             Student Overall Search
           </h1>
-          <SearchContainer initialUniversities={overall_colors} />
+          <SearchContainer initialUniversities={universities} />
         </main>
       </div>
     </>

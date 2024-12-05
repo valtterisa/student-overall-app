@@ -1,3 +1,4 @@
+import { parseStyles } from "@/lib/utils"
 import { University } from "./search-container"
 
 interface ResultsDisplayProps {
@@ -17,7 +18,7 @@ export default function ResultsDisplay({ results }: ResultsDisplayProps) {
                             key={uni.id}
                             className="bg-white rounded-md p-4 shadow flex items-center space-x-4"
                         >
-                            <div className="w-16 h-16 rounded-lg" style={{ cssText: uni.hex.substring(0, uni.hex.length - 1) }}></div>
+                            <div className="w-16 h-16 rounded-lg shadow-lg" style={parseStyles(uni.hex)}></div>
                             <div>
                                 <h3 className="text-xl font-semibold text-gray-800">{uni.oppilaitos}</h3>
                                 <p className="text-gray-600">Väri: {uni.väri}</p>
@@ -28,8 +29,9 @@ export default function ResultsDisplay({ results }: ResultsDisplayProps) {
                         </li>
                     ))}
                 </ul>
-            )}
-        </div>
+            )
+            }
+        </div >
     )
 }
 

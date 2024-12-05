@@ -23,7 +23,6 @@ interface SearchContainerProps {
 }
 
 export default function SearchContainer({ initialUniversities }: SearchContainerProps) {
-    console.log(initialUniversities)
 
     const getAreas = (initialUniversities: University[]) => Array.from(new Set(initialUniversities.map(u => u.alue)));
     const getFields = (initialUniversities: University[]) =>
@@ -40,7 +39,9 @@ export default function SearchContainer({ initialUniversities }: SearchContainer
     const handleSearch = (criteria: { color: string; area: string; field: string }) => {
         const filteredResults = initialUniversities.filter(uni => {
             const colorMatch = criteria.color
-                ? colorData.colors[criteria.color].main.concat(colorData.colors[criteria.color].shades).some(c => uni.väri.toLowerCase().includes(c.toLowerCase()))
+                ? (colorData.colors[criteria.color as keyof typeof colorData.colors].main
+                    .concat(colorData.colors[criteria.color as keyof typeof colorData.colors].shades)
+                    .some(c => uni.väri.toLowerCase().includes(c.toLowerCase())))
                 : true;
             const areaMatch = !criteria.area || uni.alue.toLowerCase() === criteria.area.toLowerCase();
             const fieldMatch = !criteria.field || uni.ala.toLowerCase().includes(criteria.field.toLowerCase());
