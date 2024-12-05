@@ -22,14 +22,14 @@ interface SearchContainerProps {
 
 export default function SearchContainer({ initialUniversities }: SearchContainerProps) {
 
-    const getAreas = (initialUniversities: University[]) => Array.from(new Set(initialUniversities.map(u => u.alue)));
+    const getAreas = (initialUniversities: University[]) => Array.from(new Set(initialUniversities.map(u => u.alue))).sort((a, b) => a.localeCompare(b));
     const getFields = (initialUniversities: University[]) =>
         Array.from(
             new Set(
                 initialUniversities
                     .flatMap(u => (u.ala ? u.ala.split(', ') : [])) // Handle null or undefined
             )
-        );
+        ).sort((a, b) => a.localeCompare(b));
     const getSchools = (initialUniversities: University[]) =>
         Array.from(new Set(initialUniversities.map(u => u.oppilaitos))).sort((a, b) => a.localeCompare(b));
 

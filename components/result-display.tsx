@@ -30,11 +30,11 @@ export default function ResultsDisplay({ results }: ResultsDisplayProps) {
                                 <div className="w-16 h-16 rounded-lg shadow-lg" style={parseStyles(uni.hex)}></div>
                             </div>
                             <div>
-                                <h3 className="text-xl font-semibold text-gray-800">{uni.oppilaitos}</h3>
+                                <h3 className="text-xl font-semibold text-gray-800">{uni.ainejärjestö ?? "Ainejärjestö hukassa"}</h3>
                                 <p className="text-gray-600">Väri: {uni.väri}</p>
                                 <p className="text-gray-600">Alue: {uni.alue}</p>
                                 <p className="text-gray-600">Ala: {uni.ala}</p>
-                                <p className="text-gray-600">Ainejärjestö: {uni.ainejärjestö}</p>
+                                <p className="text-gray-600">Oppilaitos: {uni.oppilaitos}</p>
                             </div>
                         </li>
                     ))}
