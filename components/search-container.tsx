@@ -16,8 +16,6 @@ export type University = {
     oppilaitos: string;
 }
 
-
-
 interface SearchContainerProps {
     initialUniversities: University[];
 }
@@ -32,11 +30,13 @@ export default function SearchContainer({ initialUniversities }: SearchContainer
                     .flatMap(u => (u.ala ? u.ala.split(', ') : [])) // Handle null or undefined
             )
         );
+    const getSchools = (initialUniversities: University[]) =>
+        Array.from(new Set(initialUniversities.map(u => u.oppilaitos))).sort((a, b) => a.localeCompare(b));
 
     const [results, setResults] = useState<University[]>([])
     const [hasSearched, setHasSearched] = useState(false)
 
-    const handleSearch = (criteria: { color: string; area: string; field: string }) => {
+    const handleSearch = (criteria: { color: string; area: string; field: string; school: string }) => {
         const filteredResults = initialUniversities.filter(uni => {
             const colorMatch = criteria.color
                 ? (colorData.colors[criteria.color as keyof typeof colorData.colors].main
@@ -45,7 +45,8 @@ export default function SearchContainer({ initialUniversities }: SearchContainer
                 : true;
             const areaMatch = !criteria.area || uni.alue.toLowerCase() === criteria.area.toLowerCase();
             const fieldMatch = !criteria.field || uni.ala?.toLowerCase().includes(criteria.field.toLowerCase());
-            return colorMatch && areaMatch && fieldMatch;
+            const schoolMatch = !criteria.school || uni.oppilaitos.toLowerCase().includes(criteria.school.toLowerCase());
+            return colorMatch && areaMatch && fieldMatch && schoolMatch;
         });
         setResults(filteredResults)
         setHasSearched(true)
@@ -53,7 +54,12 @@ export default function SearchContainer({ initialUniversities }: SearchContainer
 
     return (
         <>
-            <SearchForm onSearch={handleSearch} areas={getAreas(initialUniversities)} fields={getFields(initialUniversities)} />
+            <SearchForm
+                onSearch={handleSearch}
+                areas={getAreas(initialUniversities)}
+                fields={getFields(initialUniversities)}
+                schools={getSchools(initialUniversities)}
+            />
             {hasSearched && (
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -66,4 +72,3 @@ export default function SearchContainer({ initialUniversities }: SearchContainer
         </>
     )
 }
-
