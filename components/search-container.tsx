@@ -48,11 +48,17 @@ export default function SearchContainer({ initialUniversities }: SearchContainer
             const schoolMatch = !criteria.school || uni.oppilaitos.toLowerCase().includes(criteria.school.toLowerCase());
             return colorMatch && areaMatch && fieldMatch && schoolMatch;
         });
+
         const orderedResults = filteredResults.sort((a, b) => {
-            if (!a.ainejärjestö && !b.ainejärjestö) return 0; // Both null or undefined
-            if (!a.ainejärjestö) return 1; // `a` is null, `b` goes first
-            if (!b.ainejärjestö) return -1; // `b` is null, `a` goes first
-            return a.ainejärjestö.localeCompare(b.ainejärjestö); // Standard alphabetical sorting
+            if (a.oppilaitos === b.oppilaitos) {
+                // Sort alphabetically by ainejärjestö within the same school
+                if (!a.ainejärjestö && !b.ainejärjestö) return 0;
+                if (!a.ainejärjestö) return 1;
+                if (!b.ainejärjestö) return -1;
+                return a.ainejärjestö.localeCompare(b.ainejärjestö);
+            }
+            // Sort by oppilaitos alphabetically
+            return a.oppilaitos.localeCompare(b.oppilaitos);
         });
 
         setResults(orderedResults)
