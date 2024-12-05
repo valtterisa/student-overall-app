@@ -11,7 +11,7 @@ export type University = {
     väri: string;
     hex: string;
     alue: string;
-    ala: string;
+    ala?: string;
     ainejärjestö: string;
     oppilaitos: string;
 }
@@ -44,7 +44,7 @@ export default function SearchContainer({ initialUniversities }: SearchContainer
                     .some(c => uni.väri.toLowerCase().includes(c.toLowerCase())))
                 : true;
             const areaMatch = !criteria.area || uni.alue.toLowerCase() === criteria.area.toLowerCase();
-            const fieldMatch = !criteria.field || uni.ala.toLowerCase().includes(criteria.field.toLowerCase());
+            const fieldMatch = !criteria.field || uni.ala?.toLowerCase().includes(criteria.field.toLowerCase());
             return colorMatch && areaMatch && fieldMatch;
         });
         setResults(filteredResults)

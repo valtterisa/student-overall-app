@@ -22,11 +22,12 @@ export default function ResultsDisplay({ results }: ResultsDisplayProps) {
                             className="bg-white rounded-md p-4 shadow flex flex-col md:flex-row space-y-4 md:space-x-4 md:space-y-0"
                         >
                             <div className="flex flex-row md:flex-col gap-2">
-                                <div className="w-16 h-16 rounded-lg shadow-lg" style={parseStyles(uni.hex)}></div>
                                 <div className="relative w-16 h-16">
-                                    <Image className="absolute object-contain" src={`/logos/${uni.oppilaitos.startsWith("Aalto-yliopisto") ? "Aalto-yliopisto" : uni.oppilaitos}.jpg`} fill alt="Oppilaitoksen logo" />
-
+                                    <Image className="absolute object-contain"
+                                           src={`/logos/${uni.oppilaitos.startsWith("Aalto-yliopisto") ? "Aalto-yliopisto" : uni.oppilaitos}.jpg`}
+                                           fill alt="Oppilaitoksen logo"/>
                                 </div>
+                                <div className="w-16 h-16 rounded-lg shadow-lg" style={parseStyles(uni.hex)}></div>
                             </div>
                             <div>
                                 <h3 className="text-xl font-semibold text-gray-800">{uni.oppilaitos}</h3>
