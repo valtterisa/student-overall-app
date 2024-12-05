@@ -25,8 +25,8 @@ export const colorData = {
         "main": ["oranssi"],
         "shades": []
       },
-      "#BF40BF": {
-        "alt": "#9F2B68",
+      "#7F00FF": {
+        "alt": "#5000A0",
         "main": ["violetti"],
         "shades": ["liila"]
       },

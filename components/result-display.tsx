@@ -24,7 +24,7 @@ export default function ResultsDisplay({ results }: ResultsDisplayProps) {
                             <div className="flex flex-row md:flex-col gap-2">
                                 <div className="w-16 h-16 rounded-lg shadow-lg" style={parseStyles(uni.hex)}></div>
                                 <div className="relative w-16 h-16">
-                                    <Image className="absolute object-contain" src="/uni-logos/uef-logo.jpg" fill alt="UEF logo" />
+                                    <Image className="absolute object-contain" src={`/logos/${uni.oppilaitos}.jpg`} fill alt="Oppilaitoksen logo" />
 
                                 </div>
                             </div>
