@@ -10,7 +10,7 @@ interface ResultsDisplayProps {
 export default function ResultsDisplay({ results }: ResultsDisplayProps) {
   // State for pagination
   const [currentPage, setCurrentPage] = useState(1);
-  const [resultsPerPage, setResultsPerPage] = useState(5);
+  const [resultsPerPage, setResultsPerPage] = useState(15);
 
   // Calculate the total number of pages
   const totalPages = Math.ceil(results.length / resultsPerPage);
