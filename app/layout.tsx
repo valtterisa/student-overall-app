@@ -9,8 +9,13 @@ const defaultUrl = process.env.VERCEL_URL
 
 export const metadata = {
   metadataBase: new URL(defaultUrl),
-  title: "Kenen haalarit?",
-  description: "Selvitä, minkä väriset haalarit eri ainejärjestöillä on!",
+  title: "Haalarikone | Selvitä kenelle haalarit kuuluvat",
+  description: "Tutustu Suomen opiskelijakulttuuriin värien kautta. Haalarikone auttaa sinua tunnistamaan eri alojen opiskelijat haalarivärien perusteella.",
+  openGraph: {
+    title: "Haalarikone | Selvitä kenelle haalarit kuuluvat",
+    description: "Tutustu Suomen opiskelijakulttuuriin värien kautta. Haalarikone auttaa sinua tunnistamaan eri alojen opiskelijat haalarivärien perusteella.",
+    images: ['/haalarikone-og.png'],
+  },
 };
 
 const arvo = Arvo({
