@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { parseStyles } from "@/lib/utils";
 import Image from "next/image";
 import { University } from "./search-container";
@@ -21,6 +21,19 @@ export default function ResultsDisplay({ results }: ResultsDisplayProps) {
     currentPage * resultsPerPage
   );
 
+  // When results change, reset pagination
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [results]);
+
+  // Scroll to top when page changes
+  useEffect(() => {
+    const topDiv = document.getElementById("top");
+    if (topDiv) {
+      topDiv.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [currentPage]);
+
   // Handle page change
   const handlePageChange = (page: number) => {
     if (page >= 1 && page <= totalPages) {
@@ -29,7 +42,10 @@ export default function ResultsDisplay({ results }: ResultsDisplayProps) {
   };
 
   return (
-    <div className="bg-gray-100 rounded-lg shadow-lg p-4 max-w-xl mx-auto overflow-hidden">
+    <div
+      id="top"
+      className="bg-gray-100 rounded-lg shadow-lg p-4 max-w-xl mx-auto overflow-hidden"
+    >
       <h2 className="text-2xl font-bold text-gray-900 mb-6 flex justify-between items-center">
         Haun tulokset{" "}
         <span className="text-sm font-medium text-gray-500">

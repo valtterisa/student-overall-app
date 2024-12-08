@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { colorData } from "../data/mockData";
+import { Switch } from "./ui/switch";
 
 interface SearchFormProps {
   onSearch: () => void;
@@ -21,26 +22,6 @@ interface SearchFormProps {
     field: string;
     school: string;
   };
-}
-
-function Switch({
-  checked,
-  onChange,
-}: {
-  checked: boolean;
-  onChange: (checked: boolean) => void;
-}) {
-  return (
-    <div
-      className={`w-11 h-6 flex items-center rounded-full p-1 cursor-pointer bg-gray-300`}
-      onClick={() => onChange(!checked)}
-    >
-      <motion.div
-        className="bg-white w-4 h-4 rounded-full shadow-md"
-        animate={{ x: checked ? 20 : 0 }}
-      />
-    </div>
-  );
 }
 
 export default function SearchForm({
