@@ -19,7 +19,7 @@ export default async function Index() {
       <div className="bg-white w-full min-h-screen flex flex-col items-center justify-center">
         <div className="flex flex-col items-center justify-center pt-8 pb-4">
           <p
-            className="text-sm uppercase tracking-wider text-green font-semibold mb-2"
+            className="text-sm uppercase tracking-wider text-green font-semibold mb-4"
           >
             Suomen helpoin haalaritietokanta</p>
           <h1
@@ -34,7 +34,7 @@ export default async function Index() {
           >
             Haalarikone
           </h1>
-          <p className="text-center max-w-2xl mx-auto mt-6 mb-4">
+          <p className="text-center max-w-2xl mx-auto px-4 mt-6 mb-4">
             Tutustu Suomen opiskelijakulttuuriin värien kautta. Haalarikone <strong>auttaa sinua tunnistamaan</strong> eri alojen opiskelijat haalarivärien perusteella.
           </p>
         </div>
