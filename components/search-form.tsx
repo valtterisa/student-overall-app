@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { colorData } from "../data/mockData";
 import { Switch } from "./ui/switch";
@@ -101,9 +101,9 @@ export default function SearchForm({
     >
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          {/* <label className="block text-sm font-medium text-gray-700 mb-2">
             Valitse väri:
-          </label>
+          </label> */}
           <div className="grid grid-cols-3 gap-2 mb-2">
             {Object.entries(colorData.colors).map(([color, data]) => (
               <button

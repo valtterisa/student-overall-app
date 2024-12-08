@@ -4,12 +4,12 @@ import { createClient } from "@/utils/supabase/server";
 export default async function Index() {
   const supabase = await createClient();
   let { data: overall_colors, error } = await supabase
-    .from('overall_colors')
-    .select('*')
+    .from("overall_colors")
+    .select("*");
 
   if (error) {
-    console.error('Error fetching universities:', error)
-    return []
+    console.error("Error fetching universities:", error);
+    return [];
   }
 
   const universities = overall_colors ?? [];
@@ -17,9 +17,15 @@ export default async function Index() {
   return (
     <>
       <div className="bg-white w-full min-h-screen flex flex-col">
-        {/* <h1 className="text-4xl md:text-6xl font-bold text-center text-white mb-8">
-            Student Overall Search
-          </h1> */}
+        <div className="py-4">
+          <h1 className="text-4xl md:text-6xl font-bold text-center mb-2">
+            Kenen haalarit?
+          </h1>
+          <p className="text-center mb-2">
+            Hae <strong>värin</strong> perusteella ja löydä kenelle haalarit
+            kuuluvat
+          </p>
+        </div>
         <SearchContainer initialUniversities={universities} />
       </div>
     </>
