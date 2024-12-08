@@ -52,6 +52,7 @@ export default function ResultsDisplay({ results }: ResultsDisplayProps) {
           ({results.length})
         </span>
       </h2>
+
       {results.length === 0 ? (
         <div className="py-8 flex flex-col items-center justify-center gap-4 text-center">
           <Image
@@ -114,12 +115,11 @@ export default function ResultsDisplay({ results }: ResultsDisplayProps) {
       {/* Pagination Controls */}
       {results.length > 0 && (
         <div className="mt-6 flex justify-center items-center">
-          {/* Pagination Buttons */}
           <div className="flex gap-2">
             <button
               onClick={() => handlePageChange(currentPage - 1)}
               disabled={currentPage === 1}
-              className="bg-gray-300 text-gray-700 rounded-lg p-2 disabled:opacity-50"
+              className="bg-gray-300 text-gray-700 rounded-lg p-2 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Edellinen
             </button>
@@ -129,7 +129,7 @@ export default function ResultsDisplay({ results }: ResultsDisplayProps) {
             <button
               onClick={() => handlePageChange(currentPage + 1)}
               disabled={currentPage === totalPages}
-              className="bg-gray-300 text-gray-700 rounded-lg p-2 disabled:opacity-50"
+              className="bg-gray-300 text-gray-700 rounded-lg p-2 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Seuraava
             </button>

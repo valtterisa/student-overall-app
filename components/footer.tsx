@@ -6,10 +6,11 @@ export default function Footer() {
             <div className="container mx-auto px-4">
                 <div className="flex flex-col items-center space-y-4">
                     <Link
-                        href="https://www.buymeacoffee.com"
+                        href="https://buymeacoffee.com/bittive"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out transform hover:scale-105 flex items-center"
+                        className="bg-green hover:bg-lime-700 text-white font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out transform hover:scale-105 flex items-center"
+
                     >
                         ☕ Help us pay rent
                     </Link>

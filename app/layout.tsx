@@ -1,5 +1,5 @@
 import Footer from "@/components/footer";
-import { GeistSans } from "geist/font/sans";
+import { Arvo } from "next/font/google"
 import "./globals.css";
 import Script from "next/script"; // Import Script component for analytics scripts
 
@@ -13,13 +13,20 @@ export const metadata = {
   description: "Selvitä, minkä väriset haalarit eri ainejärjestöillä on!",
 };
 
+const arvo = Arvo({
+  weight: ['400', '700'],
+  subsets: ['latin'],
+  display: 'swap',
+})
+
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="fi" className={GeistSans.className} suppressHydrationWarning>
+    <html lang="fi" className={arvo.className} suppressHydrationWarning>
       <head>
         <Script
           defer

@@ -22,6 +22,8 @@ interface SearchFormProps {
     field: string;
     school: string;
   };
+  isSubmitted: boolean;
+  setIsFormSubmitted: (isSubmitted: boolean) => void;
 }
 
 export default function SearchForm({
@@ -31,6 +33,8 @@ export default function SearchForm({
   fields,
   schools,
   selectedCriteria,
+  isSubmitted,
+  setIsFormSubmitted
 }: SearchFormProps) {
   const [isAdvancedSearchOpen, setIsAdvancedSearchOpen] = useState(false);
 
@@ -61,6 +65,7 @@ export default function SearchForm({
   // Prevent form refresh when submitting
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault(); // Prevent page refresh on submit
+    setIsFormSubmitted(true);
     onSearch();
   };
 
@@ -110,9 +115,8 @@ export default function SearchForm({
                 key={color}
                 type="button"
                 onClick={() => handleColorClick(color)}
-                className={`w-full aspect-square rounded-md ${
-                  selectedCriteria.color === color ? "ring-2 ring-black" : ""
-                }`}
+                className={`w-full aspect-square rounded-md ${selectedCriteria.color === color ? "ring-2 ring-black" : ""
+                  }`}
                 style={{
                   backgroundImage: `linear-gradient(to bottom right, ${color}, ${data.alt})`,
                 }}
@@ -124,7 +128,8 @@ export default function SearchForm({
 
         {/* Toggle for Advanced Search */}
         <div className="mb-4 flex items-center justify-between bg-lime-600 text-white p-3 rounded-md">
-          <span className="text-sm font-medium">Tarkempi haku</span>
+          <span className="font-semibold">Tarkempi haku</span>
+
           <Switch
             checked={isAdvancedSearchOpen}
             onChange={toggleAdvancedSearch}

@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import SearchForm from "./search-form";
 import ResultsDisplay from "./result-display";
 import { colorData } from "../data/mockData";
+import Image from "next/image";
+import PlaceholderDisplay from "./placeholder-display";
 
 export type University = {
   id: number;
@@ -39,18 +41,21 @@ export default function SearchContainer({
   const [results, setResults] = useState<University[]>([]);
   const [hasSearched, setHasSearched] = useState(false);
 
+  // check if form is submitted
+  const [isSubmitted, setIsFormSubmitted] = useState(false)
+
   const handleSearch = () => {
     const filteredResults = initialUniversities.filter((uni) => {
       const colorMatch = selectedCriteria.color
         ? colorData.colors[
-            selectedCriteria.color as keyof typeof colorData.colors
-          ].main
-            .concat(
-              colorData.colors[
-                selectedCriteria.color as keyof typeof colorData.colors
-              ].shades
-            )
-            .some((c) => uni.väri.toLowerCase().includes(c.toLowerCase()))
+          selectedCriteria.color as keyof typeof colorData.colors
+        ].main
+          .concat(
+            colorData.colors[
+              selectedCriteria.color as keyof typeof colorData.colors
+            ].shades
+          )
+          .some((c) => uni.väri.toLowerCase().includes(c.toLowerCase()))
         : true;
       const areaMatch =
         !selectedCriteria.area ||
@@ -84,14 +89,14 @@ export default function SearchContainer({
     const filteredUniversities = initialUniversities.filter((uni) => {
       const colorMatch = selectedCriteria.color
         ? colorData.colors[
-            selectedCriteria.color as keyof typeof colorData.colors
-          ].main
-            .concat(
-              colorData.colors[
-                selectedCriteria.color as keyof typeof colorData.colors
-              ].shades
-            )
-            .some((c) => uni.väri.toLowerCase().includes(c.toLowerCase()))
+          selectedCriteria.color as keyof typeof colorData.colors
+        ].main
+          .concat(
+            colorData.colors[
+              selectedCriteria.color as keyof typeof colorData.colors
+            ].shades
+          )
+          .some((c) => uni.väri.toLowerCase().includes(c.toLowerCase()))
         : true;
       const areaMatch =
         !selectedCriteria.area ||
@@ -131,7 +136,7 @@ export default function SearchContainer({
   }, [selectedCriteria]);
 
   return (
-    <>
+    <div className="w-full">
       <SearchForm
         onSearch={handleSearch}
         onCriteriaChange={setSelectedCriteria}
@@ -139,8 +144,10 @@ export default function SearchContainer({
         fields={filteredOptions.fields}
         schools={filteredOptions.schools}
         selectedCriteria={selectedCriteria}
+        setIsFormSubmitted={setIsFormSubmitted}
+        isSubmitted={isSubmitted}
       />
-      {hasSearched && (
+      {hasSearched && isSubmitted && (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -149,6 +156,10 @@ export default function SearchContainer({
           <ResultsDisplay results={results} />
         </motion.div>
       )}
-    </>
+      {!isSubmitted && (
+        <PlaceholderDisplay />
+      )}
+
+    </div>
   );
 }
