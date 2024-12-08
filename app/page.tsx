@@ -19,7 +19,7 @@ export default async function Index() {
       <div className="bg-white w-full min-h-screen flex flex-col">
         <div className="py-4">
           <h1 className="text-4xl md:text-6xl font-bold text-center mb-2">
-            Kenen haalarit?
+            Haalarikone
           </h1>
           <p className="text-center mb-2">
             Hae <strong>värin</strong> perusteella ja löydä kenelle haalarit
