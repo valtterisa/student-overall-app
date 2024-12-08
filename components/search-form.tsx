@@ -69,34 +69,6 @@ export default function SearchForm({
     onSearch();
   };
 
-  // Handle city (area) options dynamically based on selected criteria
-  const getFilteredAreas = () => {
-    const { color, school, area } = selectedCriteria;
-
-    // Case 1: If no color and school is selected, show all cities
-    if (!color && !school) {
-      return areas; // Show all cities when no color or school filter is active
-    }
-
-    // Case 2: If color is selected but no school, show all cities
-    if (color && !school) {
-      return areas; // Show all cities if color is selected and no school is selected
-    }
-
-    // Case 3: If color is selected and a school is selected, return the filtered cities based on area
-    if (color && school) {
-      return areas.filter((area) => area === selectedCriteria.area); // Filter by city only if school is also selected
-    }
-
-    // Case 4: If school is selected but no color, show all cities that match area
-    if (!color && school) {
-      return areas.filter((a) => a === selectedCriteria.area); // Show city based on selected area
-    }
-
-    // By default, return all areas
-    return areas;
-  };
-
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.9 }}
@@ -159,7 +131,7 @@ export default function SearchForm({
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-lime-500"
               >
                 <option value="">Valitse kaupunki</option>
-                {getFilteredAreas().map((a) => (
+                {areas.map((a) => (
                   <option key={a} value={a}>
                     {a}
                   </option>
