@@ -18,6 +18,10 @@ export default async function Index() {
     <>
       <div className="bg-white w-full min-h-screen flex flex-col items-center justify-center">
         <div className="flex flex-col items-center justify-center pt-8 pb-4">
+          <p
+            className="text-sm uppercase tracking-wider text-green font-semibold mb-2"
+          >
+            Suomen helpoin haalaritietokanta</p>
           <h1
             className="w-fit text-4xl md:text-7xl font-bold text-center"
             style={{
