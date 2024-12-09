@@ -3,12 +3,8 @@ import { Arvo } from "next/font/google"
 import "./globals.css";
 import Script from "next/script"; // Import Script component for analytics scripts
 
-const defaultUrl = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
-  : "http://localhost:3000";
-
 export const metadata = {
-  metadataBase: new URL(defaultUrl),
+  metadataBase: new URL("https://haalarikone.fi"),
   title: "Haalarikone | Selvitä kenelle haalarit kuuluvat!",
   description: "Tutustu Suomen opiskelijakulttuuriin värien kautta. Haalarikone auttaa sinua tunnistamaan eri alojen opiskelijat haalarivärien perusteella.",
   openGraph: {
