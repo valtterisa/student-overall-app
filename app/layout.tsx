@@ -34,9 +34,7 @@ export default function RootLayout({
     <html lang="fi" className={arvo.className} suppressHydrationWarning>
       <head>
         <Script
-          defer
-          data-domain="kenenhaalarit.fi"
-          src="https://analytics.bittive.com/js/script.file-downloads.hash.outbound-links.pageview-props.revenue.tagged-events.js"
+          defer data-domain="haalarikone.fi" src="https://analytics.bittive.com/js/script.file-downloads.hash.outbound-links.pageview-props.revenue.tagged-events.js"
         />
         <Script>
           {`window.plausible = window.plausible || function() {(window.plausible.q = window.plausible.q || []).push(arguments)}`}
