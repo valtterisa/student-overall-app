@@ -5,16 +5,16 @@ import { motion } from "framer-motion"
 import Image from 'next/image';
 
 const messages = [
-    "Hiljaista kuin tentti-iltana oppimateriaalin ääressä. 🤔 Kokeile hakua, niin ehkä tulee jotain viisasta vastaan!",
-    "Mitään ei näy, aivan kuin fuksin haalareita katsoisi. 🤔 Anna haulle mahdollisuus kasvattaa sisältöä!",
-    "Täällä on tyhjää kuin opiskelijan jääkaapissa kuukauden lopussa. 🤔 Hakua painamalla saatat löytää täytettä elämään!",
-    "Tyhjää kuin palautuskansion deadlinen jälkeisenä aamuna. 🤔 Kokeile yläpuolen hakua ennen kuin paniikki iskee!",
-    "Näyttää siltä, että täältä löytyy yhtä paljon kuin opintotuesta jää säästöön. 🤔 Anna hakukoneelle mahdollisuus!",
-    "Täällä on tyhjempää kuin opiskelijabileiden vesipisteellä. 🤔 Kokeile hakua, niin saat vähän eloa tähän paikkaan!",
-    "Ei tuloksia – vähän sama kuin odottaisi ilmaista lounasta kampuksella. 🤔 Anna haulle tilaisuus loistaa!",
-    "Tyhjää kuin luentosalin ensimmäinen rivi yhdeksän aamulähdöllä. 🤔 Kokeile hakua, niin täytetään tämä tila!",
-    "Täällä on yhtä hiljaista kuin kirjasto kahvitauon aikaan. 🤔 Kokeile hakua ja katso, löytyykö jotain opiskelijan arkea piristävää!",
-    "Serveriiiiiiiiiiii!!!!! (Serveri ry <3333) - Juuh kokeile hakua tää on vaa placeholder. PS. käytettiin ihan liikaa aikaa tän tekemiseen......."
+    "Hiljaista kuin Otaniemen metroasema keskiyöllä. 🤔 Paina hakua, niin ehkä löydät elämää täältäkin!",
+    "Tyhjää kuin opiskelijan lompakossa päivää ennen opintotukea. 🤔 Anna haulle mahdollisuus pelastaa päivä!",
+    "Täällä on yhtä autiota kuin Kuopion torilla sadepäivänä. 🤔 Kokeile hakua – maksaa vähemmän kuin kalakukko!",
+    "Hiljaista kuin kirjastossa perjantai-iltana. 🤔 Klikkaa hakua ennen kuin tylsyys iskee!",
+    "Täällä on yhtä paljon nähtävää kuin pääkaupunkiseudun talvisessa maisemassa – pelkkää harmaata. 🤔 Kokeile hakua, niin saat ehkä väriä päivään!",
+    "Täällä on hiljaista kuin työhaastattelussa, kun kysytään 'Missä näet itsesi viiden vuoden päästä?'. 🤔 Paina hakua ja saa edes jotain aikaan!",
+    "Ei tuloksia – vähän sama kuin yrittäisi löytää ilmaista kahvia yliopistolla. 🤔 Anna haulle mahdollisuus loistaa!",
+    "Täällä on tyhjää kuin ruokalassa kasvisvaihtoehdon loputtua. 🤔 Kokeile hakua, niin löydät ehkä parempaa purtavaa!",
+    "Täällä on hiljaisempaa kuin luentosalissa, kun kysytään vapaaehtoisia projektiryhmään. 🤔 Klikkaa hakua ja täytä tämä tyhjyys!",
+    "Serveri ry GOD TIER! Serveriii!!!! <33333 Ennestään hajalla ollut mielenterveys meni tätä koodatessa :) Mut joo kokeile käyttää tota hakua yläpuolella!",
 ];
 
 function PlaceholderDisplay() {
