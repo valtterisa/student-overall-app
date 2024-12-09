@@ -5,6 +5,7 @@ export default function Footer() {
         <footer className="bg-white text-white py-8 w-full">
             <div className="container mx-auto px-4">
                 <div className="flex flex-col items-center space-y-4">
+                    <Link href="mailto:haalarikone@bittive.com" className='text-black text-sm font-semibold hover:underline'>haalarikone@bittive.com</Link>
                     <Link
                         href="https://buymeacoffee.com/bittive"
                         target="_blank"
