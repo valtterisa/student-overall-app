@@ -5,10 +5,10 @@ import Script from "next/script"; // Import Script component for analytics scrip
 
 export const metadata = {
   metadataBase: new URL("https://haalarikone.fi"),
-  title: "Haalarikone | Selvitä kenelle haalarit kuuluvat!",
+  title: "Haalarikone | Selvitä minkä värinen haalari tietyn alan opiskelijalla on!",
   description: "Tutustu Suomen opiskelijakulttuuriin värien kautta. Haalarikone auttaa sinua tunnistamaan eri alojen opiskelijat haalarivärien perusteella.",
   openGraph: {
-    title: "Haalarikone | Selvitä kenelle haalarit kuuluvat!",
+    title: "Haalarikone | Selvitä minkä värinen haalari tietyn alan opiskelijalla on!",
     description: "Tutustu Suomen opiskelijakulttuuriin värien kautta. Haalarikone auttaa sinua tunnistamaan eri alojen opiskelijat haalarivärien perusteella.",
     images: ['/haalarikone-og.png'],
   },
