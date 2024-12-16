@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { colorData } from "../data/mockData";
 import { Switch } from "./ui/switch";
+import { Check } from "lucide-react";
 
 interface SearchFormProps {
   onSearch: () => void;
@@ -62,7 +63,6 @@ export default function SearchForm({
     });
   };
 
-  // Prevent form refresh when submitting
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault(); // Prevent page refresh on submit
     setIsFormSubmitted(true);
@@ -78,27 +78,33 @@ export default function SearchForm({
     >
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
-          {/* <label className="block text-sm font-medium text-gray-700 mb-2">
-            Valitse väri:
-          </label> */}
-          <div className="grid grid-cols-3 gap-2 mb-2">
+          <div className="relative grid grid-cols-3 gap-2 mb-2">
             {Object.entries(colorData.colors).map(([color, data]) => (
-              <button
-                key={color}
-                type="button"
-                onClick={() => handleColorClick(color)}
-                className={`w-full aspect-square rounded-md ${selectedCriteria.color === color ? "ring-2 ring-black" : ""
-                  }`}
-                style={{
-                  backgroundImage: `linear-gradient(to bottom right, ${color}, ${data.alt})`,
-                }}
-                aria-label={data.main[0]}
-              />
+              <div key={color} className="relative">
+                <button
+                  type="button"
+                  onClick={() => handleColorClick(color)}
+                  className={`w-full aspect-square rounded-md ${selectedCriteria.color === color ? "ring-2 ring-black" : ""
+                    }`}
+                  style={{
+                    backgroundImage: `linear-gradient(to bottom right, ${color}, ${data.alt})`,
+                  }}
+                  aria-label={data.main[0]}
+                />
+                {selectedCriteria.color === color && (
+                  <div
+                    className="absolute inset-0 flex items-center justify-center"
+                  >
+                    <Check
+                      className={`text-${color === "white" ? "black" : "white"} md:w-12 md:h-12`}
+                    />
+                  </div>
+                )}
+              </div>
             ))}
           </div>
         </div>
 
-        {/* Toggle for Advanced Search */}
         <div className="mb-4 flex items-center justify-between bg-lime-600 text-white p-3 rounded-md">
           <span className="font-semibold">Tarkempi haku</span>
 
@@ -108,7 +114,6 @@ export default function SearchForm({
           />
         </div>
 
-        {/* Advanced Search Fields (Visible only when toggled) */}
         {isAdvancedSearchOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
