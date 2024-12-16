@@ -29,6 +29,7 @@ export default function RootLayout({
   return (
     <html lang="fi" className={arvo.className} suppressHydrationWarning>
       <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
         <Script
           defer data-domain="haalarikone.fi" src="https://analytics.bittive.com/js/script.file-downloads.hash.outbound-links.pageview-props.revenue.tagged-events.js"
         />
