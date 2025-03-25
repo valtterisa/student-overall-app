@@ -18,6 +18,23 @@ export type University = {
   oppilaitos: string;
 };
 
+export type Criteria = {
+  color:
+    | ""
+    | "punainen"
+    | "sininen"
+    | "vihreä"
+    | "keltainen"
+    | "oranssi"
+    | "violetti"
+    | "pinkki"
+    | "black"
+    | "white";
+  area: string;
+  field: string;
+  school: string;
+};
+
 interface SearchContainerProps {
   initialUniversities: University[];
 }
@@ -25,7 +42,7 @@ interface SearchContainerProps {
 export default function SearchContainer({
   initialUniversities,
 }: SearchContainerProps) {
-  const [selectedCriteria, setSelectedCriteria] = useState({
+  const [selectedCriteria, setSelectedCriteria] = useState<Criteria>({
     color: "",
     area: "",
     field: "",
@@ -42,20 +59,14 @@ export default function SearchContainer({
   const [hasSearched, setHasSearched] = useState(false);
 
   // check if form is submitted
-  const [isSubmitted, setIsFormSubmitted] = useState(false)
+  const [isSubmitted, setIsFormSubmitted] = useState(false);
 
   const handleSearch = () => {
     const filteredResults = initialUniversities.filter((uni) => {
       const colorMatch = selectedCriteria.color
-        ? colorData.colors[
-          selectedCriteria.color as keyof typeof colorData.colors
-        ].main
-          .concat(
-            colorData.colors[
-              selectedCriteria.color as keyof typeof colorData.colors
-            ].shades
-          )
-          .some((c) => uni.väri.toLowerCase().includes(c.toLowerCase()))
+        ? colorData.colors[selectedCriteria.color].main
+            .concat(colorData.colors[selectedCriteria.color].shades)
+            .some((c) => uni.väri.toLowerCase().includes(c.toLowerCase()))
         : true;
       const areaMatch =
         !selectedCriteria.area ||
@@ -86,21 +97,13 @@ export default function SearchContainer({
   };
 
   const updateFilteredOptions = () => {
-    const filteredUniversities = initialUniversities.filter((uni) => {
+    // For area options: ignore the selected area criteria
+    const universitiesForArea = initialUniversities.filter((uni) => {
       const colorMatch = selectedCriteria.color
-        ? colorData.colors[
-          selectedCriteria.color as keyof typeof colorData.colors
-        ].main
-          .concat(
-            colorData.colors[
-              selectedCriteria.color as keyof typeof colorData.colors
-            ].shades
-          )
-          .some((c) => uni.väri.toLowerCase().includes(c.toLowerCase()))
+        ? colorData.colors[selectedCriteria.color].main
+            .concat(colorData.colors[selectedCriteria.color].shades)
+            .some((c) => uni.väri.toLowerCase().includes(c.toLowerCase()))
         : true;
-      const areaMatch =
-        !selectedCriteria.area ||
-        uni.alue.toLowerCase() === selectedCriteria.area.toLowerCase();
       const fieldMatch =
         !selectedCriteria.field ||
         uni.ala?.toLowerCase().includes(selectedCriteria.field.toLowerCase());
@@ -109,23 +112,57 @@ export default function SearchContainer({
         uni.oppilaitos
           .toLowerCase()
           .includes(selectedCriteria.school.toLowerCase());
-      return colorMatch && areaMatch && fieldMatch && schoolMatch;
+      return colorMatch && fieldMatch && schoolMatch;
     });
 
     const areas = Array.from(
-      new Set(filteredUniversities.map((uni) => uni.alue))
+      new Set(universitiesForArea.map((uni) => uni.alue))
     ).sort((a, b) => a.localeCompare(b));
+
+    // For field options: ignore the selected field criteria
+    const universitiesForField = initialUniversities.filter((uni) => {
+      const colorMatch = selectedCriteria.color
+        ? colorData.colors[selectedCriteria.color].main
+            .concat(colorData.colors[selectedCriteria.color].shades)
+            .some((c) => uni.väri.toLowerCase().includes(c.toLowerCase()))
+        : true;
+      const areaMatch =
+        !selectedCriteria.area ||
+        uni.alue.toLowerCase() === selectedCriteria.area.toLowerCase();
+      const schoolMatch =
+        !selectedCriteria.school ||
+        uni.oppilaitos
+          .toLowerCase()
+          .includes(selectedCriteria.school.toLowerCase());
+      return colorMatch && areaMatch && schoolMatch;
+    });
 
     const fields = Array.from(
       new Set(
-        filteredUniversities.flatMap((uni) =>
+        universitiesForField.flatMap((uni) =>
           uni.ala ? uni.ala.split(", ") : []
         )
       )
     ).sort((a, b) => a.localeCompare(b));
 
+    // For school options: ignore the selected school criteria
+    const universitiesForSchool = initialUniversities.filter((uni) => {
+      const colorMatch = selectedCriteria.color
+        ? colorData.colors[selectedCriteria.color].main
+            .concat(colorData.colors[selectedCriteria.color].shades)
+            .some((c) => uni.väri.toLowerCase().includes(c.toLowerCase()))
+        : true;
+      const areaMatch =
+        !selectedCriteria.area ||
+        uni.alue.toLowerCase() === selectedCriteria.area.toLowerCase();
+      const fieldMatch =
+        !selectedCriteria.field ||
+        uni.ala?.toLowerCase().includes(selectedCriteria.field.toLowerCase());
+      return colorMatch && areaMatch && fieldMatch;
+    });
+
     const schools = Array.from(
-      new Set(filteredUniversities.map((uni) => uni.oppilaitos))
+      new Set(universitiesForSchool.map((uni) => uni.oppilaitos))
     ).sort((a, b) => a.localeCompare(b));
 
     setFilteredOptions({ areas, fields, schools });
@@ -139,7 +176,7 @@ export default function SearchContainer({
     <div className="w-full">
       <SearchForm
         onSearch={handleSearch}
-        onCriteriaChange={setSelectedCriteria}
+        onCriteriaChange={(criteria: Criteria) => setSelectedCriteria(criteria)}
         areas={filteredOptions.areas}
         fields={filteredOptions.fields}
         schools={filteredOptions.schools}
@@ -156,10 +193,7 @@ export default function SearchContainer({
           <ResultsDisplay results={results} />
         </motion.div>
       )}
-      {!isSubmitted && (
-        <PlaceholderDisplay />
-      )}
-
+      {!isSubmitted && <PlaceholderDisplay />}
     </div>
   );
 }

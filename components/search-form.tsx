@@ -5,26 +5,17 @@ import { motion } from "framer-motion";
 import { colorData } from "../data/mockData";
 import { Switch } from "./ui/switch";
 import { Check } from "lucide-react";
+import { Criteria } from "./search-container";
 
 interface SearchFormProps {
   onSearch: () => void;
-  onCriteriaChange: (criteria: {
-    color: string;
-    area: string;
-    field: string;
-    school: string;
-  }) => void;
+  onCriteriaChange: (criteria: Criteria) => void;
   areas: string[];
   fields: string[];
   schools: string[];
-  selectedCriteria: {
-    color: string;
-    area: string;
-    field: string;
-    school: string;
-  };
-  isSubmitted: boolean;
+  selectedCriteria: Criteria;
   setIsFormSubmitted: (isSubmitted: boolean) => void;
+  isSubmitted: boolean;
 }
 
 export default function SearchForm({
@@ -35,19 +26,22 @@ export default function SearchForm({
   schools,
   selectedCriteria,
   isSubmitted,
-  setIsFormSubmitted
+  setIsFormSubmitted,
 }: SearchFormProps) {
   const [isAdvancedSearchOpen, setIsAdvancedSearchOpen] = useState(false);
 
-  const handleChange = (field: string, value: string) => {
+  // Only allow changing non-color fields via this handler.
+  const handleChange = (field: "area" | "field" | "school", value: string) => {
     onCriteriaChange({ ...selectedCriteria, [field]: value });
   };
 
-  const handleColorClick = (color: string) => {
-    onCriteriaChange({
-      ...selectedCriteria,
-      color: selectedCriteria.color === color ? "" : color,
-    });
+  // Ensure the color parameter is one of the allowed union values.
+  const handleColorClick = (color: Criteria["color"]) => {
+    if (color === selectedCriteria.color) {
+      onCriteriaChange({ ...selectedCriteria, color: "" });
+    } else {
+      onCriteriaChange({ ...selectedCriteria, color: color });
+    }
   };
 
   const toggleAdvancedSearch = () => {
@@ -83,20 +77,21 @@ export default function SearchForm({
               <div key={color} className="relative">
                 <button
                   type="button"
-                  onClick={() => handleColorClick(color)}
-                  className={`w-full aspect-square rounded-md ${selectedCriteria.color === color ? "ring-2 ring-black" : ""
-                    }`}
+                  onClick={() => handleColorClick(color as Criteria["color"])}
+                  className={`w-full aspect-square rounded-md ${
+                    selectedCriteria.color === color ? "ring-2 ring-black" : ""
+                  }`}
                   style={{
-                    backgroundImage: `linear-gradient(to bottom right, ${color}, ${data.alt})`,
+                    backgroundImage: `linear-gradient(to bottom right, ${data.color}, ${data.alt})`,
                   }}
                   aria-label={data.main[0]}
                 />
                 {selectedCriteria.color === color && (
-                  <div
-                    className="absolute inset-0 flex items-center justify-center"
-                  >
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                     <Check
-                      className={`text-${color === "white" ? "black" : "white"} md:w-12 md:h-12`}
+                      className={`text-${
+                        color === "white" ? "black" : "white"
+                      } md:w-12 md:h-12`}
                     />
                   </div>
                 )}
@@ -107,7 +102,6 @@ export default function SearchForm({
 
         <div className="mb-4 flex items-center justify-between bg-lime-600 text-white p-3 rounded-md">
           <span className="font-semibold">Tarkempi haku</span>
-
           <Switch
             checked={isAdvancedSearchOpen}
             onChange={toggleAdvancedSearch}
