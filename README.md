@@ -1,1 +1,1 @@
-# Kirjottelen tähä jotain sitten kun jaksan... t. valzu
+# Haalarikone - Suomen helpoin haalaritietokanta
