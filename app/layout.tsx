@@ -64,7 +64,6 @@ export default function RootLayout({
   return (
     <html lang="fi" className={arvo.className} suppressHydrationWarning>
       <head>
-        <meta name="google-adsense-account" content="ca-pub-1662483393079789" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <Script
           defer
