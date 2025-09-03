@@ -64,6 +64,7 @@ export default function RootLayout({
   return (
     <html lang="fi" className={arvo.className} suppressHydrationWarning>
       <head>
+        <meta name="google-adsense-account" content="ca-pub-1662483393079789" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <Script
           defer
@@ -73,11 +74,6 @@ export default function RootLayout({
         <Script>
           {`window.plausible = window.plausible || function() {(window.plausible.q = window.plausible.q || []).push(arguments)}`}
         </Script>
-        <Script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1662483393079789"
-          crossOrigin="anonymous"
-        ></Script>
       </head>
       <body className="min-h-screen bg-white text-foreground">
         <main className="flex flex-col items-center">
