@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { parseStyles } from "@/lib/utils";
 import Image from "next/image";
-import { University } from "./search-container";
+import type { University } from "@/types/university";
 
 interface ResultsDisplayProps {
   results: University[];
@@ -84,7 +84,7 @@ export default function ResultsDisplay({ results }: ResultsDisplayProps) {
                 <div
                   className="w-14 h-14 rounded mt-2 shadow"
                   style={parseStyles(uni.hex)}
-                  title={`Väri: ${uni.väri}`}
+                  title={`Väri: ${uni.vari}`}
                 />
               </div>
               <div className="flex-1">
@@ -92,7 +92,7 @@ export default function ResultsDisplay({ results }: ResultsDisplayProps) {
                   {uni.ainejärjestö ?? "Ainejärjestö ei tiedossa"}
                 </h3>
                 <p className="text-sm text-gray-600">
-                  Väri: <span className="font-semibold">{uni.väri}</span>
+                  Väri: <span className="font-semibold">{uni.vari}</span>
                 </p>
                 <p className="text-sm text-gray-600">
                   Alue: <span className="font-semibold">{uni.alue}</span>

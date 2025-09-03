@@ -1,18 +1,29 @@
 import SearchContainer from "@/components/search-container";
-import { createClient } from "@/utils/supabase/server";
+import { promises as fs } from "fs";
+import path from "path";
+import type { University } from "@/types/university";
 
 export default async function Index() {
-  const supabase = await createClient();
-  let { data: overall_colors, error } = await supabase
-    .from("overall_colors")
-    .select("*");
+  const jsonFilePath = path.join(process.cwd(), "data", "overall_colors.json");
+  const rootJsonFilePath = path.join(process.cwd(), "overall_colors_rows.json");
+  const sqlFilePath = path.join(process.cwd(), "overall_colors_rows.sql");
 
-  if (error) {
-    console.error("Error fetching universities:", error);
-    return [];
+  let universities: University[] = [];
+  try {
+    const json = await fs.readFile(jsonFilePath, "utf-8");
+    universities = (JSON.parse(json) as any[])
+      .map(normalizeJsonToUniversity)
+      .filter(Boolean) as University[];
+  } catch {
+    try {
+      const json = await fs.readFile(rootJsonFilePath, "utf-8");
+      universities = (JSON.parse(json) as any[])
+        .map(normalizeJsonToUniversity)
+        .filter(Boolean) as University[];
+    } catch {
+      
+    }
   }
-
-  const universities = overall_colors ?? [];
 
   return (
     <>
@@ -47,4 +58,19 @@ export default async function Index() {
       </div>
     </>
   );
+}
+
+function normalizeJsonToUniversity(row: any): University | null {
+  if (!row) return null;
+  const idNum = Number(row.id);
+  if (Number.isNaN(idNum)) return null;
+  return {
+    id: idNum,
+    vari: row.vari ?? row.vari ?? "",
+    hex: row.hex ?? "",
+    alue: row.alue ?? "",
+    ala: row.ala ?? null,
+    ainejärjestö: row.ainejärjestö ?? null,
+    oppilaitos: row.oppilaitos ?? "",
+  };
 }

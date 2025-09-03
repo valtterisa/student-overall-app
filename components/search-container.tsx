@@ -8,15 +8,7 @@ import { colorData } from "../data/mockData";
 import Image from "next/image";
 import PlaceholderDisplay from "./placeholder-display";
 
-export type University = {
-  id: number;
-  väri: string;
-  hex: string;
-  alue: string;
-  ala?: string;
-  ainejärjestö: string;
-  oppilaitos: string;
-};
+import type { University } from "@/types/university";
 
 export type Criteria = {
   color:
@@ -66,7 +58,7 @@ export default function SearchContainer({
       const colorMatch = selectedCriteria.color
         ? colorData.colors[selectedCriteria.color].main
             .concat(colorData.colors[selectedCriteria.color].shades)
-            .some((c) => uni.väri.toLowerCase().includes(c.toLowerCase()))
+            .some((c) => uni.vari.toLowerCase().includes(c.toLowerCase()))
         : true;
       const areaMatch =
         !selectedCriteria.area ||
@@ -102,7 +94,7 @@ export default function SearchContainer({
       const colorMatch = selectedCriteria.color
         ? colorData.colors[selectedCriteria.color].main
             .concat(colorData.colors[selectedCriteria.color].shades)
-            .some((c) => uni.väri.toLowerCase().includes(c.toLowerCase()))
+            .some((c) => uni.vari.toLowerCase().includes(c.toLowerCase()))
         : true;
       const fieldMatch =
         !selectedCriteria.field ||
@@ -124,7 +116,7 @@ export default function SearchContainer({
       const colorMatch = selectedCriteria.color
         ? colorData.colors[selectedCriteria.color].main
             .concat(colorData.colors[selectedCriteria.color].shades)
-            .some((c) => uni.väri.toLowerCase().includes(c.toLowerCase()))
+            .some((c) => uni.vari.toLowerCase().includes(c.toLowerCase()))
         : true;
       const areaMatch =
         !selectedCriteria.area ||
@@ -150,7 +142,7 @@ export default function SearchContainer({
       const colorMatch = selectedCriteria.color
         ? colorData.colors[selectedCriteria.color].main
             .concat(colorData.colors[selectedCriteria.color].shades)
-            .some((c) => uni.väri.toLowerCase().includes(c.toLowerCase()))
+            .some((c) => uni.vari.toLowerCase().includes(c.toLowerCase()))
         : true;
       const areaMatch =
         !selectedCriteria.area ||
