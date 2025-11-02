@@ -1,7 +1,9 @@
 import Footer from "@/components/footer";
+import Header from "@/components/header";
 import { Arvo } from "next/font/google";
 import "./globals.css";
-import Script from "next/script"; // Import Script component for analytics scripts
+import Script from "next/script";
+import FAQSchema from "@/components/faq-schema";
 
 export const metadata = {
   metadataBase: new URL("https://haalarikone.fi"),
@@ -9,6 +11,15 @@ export const metadata = {
     "Haalarikone | Selvitä minkä värinen haalari tietyn alan opiskelijalla on!",
   description:
     "Tutustu Suomen opiskelijakulttuuriin värien kautta. Haalarikone auttaa sinua tunnistamaan eri alojen opiskelijat haalarivärien perusteella.",
+  keywords: [
+    "haalarikone",
+    "haalaritietokanta",
+    "haalarien värit",
+    "opiskelijahaalarit",
+    "suomen opiskelijakulttuuri",
+    "yliopiston haalarivärit",
+    "AMK haalarit",
+  ],
   openGraph: {
     title:
       "Haalarikone | Selvitä minkä värinen haalari tietyn alan opiskelijalla on!",
@@ -16,38 +27,16 @@ export const metadata = {
       "Tutustu Suomen opiskelijakulttuuriin värien kautta. Haalarikone auttaa sinua tunnistamaan eri alojen opiskelijat haalarivärien perusteella.",
     images: ["/haalarikone-og.png"],
   },
-  keywords: [
-    "haalaritietokanta",
-    "haalaritietokanta suomi",
-    "haalarikone",
-    "haalari",
-    "haalarit",
-    "opiskelija",
-    "yliopisto",
-    "korkeakoulu",
-    "AMK",
-    "väri",
-    "värit",
-    "opiskelijahaalari",
-    "opiskelijahaalarit",
-    "Luettelo suomalaisten opiskelijahaalarien väreistä",
-    "Minkä värinen haalari tietyn alan opiskelijalla on?",
-    "Haalarikulttuuri",
-    "opiskelijakulttuuri",
-    "värit",
-    "opiskelijat",
-    "opiskelu",
-    "haalarivärit",
-    "haalarien värit",
-    "haalarien värit suomessa",
-    "haalarien värit opiskelijakulttuurissa",
-    "haalarien värit eri aloilla",
-    "haalarien värit eri alojen opiskelijoilla",
-    "haalarien värit eri alojen opiskelijakulttuureissa",
-    "haalarien värit eri alojen opiskelijoiden keskuudessa",
-    "haalarien värit eri alojen opiskelijoiden keskuudessa suomessa",
-    "overall colors",
-  ],
+  twitter: {
+    card: "summary_large_image",
+    title: "Haalarikone | Suomen helpoin haalaritietokanta",
+    description:
+      "Tutustu Suomen opiskelijakulttuuriin värien kautta",
+    images: ["/haalarikone-og.png"],
+  },
+  alternates: {
+    canonical: "https://haalarikone.fi",
+  },
 };
 
 const arvo = Arvo({
@@ -73,8 +62,31 @@ export default function RootLayout({
         <Script>
           {`window.plausible = window.plausible || function() {(window.plausible.q = window.plausible.q || []).push(arguments)}`}
         </Script>
+        <Script
+          id="webapplication-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebApplication",
+              name: "Haalarikone",
+              description:
+                "Suomen helpoin haalaritietokanta - selvitä minkä värinen haalari tietyn alan opiskelijalla on",
+              url: "https://haalarikone.fi",
+              applicationCategory: "EducationalApplication",
+              operatingSystem: "Any",
+              offers: {
+                "@type": "Offer",
+                price: "0",
+                priceCurrency: "EUR",
+              },
+            }),
+          }}
+        />
+        <FAQSchema />
       </head>
       <body className="min-h-screen bg-white text-foreground">
+        <Header />
         <main className="flex flex-col items-center">
           <div className="flex-1 w-full flex flex-col gap-20 items-center">
             {children}

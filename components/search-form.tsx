@@ -2,209 +2,312 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { colorData } from "../data/mockData";
-import { Switch } from "./ui/switch";
-import { Check } from "lucide-react";
+import { Input } from "./ui/input";
+import { Label } from "./ui/label";
+import { Button } from "./ui/button";
+import { Card, CardContent } from "./ui/card";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "./ui/collapsible";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "./ui/select";
+import { Search, ChevronDown, ChevronUp, X, Settings, Check } from "lucide-react";
 import { Criteria } from "./search-container";
+import { colorData } from "../data/mockData";
 
 interface SearchFormProps {
-  onSearch: () => void;
-  onCriteriaChange: (criteria: Criteria) => void;
+  onTextSearchChange: (textSearch: string) => void;
+  onDraftAdvancedFilterChange: (filters: Omit<Criteria, "textSearch">) => void;
+  onApplyAdvancedFilters: () => void;
   areas: string[];
   fields: string[];
   schools: string[];
   selectedCriteria: Criteria;
-  setIsFormSubmitted: (isSubmitted: boolean) => void;
-  isSubmitted: boolean;
+  draftAdvancedFilters: Omit<Criteria, "textSearch">;
+  resultCount: number;
+  hasSearched: boolean;
 }
 
 export default function SearchForm({
-  onSearch,
-  onCriteriaChange,
+  onTextSearchChange,
+  onDraftAdvancedFilterChange,
+  onApplyAdvancedFilters,
   areas,
   fields,
   schools,
   selectedCriteria,
-  isSubmitted,
-  setIsFormSubmitted,
+  draftAdvancedFilters,
+  resultCount,
+  hasSearched,
 }: SearchFormProps) {
   const [isAdvancedSearchOpen, setIsAdvancedSearchOpen] = useState(false);
 
-  // Only allow changing non-color fields via this handler.
-  const handleChange = (field: "area" | "field" | "school", value: string) => {
-    onCriteriaChange({ ...selectedCriteria, [field]: value });
+  const handleTextSearchChange = (value: string) => {
+    onTextSearchChange(value);
   };
 
-  // Ensure the color parameter is one of the allowed union values.
-  const handleColorClick = (color: Criteria["color"]) => {
-    if (color === selectedCriteria.color) {
-      onCriteriaChange({ ...selectedCriteria, color: "" });
-    } else {
-      onCriteriaChange({ ...selectedCriteria, color: color });
-    }
-  };
-
-  const toggleAdvancedSearch = () => {
-    setIsAdvancedSearchOpen((prevState) => !prevState);
+  const handleDraftChange = (
+    field: "color" | "area" | "field" | "school",
+    value: string
+  ) => {
+    onDraftAdvancedFilterChange({ ...draftAdvancedFilters, [field]: value });
   };
 
   const handleClear = () => {
-    onCriteriaChange({
+    onTextSearchChange("");
+    onDraftAdvancedFilterChange({
       color: "",
       area: "",
       field: "",
       school: "",
     });
+    onApplyAdvancedFilters();
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault(); // Prevent page refresh on submit
-    setIsFormSubmitted(true);
-    onSearch();
-  };
+  const hasActiveFilters =
+    selectedCriteria.color ||
+    selectedCriteria.area ||
+    selectedCriteria.field ||
+    selectedCriteria.school;
+
+  const hasDraftChanges =
+    draftAdvancedFilters.color !== selectedCriteria.color ||
+    draftAdvancedFilters.area !== selectedCriteria.area ||
+    draftAdvancedFilters.field !== selectedCriteria.field ||
+    draftAdvancedFilters.school !== selectedCriteria.school;
 
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
-      className="bg-gray-100 rounded-lg shadow-lg p-6 max-w-xl w-full mx-auto mb-8"
+      className="max-w-2xl w-full mx-auto mb-8"
     >
-      <form onSubmit={handleSubmit}>
-        <div className="mb-4">
-          <div className="relative grid grid-cols-3 gap-2 mb-2">
-            {Object.entries(colorData.colors).map(([color, data]) => (
-              <div key={color} className="relative">
-                <button
-                  type="button"
-                  onClick={() => handleColorClick(color as Criteria["color"])}
-                  className={`w-full aspect-square rounded-md ${
-                    selectedCriteria.color === color ? "ring-2 ring-black" : ""
-                  }`}
-                  style={{
-                    backgroundImage: `linear-gradient(to bottom right, ${data.color}, ${data.alt})`,
-                  }}
-                  aria-label={data.main[0]}
+      <Card>
+        <CardContent className="pt-6">
+          <div className="space-y-6">
+            <div className="space-y-2">
+              <Label htmlFor="text-search" className="text-base font-semibold">
+                Hae haalarivärejä
+              </Label>
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5 pointer-events-none" />
+                <Input
+                  id="text-search"
+                  type="text"
+                  value={selectedCriteria.textSearch}
+                  onChange={(e) => handleTextSearchChange(e.target.value)}
+                  placeholder="Kirjoita esim. yliopiston nimi, ala tai väri..."
+                  className="pl-10 pr-10 h-12 text-base"
                 />
-                {selectedCriteria.color === color && (
-                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                    <Check
-                      className={`text-${
-                        color === "white" ? "black" : "white"
-                      } md:w-12 md:h-12`}
-                    />
-                  </div>
+                {selectedCriteria.textSearch && (
+                  <button
+                    type="button"
+                    onClick={() => handleTextSearchChange("")}
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground transition"
+                    aria-label="Tyhjennä haku"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
                 )}
               </div>
-            ))}
+              {hasSearched && (
+                <p className="text-sm text-muted-foreground">
+                  {resultCount} tulosta
+                </p>
+              )}
+            </div>
+
+            <Collapsible
+              open={isAdvancedSearchOpen}
+              onOpenChange={setIsAdvancedSearchOpen}
+            >
+              <CollapsibleTrigger asChild>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="w-full justify-between"
+                  type="button"
+                >
+                  <div className="flex items-center gap-2">
+                    <Settings className="w-4 h-4" />
+                    <span>Tarkemmat suodattimet</span>
+                    {hasActiveFilters && (
+                      <span className="ml-2 px-2 py-0.5 text-xs bg-green text-white rounded-full">
+                        Aktiivinen
+                      </span>
+                    )}
+                  </div>
+                  {isAdvancedSearchOpen ? (
+                    <ChevronUp className="w-4 h-4" />
+                  ) : (
+                    <ChevronDown className="w-4 h-4" />
+                  )}
+                </Button>
+              </CollapsibleTrigger>
+              <CollapsibleContent className="space-y-4 mt-4">
+                <div className="space-y-2">
+                  <Label htmlFor="color">Väri</Label>
+                  <Select
+                    value={draftAdvancedFilters.color || undefined}
+                    onValueChange={(value) => handleDraftChange("color", value)}
+                  >
+                    <SelectTrigger id="color">
+                      <SelectValue placeholder="Valitse väri" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {Object.entries(colorData.colors).map(([colorKey, data]) => (
+                        <SelectItem key={colorKey} value={colorKey}>
+                          <div className="flex items-center gap-2">
+                            <div
+                              className="w-4 h-4 rounded border"
+                              style={{
+                                backgroundImage: `linear-gradient(to bottom right, ${data.color}, ${data.alt})`,
+                              }}
+                            />
+                            <span>{data.main[0]}</span>
+                          </div>
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  {draftAdvancedFilters.color && (
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="sm"
+                      className="h-auto p-0 text-xs text-muted-foreground hover:text-foreground"
+                      onClick={() => handleDraftChange("color", "")}
+                    >
+                      Poista värin suodatin
+                    </Button>
+                  )}
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="area">Kaupunki</Label>
+                  <Select
+                    value={draftAdvancedFilters.area || undefined}
+                    onValueChange={(value) => handleDraftChange("area", value)}
+                  >
+                    <SelectTrigger id="area">
+                      <SelectValue placeholder="Valitse kaupunki" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {areas.map((a) => (
+                        <SelectItem key={a} value={a}>
+                          {a}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  {draftAdvancedFilters.area && (
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="sm"
+                      className="h-auto p-0 text-xs text-muted-foreground hover:text-foreground"
+                      onClick={() => handleDraftChange("area", "")}
+                    >
+                      Poista kaupungin suodatin
+                    </Button>
+                  )}
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="field">Opiskeluala</Label>
+                  <Select
+                    value={draftAdvancedFilters.field || undefined}
+                    onValueChange={(value) => handleDraftChange("field", value)}
+                  >
+                    <SelectTrigger id="field">
+                      <SelectValue placeholder="Valitse opiskeluala" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {fields.map((f) => (
+                        <SelectItem key={f} value={f}>
+                          {f}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  {draftAdvancedFilters.field && (
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="sm"
+                      className="h-auto p-0 text-xs text-muted-foreground hover:text-foreground"
+                      onClick={() => handleDraftChange("field", "")}
+                    >
+                      Poista alan suodatin
+                    </Button>
+                  )}
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="school">Oppilaitos</Label>
+                  <Select
+                    value={draftAdvancedFilters.school || undefined}
+                    onValueChange={(value) => handleDraftChange("school", value)}
+                  >
+                    <SelectTrigger id="school">
+                      <SelectValue placeholder="Valitse oppilaitos" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {schools.map((s) => (
+                        <SelectItem key={s} value={s}>
+                          {s}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  {draftAdvancedFilters.school && (
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="sm"
+                      className="h-auto p-0 text-xs text-muted-foreground hover:text-foreground"
+                      onClick={() => handleDraftChange("school", "")}
+                    >
+                      Poista oppilaitoksen suodatin
+                    </Button>
+                  )}
+                </div>
+
+                {hasDraftChanges && (
+                  <Button
+                    type="button"
+                    onClick={onApplyAdvancedFilters}
+                    className="w-full bg-green hover:bg-green/90 text-white"
+                  >
+                    <Check className="w-4 h-4 mr-2" />
+                    Sovella suodattimet
+                  </Button>
+                )}
+              </CollapsibleContent>
+            </Collapsible>
+
+            {(selectedCriteria.textSearch || hasActiveFilters) && (
+              <Button
+                variant="outline"
+                onClick={handleClear}
+                className="w-full"
+                type="button"
+              >
+                <X className="w-4 h-4 mr-2" />
+                Tyhjennä kaikki
+              </Button>
+            )}
           </div>
-        </div>
-
-        <div className="mb-4 flex items-center justify-between bg-lime-600 text-white p-3 rounded-md">
-          <span className="font-semibold">Tarkempi haku</span>
-          <Switch
-            checked={isAdvancedSearchOpen}
-            onChange={toggleAdvancedSearch}
-          />
-        </div>
-
-        {isAdvancedSearchOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="mb-4 bg-gray-200 p-4 rounded-md overflow-hidden"
-          >
-            <div className="mb-4">
-              <label
-                htmlFor="area"
-                className="block text-sm font-medium text-gray-700 mb-2"
-              >
-                Kaupunki:
-              </label>
-              <select
-                id="area"
-                value={selectedCriteria.area}
-                onChange={(e) => handleChange("area", e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-lime-500"
-              >
-                <option value="">Valitse kaupunki</option>
-                {areas.map((a) => (
-                  <option key={a} value={a}>
-                    {a}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div className="mb-4">
-              <label
-                htmlFor="field"
-                className="block text-sm font-medium text-gray-700 mb-2"
-              >
-                Opiskeluala:
-              </label>
-              <select
-                id="field"
-                value={selectedCriteria.field}
-                onChange={(e) => handleChange("field", e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-lime-500"
-              >
-                <option value="">Valitse opiskeluala</option>
-                {fields.map((f) => (
-                  <option key={f} value={f}>
-                    {f}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div className="mb-4">
-              <label
-                htmlFor="school"
-                className="block text-sm font-medium text-gray-700 mb-2"
-              >
-                Oppilaitos:
-              </label>
-              <select
-                id="school"
-                value={selectedCriteria.school}
-                onChange={(e) => handleChange("school", e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-lime-500"
-              >
-                <option value="">Valitse oppilaitos</option>
-                {schools.map((s) => (
-                  <option key={s} value={s}>
-                    {s}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </motion.div>
-        )}
-
-        <div className="flex gap-2">
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            type="submit"
-            className="flex-1 bg-lime-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-lime-700 transition-colors duration-300"
-          >
-            Hae tulokset
-          </motion.button>
-
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            type="button"
-            onClick={handleClear}
-            className="flex-1 bg-gray-300 max-w-48 text-gray-700 font-semibold py-2 px-4 rounded-md hover:bg-gray-400 transition-colors duration-300"
-          >
-            Tyhjennä
-          </motion.button>
-        </div>
-      </form>
+        </CardContent>
+      </Card>
     </motion.div>
   );
 }

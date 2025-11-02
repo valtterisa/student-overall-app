@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { parseStyles } from "@/lib/utils";
 import Image from "next/image";
+import Link from "next/link";
+import { generateSlug } from "@/lib/generate-slug";
 import type { University } from "@/types/university";
 
 interface ResultsDisplayProps {
@@ -8,6 +11,7 @@ interface ResultsDisplayProps {
 }
 
 export default function ResultsDisplay({ results }: ResultsDisplayProps) {
+  const router = useRouter();
   // State for pagination
   const [currentPage, setCurrentPage] = useState(1);
   const [resultsPerPage, setResultsPerPage] = useState(15);
@@ -70,9 +74,10 @@ export default function ResultsDisplay({ results }: ResultsDisplayProps) {
           {paginatedResults.map((uni) => (
             <li
               key={uni.id}
-              className="bg-white rounded-lg shadow hover:shadow-lg min-h-[11rem] transition-shadow duration-300 p-4 flex items-center gap-4"
+              className="bg-white rounded-lg shadow hover:shadow-lg min-h-[11rem] transition-shadow duration-300 p-4 flex items-center gap-4 relative cursor-pointer"
+              onClick={() => router.push(`/haalari/${uni.id}`)}
             >
-              <div className="flex-none">
+              <div className="flex-none z-10">
                 <div className="relative w-14 h-14 rounded-md overflow-hidden">
                   <Image
                     className="absolute object-contain"
@@ -87,25 +92,44 @@ export default function ResultsDisplay({ results }: ResultsDisplayProps) {
                   title={`Väri: ${uni.vari}`}
                 />
               </div>
-              <div className="flex-1">
-                <h3 className="text-lg font-medium text-gray-900 break-all">
+              <div className="flex-1 z-10">
+                <h3 className="text-lg font-medium text-gray-900 break-all mb-2">
                   {uni.ainejärjestö ?? "Ainejärjestö ei tiedossa"}
                 </h3>
-                <p className="text-sm text-gray-600">
-                  Väri: <span className="font-semibold">{uni.vari}</span>
-                </p>
-                <p className="text-sm text-gray-600">
-                  Alue: <span className="font-semibold">{uni.alue}</span>
-                </p>
-                {uni.ala && (
-                  <p className="text-sm text-gray-600">
-                    Ala: <span className="font-semibold">{uni.ala}</span>
-                  </p>
-                )}
-                <p className="text-sm text-gray-600">
-                  Oppilaitos:{" "}
-                  <span className="font-semibold">{uni.oppilaitos}</span>
-                </p>
+                <div className="flex flex-wrap gap-2 mb-2" onClick={(e) => e.stopPropagation()}>
+                  <Link
+                    href={`/vari/${generateSlug(uni.vari)}`}
+                    className="px-2 py-1 bg-green/10 text-green rounded text-xs font-medium hover:bg-green/20 transition"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    {uni.vari}
+                  </Link>
+                  <Link
+                    href={`/yliopisto/${generateSlug(uni.oppilaitos)}`}
+                    className="px-2 py-1 bg-blue-100 text-blue-700 rounded text-xs font-medium hover:bg-blue-200 transition"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    {uni.oppilaitos}
+                  </Link>
+                  {uni.ala && (
+                    <Link
+                      href={`/ala/${generateSlug(uni.ala.split(",")[0].trim())}`}
+                      className="px-2 py-1 bg-purple-100 text-purple-700 rounded text-xs font-medium hover:bg-purple-200 transition"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      {uni.ala.split(",")[0].trim()}
+                    </Link>
+                  )}
+                  {uni.alue && (
+                    <Link
+                      href={`/alue/${generateSlug(uni.alue.split(",")[0].trim())}`}
+                      className="px-2 py-1 bg-orange-100 text-orange-700 rounded text-xs font-medium hover:bg-orange-200 transition"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      {uni.alue.split(",")[0].trim()}
+                    </Link>
+                  )}
+                </div>
               </div>
             </li>
           ))}
