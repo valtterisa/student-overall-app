@@ -86,11 +86,15 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="manifest" href="/manifest.json" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
       </head>
       <body className="min-h-screen bg-white text-foreground">
         <main className="flex flex-col items-center">
-          <div className="flex-1 w-full flex flex-col gap-20 items-center">
+          <div className="flex-1 w-full flex flex-col items-center">
             {children}
             <Databuddy
               clientId="Uu3N9TuBuUAa3wAS4pHNw"

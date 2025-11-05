@@ -119,11 +119,7 @@ export default function SearchForm({
                 </button>
               )}
             </div>
-            {hasSearched && (
-              <p className="text-xs text-muted-foreground px-1">
-                {resultCount} tulosta
-              </p>
-            )}
+            
           </div>
 
           <div className="pt-3 border-t border-border/50">

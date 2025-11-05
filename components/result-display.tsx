@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import type { University } from "@/types/university";
 import UniversityCard from "@/components/university-card";
@@ -11,6 +11,8 @@ export default function ResultsDisplay({ results }: ResultsDisplayProps) {
   // State for pagination
   const [currentPage, setCurrentPage] = useState(1);
   const [resultsPerPage, setResultsPerPage] = useState(15);
+  const resultsDivRef = useRef<HTMLDivElement>(null);
+  const prevPageRef = useRef(1);
 
   // Calculate the total number of pages
   const totalPages = Math.ceil(results.length / resultsPerPage);
@@ -21,17 +23,27 @@ export default function ResultsDisplay({ results }: ResultsDisplayProps) {
     currentPage * resultsPerPage
   );
 
-  // When results change, reset pagination
+  // When results change, reset pagination (don't scroll)
   useEffect(() => {
     setCurrentPage(1);
+    prevPageRef.current = 1;
   }, [results]);
 
-  // Scroll to top when page changes
+  // Scroll to top when page changes (but not when results change resets to page 1)
   useEffect(() => {
-    const topDiv = document.getElementById("top");
-    if (topDiv) {
-      topDiv.scrollIntoView({ behavior: "smooth" });
+    // Only scroll if page changed AND it wasn't a reset from results changing
+    if (currentPage !== prevPageRef.current) {
+      // Small delay to ensure DOM has updated
+      setTimeout(() => {
+        if (resultsDivRef.current) {
+          resultsDivRef.current.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        }
+      }, 0);
     }
+    prevPageRef.current = currentPage;
   }, [currentPage]);
 
   // Handle page change
@@ -42,12 +54,18 @@ export default function ResultsDisplay({ results }: ResultsDisplayProps) {
   };
 
   return (
-    <div id="top" className="max-w-2xl w-full mx-auto mb-8 px-2">
+    <div
+      id="top"
+      ref={resultsDivRef}
+      className="max-w-2xl w-full mx-auto mb-8 px-2"
+    >
       <div className="bg-white rounded-lg border border-border shadow-sm p-4">
         <h2 className="text-base font-semibold text-foreground mb-4 flex justify-between items-center">
           Haun tulokset{" "}
           <span className="text-xs text-muted-foreground">
-            ({results.length})
+            {results.length > 1
+              ? `${results.length} tulosta`
+              : `${results.length} tulos`}
           </span>
         </h2>
 
