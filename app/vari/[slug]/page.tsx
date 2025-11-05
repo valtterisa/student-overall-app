@@ -1,9 +1,10 @@
 import { loadUniversities } from '@/lib/load-universities';
 import { getUniversitiesByColor } from '@/lib/get-universities-by-criteria';
 import { generateSlug } from '@/lib/generate-slug';
-import { parseStyles } from '@/lib/utils';
+import { parseStyles, capitalizeFirstLetter } from '@/lib/utils';
 import { Metadata } from 'next';
 import Link from 'next/link';
+import UniversityCard from '@/components/university-card';
 
 type Props = {
     params: Promise<{ slug: string }>;
@@ -35,12 +36,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         new Set(colorData.map((u) => u.oppilaitos))
     );
 
+    const capitalizedColor = capitalizeFirstLetter(color);
+
     return {
-        title: `${color} haalari - Haalarivärit | Haalarikone`,
-        description: `Selvitä missä oppilaitoksissa käytetään ${color} haalaria. Tietokanta sisältää ${colorData.length} eri haalaria ${universitiesList.length} eri oppilaitoksella.`,
+        title: `${capitalizedColor} haalari - Haalarivärit | Haalarikone`,
+        description: `Selvitä missä oppilaitoksissa käytetään ${capitalizedColor} haalaria. Tietokanta sisältää ${colorData.length} eri haalaria ${universitiesList.length} eri oppilaitoksella.`,
         openGraph: {
-            title: `${color} haalari - Haalarivärit | Haalarikone`,
-            description: `Missä oppilaitoksissa käytetään ${color} haalaria? Löydä vastaus Haalarikoneesta.`,
+            title: `${capitalizedColor} haalari - Haalarivärit | Haalarikone`,
+            description: `Missä oppilaitoksissa käytetään ${capitalizedColor} haalaria? Löydä vastaus Haalarikoneesta.`,
             images: ['/haalarikone-og.png'],
         },
         alternates: {
@@ -77,6 +80,7 @@ export default async function ColorPage({ params }: Props) {
     );
 
     const firstColorData = colorData[0];
+    const capitalizedColor = capitalizeFirstLetter(color);
 
     return (
         <div className="container mx-auto px-4 py-16 max-w-4xl">
@@ -93,7 +97,7 @@ export default async function ColorPage({ params }: Props) {
                         style={parseStyles(firstColorData?.hex || null)}
                     />
                     <div>
-                        <h1 className="text-4xl font-bold">{color}</h1>
+                        <h1 className="text-4xl font-bold">{capitalizedColor}</h1>
                         <p className="text-lg text-gray-700">
                             {colorData.length} eri haalaria {universitiesList.length} eri
                             oppilaitoksella
@@ -102,35 +106,11 @@ export default async function ColorPage({ params }: Props) {
                 </div>
             </div>
 
-            <div className="grid gap-6">
-                {colorData.map((uni, index) => (
-                    <div
-                        key={`${uni.id}-${index}`}
-                        className="border rounded-lg p-6 bg-white shadow-sm"
-                    >
-                        <div className="flex items-start justify-between mb-4">
-                            <div className="flex-1">
-                                <h2 className="text-xl font-bold mb-2">{uni.oppilaitos}</h2>
-                                {uni.ala && (
-                                    <p className="text-gray-700 mb-2">
-                                        <strong>Ala:</strong> {uni.ala}
-                                    </p>
-                                )}
-                                {uni.ainejärjestö && (
-                                    <p className="text-gray-700 mb-2">
-                                        <strong>Ainejärjestö:</strong> {uni.ainejärjestö}
-                                    </p>
-                                )}
-                                {uni.alue && (
-                                    <p className="text-gray-600 text-sm">
-                                        <strong>Alue:</strong> {uni.alue}
-                                    </p>
-                                )}
-                            </div>
-                        </div>
-                    </div>
+            <ul className="space-y-3">
+                {colorData.map((uni) => (
+                    <UniversityCard key={uni.id} uni={uni} />
                 ))}
-            </div>
+            </ul>
 
             <div className="mt-12 pt-8 border-t">
                 <h2 className="text-2xl font-bold mb-4">Liittyvät aiheet</h2>

@@ -28,3 +28,8 @@ export const parseStyles = (hex: string | null): React.CSSProperties => {
   // If no match found, return a fallback (black) background
   return { backgroundColor: '#ffffff' };
 };
+
+export function capitalizeFirstLetter(str: string): string {
+  if (!str) return str;
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}

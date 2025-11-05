@@ -36,8 +36,8 @@ To run the project locally:
 
 For any questions or feedback, feel free to reach out:
 
-- **Email:** [haalarikone@bittive.com](mailto:haalarikone@bittive.com)
+- **Email:** [savonen.emppu@gmail.com](savonen.emppu@gmail.com)
 
 ---
 
-Made with ❤️ by [Bittive](https://bittive.com)
+Made with ❤️ by [@valtterisa](https://github.com/valtterisa)

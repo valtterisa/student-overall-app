@@ -18,7 +18,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "./ui/select";
-import { Search, ChevronDown, ChevronUp, X, Settings, Check } from "lucide-react";
+import {
+  Search,
+  ChevronDown,
+  ChevronUp,
+  X,
+  Settings,
+  Check,
+} from "lucide-react";
 import { Criteria } from "./search-container";
 import { colorData } from "../data/mockData";
 
@@ -26,12 +33,14 @@ interface SearchFormProps {
   onTextSearchChange: (textSearch: string) => void;
   onDraftAdvancedFilterChange: (filters: Omit<Criteria, "textSearch">) => void;
   onApplyAdvancedFilters: () => void;
+  onClearAll: () => void;
   areas: string[];
   fields: string[];
   schools: string[];
   selectedCriteria: Criteria;
   draftAdvancedFilters: Omit<Criteria, "textSearch">;
   resultCount: number;
+  draftFilterResultCount: number;
   hasSearched: boolean;
 }
 
@@ -39,12 +48,14 @@ export default function SearchForm({
   onTextSearchChange,
   onDraftAdvancedFilterChange,
   onApplyAdvancedFilters,
+  onClearAll,
   areas,
   fields,
   schools,
   selectedCriteria,
   draftAdvancedFilters,
   resultCount,
+  draftFilterResultCount,
   hasSearched,
 }: SearchFormProps) {
   const [isAdvancedSearchOpen, setIsAdvancedSearchOpen] = useState(false);
@@ -61,14 +72,8 @@ export default function SearchForm({
   };
 
   const handleClear = () => {
-    onTextSearchChange("");
-    onDraftAdvancedFilterChange({
-      color: "",
-      area: "",
-      field: "",
-      school: "",
-    });
-    onApplyAdvancedFilters();
+    onClearAll();
+    setIsAdvancedSearchOpen(false);
   };
 
   const hasActiveFilters =
@@ -85,229 +90,245 @@ export default function SearchForm({
 
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.5 }}
-      className="max-w-2xl w-full mx-auto mb-8"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3 }}
+      className="max-w-2xl w-full mx-auto mb-8 px-2"
     >
-      <Card>
-        <CardContent className="pt-6">
-          <div className="space-y-6">
-            <div className="space-y-2">
-              <Label htmlFor="text-search" className="text-base font-semibold">
-                Hae haalarivärejä
-              </Label>
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5 pointer-events-none" />
-                <Input
-                  id="text-search"
-                  type="text"
-                  value={selectedCriteria.textSearch}
-                  onChange={(e) => handleTextSearchChange(e.target.value)}
-                  placeholder="Kirjoita esim. yliopiston nimi, ala tai väri..."
-                  className="pl-10 pr-10 h-12 text-base"
-                />
-                {selectedCriteria.textSearch && (
-                  <button
-                    type="button"
-                    onClick={() => handleTextSearchChange("")}
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground transition"
-                    aria-label="Tyhjennä haku"
-                  >
-                    <X className="w-5 h-5" />
-                  </button>
-                )}
-              </div>
-              {hasSearched && (
-                <p className="text-sm text-muted-foreground">
-                  {resultCount} tulosta
-                </p>
+      <div className="bg-white rounded-lg border border-border shadow-sm p-4">
+        <div className="space-y-4">
+          <div className="space-y-1.5">
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4 pointer-events-none" />
+              <Input
+                id="text-search"
+                type="text"
+                value={selectedCriteria.textSearch}
+                onChange={(e) => handleTextSearchChange(e.target.value)}
+                placeholder="Kirjoita esim. yliopiston nimi, ala tai väri..."
+                className="pl-9 pr-9 h-10 text-sm bg-white text-foreground border-input focus:ring-0 focus-visible:ring-0"
+              />
+              {selectedCriteria.textSearch && (
+                <button
+                  type="button"
+                  onClick={() => handleTextSearchChange("")}
+                  className="absolute right-2.5 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground transition p-1 rounded hover:bg-muted"
+                  aria-label="Tyhjennä haku"
+                >
+                  <X className="w-4 h-4" />
+                </button>
               )}
             </div>
+            {hasSearched && (
+              <p className="text-xs text-muted-foreground px-1">
+                {resultCount} tulosta
+              </p>
+            )}
+          </div>
 
+          <div className="pt-3 border-t border-border/50">
             <Collapsible
               open={isAdvancedSearchOpen}
               onOpenChange={setIsAdvancedSearchOpen}
             >
               <CollapsibleTrigger asChild>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="w-full justify-between"
+                <button
                   type="button"
+                  className="w-full flex items-center justify-between py-1.5 px-0 text-left hover:opacity-70 transition-opacity group"
                 >
                   <div className="flex items-center gap-2">
-                    <Settings className="w-4 h-4" />
-                    <span>Tarkemmat suodattimet</span>
+                    <Settings className="w-3.5 h-3.5 text-muted-foreground" />
+                    <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
+                      Suodattimet
+                    </span>
                     {hasActiveFilters && (
-                      <span className="ml-2 px-2 py-0.5 text-xs bg-green text-white rounded-full">
-                        Aktiivinen
+                      <span className="ml-1.5 px-1.5 py-0.5 text-[10px] bg-green text-white rounded-full font-medium">
+                        {
+                          [
+                            selectedCriteria.color,
+                            selectedCriteria.area,
+                            selectedCriteria.field,
+                            selectedCriteria.school,
+                          ].filter(Boolean).length
+                        }
                       </span>
                     )}
                   </div>
                   {isAdvancedSearchOpen ? (
-                    <ChevronUp className="w-4 h-4" />
+                    <ChevronUp className="w-3.5 h-3.5 text-muted-foreground" />
                   ) : (
-                    <ChevronDown className="w-4 h-4" />
+                    <ChevronDown className="w-3.5 h-3.5 text-muted-foreground" />
                   )}
-                </Button>
+                </button>
               </CollapsibleTrigger>
-              <CollapsibleContent className="space-y-4 mt-4">
-                <div className="space-y-2">
-                  <Label htmlFor="color">Väri</Label>
+              <CollapsibleContent className="mt-3 pl-4 border-l border-muted/30 space-y-3">
+                <div className="space-y-1.5">
+                  <Label
+                    htmlFor="color"
+                    className="text-xs text-muted-foreground font-medium"
+                  >
+                    Väri
+                  </Label>
                   <Select
+                    key={selectedCriteria.color || "color-empty"}
                     value={draftAdvancedFilters.color || undefined}
                     onValueChange={(value) => handleDraftChange("color", value)}
                   >
-                    <SelectTrigger id="color">
+                    <SelectTrigger
+                      id="color"
+                      className="h-8 text-sm bg-white text-foreground border-input focus:ring-0 focus-visible:ring-0"
+                    >
                       <SelectValue placeholder="Valitse väri" />
                     </SelectTrigger>
-                    <SelectContent>
-                      {Object.entries(colorData.colors).map(([colorKey, data]) => (
-                        <SelectItem key={colorKey} value={colorKey}>
-                          <div className="flex items-center gap-2">
-                            <div
-                              className="w-4 h-4 rounded border"
-                              style={{
-                                backgroundImage: `linear-gradient(to bottom right, ${data.color}, ${data.alt})`,
-                              }}
-                            />
-                            <span>{data.main[0]}</span>
-                          </div>
-                        </SelectItem>
-                      ))}
+                    <SelectContent className="bg-white">
+                      {Object.entries(colorData.colors).map(
+                        ([colorKey, data]) => (
+                          <SelectItem
+                            key={colorKey}
+                            value={colorKey}
+                            className="text-sm text-foreground"
+                          >
+                            <div className="flex items-center gap-2">
+                              <div
+                                className="w-3.5 h-3.5 rounded border"
+                                style={{
+                                  backgroundImage: `linear-gradient(to bottom right, ${data.color}, ${data.alt})`,
+                                }}
+                              />
+                              <span>{data.main[0]}</span>
+                            </div>
+                          </SelectItem>
+                        )
+                      )}
                     </SelectContent>
                   </Select>
-                  {draftAdvancedFilters.color && (
-                    <Button
-                      type="button"
-                      variant="ghost"
-                      size="sm"
-                      className="h-auto p-0 text-xs text-muted-foreground hover:text-foreground"
-                      onClick={() => handleDraftChange("color", "")}
-                    >
-                      Poista värin suodatin
-                    </Button>
-                  )}
                 </div>
 
-                <div className="space-y-2">
-                  <Label htmlFor="area">Kaupunki</Label>
+                <div className="space-y-1.5">
+                  <Label
+                    htmlFor="area"
+                    className="text-xs text-muted-foreground font-medium"
+                  >
+                    Kaupunki
+                  </Label>
                   <Select
+                    key={selectedCriteria.area || "area-empty"}
                     value={draftAdvancedFilters.area || undefined}
                     onValueChange={(value) => handleDraftChange("area", value)}
                   >
-                    <SelectTrigger id="area">
+                    <SelectTrigger
+                      id="area"
+                      className="h-8 text-sm bg-white text-foreground border-input focus:ring-0 focus-visible:ring-0"
+                    >
                       <SelectValue placeholder="Valitse kaupunki" />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="bg-white">
                       {areas.map((a) => (
-                        <SelectItem key={a} value={a}>
+                        <SelectItem
+                          key={a}
+                          value={a}
+                          className="text-sm text-foreground"
+                        >
                           {a}
                         </SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
-                  {draftAdvancedFilters.area && (
-                    <Button
-                      type="button"
-                      variant="ghost"
-                      size="sm"
-                      className="h-auto p-0 text-xs text-muted-foreground hover:text-foreground"
-                      onClick={() => handleDraftChange("area", "")}
-                    >
-                      Poista kaupungin suodatin
-                    </Button>
-                  )}
                 </div>
 
-                <div className="space-y-2">
-                  <Label htmlFor="field">Opiskeluala</Label>
+                <div className="space-y-1.5">
+                  <Label
+                    htmlFor="field"
+                    className="text-xs text-muted-foreground font-medium"
+                  >
+                    Opiskeluala
+                  </Label>
                   <Select
+                    key={selectedCriteria.field || "field-empty"}
                     value={draftAdvancedFilters.field || undefined}
                     onValueChange={(value) => handleDraftChange("field", value)}
                   >
-                    <SelectTrigger id="field">
+                    <SelectTrigger
+                      id="field"
+                      className="h-8 text-sm bg-white text-foreground border-input focus:ring-0 focus-visible:ring-0"
+                    >
                       <SelectValue placeholder="Valitse opiskeluala" />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="bg-white">
                       {fields.map((f) => (
-                        <SelectItem key={f} value={f}>
+                        <SelectItem
+                          key={f}
+                          value={f}
+                          className="text-sm text-foreground"
+                        >
                           {f}
                         </SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
-                  {draftAdvancedFilters.field && (
-                    <Button
-                      type="button"
-                      variant="ghost"
-                      size="sm"
-                      className="h-auto p-0 text-xs text-muted-foreground hover:text-foreground"
-                      onClick={() => handleDraftChange("field", "")}
-                    >
-                      Poista alan suodatin
-                    </Button>
-                  )}
                 </div>
 
-                <div className="space-y-2">
-                  <Label htmlFor="school">Oppilaitos</Label>
-                  <Select
-                    value={draftAdvancedFilters.school || undefined}
-                    onValueChange={(value) => handleDraftChange("school", value)}
+                <div className="space-y-1.5">
+                  <Label
+                    htmlFor="school"
+                    className="text-xs text-muted-foreground font-medium"
                   >
-                    <SelectTrigger id="school">
+                    Oppilaitos
+                  </Label>
+                  <Select
+                    key={selectedCriteria.school || "school-empty"}
+                    value={draftAdvancedFilters.school || undefined}
+                    onValueChange={(value) =>
+                      handleDraftChange("school", value)
+                    }
+                  >
+                    <SelectTrigger
+                      id="school"
+                      className="h-8 text-sm bg-white text-foreground border-input focus:ring-0 focus-visible:ring-0"
+                    >
                       <SelectValue placeholder="Valitse oppilaitos" />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="bg-white">
                       {schools.map((s) => (
-                        <SelectItem key={s} value={s}>
+                        <SelectItem
+                          key={s}
+                          value={s}
+                          className="text-sm text-foreground"
+                        >
                           {s}
                         </SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
-                  {draftAdvancedFilters.school && (
-                    <Button
-                      type="button"
-                      variant="ghost"
-                      size="sm"
-                      className="h-auto p-0 text-xs text-muted-foreground hover:text-foreground"
-                      onClick={() => handleDraftChange("school", "")}
-                    >
-                      Poista oppilaitoksen suodatin
-                    </Button>
-                  )}
                 </div>
 
                 {hasDraftChanges && (
                   <Button
                     type="button"
                     onClick={onApplyAdvancedFilters}
-                    className="w-full bg-green hover:bg-green/90 text-white"
+                    className="h-10 text-sm bg-green hover:bg-green/90 text-white mt-2"
                   >
-                    <Check className="w-4 h-4 mr-2" />
-                    Sovella suodattimet
+                    Suodata{" "}
+                    {draftFilterResultCount >= 0 && `(${draftFilterResultCount})`}
                   </Button>
                 )}
               </CollapsibleContent>
             </Collapsible>
-
-            {(selectedCriteria.textSearch || hasActiveFilters) && (
-              <Button
-                variant="outline"
-                onClick={handleClear}
-                className="w-full"
-                type="button"
-              >
-                <X className="w-4 h-4 mr-2" />
-                Tyhjennä kaikki
-              </Button>
-            )}
           </div>
-        </CardContent>
-      </Card>
+
+          {(selectedCriteria.textSearch || hasActiveFilters) && (
+            <Button
+              variant="outline"
+              onClick={handleClear}
+              className="h-10 text-sm bg-white text-foreground border-input hover:bg-muted w-full mt-2"
+              type="button"
+            >
+              <X className="w-4 h-4 mr-2" />
+              Tyhjennä
+            </Button>
+          )}
+        </div>
+      </div>
     </motion.div>
   );
 }

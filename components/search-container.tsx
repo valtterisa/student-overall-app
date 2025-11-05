@@ -101,17 +101,8 @@ export default function SearchContainer({
         fuse,
         selectedCriteria.textSearch.trim()
       );
-    } else if (
-      selectedCriteria.color ||
-      selectedCriteria.area ||
-      selectedCriteria.field ||
-      selectedCriteria.school
-    ) {
-      searchResults = initialUniversities;
     } else {
-      setResults([]);
-      setHasSearched(false);
-      return;
+      searchResults = initialUniversities;
     }
 
     const filteredResults = applyFilters(searchResults);
@@ -240,6 +231,62 @@ export default function SearchContainer({
     }));
   }, [draftAdvancedFilters]);
 
+  const handleClearAll = useCallback(() => {
+    setSelectedCriteria({
+      textSearch: "",
+      color: "",
+      area: "",
+      field: "",
+      school: "",
+    });
+    setDraftAdvancedFilters({
+      color: "",
+      area: "",
+      field: "",
+      school: "",
+    });
+  }, []);
+
+  const draftFilterResultCount = useMemo(() => {
+    let searchResults: University[] = [];
+
+    if (selectedCriteria.textSearch.trim().length >= 2) {
+      searchResults = searchUniversities(
+        fuse,
+        selectedCriteria.textSearch.trim()
+      );
+    } else {
+      searchResults = initialUniversities;
+    }
+
+    const filteredResults = searchResults.filter((uni) => {
+      const colorMatch = draftAdvancedFilters.color
+        ? colorData.colors[draftAdvancedFilters.color].main
+          .concat(colorData.colors[draftAdvancedFilters.color].shades)
+          .some((c) => uni.vari.toLowerCase().includes(c.toLowerCase()))
+        : true;
+      const areaMatch =
+        !draftAdvancedFilters.area ||
+        uni.alue.toLowerCase().includes(draftAdvancedFilters.area.toLowerCase());
+      const fieldMatch =
+        !draftAdvancedFilters.field ||
+        uni.ala?.toLowerCase().includes(draftAdvancedFilters.field.toLowerCase());
+      const schoolMatch =
+        !draftAdvancedFilters.school ||
+        uni.oppilaitos
+          .toLowerCase()
+          .includes(draftAdvancedFilters.school.toLowerCase());
+      return colorMatch && areaMatch && fieldMatch && schoolMatch;
+    });
+
+    return filteredResults.length;
+  }, [
+    selectedCriteria.textSearch,
+    draftAdvancedFilters,
+    initialUniversities,
+    fuse,
+  ]);
+
   useEffect(() => {
     setDraftAdvancedFilters({
       color: selectedCriteria.color,
@@ -255,15 +302,17 @@ export default function SearchContainer({
         onTextSearchChange={handleTextSearchChange}
         onDraftAdvancedFilterChange={handleDraftAdvancedFilterChange}
         onApplyAdvancedFilters={handleApplyAdvancedFilters}
+        onClearAll={handleClearAll}
         areas={filteredOptions.areas}
         fields={filteredOptions.fields}
         schools={filteredOptions.schools}
         selectedCriteria={selectedCriteria}
         draftAdvancedFilters={draftAdvancedFilters}
         resultCount={results.length}
+        draftFilterResultCount={draftFilterResultCount}
         hasSearched={hasSearched}
       />
-      {hasSearched && results.length > 0 && (
+      {results.length > 0 && (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -279,7 +328,7 @@ export default function SearchContainer({
           </p>
         </div>
       )}
-      {!hasSearched && <PlaceholderDisplay />}
+      {!hasSearched && results.length === 0 && <PlaceholderDisplay />}
     </div>
   );
 }

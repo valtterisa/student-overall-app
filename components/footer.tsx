@@ -14,7 +14,7 @@ export default function Footer() {
               Blogi
             </Link>
             <Link
-              href="mailto:haalarikone@bittive.com"
+              href="mailto:savonen.emppu@gmail.com"
               className="text-black hover:text-green"
               aria-label="Contact us"
             >
@@ -33,11 +33,11 @@ export default function Footer() {
         <p className="mt-4 text-center text-sm text-black">
           Made with 💖 by{" "}
           <Link
-            href="https://bittive.com"
+            href="https://valtterisavonen.fi"
             className="font-semibold hover:underline"
             target="_blank"
           >
-            Bittive
+            @valtterisa
           </Link>
         </p>
       </div>

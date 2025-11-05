@@ -1,9 +1,10 @@
 import { loadUniversities } from '@/lib/load-universities';
 import { getUniversitiesByArea } from '@/lib/get-universities-by-criteria';
 import { generateSlug } from '@/lib/generate-slug';
-import { parseStyles } from '@/lib/utils';
+import { capitalizeFirstLetter } from '@/lib/utils';
 import { Metadata } from 'next';
 import Link from 'next/link';
+import UniversityCard from '@/components/university-card';
 
 type Props = {
     params: Promise<{ slug: string }>;
@@ -47,12 +48,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         new Set(areaData.map((u) => u.oppilaitos))
     );
 
+    const capitalizedArea = capitalizeFirstLetter(area);
+
     return {
-        title: `${area} - Haalarivärit | Haalarikone`,
-        description: `Selvitä kaikki ${area} alueen haalarivärit. Tietokanta sisältää ${areaData.length} eri haalaria ${universitiesList.length} eri oppilaitoksella.`,
+        title: `${capitalizedArea} - Haalarivärit | Haalarikone`,
+        description: `Selvitä kaikki ${capitalizedArea} alueen haalarivärit. Tietokanta sisältää ${areaData.length} eri haalaria ${universitiesList.length} eri oppilaitoksella.`,
         openGraph: {
-            title: `${area} - Haalarivärit | Haalarikone`,
-            description: `Kaikki ${area} alueen haalarivärit opiskelijakulttuurissa.`,
+            title: `${capitalizedArea} - Haalarivärit | Haalarikone`,
+            description: `Kaikki ${capitalizedArea} alueen haalarivärit opiskelijakulttuurissa.`,
             images: ['/haalarikone-og.png'],
         },
         alternates: {
@@ -95,6 +98,8 @@ export default async function AreaPage({ params }: Props) {
         )
     );
 
+    const capitalizedArea = capitalizeFirstLetter(area);
+
     return (
         <div className="container mx-auto px-4 py-16 max-w-4xl">
             <div className="mb-8">
@@ -104,47 +109,19 @@ export default async function AreaPage({ params }: Props) {
                 >
                     ← Takaisin etusivulle
                 </Link>
-                <h1 className="text-4xl font-bold mb-4">{area}</h1>
+                <h1 className="text-4xl font-bold mb-4">{capitalizedArea}</h1>
                 <p className="text-lg text-gray-700 mb-6">
-                    Tässä ovat kaikki {area} alueen haalarivärit opiskelijakulttuurissa.
+                    Tässä ovat kaikki {capitalizedArea} alueen haalarivärit opiskelijakulttuurissa.
                     Yhteensä {areaData.length} eri haalaria {universitiesList.length} eri
                     oppilaitoksella.
                 </p>
             </div>
 
-            <div className="grid gap-6">
-                {areaData.map((uni, index) => (
-                    <div
-                        key={`${uni.id}-${index}`}
-                        className="border rounded-lg p-6 bg-white shadow-sm"
-                    >
-                        <div className="flex items-start justify-between mb-4">
-                            <div className="flex-1">
-                                <div className="flex items-center gap-3 mb-2">
-                                    <div
-                                        className="w-12 h-12 rounded border-2"
-                                        style={parseStyles(uni.hex)}
-                                    />
-                                    <div>
-                                        <h2 className="text-xl font-bold">{uni.vari}</h2>
-                                        <p className="text-gray-600">{uni.oppilaitos}</p>
-                                    </div>
-                                </div>
-                                {uni.ala && (
-                                    <p className="text-gray-700 mb-2">
-                                        <strong>Ala:</strong> {uni.ala}
-                                    </p>
-                                )}
-                                {uni.ainejärjestö && (
-                                    <p className="text-gray-700 mb-2">
-                                        <strong>Ainejärjestö:</strong> {uni.ainejärjestö}
-                                    </p>
-                                )}
-                            </div>
-                        </div>
-                    </div>
+            <ul className="space-y-3">
+                {areaData.map((uni) => (
+                    <UniversityCard key={uni.id} uni={uni} />
                 ))}
-            </div>
+            </ul>
 
             <div className="mt-12 pt-8 border-t">
                 <h2 className="text-2xl font-bold mb-4">Liittyvät aiheet</h2>
