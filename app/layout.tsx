@@ -1,7 +1,7 @@
 import Footer from "@/components/footer";
 import { Arvo } from "next/font/google";
 import "./globals.css";
-import Script from "next/script"; // Import Script component for analytics scripts
+import { Databuddy } from "@databuddy/sdk/react";
 
 export const metadata = {
   metadataBase: new URL("https://haalarikone.fi"),
@@ -65,19 +65,22 @@ export default function RootLayout({
     <html lang="fi" className={arvo.className} suppressHydrationWarning>
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
-        <Script
-          defer
-          data-domain="haalarikone.fi"
-          src="https://analytics.bittive.com/js/script.file-downloads.hash.outbound-links.pageview-props.revenue.tagged-events.js"
-        />
-        <Script>
-          {`window.plausible = window.plausible || function() {(window.plausible.q = window.plausible.q || []).push(arguments)}`}
-        </Script>
       </head>
       <body className="min-h-screen bg-white text-foreground">
         <main className="flex flex-col items-center">
           <div className="flex-1 w-full flex flex-col gap-20 items-center">
             {children}
+            <Databuddy
+              clientId="Uu3N9TuBuUAa3wAS4pHNw"
+              trackOutgoingLinks={true}
+              trackInteractions={true}
+              trackEngagement={true}
+              trackExitIntent={true}
+              trackBounceRate={true}
+              trackWebVitals={true}
+              trackErrors={true}
+              enableBatching={true}
+            />
             <Footer />
           </div>
         </main>
