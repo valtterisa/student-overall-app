@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next';
 import { loadUniversities } from '@/lib/load-universities';
+import { loadBlogPosts } from '@/lib/load-blog-posts';
 import {
     getUniqueUniversities,
     getUniqueFields,
@@ -7,21 +8,46 @@ import {
     getUniqueAreas,
 } from '@/lib/get-unique-values';
 import { generateSlug } from '@/lib/generate-slug';
+import { promises as fs } from 'fs';
+import path from 'path';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const baseUrl = 'https://haalarikone.fi';
     const universities = await loadUniversities();
+    const blogPosts = await loadBlogPosts();
+
+    const jsonFilePath = path.join(process.cwd(), 'data', 'overall_colors.json');
+    const rootJsonFilePath = path.join(process.cwd(), 'overall_colors_rows.json');
+    
+    let dataLastModified = new Date();
+    try {
+        let stats = null;
+        try {
+            stats = await fs.stat(jsonFilePath);
+        } catch {
+            try {
+                stats = await fs.stat(rootJsonFilePath);
+            } catch {
+            }
+        }
+        if (stats) {
+            dataLastModified = stats.mtime;
+        }
+    } catch {
+    }
 
     const entries: MetadataRoute.Sitemap = [
         {
             url: baseUrl,
-            lastModified: new Date(),
+            lastModified: dataLastModified,
             changeFrequency: 'weekly',
             priority: 1,
         },
         {
             url: `${baseUrl}/blog`,
-            lastModified: new Date(),
+            lastModified: blogPosts.length > 0 
+                ? new Date(Math.max(...blogPosts.map(p => new Date(p.publishDate).getTime())))
+                : dataLastModified,
             changeFrequency: 'weekly',
             priority: 0.8,
         },
@@ -31,7 +57,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     uniqueUniversities.forEach((uni) => {
         entries.push({
             url: `${baseUrl}/yliopisto/${generateSlug(uni)}`,
-            lastModified: new Date(),
+            lastModified: dataLastModified,
             changeFrequency: 'monthly',
             priority: 0.7,
         });
@@ -41,7 +67,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     uniqueFields.forEach((field) => {
         entries.push({
             url: `${baseUrl}/ala/${generateSlug(field)}`,
-            lastModified: new Date(),
+            lastModified: dataLastModified,
             changeFrequency: 'monthly',
             priority: 0.7,
         });
@@ -51,7 +77,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     uniqueColors.forEach((color) => {
         entries.push({
             url: `${baseUrl}/vari/${generateSlug(color)}`,
-            lastModified: new Date(),
+            lastModified: dataLastModified,
             changeFrequency: 'monthly',
             priority: 0.7,
         });
@@ -61,7 +87,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     uniqueAreas.forEach((area) => {
         entries.push({
             url: `${baseUrl}/alue/${generateSlug(area)}`,
-            lastModified: new Date(),
+            lastModified: dataLastModified,
             changeFrequency: 'monthly',
             priority: 0.6,
         });
@@ -70,24 +96,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     universities.forEach((uni) => {
         entries.push({
             url: `${baseUrl}/haalari/${uni.id}`,
-            lastModified: new Date(),
+            lastModified: dataLastModified,
             changeFrequency: 'monthly',
             priority: 0.5,
         });
     });
 
-    const blogPosts = [
-        'kaikki-suomen-yliopistojen-haalarivarit-2024',
-        'miten-haalarivarit-valitaan-opiskelijakulttuurin-perusteet',
-        'opiskelijakulttuurin-historia-suomessa',
-        'amk-vs-yliopisto-haalarivarit-eroilla',
-        'haalarit-saannot-4-saantoa',
-    ];
-
-    blogPosts.forEach((slug) => {
+    blogPosts.forEach((post) => {
         entries.push({
-            url: `${baseUrl}/blog/${slug}`,
-            lastModified: new Date(),
+            url: `${baseUrl}/blog/${post.slug}`,
+            lastModified: new Date(post.publishDate),
             changeFrequency: 'monthly',
             priority: 0.6,
         });

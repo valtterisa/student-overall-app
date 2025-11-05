@@ -1,6 +1,9 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import Script from 'next/script';
 import { loadBlogPosts } from '@/lib/load-blog-posts';
+
+export const revalidate = 86400;
 
 export const metadata: Metadata = {
     title: 'Blogi | Haalarikone',
@@ -10,18 +13,74 @@ export const metadata: Metadata = {
         title: 'Blogi | Haalarikone',
         description:
             'Lue artikkeleita opiskelijakulttuurista, haalariväreistä ja suomalaisesta opiskelijaelämästä.',
-        images: ['/haalarikone-og.png'],
+        images: [
+            {
+                url: '/haalarikone-og.png',
+                width: 1200,
+                height: 630,
+                alt: 'Haalarikone blogi',
+            },
+        ],
+        type: 'website',
+        siteName: 'Haalarikone',
+        locale: 'fi_FI',
+        url: 'https://haalarikone.fi/blog',
     },
     alternates: {
         canonical: 'https://haalarikone.fi/blog',
+        languages: {
+            fi: 'https://haalarikone.fi/blog',
+        },
     },
 };
 
 export default async function BlogPage() {
     const posts = await loadBlogPosts();
 
+    const collectionPageSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'CollectionPage',
+        name: 'Blogi | Haalarikone',
+        description: 'Lue artikkeleita opiskelijakulttuurista, haalariväreistä ja suomalaisesta opiskelijaelämästä.',
+        url: 'https://haalarikone.fi/blog',
+    };
+
+    const breadcrumbSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+            {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Etusivu',
+                item: 'https://haalarikone.fi',
+            },
+            {
+                '@type': 'ListItem',
+                position: 2,
+                name: 'Blogi',
+                item: 'https://haalarikone.fi/blog',
+            },
+        ],
+    };
+
     return (
-        <div className="container mx-auto px-4 py-16 max-w-4xl">
+        <>
+            <Script
+                id="collectionpage-schema"
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(collectionPageSchema),
+                }}
+            />
+            <Script
+                id="breadcrumb-schema-blog"
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(breadcrumbSchema),
+                }}
+            />
+            <div className="container mx-auto px-4 py-16 max-w-4xl">
             <div className="mb-12">
                 <Link
                     href="/"
@@ -75,6 +134,7 @@ export default async function BlogPage() {
                 )}
             </div>
         </div>
+        </>
     );
 }
 

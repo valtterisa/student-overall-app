@@ -1,0 +1,21 @@
+{
+  "name": "Haalarikone - Suomen helpoin haalaritietokanta",
+  "short_name": "Haalarikone",
+  "description": "Selvitä minkä värinen haalari tietyn alan opiskelijalla on!",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#65a30d",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    }
+  ],
+  "categories": ["education", "reference"],
+  "lang": "fi",
+  "dir": "ltr"
+}
+

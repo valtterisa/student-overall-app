@@ -7,6 +7,8 @@ import Link from "next/link";
 import Script from "next/script";
 import UniversityCard from "@/components/university-card";
 
+export const revalidate = 3600;
+
 type Props = {
   params: Promise<{ slug: string }>;
 };
@@ -54,13 +56,42 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${capitalizedField} - Haalarivärit | Haalarikone`,
     description: `Selvitä minkä värinen haalari ${capitalizedField} alan opiskelijalla on. Tietokanta sisältää haalarivärit ${universitiesList.length} eri oppilaitokselle.`,
+    keywords: [
+      `${capitalizedField} haalarivärit`,
+      `${capitalizedField} haalarit`,
+      `${capitalizedField} opiskelijahaalarit`,
+      "haalarivärit",
+      "opiskelijahaalarit",
+      "suomen opiskelijakulttuuri",
+      ...universitiesList.slice(0, 5).map((u) => `${capitalizedField} ${u}`),
+    ],
     openGraph: {
       title: `${capitalizedField} - Haalarivärit | Haalarikone`,
       description: `Minkä värinen haalari ${capitalizedField} alan opiskelijalla on? Löydä vastaus Haalarikoneesta.`,
+      images: [
+        {
+          url: "/haalarikone-og.png",
+          width: 1200,
+          height: 630,
+          alt: `${capitalizedField} haalarivärit`,
+        },
+      ],
+      type: "website",
+      siteName: "Haalarikone",
+      locale: "fi_FI",
+      url: `https://haalarikone.fi/ala/${slug}`,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${capitalizedField} - Haalarivärit | Haalarikone`,
+      description: `Minkä värinen haalari ${capitalizedField} alan opiskelijalla on?`,
       images: ["/haalarikone-og.png"],
     },
     alternates: {
       canonical: `https://haalarikone.fi/ala/${slug}`,
+      languages: {
+        fi: `https://haalarikone.fi/ala/${slug}`,
+      },
     },
   };
 }
@@ -104,6 +135,43 @@ export default async function FieldPage({ params }: Props) {
     url: `https://haalarikone.fi/ala/${slug}`,
   };
 
+  const itemListSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: `${capitalizedField} haalarivärit`,
+    description: `Kaikki ${capitalizedField} alan haalarivärit suomalaisissa oppilaitoksissa`,
+    numberOfItems: fieldData.length,
+    itemListElement: fieldData.slice(0, 50).map((uni, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      item: {
+        "@type": "Product",
+        name: `${uni.vari} haalari - ${capitalizedField}`,
+        description: `${uni.vari} haalari ${uni.oppilaitos} ${uni.ainejärjestö ? `(${uni.ainejärjestö})` : ""}`,
+        url: `https://haalarikone.fi/haalari/${uni.id}`,
+      },
+    })),
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Etusivu",
+        item: "https://haalarikone.fi",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: capitalizedField,
+        item: `https://haalarikone.fi/ala/${slug}`,
+      },
+    ],
+  };
+
   return (
     <>
       <Script
@@ -111,6 +179,20 @@ export default async function FieldPage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(credentialSchema),
+        }}
+      />
+      <Script
+        id={`itemlist-schema-${slug}`}
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(itemListSchema),
+        }}
+      />
+      <Script
+        id={`breadcrumb-schema-${slug}`}
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbSchema),
         }}
       />
       <div className="container mx-auto px-4 py-16 max-w-4xl">

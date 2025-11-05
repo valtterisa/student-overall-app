@@ -6,6 +6,8 @@ import { parseStyles } from "@/lib/utils";
 import { generateSlug } from "@/lib/generate-slug";
 import Image from "next/image";
 
+export const revalidate = 3600;
+
 type Props = {
   params: Promise<{ id: string }>;
 };
@@ -28,16 +30,55 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 
+  const keywords = [
+    `${overall.vari} haalari`,
+    `${overall.oppilaitos} haalarivärit`,
+    "haalarivärit",
+    "opiskelijahaalarit",
+    "suomen opiskelijakulttuuri",
+  ];
+
+  if (overall.ala) {
+    overall.ala.split(", ").forEach((field) => {
+      keywords.push(`${field} haalarivärit`, `${overall.oppilaitos} ${field}`);
+    });
+  }
+
+  if (overall.ainejärjestö) {
+    keywords.push(`${overall.ainejärjestö} haalari`);
+  }
+
   return {
     title: `${overall.vari} - ${overall.oppilaitos} | Haalarikone`,
     description: `${overall.vari} haalari ${overall.oppilaitos} ${overall.ala ? `- ${overall.ala}` : ""} ${overall.ainejärjestö ? `(${overall.ainejärjestö})` : ""}`,
+    keywords,
     openGraph: {
       title: `${overall.vari} - ${overall.oppilaitos}`,
+      description: `${overall.vari} haalari ${overall.oppilaitos} ${overall.ala ? `- ${overall.ala}` : ""}`,
+      images: [
+        {
+          url: "/haalarikone-og.png",
+          width: 1200,
+          height: 630,
+          alt: `${overall.vari} haalari - ${overall.oppilaitos}`,
+        },
+      ],
+      type: "website",
+      siteName: "Haalarikone",
+      locale: "fi_FI",
+      url: `https://haalarikone.fi/haalari/${id}`,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${overall.vari} - ${overall.oppilaitos} | Haalarikone`,
       description: `${overall.vari} haalari ${overall.oppilaitos}`,
       images: ["/haalarikone-og.png"],
     },
     alternates: {
       canonical: `https://haalarikone.fi/haalari/${id}`,
+      languages: {
+        fi: `https://haalarikone.fi/haalari/${id}`,
+      },
     },
   };
 }
@@ -67,10 +108,47 @@ export default async function OverallPage({ params }: Props) {
     "@type": "Product",
     name: `${overall.vari} haalari - ${overall.oppilaitos}`,
     description: `Haalariväri: ${overall.vari}${overall.ala ? `, Ala: ${overall.ala}` : ""}${overall.ainejärjestö ? `, Ainejärjestö: ${overall.ainejärjestö}` : ""}`,
+    image: {
+      "@type": "ImageObject",
+      url: "https://haalarikone.fi/haalarikone-og.png",
+      width: 1200,
+      height: 630,
+    },
     brand: {
       "@type": "Brand",
       name: overall.oppilaitos,
     },
+    category: "Opiskelijahaalarit",
+    offers: {
+      "@type": "Offer",
+      availability: "https://schema.org/InStock",
+      priceCurrency: "EUR",
+    },
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Etusivu",
+        item: "https://haalarikone.fi",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: overall.oppilaitos,
+        item: `https://haalarikone.fi/yliopisto/${generateSlug(overall.oppilaitos)}`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: `${overall.vari} haalari`,
+        item: `https://haalarikone.fi/haalari/${id}`,
+      },
+    ],
   };
 
   return (
@@ -80,6 +158,13 @@ export default async function OverallPage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(productSchema),
+        }}
+      />
+      <Script
+        id={`breadcrumb-schema-${id}`}
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbSchema),
         }}
       />
       <div className="container mx-auto px-4 py-16 max-w-4xl">

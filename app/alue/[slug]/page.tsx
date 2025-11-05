@@ -4,7 +4,10 @@ import { generateSlug } from '@/lib/generate-slug';
 import { capitalizeFirstLetter } from '@/lib/utils';
 import { Metadata } from 'next';
 import Link from 'next/link';
+import Script from 'next/script';
 import UniversityCard from '@/components/university-card';
+
+export const revalidate = 3600;
 
 type Props = {
     params: Promise<{ slug: string }>;
@@ -53,13 +56,42 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {
         title: `${capitalizedArea} - Haalarivärit | Haalarikone`,
         description: `Selvitä kaikki ${capitalizedArea} alueen haalarivärit. Tietokanta sisältää ${areaData.length} eri haalaria ${universitiesList.length} eri oppilaitoksella.`,
+        keywords: [
+            `${capitalizedArea} haalarivärit`,
+            `${capitalizedArea} haalarit`,
+            `${capitalizedArea} opiskelijahaalarit`,
+            'haalarivärit',
+            'opiskelijahaalarit',
+            'suomen opiskelijakulttuuri',
+            ...universitiesList.slice(0, 5).map((u) => `${capitalizedArea} ${u}`),
+        ],
         openGraph: {
+            title: `${capitalizedArea} - Haalarivärit | Haalarikone`,
+            description: `Kaikki ${capitalizedArea} alueen haalarivärit opiskelijakulttuurissa.`,
+            images: [
+                {
+                    url: '/haalarikone-og.png',
+                    width: 1200,
+                    height: 630,
+                    alt: `${capitalizedArea} haalarivärit`,
+                },
+            ],
+            type: 'website',
+            siteName: 'Haalarikone',
+            locale: 'fi_FI',
+            url: `https://haalarikone.fi/alue/${slug}`,
+        },
+        twitter: {
+            card: 'summary_large_image',
             title: `${capitalizedArea} - Haalarivärit | Haalarikone`,
             description: `Kaikki ${capitalizedArea} alueen haalarivärit opiskelijakulttuurissa.`,
             images: ['/haalarikone-og.png'],
         },
         alternates: {
             canonical: `https://haalarikone.fi/alue/${slug}`,
+            languages: {
+                fi: `https://haalarikone.fi/alue/${slug}`,
+            },
         },
     };
 }
@@ -100,8 +132,60 @@ export default async function AreaPage({ params }: Props) {
 
     const capitalizedArea = capitalizeFirstLetter(area);
 
+    const breadcrumbSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+            {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Etusivu',
+                item: 'https://haalarikone.fi',
+            },
+            {
+                '@type': 'ListItem',
+                position: 2,
+                name: capitalizedArea,
+                item: `https://haalarikone.fi/alue/${slug}`,
+            },
+        ],
+    };
+
+    const itemListSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'ItemList',
+        name: `${capitalizedArea} haalarivärit`,
+        description: `Kaikki ${capitalizedArea} alueen haalarivärit opiskelijakulttuurissa`,
+        numberOfItems: areaData.length,
+        itemListElement: areaData.slice(0, 50).map((uni, index) => ({
+            '@type': 'ListItem',
+            position: index + 1,
+            item: {
+                '@type': 'Product',
+                name: `${uni.vari} haalari - ${capitalizedArea}`,
+                description: `${uni.vari} haalari ${uni.oppilaitos} ${uni.ala ? `- ${uni.ala}` : ''}`,
+                url: `https://haalarikone.fi/haalari/${uni.id}`,
+            },
+        })),
+    };
+
     return (
-        <div className="container mx-auto px-4 py-16 max-w-4xl">
+        <>
+            <Script
+                id={`itemlist-schema-${slug}`}
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(itemListSchema),
+                }}
+            />
+            <Script
+                id={`breadcrumb-schema-${slug}`}
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(breadcrumbSchema),
+                }}
+            />
+            <div className="container mx-auto px-4 py-16 max-w-4xl">
             <div className="mb-8">
                 <Link
                     href="/"
@@ -156,6 +240,7 @@ export default async function AreaPage({ params }: Props) {
                 </div>
             </div>
         </div>
+        </>
     );
 }
 

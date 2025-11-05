@@ -4,6 +4,8 @@ import { loadBlogPosts, loadBlogPost } from '@/lib/load-blog-posts';
 import Script from 'next/script';
 import { notFound } from 'next/navigation';
 
+export const revalidate = 86400;
+
 type Props = {
     params: Promise<{ slug: string }>;
 };
@@ -25,19 +27,57 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         };
     }
 
+    const wordCount = post.content.replace(/<[^>]*>/g, '').split(/\s+/).length;
+    const category = 'Opiskelijakulttuuri';
+
     return {
         title: `${post.title} | Haalarikone`,
         description: post.description,
+        keywords: [
+            'haalarivärit',
+            'opiskelijahaalarit',
+            'suomen opiskelijakulttuuri',
+            'haalaritietokanta',
+            'opiskelijakulttuuri',
+            category.toLowerCase(),
+            ...post.title.toLowerCase().split(' ').slice(0, 5),
+        ],
         openGraph: {
             title: post.title,
             description: post.description,
-            images: ['/haalarikone-og.png'],
+            images: [
+                {
+                    url: '/haalarikone-og.png',
+                    width: 1200,
+                    height: 630,
+                    alt: post.title,
+                },
+            ],
             type: 'article',
             publishedTime: post.publishDate,
+            modifiedTime: post.publishDate,
             authors: [post.author],
+            siteName: 'Haalarikone',
+            locale: 'fi_FI',
+            url: `https://haalarikone.fi/blog/${slug}`,
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: post.title,
+            description: post.description,
+            images: ['/haalarikone-og.png'],
         },
         alternates: {
             canonical: `https://haalarikone.fi/blog/${slug}`,
+            languages: {
+                fi: `https://haalarikone.fi/blog/${slug}`,
+            },
+        },
+        other: {
+            'article:author': post.author,
+            'article:section': category,
+            'article:published_time': post.publishDate,
+            'article:modified_time': post.publishDate,
         },
     };
 }
@@ -50,18 +90,71 @@ export default async function BlogPostPage({ params }: Props) {
         notFound();
     }
 
+    const wordCount = post.content.replace(/<[^>]*>/g, '').split(/\s+/).length;
+    const timeRequired = post.readingTime ? `PT${post.readingTime}M` : undefined;
+
     const blogPostingSchema = {
         '@context': 'https://schema.org',
         '@type': 'BlogPosting',
         headline: post.title,
         description: post.description,
+        image: {
+            '@type': 'ImageObject',
+            url: 'https://haalarikone.fi/haalarikone-og.png',
+            width: 1200,
+            height: 630,
+        },
         author: {
             '@type': 'Person',
             name: post.author,
+            url: 'https://haalarikone.fi',
+        },
+        publisher: {
+            '@type': 'Organization',
+            name: 'Haalarikone',
+            url: 'https://haalarikone.fi',
+            logo: {
+                '@type': 'ImageObject',
+                url: 'https://haalarikone.fi/haalarikone-og.png',
+                width: 1200,
+                height: 630,
+            },
         },
         datePublished: post.publishDate,
         dateModified: post.publishDate,
         url: `https://haalarikone.fi/blog/${slug}`,
+        mainEntityOfPage: {
+            '@type': 'WebPage',
+            '@id': `https://haalarikone.fi/blog/${slug}`,
+        },
+        articleSection: 'Opiskelijakulttuuri',
+        wordCount: wordCount,
+        ...(timeRequired && { timeRequired }),
+    };
+
+    const breadcrumbSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+            {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Etusivu',
+                item: 'https://haalarikone.fi',
+            },
+            {
+                '@type': 'ListItem',
+                position: 2,
+                name: 'Blogi',
+                item: 'https://haalarikone.fi/blog',
+            },
+            {
+                '@type': 'ListItem',
+                position: 3,
+                name: post.title,
+                item: `https://haalarikone.fi/blog/${slug}`,
+            },
+        ],
     };
 
     return (
@@ -71,6 +164,13 @@ export default async function BlogPostPage({ params }: Props) {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{
                     __html: JSON.stringify(blogPostingSchema),
+                }}
+            />
+            <Script
+                id={`breadcrumb-schema-${slug}`}
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(breadcrumbSchema),
                 }}
             />
             <div className="container mx-auto px-4 py-16 max-w-4xl">

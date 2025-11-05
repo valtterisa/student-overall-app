@@ -7,6 +7,8 @@ import Link from "next/link";
 import Script from "next/script";
 import UniversityCard from "@/components/university-card";
 
+export const revalidate = 3600;
+
 type Props = {
   params: Promise<{ slug: string }>;
 };
@@ -50,13 +52,42 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${capitalizedUniversity} - Haalarivärit | Haalarikone`,
     description: `Selvitä kaikki ${capitalizedUniversity} haalarivärit. Tietokanta sisältää ${universityData.length} eri haalaria eri aloille ja ainejärjestöille.`,
+    keywords: [
+      `${capitalizedUniversity} haalarivärit`,
+      `${capitalizedUniversity} haalarit`,
+      `${capitalizedUniversity} opiskelijahaalarit`,
+      "haalarivärit",
+      "opiskelijahaalarit",
+      "suomen opiskelijakulttuuri",
+      ...fields.slice(0, 5).map((f) => `${capitalizedUniversity} ${f}`),
+    ],
     openGraph: {
       title: `${capitalizedUniversity} - Haalarivärit | Haalarikone`,
       description: `Selvitä kaikki ${capitalizedUniversity} haalarivärit. ${fields.length > 0 ? `Alat: ${fields.slice(0, 5).join(", ")}` : ""}`,
+      images: [
+        {
+          url: "/haalarikone-og.png",
+          width: 1200,
+          height: 630,
+          alt: `${capitalizedUniversity} haalarivärit`,
+        },
+      ],
+      type: "website",
+      siteName: "Haalarikone",
+      locale: "fi_FI",
+      url: `https://haalarikone.fi/yliopisto/${slug}`,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${capitalizedUniversity} - Haalarivärit | Haalarikone`,
+      description: `Selvitä kaikki ${capitalizedUniversity} haalarivärit`,
       images: ["/haalarikone-og.png"],
     },
     alternates: {
       canonical: `https://haalarikone.fi/yliopisto/${slug}`,
+      languages: {
+        fi: `https://haalarikone.fi/yliopisto/${slug}`,
+      },
     },
   };
 }
@@ -100,6 +131,43 @@ export default async function UniversityPage({ params }: Props) {
     url: `https://haalarikone.fi/yliopisto/${slug}`,
   };
 
+  const itemListSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: `${capitalizedUniversity} haalarivärit`,
+    description: `Kaikki ${capitalizedUniversity} haalarivärit opiskelijakulttuurissa`,
+    numberOfItems: universityData.length,
+    itemListElement: universityData.slice(0, 50).map((uni, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      item: {
+        "@type": "Product",
+        name: `${uni.vari} haalari - ${capitalizedUniversity}`,
+        description: `${uni.vari} haalari ${uni.ala ? `- ${uni.ala}` : ""} ${uni.ainejärjestö ? `(${uni.ainejärjestö})` : ""}`,
+        url: `https://haalarikone.fi/haalari/${uni.id}`,
+      },
+    })),
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Etusivu",
+        item: "https://haalarikone.fi",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: capitalizedUniversity,
+        item: `https://haalarikone.fi/yliopisto/${slug}`,
+      },
+    ],
+  };
+
   return (
     <>
       <Script
@@ -107,6 +175,20 @@ export default async function UniversityPage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(organizationSchema),
+        }}
+      />
+      <Script
+        id={`itemlist-schema-${slug}`}
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(itemListSchema),
+        }}
+      />
+      <Script
+        id={`breadcrumb-schema-${slug}`}
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbSchema),
         }}
       />
       <div className="container mx-auto px-4 py-16 max-w-4xl">

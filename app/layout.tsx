@@ -20,12 +20,35 @@ export const metadata = {
     "yliopiston haalarivärit",
     "AMK haalarit",
   ],
+  authors: [{ name: "Haalarikone" }],
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   openGraph: {
     title:
       "Haalarikone | Selvitä minkä värinen haalari tietyn alan opiskelijalla on!",
     description:
       "Tutustu Suomen opiskelijakulttuuriin värien kautta. Haalarikone auttaa sinua tunnistamaan eri alojen opiskelijat haalarivärien perusteella.",
-    images: ["/haalarikone-og.png"],
+    images: [
+      {
+        url: "/haalarikone-og.png",
+        width: 1200,
+        height: 630,
+        alt: "Haalarikone - Suomen helpoin haalaritietokanta",
+      },
+    ],
+    type: "website",
+    siteName: "Haalarikone",
+    locale: "fi_FI",
+    url: "https://haalarikone.fi",
   },
   twitter: {
     card: "summary_large_image",
@@ -35,6 +58,14 @@ export const metadata = {
   },
   alternates: {
     canonical: "https://haalarikone.fi",
+    languages: {
+      fi: "https://haalarikone.fi",
+    },
+  },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION,
+    yandex: process.env.NEXT_PUBLIC_YANDEX_VERIFICATION,
+    yahoo: process.env.NEXT_PUBLIC_YAHOO_VERIFICATION,
   },
 };
 
@@ -53,6 +84,9 @@ export default function RootLayout({
     <html lang="fi" className={arvo.className} suppressHydrationWarning>
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body className="min-h-screen bg-white text-foreground">
         <main className="flex flex-col items-center">
