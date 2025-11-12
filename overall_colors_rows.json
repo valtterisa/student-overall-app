@@ -1180,7 +1180,7 @@
     "id": "133"
   },
   {
-    "vari": "Ålands-blå (Ahvenanmaan sininen)",
+    "vari": "Ahvenanmaan sininen",
     "hex": "background: blue; color: white;",
     "alue": "Maarianhamina",
     "ala": "(kaikki alat)",
@@ -2027,7 +2027,7 @@
     "id": "228"
   },
   {
-    "vari": "(keltainen)",
+    "vari": "keltainen",
     "hex": "background: yellow;",
     "alue": "Helsinki",
     "ala": "alue- ja kulttuuritutkimus",
@@ -2099,7 +2099,7 @@
     "id": "236"
   },
   {
-    "vari": "(vaaleanvihreä)",
+    "vari": "vaaleanvihreä",
     "hex": "background: #5adc64;",
     "alue": "Helsinki",
     "ala": "suomen kieli, suomalais-ugrilaiset kielet",
@@ -2234,7 +2234,7 @@
     "id": "251"
   },
   {
-    "vari": "(tummanvihreä)",
+    "vari": "tummanvihreä",
     "hex": "background: #14780a; color: white;",
     "alue": "Helsinki",
     "ala": "ympäristöekonomia",
@@ -2612,7 +2612,7 @@
     "id": "293"
   },
   {
-    "vari": "(musta)",
+    "vari": "musta",
     "hex": "background: black; color: white;",
     "alue": "Helsinki",
     "ala": "taidehistoria",
@@ -2666,7 +2666,7 @@
     "id": "299"
   },
   {
-    "vari": "(musta)",
+    "vari": "musta",
     "hex": "background: black; color: white;",
     "alue": "Helsinki",
     "ala": "kotimainen kirjallisuus",
@@ -2772,14 +2772,14 @@
     "id": "311"
   },
   {
-    "vari": "(ei haalaria)",
+    "vari": "ei haalaria",
     "alue": "Espoo",
     "ainejärjestö": "Taiteiden ja suunnittelun ylioppilaat TOKYO",
     "oppilaitos": "Aalto-yliopisto",
     "id": "312"
   },
   {
-    "vari": "(ei haalaria)",
+    "vari": "ei haalaria",
     "alue": "Helsinki",
     "ala": "Urban studies and planning",
     "ainejärjestö": "Mesta",
@@ -2787,7 +2787,7 @@
     "id": "313"
   },
   {
-    "vari": "(ei haalaria)",
+    "vari": "ei haalaria",
     "alue": "Helsinki",
     "ala": "Venäjän ja Itä-Euroopan tutkimus",
     "ainejärjestö": "Vietti",
@@ -2795,7 +2795,7 @@
     "id": "314"
   },
   {
-    "vari": "(ei haalaria)",
+    "vari": "ei haalaria",
     "alue": "Helsinki",
     "ala": "Teatterikorkeakoulu, Kuvataideakatemia",
     "oppilaitos": "Taideyliopisto",
@@ -2814,7 +2814,7 @@
     "vari": "viininpunainen",
     "hex": "background: darkred; color: white;",
     "alue": "Pori",
-    "ala": "(koko toimipiste)",
+    "ala": null,
     "ainejärjestö": "Utopia",
     "oppilaitos": "Tampereen yliopisto",
     "id": "317"
@@ -2886,7 +2886,7 @@
     "vari": "musta",
     "hex": "background: black; color: white;",
     "alue": "Raasepori",
-    "ala": "(koko toimipiste)",
+    "ala": null,
     "ainejärjestö": "Ekenäs Kåravdelning EKA",
     "oppilaitos": "Novia",
     "id": "325"
@@ -2985,7 +2985,7 @@
     "vari": "keltainen",
     "hex": "background: yellow;",
     "alue": "Salo",
-    "ala": "(koko toimipiste)",
+    "ala": null,
     "oppilaitos": "Turun AMK",
     "id": "336"
   },
@@ -3389,7 +3389,7 @@
     "id": "382"
   },
   {
-    "vari": "Vaaleansininen",
+    "vari": "vaaleansininen",
     "hex": "background: lightskyblue;",
     "alue": "Tampere",
     "ala": "sustainable urban development",
@@ -3585,7 +3585,7 @@
     "id": "404"
   },
   {
-    "vari": "(ei haalaria)",
+    "vari": "ei haalaria",
     "alue": "Tampere",
     "ala": "poliisi",
     "oppilaitos": "Poliisi-AMK",
@@ -3675,7 +3675,7 @@
     "vari": "vaaleanpunainen",
     "hex": "background: lightcoral; background-image: linear-gradient(to top right, lightcoral 80%, black 81%);",
     "alue": "Turku",
-    "ala": "(koko toimipiste)",
+    "ala": null,
     "ainejärjestö": "Åbo kåravdelning ÅKA",
     "oppilaitos": "Novia",
     "id": "415"
@@ -3700,7 +3700,7 @@
   },
   {
     "vari": "pinkki",
-    "hex": "background: deeppink; color: black;",
+    "hex": "background: deeppink; color: white;",
     "alue": "Turku",
     "ala": "konetekniikka",
     "ainejärjestö": "Machina",
@@ -4498,7 +4498,7 @@
     "id": "506"
   },
   {
-    "vari": "(ei haalaria)",
+    "vari": "ei haalaria",
     "alue": "Turku",
     "ala": "sukupuolentutkimus",
     "ainejärjestö": "F-piste",
@@ -4506,7 +4506,7 @@
     "id": "507"
   },
   {
-    "vari": "(ei haalaria)",
+    "vari": "ei haalaria",
     "alue": "Turku",
     "ala": "luova kirjoittaminen",
     "ainejärjestö": "Kammio",
@@ -4514,7 +4514,7 @@
     "id": "508"
   },
   {
-    "vari": "(ei haalaria)",
+    "vari": "ei haalaria",
     "alue": "Turku",
     "ala": "museologia",
     "ainejärjestö": "Museion",
@@ -4522,7 +4522,7 @@
     "id": "509"
   },
   {
-    "vari": "(ei haalaria)",
+    "vari": "ei haalaria",
     "alue": "Turku",
     "ala": "yleinen kirjallisuustiede",
     "ainejärjestö": "Prometheus",
@@ -4530,7 +4530,7 @@
     "id": "510"
   },
   {
-    "vari": "(ei haalaria)",
+    "vari": "ei haalaria",
     "alue": "Turku",
     "ala": "Itä-Aasian tutkimus (maisteri)",
     "ainejärjestö": "Taotao",
@@ -4538,7 +4538,7 @@
     "id": "511"
   },
   {
-    "vari": "(ei haalaria)",
+    "vari": "ei haalaria",
     "alue": "Turku",
     "ala": "aineenopettaja",
     "ainejärjestö": "Turun Auskultantit (Turaus)",
@@ -4612,7 +4612,7 @@
     "vari": "keltainen",
     "hex": "background: yellow;",
     "alue": "Vaasa",
-    "ala": "(koko toimipiste)",
+    "ala": null,
     "ainejärjestö": "Filicia",
     "oppilaitos": "Novia",
     "id": "520"
