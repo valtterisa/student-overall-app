@@ -1,0 +1,6983 @@
+[
+  {
+    "id": "1",
+    "content": {
+      "vari": "metsänvihreä",
+      "alue": "Hattula",
+      "ala": "hortonomi",
+      "ainejärjestö": "LOK ry",
+      "oppilaitos": "Hämeen AMK"
+    },
+    "metadata": {
+      "hex": "background: #14780a; color: white;"
+    }
+  },
+  {
+    "id": "2",
+    "content": {
+      "vari": "liila",
+      "alue": "Hyvinkää",
+      "ala": "sairaanhoitaja, sosionomi, tradenomi",
+      "ainejärjestö": "Laureamko",
+      "oppilaitos": "Laurea"
+    },
+    "metadata": {
+      "hex": "background: indigo; color: white;"
+    }
+  },
+  {
+    "id": "3",
+    "content": {
+      "vari": "pinkki",
+      "alue": "Hämeenlinna, Forssa, Valkeakoski",
+      "ala": "sairaanhoitaja, terveydenhoitaja, sosionomi",
+      "ainejärjestö": "",
+      "oppilaitos": "Hämeen AMK"
+    },
+    "metadata": {
+      "hex": "background: pink;"
+    }
+  },
+  {
+    "id": "4",
+    "content": {
+      "vari": "keltainen",
+      "alue": "Hämeenlinna, Forssa, Valkeakoski",
+      "ala": "liiketalous, muotoilu, tietojenkäsittely, international business, computer applications, hevostalouden liiketoiminta",
+      "ainejärjestö": "HÄTÄ ry",
+      "oppilaitos": "Hämeen AMK"
+    },
+    "metadata": {
+      "hex": "background: yellow;"
+    }
+  },
+  {
+    "id": "5",
+    "content": {
+      "vari": "musta",
+      "alue": "Hämeenlinna, Forssa, Valkeakoski",
+      "ala": "insinööri, kestävä kehitys",
+      "ainejärjestö": "HIOP ry, VARO ry",
+      "oppilaitos": "Hämeen AMK"
+    },
+    "metadata": {
+      "hex": "background: black; color: white;"
+    }
+  },
+  {
+    "id": "6",
+    "content": {
+      "vari": "valkoinen",
+      "alue": "Iisalmi",
+      "ala": "sairaanhoitaja",
+      "ainejärjestö": "",
+      "oppilaitos": "Savonia"
+    },
+    "metadata": {
+      "hex": "background: white;"
+    }
+  },
+  {
+    "id": "7",
+    "content": {
+      "vari": "vihreä",
+      "alue": "Iisalmi",
+      "ala": "sosiaaliala",
+      "ainejärjestö": "",
+      "oppilaitos": "Savonia"
+    },
+    "metadata": {
+      "hex": "background: #5adc64;"
+    }
+  },
+  {
+    "id": "8",
+    "content": {
+      "vari": "musta",
+      "alue": "Iisalmi",
+      "ala": "luonnonvara-ala",
+      "ainejärjestö": "",
+      "oppilaitos": "Savonia"
+    },
+    "metadata": {
+      "hex": "background: black; background-image: linear-gradient(to top right, black 80%, blue 81%);"
+    }
+  },
+  {
+    "id": "9",
+    "content": {
+      "vari": "valkoinen",
+      "alue": "Joensuu",
+      "ala": "vieraat kielet, kääntäminen, yleinen kielitiede",
+      "ainejärjestö": "Lingtwisti",
+      "oppilaitos": "Itä-Suomen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: white;"
+    }
+  },
+  {
+    "id": "10",
+    "content": {
+      "vari": "fuksianpunainen",
+      "alue": "Joensuu",
+      "ala": "fysioterapia",
+      "ainejärjestö": "FYKO",
+      "oppilaitos": "Karelia"
+    },
+    "metadata": {
+      "hex": "background: deeppink; color: white;"
+    }
+  },
+  {
+    "id": "11",
+    "content": {
+      "vari": "pinkki",
+      "alue": "Joensuu",
+      "ala": "sosionomi",
+      "ainejärjestö": "JOS",
+      "oppilaitos": "Karelia"
+    },
+    "metadata": {
+      "hex": "background: deeppink; color: white;"
+    }
+  },
+  {
+    "id": "12",
+    "content": {
+      "vari": "punainen",
+      "alue": "Joensuu",
+      "ala": "kemia",
+      "ainejärjestö": "Bunsen",
+      "oppilaitos": "Itä-Suomen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: red; color: white;"
+    }
+  },
+  {
+    "id": "13",
+    "content": {
+      "vari": "punainen",
+      "alue": "Joensuu",
+      "ala": "venäjän kieli",
+      "ainejärjestö": "Iskra",
+      "oppilaitos": "Itä-Suomen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: red; color: white;"
+    }
+  },
+  {
+    "id": "14",
+    "content": {
+      "vari": "punainen",
+      "alue": "Joensuu",
+      "ala": "varhaiskasvatus",
+      "ainejärjestö": "Sulo",
+      "oppilaitos": "Itä-Suomen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: red; color: white;"
+    }
+  },
+  {
+    "id": "15",
+    "content": {
+      "vari": "punainen",
+      "alue": "Joensuu",
+      "ala": "sairaanhoitaja, terveydenhoitaja",
+      "ainejärjestö": "HOKO",
+      "oppilaitos": "Karelia"
+    },
+    "metadata": {
+      "hex": "background: red; color: white;"
+    }
+  },
+  {
+    "id": "16",
+    "content": {
+      "vari": "viininpunainen",
+      "alue": "Joensuu",
+      "ala": "saksan kieli",
+      "ainejärjestö": "Ablaut",
+      "oppilaitos": "Itä-Suomen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: darkred; color: white;"
+    }
+  },
+  {
+    "id": "17",
+    "content": {
+      "vari": "bolognanpunainen",
+      "alue": "Joensuu",
+      "ala": "oikeustiede",
+      "ainejärjestö": "Judica",
+      "oppilaitos": "Itä-Suomen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: darkred; color: white;"
+    }
+  },
+  {
+    "id": "18",
+    "content": {
+      "vari": "viininpunainen",
+      "alue": "Joensuu",
+      "ala": "julkisoikeus",
+      "ainejärjestö": "Legio Ostiensis",
+      "oppilaitos": "Itä-Suomen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: darkred; color: white;"
+    }
+  },
+  {
+    "id": "19",
+    "content": {
+      "vari": "viininpunainen",
+      "alue": "Joensuu",
+      "ala": "opinto-ohjaaja",
+      "ainejärjestö": "Opossumi",
+      "oppilaitos": "Itä-Suomen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: darkred; color: white;"
+    }
+  },
+  {
+    "id": "20",
+    "content": {
+      "vari": "viininpunainen",
+      "alue": "Joensuu",
+      "ala": "historia",
+      "ainejärjestö": "Varnitsa",
+      "oppilaitos": "Itä-Suomen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: darkred; color: white;"
+    }
+  },
+  {
+    "id": "21",
+    "content": {
+      "vari": "viininpunainen",
+      "alue": "Joensuu",
+      "ala": "matkailu- ja ravitsemisala",
+      "ainejärjestö": "REKO",
+      "oppilaitos": "Karelia"
+    },
+    "metadata": {
+      "hex": "background: darkred; color: white;"
+    }
+  },
+  {
+    "id": "22",
+    "content": {
+      "vari": "oranssi",
+      "alue": "Joensuu",
+      "ala": "kansantaloustieteet",
+      "ainejärjestö": "",
+      "oppilaitos": "Itä-Suomen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: darkorange;"
+    }
+  },
+  {
+    "id": "23",
+    "content": {
+      "vari": "oranssi",
+      "alue": "Joensuu",
+      "ala": "kotitalous- ja käsityöopettaja",
+      "ainejärjestö": "Kotex",
+      "oppilaitos": "Itä-Suomen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: darkorange;"
+    }
+  },
+  {
+    "id": "24",
+    "content": {
+      "vari": "oranssi",
+      "alue": "Joensuu",
+      "ala": "kauppatieteet",
+      "ainejärjestö": "Optimi",
+      "oppilaitos": "Itä-Suomen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: darkorange;"
+    }
+  },
+  {
+    "id": "25",
+    "content": {
+      "vari": "oranssi",
+      "alue": "Joensuu",
+      "ala": "liiketalous, international business, tietojenkäsittely",
+      "ainejärjestö": "Joensuun Tradenomiopiskelijoiden Kilta",
+      "oppilaitos": "Karelia"
+    },
+    "metadata": {
+      "hex": "background: darkorange;"
+    }
+  },
+  {
+    "id": "26",
+    "content": {
+      "vari": "keltainen",
+      "alue": "Joensuu",
+      "ala": "ruotsin kieli",
+      "ainejärjestö": "Godis",
+      "oppilaitos": "Itä-Suomen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: yellow;"
+    }
+  },
+  {
+    "id": "27",
+    "content": {
+      "vari": "keltainen",
+      "alue": "Joensuu",
+      "ala": "biologia",
+      "ainejärjestö": "Mikrovillus",
+      "oppilaitos": "Itä-Suomen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: yellow;"
+    }
+  },
+  {
+    "id": "28",
+    "content": {
+      "vari": "vihreä",
+      "alue": "Joensuu",
+      "ala": "erityispedagogiikka",
+      "ainejärjestö": "Poikkeus",
+      "oppilaitos": "Itä-Suomen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #5adc64;"
+    }
+  },
+  {
+    "id": "29",
+    "content": {
+      "vari": "limenvihreä",
+      "alue": "Joensuu",
+      "ala": "maantiede, yhteiskuntamaantiede, ympäristöpolitiikka ja -oikeus",
+      "ainejärjestö": "Tombolo",
+      "oppilaitos": "Itä-Suomen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #5adc64;"
+    }
+  },
+  {
+    "id": "30",
+    "content": {
+      "vari": "vihreä",
+      "alue": "Joensuu",
+      "ala": "energia- ja ympäristötekniikka",
+      "ainejärjestö": "Joensuun Insinööriopiskelijat JoIO",
+      "oppilaitos": "Karelia"
+    },
+    "metadata": {
+      "hex": "background: #5adc64;"
+    }
+  },
+  {
+    "id": "31",
+    "content": {
+      "vari": "metsänvihreä",
+      "alue": "Joensuu",
+      "ala": "metsätiede",
+      "ainejärjestö": "Joensuun Metsäylioppilaat",
+      "oppilaitos": "Itä-Suomen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #14780a; color: white;"
+    }
+  },
+  {
+    "id": "32",
+    "content": {
+      "vari": "metsänvihreä",
+      "alue": "Joensuu",
+      "ala": "metsätalousinsinööri",
+      "ainejärjestö": "Jimpon opiskelijayhdistys",
+      "oppilaitos": "Karelia"
+    },
+    "metadata": {
+      "hex": "background: #14780a; color: white;"
+    }
+  },
+  {
+    "id": "33",
+    "content": {
+      "vari": "turkoosi",
+      "alue": "Joensuu",
+      "ala": "psykologia",
+      "ainejärjestö": "Oidipus",
+      "oppilaitos": "Itä-Suomen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #00ced1;"
+    }
+  },
+  {
+    "id": "34",
+    "content": {
+      "vari": "turkoosi",
+      "alue": "Joensuu",
+      "ala": "luokanopettaja",
+      "ainejärjestö": "Popsi",
+      "oppilaitos": "Itä-Suomen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #00ced1;"
+    }
+  },
+  {
+    "id": "35",
+    "content": {
+      "vari": "Suomen lipun sininen",
+      "alue": "Joensuu",
+      "ala": "suomen kieli, kirjallisuus",
+      "ainejärjestö": "Täky",
+      "oppilaitos": "Itä-Suomen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: blue; color: white;"
+    }
+  },
+  {
+    "id": "36",
+    "content": {
+      "vari": "sininen",
+      "alue": "Joensuu",
+      "ala": "kulttuuri- ja media-ala",
+      "ainejärjestö": "Muuvi",
+      "oppilaitos": "Karelia"
+    },
+    "metadata": {
+      "hex": "background: blue; color: white;"
+    }
+  },
+  {
+    "id": "37",
+    "content": {
+      "vari": "tummansininen",
+      "alue": "Joensuu",
+      "ala": "kasvatustiede",
+      "ainejärjestö": "Kassos",
+      "oppilaitos": "Itä-Suomen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: navy; color: white;"
+    }
+  },
+  {
+    "id": "38",
+    "content": {
+      "vari": "violetti",
+      "alue": "Joensuu",
+      "ala": "matematiikka, fysiikka",
+      "ainejärjestö": "Epsilon",
+      "oppilaitos": "Itä-Suomen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: indigo; color: white;"
+    }
+  },
+  {
+    "id": "39",
+    "content": {
+      "vari": "violetti",
+      "alue": "Joensuu",
+      "ala": "läntinen teologia",
+      "ainejärjestö": "Fides Ostiensis",
+      "oppilaitos": "Itä-Suomen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: indigo; color: white;"
+    }
+  },
+  {
+    "id": "40",
+    "content": {
+      "vari": "violetti",
+      "alue": "Joensuu",
+      "ala": "ortodoksinen teologia",
+      "ainejärjestö": "Pistis",
+      "oppilaitos": "Itä-Suomen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: indigo; color: white;"
+    }
+  },
+  {
+    "id": "41",
+    "content": {
+      "vari": "violetti",
+      "alue": "Joensuu",
+      "ala": "tekniikka (paitsi energia- ja ympäristö-)",
+      "ainejärjestö": "Joensuun Insinööriopiskelijat JoIO",
+      "oppilaitos": "Karelia"
+    },
+    "metadata": {
+      "hex": "background: indigo; color: white;"
+    }
+  },
+  {
+    "id": "42",
+    "content": {
+      "vari": "hopeanharmaa",
+      "alue": "Joensuu",
+      "ala": "tietojenkäsittelytiede",
+      "ainejärjestö": "Skripti",
+      "oppilaitos": "Itä-Suomen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: lightgrey;"
+    }
+  },
+  {
+    "id": "43",
+    "content": {
+      "vari": "tummanharmaa",
+      "alue": "Joensuu",
+      "ala": "kulttuuri",
+      "ainejärjestö": "Nefa-Joensuu",
+      "oppilaitos": "Itä-Suomen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: dimgrey; color: white;"
+    }
+  },
+  {
+    "id": "44",
+    "content": {
+      "vari": "musta",
+      "alue": "Joensuu",
+      "ala": "englannin kieli",
+      "ainejärjestö": "Echo",
+      "oppilaitos": "Itä-Suomen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: black; color: white;"
+    }
+  },
+  {
+    "id": "45",
+    "content": {
+      "vari": "musta",
+      "alue": "Joensuu",
+      "ala": "yhteiskuntapolitiikka, sosiologia, filosofia",
+      "ainejärjestö": "Praxis",
+      "oppilaitos": "Itä-Suomen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: black; color: white;"
+    }
+  },
+  {
+    "id": "46",
+    "content": {
+      "vari": "valkoinen",
+      "alue": "Jyväskylä",
+      "ala": "kauppatieteet",
+      "ainejärjestö": "Pörssi",
+      "oppilaitos": "Jyväskylän yliopisto"
+    },
+    "metadata": {
+      "hex": "background: white;"
+    }
+  },
+  {
+    "id": "47",
+    "content": {
+      "vari": "valkoinen",
+      "alue": "Jyväskylä",
+      "ala": "kemia",
+      "ainejärjestö": "Radikaali",
+      "oppilaitos": "Jyväskylän yliopisto"
+    },
+    "metadata": {
+      "hex": "background: white;"
+    }
+  },
+  {
+    "id": "48",
+    "content": {
+      "vari": "vaaleanpuna-musta",
+      "alue": "Jyväskylä",
+      "ala": "tieto- ja ohjelmistotekniikka",
+      "ainejärjestö": "Algo",
+      "oppilaitos": "Jyväskylän yliopisto"
+    },
+    "metadata": {
+      "hex": "background-image: linear-gradient(120deg, hotpink 49%, black 51%);"
+    }
+  },
+  {
+    "id": "49",
+    "content": {
+      "vari": "punainen",
+      "alue": "Jyväskylä",
+      "ala": "yhteisöpedagogi, kulttuurituottaja",
+      "ainejärjestö": "HUMAKO",
+      "oppilaitos": "Humanistinen AMK"
+    },
+    "metadata": {
+      "hex": "background: red; color: white;"
+    }
+  },
+  {
+    "id": "50",
+    "content": {
+      "vari": "punainen",
+      "alue": "Jyväskylä",
+      "ala": "tietojenkäsittely",
+      "ainejärjestö": "Konkurssi",
+      "oppilaitos": "Jyväskylän AMK"
+    },
+    "metadata": {
+      "hex": "background: red; color: white;"
+    }
+  },
+  {
+    "id": "51",
+    "content": {
+      "vari": "punainen",
+      "alue": "Jyväskylä",
+      "ala": "englannin kieli",
+      "ainejärjestö": "Magna Carta",
+      "oppilaitos": "Jyväskylän yliopisto"
+    },
+    "metadata": {
+      "hex": "background: red; color: white;"
+    }
+  },
+  {
+    "id": "52",
+    "content": {
+      "vari": "punainen",
+      "alue": "Jyväskylä",
+      "ala": "viestintä",
+      "ainejärjestö": "Parku",
+      "oppilaitos": "Jyväskylän yliopisto"
+    },
+    "metadata": {
+      "hex": "background: red; color: white;"
+    }
+  },
+  {
+    "id": "53",
+    "content": {
+      "vari": "punainen",
+      "alue": "Jyväskylä",
+      "ala": "luokanopettaja",
+      "ainejärjestö": "Pedago",
+      "oppilaitos": "Jyväskylän yliopisto"
+    },
+    "metadata": {
+      "hex": "background: red; color: white;"
+    }
+  },
+  {
+    "id": "54",
+    "content": {
+      "vari": "punainen",
+      "alue": "Jyväskylä",
+      "ala": "venäjän kieli",
+      "ainejärjestö": "Sputnik",
+      "oppilaitos": "Jyväskylän yliopisto"
+    },
+    "metadata": {
+      "hex": "background: red; color: white;"
+    }
+  },
+  {
+    "id": "55",
+    "content": {
+      "vari": "puna-sininen",
+      "alue": "Jyväskylä",
+      "ala": "romaaninen filologia",
+      "ainejärjestö": "Astérix",
+      "oppilaitos": "Jyväskylän yliopisto"
+    },
+    "metadata": {
+      "hex": "background: red; background-image: linear-gradient(120deg, red 49%, blue 51%);"
+    }
+  },
+  {
+    "id": "56",
+    "content": {
+      "vari": "puna-musta",
+      "alue": "Jyväskylä",
+      "ala": "historia",
+      "ainejärjestö": "Tosine",
+      "oppilaitos": "Jyväskylän yliopisto"
+    },
+    "metadata": {
+      "hex": "background: red; background-image: linear-gradient(120deg, red 49%, black 51%);"
+    }
+  },
+  {
+    "id": "57",
+    "content": {
+      "vari": "viininpunainen",
+      "alue": "Jyväskylä",
+      "ala": "tekniikka, liikenne",
+      "ainejärjestö": "Jyväskylän Insinööriopiskelijat JIO",
+      "oppilaitos": "Jyväskylän AMK"
+    },
+    "metadata": {
+      "hex": "background: darkred; color: white;"
+    }
+  },
+  {
+    "id": "58",
+    "content": {
+      "vari": "viininpunainen",
+      "alue": "Jyväskylä",
+      "ala": "tietojärjestelmätiede, tietojenkäsittelytiede, kognitiotiede, kyberturvallisuus",
+      "ainejärjestö": "Dumppi",
+      "oppilaitos": "Jyväskylän yliopisto"
+    },
+    "metadata": {
+      "hex": "background: darkred; color: white;"
+    }
+  },
+  {
+    "id": "59",
+    "content": {
+      "vari": "tummanruskea",
+      "alue": "Jyväskylä",
+      "ala": "luonnonvara-ala",
+      "ainejärjestö": "Tarmo",
+      "oppilaitos": "Jyväskylän AMK"
+    },
+    "metadata": {
+      "hex": "background: #78370a; color: white;"
+    }
+  },
+  {
+    "id": "60",
+    "content": {
+      "vari": "oranssi",
+      "alue": "Jyväskylä",
+      "ala": "kasvatustiede, aikuiskasvatustiede",
+      "ainejärjestö": "Emile",
+      "oppilaitos": "Jyväskylän yliopisto"
+    },
+    "metadata": {
+      "hex": "background: darkorange;"
+    }
+  },
+  {
+    "id": "61",
+    "content": {
+      "vari": "keltainen",
+      "alue": "Jyväskylä",
+      "ala": "psykologia",
+      "ainejärjestö": "Stimulus",
+      "oppilaitos": "Jyväskylän yliopisto"
+    },
+    "metadata": {
+      "hex": "background: yellow;"
+    }
+  },
+  {
+    "id": "62",
+    "content": {
+      "vari": "kelta-sininen",
+      "alue": "Jyväskylä",
+      "ala": "ruotsin kieli",
+      "ainejärjestö": "Svenska Klubben",
+      "oppilaitos": "Jyväskylän yliopisto"
+    },
+    "metadata": {
+      "hex": "background: yellow; background-image: linear-gradient(120deg, yellow 49%, blue 51%);"
+    }
+  },
+  {
+    "id": "63",
+    "content": {
+      "vari": "kelta-musta",
+      "alue": "Jyväskylä",
+      "ala": "musiikkikasvatus",
+      "ainejärjestö": "Pedaali",
+      "oppilaitos": "Jyväskylän yliopisto"
+    },
+    "metadata": {
+      "hex": "background: yellow; background-image: linear-gradient(120deg, yellow 49%, black 51%);"
+    }
+  },
+  {
+    "id": "64",
+    "content": {
+      "vari": "kelta-musta",
+      "alue": "Jyväskylä",
+      "ala": "musiikkitiede",
+      "ainejärjestö": "Trioli",
+      "oppilaitos": "Jyväskylän yliopisto"
+    },
+    "metadata": {
+      "hex": "background: yellow; background-image: linear-gradient(120deg, yellow 49%, black 51%);"
+    }
+  },
+  {
+    "id": "65",
+    "content": {
+      "vari": "vihreä",
+      "alue": "Jyväskylä",
+      "ala": "liiketalous, hallinto, international business",
+      "ainejärjestö": "Konkurssi",
+      "oppilaitos": "Jyväskylän AMK"
+    },
+    "metadata": {
+      "hex": "background: #5adc64;"
+    }
+  },
+  {
+    "id": "66",
+    "content": {
+      "vari": "tummanvihreä",
+      "alue": "Jyväskylä",
+      "ala": "journalistiikka",
+      "ainejärjestö": "Lööppi",
+      "oppilaitos": "Jyväskylän yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #5adc64;"
+    }
+  },
+  {
+    "id": "67",
+    "content": {
+      "vari": "tummanvihreä",
+      "alue": "Jyväskylä",
+      "ala": "Kulttuurit ja yhteisöt muuttuvassa maailmassa (KUMU), etnologia, antropologia, kulttuuripolitiikka",
+      "ainejärjestö": "Nefa-Jyväskylä",
+      "oppilaitos": "Jyväskylän yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #5adc64;"
+    }
+  },
+  {
+    "id": "68",
+    "content": {
+      "vari": "tummanvihreä",
+      "alue": "Jyväskylä",
+      "ala": "bio- ja ympäristötieteet",
+      "ainejärjestö": "Syrinx",
+      "oppilaitos": "Jyväskylän yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #5adc64;"
+    }
+  },
+  {
+    "id": "69",
+    "content": {
+      "vari": "vihreä",
+      "alue": "Jyväskylä",
+      "ala": "varhaiskasvatus",
+      "ainejärjestö": "Varkaat",
+      "oppilaitos": "Jyväskylän yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #5adc64;"
+    }
+  },
+  {
+    "id": "70",
+    "content": {
+      "vari": "tummanvihreä",
+      "alue": "Jyväskylä",
+      "ala": "erityispedagogiikka",
+      "ainejärjestö": "Abakus",
+      "oppilaitos": "Jyväskylän yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #14780a; color: white;"
+    }
+  },
+  {
+    "id": "71",
+    "content": {
+      "vari": "sininen",
+      "alue": "Jyväskylä",
+      "ala": "matkailu- ja palveluliiketoiminta",
+      "ainejärjestö": "MatkaRaTa",
+      "oppilaitos": "Jyväskylän AMK"
+    },
+    "metadata": {
+      "hex": "background: blue; color: white;"
+    }
+  },
+  {
+    "id": "72",
+    "content": {
+      "vari": "sininen",
+      "alue": "Jyväskylä",
+      "ala": "suomen kieli",
+      "ainejärjestö": "Sane",
+      "oppilaitos": "Jyväskylän yliopisto"
+    },
+    "metadata": {
+      "hex": "background: blue; color: white;"
+    }
+  },
+  {
+    "id": "73",
+    "content": {
+      "vari": "sininen",
+      "alue": "Jyväskylä",
+      "ala": "viittomakieli",
+      "ainejärjestö": "Viito",
+      "oppilaitos": "Jyväskylän yliopisto"
+    },
+    "metadata": {
+      "hex": "background: blue; color: white;"
+    }
+  },
+  {
+    "id": "74",
+    "content": {
+      "vari": "sini-musta",
+      "alue": "Jyväskylä",
+      "ala": "tietotekniikka",
+      "ainejärjestö": "Linkki",
+      "oppilaitos": "Jyväskylän yliopisto"
+    },
+    "metadata": {
+      "hex": "background: blue; background-image: linear-gradient(120deg, blue 49%, black 51%);"
+    }
+  },
+  {
+    "id": "75",
+    "content": {
+      "vari": "tummansininen",
+      "alue": "Jyväskylä",
+      "ala": "valtio-oppi",
+      "ainejärjestö": "Puolue",
+      "oppilaitos": "Jyväskylän yliopisto"
+    },
+    "metadata": {
+      "hex": "background: navy; color: white;"
+    }
+  },
+  {
+    "id": "76",
+    "content": {
+      "vari": "tummansininen",
+      "alue": "Jyväskylä",
+      "ala": "matematiikka, fysiikka, tilastotiede",
+      "ainejärjestö": "Ynnä",
+      "oppilaitos": "Jyväskylän yliopisto"
+    },
+    "metadata": {
+      "hex": "background: navy; color: white;"
+    }
+  },
+  {
+    "id": "77",
+    "content": {
+      "vari": "violetti",
+      "alue": "Jyväskylä",
+      "ala": "sosiaali- ja terveysala",
+      "ainejärjestö": "Jasto",
+      "oppilaitos": "Jyväskylän AMK"
+    },
+    "metadata": {
+      "hex": "background: indigo; color: white;"
+    }
+  },
+  {
+    "id": "78",
+    "content": {
+      "vari": "violetti",
+      "alue": "Jyväskylä",
+      "ala": "kirjallisuus, museologia, taidehistoria, taidekasvatus",
+      "ainejärjestö": "Corpus",
+      "oppilaitos": "Jyväskylän yliopisto"
+    },
+    "metadata": {
+      "hex": "background: indigo; color: white;"
+    }
+  },
+  {
+    "id": "79",
+    "content": {
+      "vari": "violetti",
+      "alue": "Jyväskylä",
+      "ala": "tilastotiede",
+      "ainejärjestö": "Tiltti",
+      "oppilaitos": "Jyväskylän yliopisto"
+    },
+    "metadata": {
+      "hex": "background: indigo; color: white;"
+    }
+  },
+  {
+    "id": "80",
+    "content": {
+      "vari": "musta",
+      "alue": "Jyväskylä",
+      "ala": "kulttuuri, musiikki",
+      "ainejärjestö": "Jammaus",
+      "oppilaitos": "Jyväskylän AMK"
+    },
+    "metadata": {
+      "hex": "background: black; color: white;"
+    }
+  },
+  {
+    "id": "81",
+    "content": {
+      "vari": "musta",
+      "alue": "Jyväskylä",
+      "ala": "yhteiskuntapolitiikka, sosiologia, sosiaalityö",
+      "ainejärjestö": "Fokus",
+      "oppilaitos": "Jyväskylän yliopisto"
+    },
+    "metadata": {
+      "hex": "background: black; color: white;"
+    }
+  },
+  {
+    "id": "82",
+    "content": {
+      "vari": "musta",
+      "alue": "Jyväskylä",
+      "ala": "filosofia",
+      "ainejärjestö": "Mephisto",
+      "oppilaitos": "Jyväskylän yliopisto"
+    },
+    "metadata": {
+      "hex": "background: black; color: white;"
+    }
+  },
+  {
+    "id": "83",
+    "content": {
+      "vari": "musta",
+      "alue": "Jyväskylä",
+      "ala": "liikunta- ja terveystieteet",
+      "ainejärjestö": "Sporticus",
+      "oppilaitos": "Jyväskylän yliopisto"
+    },
+    "metadata": {
+      "hex": "background: black; color: white;"
+    }
+  },
+  {
+    "id": "84",
+    "content": {
+      "vari": "musta",
+      "alue": "Jyväskylä",
+      "ala": "Saksan kieli ja kulttuuri",
+      "ainejärjestö": "Sturm und Drang",
+      "oppilaitos": "Jyväskylän yliopisto"
+    },
+    "metadata": {
+      "hex": "background: black; color: white;"
+    }
+  },
+  {
+    "id": "85",
+    "content": {
+      "vari": "valkoinen",
+      "alue": "Kokkola",
+      "ala": "hoitotyö, sosiaaliala",
+      "ainejärjestö": "",
+      "oppilaitos": "Centria"
+    },
+    "metadata": {
+      "hex": "background: white;"
+    }
+  },
+  {
+    "id": "86",
+    "content": {
+      "vari": "punainen",
+      "alue": "Kokkola",
+      "ala": "musiikkipedagogi",
+      "ainejärjestö": "",
+      "oppilaitos": "Centria"
+    },
+    "metadata": {
+      "hex": "background: red; color: white;"
+    }
+  },
+  {
+    "id": "87",
+    "content": {
+      "vari": "keltainen",
+      "alue": "Kokkola",
+      "ala": "tekniikka",
+      "ainejärjestö": "",
+      "oppilaitos": "Centria"
+    },
+    "metadata": {
+      "hex": "background: yellow;"
+    }
+  },
+  {
+    "id": "88",
+    "content": {
+      "vari": "sininen",
+      "alue": "Kokkola",
+      "ala": "yhteisöpedagogi",
+      "ainejärjestö": "",
+      "oppilaitos": "Centria"
+    },
+    "metadata": {
+      "hex": "background: blue; color: white;"
+    }
+  },
+  {
+    "id": "89",
+    "content": {
+      "vari": "musta",
+      "alue": "Kokkola",
+      "ala": "liiketalous",
+      "ainejärjestö": "",
+      "oppilaitos": "Centria"
+    },
+    "metadata": {
+      "hex": "background: black; color: white;"
+    }
+  },
+  {
+    "id": "90",
+    "content": {
+      "vari": "keltainen",
+      "alue": "Kotka",
+      "ala": "sosiaali- ja terveysala",
+      "ainejärjestö": "",
+      "oppilaitos": "Kaakkois-Suomen AMK"
+    },
+    "metadata": {
+      "hex": "background: yellow;"
+    }
+  },
+  {
+    "id": "91",
+    "content": {
+      "vari": "oliivinvihreä",
+      "alue": "Kotka",
+      "ala": "tradenomi",
+      "ainejärjestö": "",
+      "oppilaitos": "Kaakkois-Suomen AMK"
+    },
+    "metadata": {
+      "hex": "background: olive; color: white;"
+    }
+  },
+  {
+    "id": "92",
+    "content": {
+      "vari": "musta-viininpunainen",
+      "alue": "Kotka",
+      "ala": "insinööri",
+      "ainejärjestö": "",
+      "oppilaitos": "Kaakkois-Suomen AMK"
+    },
+    "metadata": {
+      "hex": "background: black; background-image: linear-gradient(120deg, black 49%, darkred 51%);"
+    }
+  },
+  {
+    "id": "93",
+    "content": {
+      "vari": "musta-sininen",
+      "alue": "Kotka",
+      "ala": "merenkulku",
+      "ainejärjestö": "",
+      "oppilaitos": "Kaakkois-Suomen AMK"
+    },
+    "metadata": {
+      "hex": "background: black; background-image: linear-gradient(120deg, black 49%, blue 51%);"
+    }
+  },
+  {
+    "id": "94",
+    "content": {
+      "vari": "pinkki",
+      "alue": "Kouvola",
+      "ala": "sosiaali- ja terveysala",
+      "ainejärjestö": "",
+      "oppilaitos": "Kaakkois-Suomen AMK"
+    },
+    "metadata": {
+      "hex": "background: deeppink; color: white;"
+    }
+  },
+  {
+    "id": "95",
+    "content": {
+      "vari": "viininpunainen",
+      "alue": "Kouvola",
+      "ala": "liiketalous",
+      "ainejärjestö": "",
+      "oppilaitos": "Kaakkois-Suomen AMK"
+    },
+    "metadata": {
+      "hex": "background: darkred; color: white;"
+    }
+  },
+  {
+    "id": "96",
+    "content": {
+      "vari": "musta",
+      "alue": "Kouvola",
+      "ala": "muotoilu",
+      "ainejärjestö": "",
+      "oppilaitos": "Kaakkois-Suomen AMK"
+    },
+    "metadata": {
+      "hex": "background: black; color: white;"
+    }
+  },
+  {
+    "id": "97",
+    "content": {
+      "vari": "valkoinen",
+      "alue": "Kuopio",
+      "ala": "tietojenkäsittelytiede",
+      "ainejärjestö": "Serveri",
+      "oppilaitos": "Itä-Suomen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: white;"
+    }
+  },
+  {
+    "id": "98",
+    "content": {
+      "vari": "pinkki",
+      "alue": "Kuopio",
+      "ala": "liiketalous",
+      "ainejärjestö": "KuoTra",
+      "oppilaitos": "Savonia"
+    },
+    "metadata": {
+      "hex": "background: deeppink; color: white;"
+    }
+  },
+  {
+    "id": "99",
+    "content": {
+      "vari": "punainen",
+      "alue": "Kuopio",
+      "ala": "yhteisöpedagogi, tulkki",
+      "ainejärjestö": "HUMAKO",
+      "oppilaitos": "Humanistinen AMK"
+    },
+    "metadata": {
+      "hex": "background: red; color: white;"
+    }
+  },
+  {
+    "id": "100",
+    "content": {
+      "vari": "punainen",
+      "alue": "Kuopio",
+      "ala": "sovellettu fysiikka, ympäristötiede",
+      "ainejärjestö": "Hyeena",
+      "oppilaitos": "Itä-Suomen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: red; color: white;"
+    }
+  },
+  {
+    "id": "101",
+    "content": {
+      "vari": "punainen",
+      "alue": "Kuopio",
+      "ala": "biolääketiede",
+      "ainejärjestö": "Kulti",
+      "oppilaitos": "Itä-Suomen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: red; background-image: linear-gradient(to top right, red 80%, white 81%);"
+    }
+  },
+  {
+    "id": "102",
+    "content": {
+      "vari": "viininpunainen",
+      "alue": "Kuopio",
+      "ala": "kauppatiede",
+      "ainejärjestö": "Preemio",
+      "oppilaitos": "Itä-Suomen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: darkred; color: white;"
+    }
+  },
+  {
+    "id": "103",
+    "content": {
+      "vari": "oranssi",
+      "alue": "Kuopio",
+      "ala": "matkailu- ja ravitsemisala",
+      "ainejärjestö": "KUREO",
+      "oppilaitos": "Savonia"
+    },
+    "metadata": {
+      "hex": "background: darkorange;"
+    }
+  },
+  {
+    "id": "104",
+    "content": {
+      "vari": "keltainen",
+      "alue": "Kuopio",
+      "ala": "tekniikka",
+      "ainejärjestö": "KUTOP",
+      "oppilaitos": "Savonia"
+    },
+    "metadata": {
+      "hex": "background: yellow;"
+    }
+  },
+  {
+    "id": "105",
+    "content": {
+      "vari": "keltainen",
+      "alue": "Kuopio",
+      "ala": "yhteiskuntatieteet",
+      "ainejärjestö": "Socius",
+      "oppilaitos": "Itä-Suomen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: yellow; background-image: linear-gradient(to top right, yellow 80%, indigo 81%);"
+    }
+  },
+  {
+    "id": "106",
+    "content": {
+      "vari": "keltainen",
+      "alue": "Kuopio",
+      "ala": "rakennusarkkitehti",
+      "ainejärjestö": "KuRA",
+      "oppilaitos": "Savonia"
+    },
+    "metadata": {
+      "hex": "background: yellow; background-image: linear-gradient(to top right, yellow 80%, black 81%);"
+    }
+  },
+  {
+    "id": "107",
+    "content": {
+      "vari": "metsänvihreä",
+      "alue": "Kuopio",
+      "ala": "ravitsemustiede",
+      "ainejärjestö": "Retikka",
+      "oppilaitos": "Itä-Suomen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #14780a; color: white;"
+    }
+  },
+  {
+    "id": "108",
+    "content": {
+      "vari": "tummanvihreä",
+      "alue": "Kuopio",
+      "ala": "farmasia",
+      "ainejärjestö": "Fortis",
+      "oppilaitos": "Itä-Suomen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #14780a; color: white;"
+    }
+  },
+  {
+    "id": "109",
+    "content": {
+      "vari": "sininen",
+      "alue": "Kuopio",
+      "ala": "terveystieteet",
+      "ainejärjestö": "Terho",
+      "oppilaitos": "Itä-Suomen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: blue; color: white;"
+    }
+  },
+  {
+    "id": "110",
+    "content": {
+      "vari": "sininen",
+      "alue": "Kuopio",
+      "ala": "musiikki ja tanssi",
+      "ainejärjestö": "Tempo",
+      "oppilaitos": "Savonia"
+    },
+    "metadata": {
+      "hex": "background: blue; color: white;"
+    }
+  },
+  {
+    "id": "111",
+    "content": {
+      "vari": "violetti",
+      "alue": "Kuopio",
+      "ala": "sosiaali- ja terveysala",
+      "ainejärjestö": "Tertta",
+      "oppilaitos": "Savonia"
+    },
+    "metadata": {
+      "hex": "background: indigo; color: white;"
+    }
+  },
+  {
+    "id": "112",
+    "content": {
+      "vari": "musta",
+      "alue": "Kuopio",
+      "ala": "lääketiede",
+      "ainejärjestö": "KuoLO",
+      "oppilaitos": "Itä-Suomen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: black; color: white;"
+    }
+  },
+  {
+    "id": "113",
+    "content": {
+      "vari": "musta",
+      "alue": "Kuopio",
+      "ala": "hammaslääketiede",
+      "ainejärjestö": "Dentina",
+      "oppilaitos": "Itä-Suomen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: black; background-image: linear-gradient(to top right, black 80%, white 81%);"
+    }
+  },
+  {
+    "id": "114",
+    "content": {
+      "vari": "musta",
+      "alue": "Kuopio",
+      "ala": "muotoilu",
+      "ainejärjestö": "Mutka",
+      "oppilaitos": "Savonia"
+    },
+    "metadata": {
+      "hex": "background: black; background-image: linear-gradient(to top right, black 80%, darkorange 81%);"
+    }
+  },
+  {
+    "id": "115",
+    "content": {
+      "vari": "fuksianpunainen",
+      "alue": "Lahti",
+      "ala": "insinööri",
+      "ainejärjestö": "LIRO",
+      "oppilaitos": "LAB"
+    },
+    "metadata": {
+      "hex": "background: deeppink; color: white;"
+    }
+  },
+  {
+    "id": "116",
+    "content": {
+      "vari": "oranssi",
+      "alue": "Lahti",
+      "ala": "sosiaali- ja terveysala",
+      "ainejärjestö": "LASOLA",
+      "oppilaitos": "LAB"
+    },
+    "metadata": {
+      "hex": "background: darkorange;"
+    }
+  },
+  {
+    "id": "117",
+    "content": {
+      "vari": "sininen",
+      "alue": "Lahti",
+      "ala": "liiketalous",
+      "ainejärjestö": "Lahden Tradenomiopiskelijat Linkki",
+      "oppilaitos": "LAB"
+    },
+    "metadata": {
+      "hex": "background: blue; color: white;"
+    }
+  },
+  {
+    "id": "118",
+    "content": {
+      "vari": "musta",
+      "alue": "Lahti",
+      "ala": "restonomi",
+      "ainejärjestö": "ReLa",
+      "oppilaitos": "LAB"
+    },
+    "metadata": {
+      "hex": "background: black; color: white;"
+    }
+  },
+  {
+    "id": "119",
+    "content": {
+      "vari": "valkoinen",
+      "alue": "Lappeenranta",
+      "ala": "energiatekniikka",
+      "ainejärjestö": "Armatuuri",
+      "oppilaitos": "LUT-yliopisto"
+    },
+    "metadata": {
+      "hex": "background: white;"
+    }
+  },
+  {
+    "id": "120",
+    "content": {
+      "vari": "valko-musta",
+      "alue": "Lappeenranta",
+      "ala": "kuvataide",
+      "ainejärjestö": "LaKu",
+      "oppilaitos": "LAB"
+    },
+    "metadata": {
+      "hex": "background: white; background-image: linear-gradient(120deg, white 49%, black 51%);"
+    }
+  },
+  {
+    "id": "121",
+    "content": {
+      "vari": "fuksianpunainen",
+      "alue": "Lappeenranta",
+      "ala": "laskennallinen tekniikka",
+      "ainejärjestö": "Lateksii",
+      "oppilaitos": "LUT-yliopisto"
+    },
+    "metadata": {
+      "hex": "background: deeppink; color: white;"
+    }
+  },
+  {
+    "id": "122",
+    "content": {
+      "vari": "punainen",
+      "alue": "Lappeenranta",
+      "ala": "tietotekniikka",
+      "ainejärjestö": "Cluster",
+      "oppilaitos": "LUT-yliopisto"
+    },
+    "metadata": {
+      "hex": "background: red; color: white;"
+    }
+  },
+  {
+    "id": "123",
+    "content": {
+      "vari": "puna-musta",
+      "alue": "Lappeenranta",
+      "ala": "tekniikka",
+      "ainejärjestö": "LapIO",
+      "oppilaitos": "LAB"
+    },
+    "metadata": {
+      "hex": "background: red; background-image: linear-gradient(120deg, red 49%, black 51%);"
+    }
+  },
+  {
+    "id": "124",
+    "content": {
+      "vari": "oranssi",
+      "alue": "Lappeenranta",
+      "ala": "konetekniikka",
+      "ainejärjestö": "Koneenrakennuskilta ry",
+      "oppilaitos": "LUT-yliopisto"
+    },
+    "metadata": {
+      "hex": "background: darkorange;"
+    }
+  },
+  {
+    "id": "125",
+    "content": {
+      "vari": "neonkeltainen",
+      "alue": "Lappeenranta",
+      "ala": "kauppatieteet",
+      "ainejärjestö": "Enklaavi",
+      "oppilaitos": "LUT-yliopisto"
+    },
+    "metadata": {
+      "hex": "background: yellow;"
+    }
+  },
+  {
+    "id": "126",
+    "content": {
+      "vari": "vihreä",
+      "alue": "Lappeenranta",
+      "ala": "sähkötekniikka",
+      "ainejärjestö": "Sätky",
+      "oppilaitos": "LUT-yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #4b780a; color: white;"
+    }
+  },
+  {
+    "id": "127",
+    "content": {
+      "vari": "vihreä",
+      "alue": "Lappeenranta",
+      "ala": "sosiaali- ja terveysala",
+      "ainejärjestö": "LaKOSTE",
+      "oppilaitos": "LAB"
+    },
+    "metadata": {
+      "hex": "background: #14780a; color: white;"
+    }
+  },
+  {
+    "id": "128",
+    "content": {
+      "vari": "turkoosi",
+      "alue": "Lappeenranta",
+      "ala": "restonomi",
+      "ainejärjestö": "LaGeR",
+      "oppilaitos": "LAB"
+    },
+    "metadata": {
+      "hex": "background: #00ced1;"
+    }
+  },
+  {
+    "id": "129",
+    "content": {
+      "vari": "tummansininen",
+      "alue": "Lappeenranta",
+      "ala": "tuotantotalous",
+      "ainejärjestö": "Kaplaaki",
+      "oppilaitos": "LUT-yliopisto"
+    },
+    "metadata": {
+      "hex": "background: navy; color: white;"
+    }
+  },
+  {
+    "id": "130",
+    "content": {
+      "vari": "violetti",
+      "alue": "Lappeenranta",
+      "ala": "liiketalous",
+      "ainejärjestö": "LapTOp",
+      "oppilaitos": "LAB"
+    },
+    "metadata": {
+      "hex": "background: indigo; color: white;"
+    }
+  },
+  {
+    "id": "131",
+    "content": {
+      "vari": "harmaa",
+      "alue": "Lappeenranta",
+      "ala": "ympäristötekniikka",
+      "ainejärjestö": "Pelletti",
+      "oppilaitos": "LUT-yliopisto"
+    },
+    "metadata": {
+      "hex": "background: dimgrey; color: white;"
+    }
+  },
+  {
+    "id": "132",
+    "content": {
+      "vari": "musta",
+      "alue": "Lappeenranta",
+      "ala": "kemiantekniikka",
+      "ainejärjestö": "KeTek",
+      "oppilaitos": "LUT-yliopisto"
+    },
+    "metadata": {
+      "hex": "background: black; color: white;"
+    }
+  },
+  {
+    "id": "133",
+    "content": {
+      "vari": "liila",
+      "alue": "Lohja",
+      "ala": "sairaanhoitaja, sosionomi, tradenomi",
+      "ainejärjestö": "Laureamko",
+      "oppilaitos": "Laurea"
+    },
+    "metadata": {
+      "hex": "background: indigo; color: white;"
+    }
+  },
+  {
+    "id": "134",
+    "content": {
+      "vari": "Ahvenanmaan sininen",
+      "alue": "Maarianhamina",
+      "ala": "(kaikki alat)",
+      "ainejärjestö": "Studerandekåren Skåhla",
+      "oppilaitos": "Ahvenanmaan AMK"
+    },
+    "metadata": {
+      "hex": "background: blue; color: white;"
+    }
+  },
+  {
+    "id": "135",
+    "content": {
+      "vari": "valkoinen",
+      "alue": "Mikkeli",
+      "ala": "insinööri",
+      "ainejärjestö": "MIO",
+      "oppilaitos": "Kaakkois-Suomen AMK"
+    },
+    "metadata": {
+      "hex": "background: white;"
+    }
+  },
+  {
+    "id": "136",
+    "content": {
+      "vari": "punainen",
+      "alue": "Mikkeli",
+      "ala": "sairaanhoitaja, terveydenhoitaja, ensihoitaja",
+      "ainejärjestö": "",
+      "oppilaitos": "Kaakkois-Suomen AMK"
+    },
+    "metadata": {
+      "hex": "background: red; color: white;"
+    }
+  },
+  {
+    "id": "137",
+    "content": {
+      "vari": "oranssi",
+      "alue": "Mikkeli",
+      "ala": "yhteisöpedagogi",
+      "ainejärjestö": "",
+      "oppilaitos": "Kaakkois-Suomen AMK"
+    },
+    "metadata": {
+      "hex": "background: darkorange;"
+    }
+  },
+  {
+    "id": "138",
+    "content": {
+      "vari": "keltainen",
+      "alue": "Mikkeli",
+      "ala": "tradenomi",
+      "ainejärjestö": "MTO",
+      "oppilaitos": "Kaakkois-Suomen AMK"
+    },
+    "metadata": {
+      "hex": "background: yellow;"
+    }
+  },
+  {
+    "id": "139",
+    "content": {
+      "vari": "tummanvihreä",
+      "alue": "Mikkeli",
+      "ala": "metsätalousinsinööri",
+      "ainejärjestö": "Nila",
+      "oppilaitos": "Kaakkois-Suomen AMK"
+    },
+    "metadata": {
+      "hex": "background: #14780a; color: white;"
+    }
+  },
+  {
+    "id": "140",
+    "content": {
+      "vari": "turkoosi",
+      "alue": "Mikkeli",
+      "ala": "sosionomi",
+      "ainejärjestö": "",
+      "oppilaitos": "Kaakkois-Suomen AMK"
+    },
+    "metadata": {
+      "hex": "background: #00ced1;"
+    }
+  },
+  {
+    "id": "141",
+    "content": {
+      "vari": "violetti",
+      "alue": "Mikkeli",
+      "ala": "restonomi",
+      "ainejärjestö": "Mikro",
+      "oppilaitos": "Kaakkois-Suomen AMK"
+    },
+    "metadata": {
+      "hex": "background: indigo; color: white;"
+    }
+  },
+  {
+    "id": "142",
+    "content": {
+      "vari": "punainen",
+      "alue": "Nurmijärvi",
+      "ala": "yhteisöpedagogiikka",
+      "ainejärjestö": "HUMAKO",
+      "oppilaitos": "Humanistinen AMK"
+    },
+    "metadata": {
+      "hex": "background: red; color: white;"
+    }
+  },
+  {
+    "id": "143",
+    "content": {
+      "vari": "valkoinen",
+      "alue": "Oulu",
+      "ala": "sosiaali- ja terveysala",
+      "ainejärjestö": "Osasto",
+      "oppilaitos": "Oulun AMK"
+    },
+    "metadata": {
+      "hex": "background: white;"
+    }
+  },
+  {
+    "id": "144",
+    "content": {
+      "vari": "valkoinen",
+      "alue": "Oulu",
+      "ala": "arkkitehtuuri",
+      "ainejärjestö": "Arkkitehtikilta",
+      "oppilaitos": "Oulun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: white;"
+    }
+  },
+  {
+    "id": "145",
+    "content": {
+      "vari": "valkoinen",
+      "alue": "Oulu",
+      "ala": "kasvatustiede",
+      "ainejärjestö": "Motiva",
+      "oppilaitos": "Oulun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: white;"
+    }
+  },
+  {
+    "id": "146",
+    "content": {
+      "vari": "valkoinen",
+      "alue": "Oulu",
+      "ala": "lääketieteellinen tiedekunta (LTK)",
+      "ainejärjestö": "",
+      "oppilaitos": "Oulun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: white;"
+    }
+  },
+  {
+    "id": "147",
+    "content": {
+      "vari": "puhtaanvalkoinen",
+      "alue": "Oulu",
+      "ala": "prosessitekniikka",
+      "ainejärjestö": "Oulun yliopiston prosessikilta",
+      "oppilaitos": "Oulun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: white;"
+    }
+  },
+  {
+    "id": "148",
+    "content": {
+      "vari": "fuksianpunainen",
+      "alue": "Oulu",
+      "ala": "varhaiskasvatus",
+      "ainejärjestö": "Lastarit",
+      "oppilaitos": "Oulun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: deeppink; color: white;"
+    }
+  },
+  {
+    "id": "149",
+    "content": {
+      "vari": "punainen",
+      "alue": "Oulu",
+      "ala": "konetekniikka",
+      "ainejärjestö": "Oulun yliopiston koneinsinöörikilta",
+      "oppilaitos": "Oulun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: red; color: white;"
+    }
+  },
+  {
+    "id": "150",
+    "content": {
+      "vari": "viininpunainen",
+      "alue": "Oulu",
+      "ala": "kulttuuri",
+      "ainejärjestö": "Kultti",
+      "oppilaitos": "Oulun AMK"
+    },
+    "metadata": {
+      "hex": "background: darkred; color: white;"
+    }
+  },
+  {
+    "id": "151",
+    "content": {
+      "vari": "tumman luumunpunainen",
+      "alue": "Oulu",
+      "ala": "maantiede",
+      "ainejärjestö": "Atlas",
+      "oppilaitos": "Oulun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: darkred; color: white;"
+    }
+  },
+  {
+    "id": "152",
+    "content": {
+      "vari": "tummanpunainen",
+      "alue": "Oulu",
+      "ala": "biokemia",
+      "ainejärjestö": "Histoni",
+      "oppilaitos": "Oulun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: darkred; color: white;"
+    }
+  },
+  {
+    "id": "153",
+    "content": {
+      "vari": "tummanruskea",
+      "alue": "Oulu",
+      "ala": "arkeologia, kirjallisuus, kulttuuriantropologia",
+      "ainejärjestö": "Kultu",
+      "oppilaitos": "Oulun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #78370a; color: white;"
+    }
+  },
+  {
+    "id": "154",
+    "content": {
+      "vari": "oranssi",
+      "alue": "Oulu",
+      "ala": "erityispedagogiikka",
+      "ainejärjestö": "Spessu",
+      "oppilaitos": "Oulun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: darkorange;"
+    }
+  },
+  {
+    "id": "155",
+    "content": {
+      "vari": "keltainen",
+      "alue": "Oulu",
+      "ala": "sosiaali-, terveys- ja kirkon alat, asioimistulkkaus",
+      "ainejärjestö": "O’Diako",
+      "oppilaitos": "Diakonia-AMK"
+    },
+    "metadata": {
+      "hex": "background: yellow;"
+    }
+  },
+  {
+    "id": "156",
+    "content": {
+      "vari": "keltainen",
+      "alue": "Oulu",
+      "ala": "tekniikka",
+      "ainejärjestö": "Ote",
+      "oppilaitos": "Oulun AMK"
+    },
+    "metadata": {
+      "hex": "background: yellow;"
+    }
+  },
+  {
+    "id": "157",
+    "content": {
+      "vari": "neonkeltainen",
+      "alue": "Oulu",
+      "ala": "musiikkikasvatus",
+      "ainejärjestö": "Mukava",
+      "oppilaitos": "Oulun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: yellow;"
+    }
+  },
+  {
+    "id": "158",
+    "content": {
+      "vari": "keltainen",
+      "alue": "Oulu",
+      "ala": "kemia",
+      "ainejärjestö": "Valenssi",
+      "oppilaitos": "Oulun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: yellow;"
+    }
+  },
+  {
+    "id": "159",
+    "content": {
+      "vari": "kelta-vihreä",
+      "alue": "Oulu",
+      "ala": "luonnonvara-ala",
+      "ainejärjestö": "Luva",
+      "oppilaitos": "Oulun AMK"
+    },
+    "metadata": {
+      "hex": "background: yellow; background-image: linear-gradient(120deg, yellow 49%, #4b780a 51%);"
+    }
+  },
+  {
+    "id": "160",
+    "content": {
+      "vari": "tummanvihreä",
+      "alue": "Oulu",
+      "ala": "biologia",
+      "ainejärjestö": "Syntaksis",
+      "oppilaitos": "Oulun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #14780a; color: white;"
+    }
+  },
+  {
+    "id": "161",
+    "content": {
+      "vari": "tummanvihreä",
+      "alue": "Oulu",
+      "ala": "vieraat kielet",
+      "ainejärjestö": "Verba",
+      "oppilaitos": "Oulun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #14780a; color: white;"
+    }
+  },
+  {
+    "id": "162",
+    "content": {
+      "vari": "turkoosi",
+      "alue": "Oulu",
+      "ala": "liiketalous",
+      "ainejärjestö": "Outo",
+      "oppilaitos": "Oulun AMK"
+    },
+    "metadata": {
+      "hex": "background: #00ced1;"
+    }
+  },
+  {
+    "id": "163",
+    "content": {
+      "vari": "mintunvihreä",
+      "alue": "Oulu",
+      "ala": "tuotantotalous",
+      "ainejärjestö": "Optiem",
+      "oppilaitos": "Oulun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #00ced1;"
+    }
+  },
+  {
+    "id": "164",
+    "content": {
+      "vari": "sininen",
+      "alue": "Oulu",
+      "ala": "vaihto-opiskelijat",
+      "ainejärjestö": "Erasmus Student Network Oulu (ESN Oulu)",
+      "oppilaitos": "Oulun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: blue; color: white;"
+    }
+  },
+  {
+    "id": "165",
+    "content": {
+      "vari": "sähkönsininen",
+      "alue": "Oulu",
+      "ala": "sähkötekniikka, elektroniikka, tietoliikenne",
+      "ainejärjestö": "Sähköinsinöörikilta (SIK)",
+      "oppilaitos": "Oulun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: blue; color: white;"
+    }
+  },
+  {
+    "id": "166",
+    "content": {
+      "vari": "sini-kelta-punainen",
+      "alue": "Oulu",
+      "ala": "rakennus- ja yhdyskuntatekniikka, ympäristötekniikka",
+      "ainejärjestö": "Ympäristörakentajakilta",
+      "oppilaitos": "Oulun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: blue; background-image: linear-gradient(120deg, blue 32%, yellow 34%, yellow 65%, red 67%);"
+    }
+  },
+  {
+    "id": "167",
+    "content": {
+      "vari": "tummansininen",
+      "alue": "Oulu",
+      "ala": "tietojenkäsittelytieteet",
+      "ainejärjestö": "Blanko",
+      "oppilaitos": "Oulun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: navy; color: white;"
+    }
+  },
+  {
+    "id": "168",
+    "content": {
+      "vari": "vaaleansininen",
+      "alue": "Oulu",
+      "ala": "psykologia",
+      "ainejärjestö": "Defenssi ry",
+      "oppilaitos": "Oulun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: lightskyblue;"
+    }
+  },
+  {
+    "id": "169",
+    "content": {
+      "vari": "vaaleanvioletti",
+      "alue": "Oulu",
+      "ala": "historia",
+      "ainejärjestö": "Tiima",
+      "oppilaitos": "Oulun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #a064fa;"
+    }
+  },
+  {
+    "id": "170",
+    "content": {
+      "vari": "violetti",
+      "alue": "Oulu",
+      "ala": "kauppatieteet",
+      "ainejärjestö": "Finanssi",
+      "oppilaitos": "Oulun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: indigo; color: white;"
+    }
+  },
+  {
+    "id": "171",
+    "content": {
+      "vari": "violetti",
+      "alue": "Oulu",
+      "ala": "suomen kieli",
+      "ainejärjestö": "Suma",
+      "oppilaitos": "Oulun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: indigo; color: white;"
+    }
+  },
+  {
+    "id": "172",
+    "content": {
+      "vari": "violetti-musta",
+      "alue": "Oulu",
+      "ala": "matematiikka, fysikaaliset tieteet",
+      "ainejärjestö": "Sigma-kilta",
+      "oppilaitos": "Oulun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: indigo; background-image: linear-gradient(120deg, indigo 49%, black 51%);"
+    }
+  },
+  {
+    "id": "173",
+    "content": {
+      "vari": "betoninharmaa",
+      "alue": "Oulu",
+      "ala": "rakennusarkkitehti",
+      "ainejärjestö": "Oulun rakennusarkkitehtiopiskelijat (Arkko)",
+      "oppilaitos": "Oulun AMK"
+    },
+    "metadata": {
+      "hex": "background: lightgrey;"
+    }
+  },
+  {
+    "id": "174",
+    "content": {
+      "vari": "tummanharmaa",
+      "alue": "Oulu",
+      "ala": "saamen kieli, saamelainen kulttuuri",
+      "ainejärjestö": "Gieku",
+      "oppilaitos": "Oulun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: dimgrey; color: white;"
+    }
+  },
+  {
+    "id": "175",
+    "content": {
+      "vari": "tummanharmaa-fuksia",
+      "alue": "Oulu",
+      "ala": "informaatiotutkimus",
+      "ainejärjestö": "Index",
+      "oppilaitos": "Oulun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: dimgrey; background-image: linear-gradient(120deg, dimgrey 49%, deeppink 51%);"
+    }
+  },
+  {
+    "id": "176",
+    "content": {
+      "vari": "musta",
+      "alue": "Oulu",
+      "ala": "logopedia",
+      "ainejärjestö": "Communica",
+      "oppilaitos": "Oulun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: black; color: white;"
+    }
+  },
+  {
+    "id": "177",
+    "content": {
+      "vari": "musta",
+      "alue": "Oulu",
+      "ala": "geotieteet",
+      "ainejärjestö": "Nikoli",
+      "oppilaitos": "Oulun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: black; color: white;"
+    }
+  },
+  {
+    "id": "178",
+    "content": {
+      "vari": "musta",
+      "alue": "Oulu",
+      "ala": "luokanopettaja",
+      "ainejärjestö": "OLO",
+      "oppilaitos": "Oulun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: black; color: white;"
+    }
+  },
+  {
+    "id": "179",
+    "content": {
+      "vari": "musta",
+      "alue": "Oulu",
+      "ala": "tietotekniikka, informaatioverkostot",
+      "ainejärjestö": "Oulun Tietoteekkarit (OTiT)",
+      "oppilaitos": "Oulun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: black; color: white;"
+    }
+  },
+  {
+    "id": "180",
+    "content": {
+      "vari": "keltainen",
+      "alue": "Pieksämäki",
+      "ala": "sosiaali-, terveys- ja kirkon alat, asioimistulkkaus",
+      "ainejärjestö": "O’Diako",
+      "oppilaitos": "Diakonia-AMK"
+    },
+    "metadata": {
+      "hex": "background: yellow;"
+    }
+  },
+  {
+    "id": "181",
+    "content": {
+      "vari": "vaaleansininen",
+      "alue": "Pietarsaari",
+      "ala": "kulttuuri",
+      "ainejärjestö": "Skruvster",
+      "oppilaitos": "Novia"
+    },
+    "metadata": {
+      "hex": "background: lightskyblue;"
+    }
+  },
+  {
+    "id": "182",
+    "content": {
+      "vari": "musta",
+      "alue": "Pietarsaari",
+      "ala": "liiketalous",
+      "ainejärjestö": "",
+      "oppilaitos": "Centria"
+    },
+    "metadata": {
+      "hex": "background: black; color: white;"
+    }
+  },
+  {
+    "id": "183",
+    "content": {
+      "vari": "puhtaanvalkoinen",
+      "alue": "Espoo",
+      "ala": "sähkötekniikka",
+      "ainejärjestö": "Sähköinsinöörikilta",
+      "oppilaitos": "Aalto-yliopisto"
+    },
+    "metadata": {
+      "hex": "background: white;"
+    }
+  },
+  {
+    "id": "184",
+    "content": {
+      "vari": "maalarinvalkoinen",
+      "alue": "Espoo",
+      "ala": "arkkitehtuuri",
+      "ainejärjestö": "Arkkitehtikilta",
+      "oppilaitos": "Aalto-yliopisto"
+    },
+    "metadata": {
+      "hex": "background: white;"
+    }
+  },
+  {
+    "id": "185",
+    "content": {
+      "vari": "valkoinen",
+      "alue": "Helsinki",
+      "ala": "kauppatieteet",
+      "ainejärjestö": "SHS",
+      "oppilaitos": "Hanken"
+    },
+    "metadata": {
+      "hex": "background: white;"
+    }
+  },
+  {
+    "id": "186",
+    "content": {
+      "vari": "valkoinen",
+      "alue": "Helsinki",
+      "ala": "hammaslääketiede",
+      "ainejärjestö": "Hammaslääketieteenkandidaattiseura",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: white;"
+    }
+  },
+  {
+    "id": "187",
+    "content": {
+      "vari": "valkoinen",
+      "alue": "Helsinki",
+      "ala": "kognitiotiede",
+      "ainejärjestö": "Intelligenzia",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: white;"
+    }
+  },
+  {
+    "id": "188",
+    "content": {
+      "vari": "valkoinen",
+      "alue": "Helsinki",
+      "ala": "kääntäminen, tulkkaus",
+      "ainejärjestö": "KouKi",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: white;"
+    }
+  },
+  {
+    "id": "189",
+    "content": {
+      "vari": "valkoinen",
+      "alue": "Helsinki",
+      "ala": "lääketiede",
+      "ainejärjestö": "Lääketieteenkandidaattiseura",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: white;"
+    }
+  },
+  {
+    "id": "190",
+    "content": {
+      "vari": "valkoinen",
+      "alue": "Helsinki",
+      "ala": "Sibelius-Akatemia",
+      "ainejärjestö": "",
+      "oppilaitos": "Taideyliopisto"
+    },
+    "metadata": {
+      "hex": "background: white;"
+    }
+  },
+  {
+    "id": "191",
+    "content": {
+      "vari": "valkoinen",
+      "alue": "Espoo",
+      "ala": "tuotantotalous",
+      "ainejärjestö": "Prodeko",
+      "oppilaitos": "Aalto-yliopisto"
+    },
+    "metadata": {
+      "hex": "background: white; background-image: linear-gradient(to top right, white 77%, red, orange, yellow, lime, blue, violet);"
+    }
+  },
+  {
+    "id": "192",
+    "content": {
+      "vari": "valko-oranssi",
+      "alue": "Helsinki",
+      "ala": "tekniikka (kaikki)",
+      "ainejärjestö": "Uudenmaan Insinööriopiskelijat",
+      "oppilaitos": "Metropolia"
+    },
+    "metadata": {
+      "hex": "background: white; background-image: linear-gradient(120deg, white 49%, darkorange 51%);"
+    }
+  },
+  {
+    "id": "193",
+    "content": {
+      "vari": "valko-merenvihreä",
+      "alue": "Helsinki",
+      "ala": "sosiaali- ja terveysalat",
+      "ainejärjestö": "MysteRy",
+      "oppilaitos": "Metropolia"
+    },
+    "metadata": {
+      "hex": "background: white; background-image: linear-gradient(120deg, white 49%, #00ced1 51%);"
+    }
+  },
+  {
+    "id": "194",
+    "content": {
+      "vari": "valko-harmaa takki",
+      "alue": "Espoo",
+      "ala": "kuvataidekasvatus",
+      "ainejärjestö": "Kooma",
+      "oppilaitos": "Aalto-yliopisto"
+    },
+    "metadata": {
+      "hex": "background: white; background-image: linear-gradient(120deg, white 49%, dimgrey 51%);"
+    }
+  },
+  {
+    "id": "195",
+    "content": {
+      "vari": "luonnonvalkoinen",
+      "alue": "Espoo",
+      "ala": "teknillinen fysiikka, matematiikka",
+      "ainejärjestö": "Fyysikkokilta",
+      "oppilaitos": "Aalto-yliopisto"
+    },
+    "metadata": {
+      "hex": "background: snow;"
+    }
+  },
+  {
+    "id": "196",
+    "content": {
+      "vari": "samppanjankultainen",
+      "alue": "Helsinki",
+      "ala": "arkeologia",
+      "ainejärjestö": "Fibula",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #d2c896;"
+    }
+  },
+  {
+    "id": "197",
+    "content": {
+      "vari": "vaaleanpunainen",
+      "alue": "Espoo",
+      "ala": "kone- ja rakennustekniikka",
+      "ainejärjestö": "Koneinsinöörikilta",
+      "oppilaitos": "Aalto-yliopisto"
+    },
+    "metadata": {
+      "hex": "background: lightcoral;"
+    }
+  },
+  {
+    "id": "198",
+    "content": {
+      "vari": "fuksianpunainen",
+      "alue": "Helsinki",
+      "ala": "fysikaaliset tieteet",
+      "ainejärjestö": "Resonanssi",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: deeppink; color: white;"
+    }
+  },
+  {
+    "id": "199",
+    "content": {
+      "vari": "aniliininpunainen",
+      "alue": "Helsinki",
+      "ala": "matematiikka, fysiikka, kemia, tietojenkäsittelytiede (ruotsiksi)",
+      "ainejärjestö": "Spektrum",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: deeppink; color: white;"
+    }
+  },
+  {
+    "id": "200",
+    "content": {
+      "vari": "pinkki",
+      "alue": "Vantaa",
+      "ala": "estenomi",
+      "ainejärjestö": "",
+      "oppilaitos": "Laurea"
+    },
+    "metadata": {
+      "hex": "background: deeppink; background-image: linear-gradient(to top right, deeppink 80%, indigo 81%);"
+    }
+  },
+  {
+    "id": "201",
+    "content": {
+      "vari": "punainen",
+      "alue": "Espoo",
+      "ala": "kemia",
+      "ainejärjestö": "Kemistikilta",
+      "oppilaitos": "Aalto-yliopisto"
+    },
+    "metadata": {
+      "hex": "background: red; color: white;"
+    }
+  },
+  {
+    "id": "202",
+    "content": {
+      "vari": "punainen",
+      "alue": "Helsinki",
+      "ala": "media",
+      "ainejärjestö": "Commedia",
+      "oppilaitos": "Arcada"
+    },
+    "metadata": {
+      "hex": "background: red; color: white;"
+    }
+  },
+  {
+    "id": "203",
+    "content": {
+      "vari": "punainen",
+      "alue": "Helsinki",
+      "ala": "filosofia",
+      "ainejärjestö": "Dilemma",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: red; color: white;"
+    }
+  },
+  {
+    "id": "204",
+    "content": {
+      "vari": "punainen",
+      "alue": "Helsinki",
+      "ala": "aineenopettaja",
+      "ainejärjestö": "HAO",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: red; color: white;"
+    }
+  },
+  {
+    "id": "205",
+    "content": {
+      "vari": "punainen",
+      "alue": "Helsinki",
+      "ala": "valtiotiede",
+      "ainejärjestö": "Kannunvalajat",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: red; color: white;"
+    }
+  },
+  {
+    "id": "206",
+    "content": {
+      "vari": "punainen",
+      "alue": "Helsinki",
+      "ala": "käsityönopettaja, käsityötiede",
+      "ainejärjestö": "Käsitys",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: red; color: white;"
+    }
+  },
+  {
+    "id": "207",
+    "content": {
+      "vari": "punainen",
+      "alue": "Helsinki",
+      "ala": "metsätieteet",
+      "ainejärjestö": "Metsäylioppilaat",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: red; color: white;"
+    }
+  },
+  {
+    "id": "208",
+    "content": {
+      "vari": "punainen",
+      "alue": "Helsinki",
+      "ala": "pohjoismaiset kielet",
+      "ainejärjestö": "Saga",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: red; color: white;"
+    }
+  },
+  {
+    "id": "209",
+    "content": {
+      "vari": "punainen",
+      "alue": "Helsinki",
+      "ala": "englannin kieli",
+      "ainejärjestö": "SUB",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: red; color: white;"
+    }
+  },
+  {
+    "id": "210",
+    "content": {
+      "vari": "punainen",
+      "alue": "Helsinki",
+      "ala": "aluetutkimus, kulttuuriala",
+      "ainejärjestö": "HUMAKO",
+      "oppilaitos": "Humanistinen AMK"
+    },
+    "metadata": {
+      "hex": "background: red; color: white;"
+    }
+  },
+  {
+    "id": "211",
+    "content": {
+      "vari": "punainen",
+      "alue": "Helsinki",
+      "ala": "tilastotiede",
+      "ainejärjestö": "Moodi",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: red; background-image: linear-gradient(to top right, red 80%, #14780a 81%);"
+    }
+  },
+  {
+    "id": "212",
+    "content": {
+      "vari": "punainen",
+      "alue": "Helsinki",
+      "ala": "matematiikka",
+      "ainejärjestö": "Matrix",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: red; background-image: linear-gradient(to top right, red 80%, blue 81%);"
+    }
+  },
+  {
+    "id": "213",
+    "content": {
+      "vari": "puna-keltainen",
+      "alue": "Helsinki",
+      "ala": "iberoromaaniset kielet: espanja",
+      "ainejärjestö": "Setenta",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: red; background-image: linear-gradient(120deg, red 49%, yellow 51%);"
+    }
+  },
+  {
+    "id": "214",
+    "content": {
+      "vari": "puna-vihreä",
+      "alue": "Helsinki",
+      "ala": "iberoromaaniset kielet: portugali",
+      "ainejärjestö": "Setenta",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: red; background-image: linear-gradient(120deg, red 49%, #14780a 51%);"
+    }
+  },
+  {
+    "id": "215",
+    "content": {
+      "vari": "tekniikanpunainen",
+      "alue": "Espoo",
+      "ala": "",
+      "ainejärjestö": "Teknologföreningen (osakunta)",
+      "oppilaitos": "Aalto-yliopisto"
+    },
+    "metadata": {
+      "hex": "background: darkred; color: white;"
+    }
+  },
+  {
+    "id": "216",
+    "content": {
+      "vari": "viininpunainen",
+      "alue": "Helsinki",
+      "ala": "biotekniikka",
+      "ainejärjestö": "BOA",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: darkred; color: white;"
+    }
+  },
+  {
+    "id": "217",
+    "content": {
+      "vari": "viininpunainen",
+      "alue": "Helsinki",
+      "ala": "balttilaiset kielet ja kulttuurit",
+      "ainejärjestö": "Daina",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: darkred; color: white;"
+    }
+  },
+  {
+    "id": "218",
+    "content": {
+      "vari": "juriströd (pykälänpunainen)",
+      "alue": "Helsinki",
+      "ala": "oikeustiede (ruotsiksi)",
+      "ainejärjestö": "Juristklubben Codex",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: darkred; color: white;"
+    }
+  },
+  {
+    "id": "219",
+    "content": {
+      "vari": "pykälänpunainen",
+      "alue": "Helsinki",
+      "ala": "oikeustiede",
+      "ainejärjestö": "Pykälä",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: darkred; color: white;"
+    }
+  },
+  {
+    "id": "220",
+    "content": {
+      "vari": "viininpunainen",
+      "alue": "Helsinki",
+      "ala": "slavistiikka, baltologia",
+      "ainejärjestö": "Rupla",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: darkred; color: white;"
+    }
+  },
+  {
+    "id": "221",
+    "content": {
+      "vari": "viininpunainen",
+      "alue": "Helsinki",
+      "ala": "klassillinen filologia",
+      "ainejärjestö": "Symposion",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: darkred; color: white;"
+    }
+  },
+  {
+    "id": "222",
+    "content": {
+      "vari": "viininpunainen",
+      "alue": "Helsinki",
+      "ala": "kulttuuriala",
+      "ainejärjestö": "Demoni",
+      "oppilaitos": "Metropolia"
+    },
+    "metadata": {
+      "hex": "background: darkred; color: white;"
+    }
+  },
+  {
+    "id": "223",
+    "content": {
+      "vari": "punaruskea",
+      "alue": "Espoo",
+      "ala": "bioinformaatioteknologia",
+      "ainejärjestö": "Inkubio",
+      "oppilaitos": "Aalto-yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #78370a; color: white;"
+    }
+  },
+  {
+    "id": "224",
+    "content": {
+      "vari": "oranssi",
+      "alue": "Helsinki",
+      "ala": "musiikkitiede",
+      "ainejärjestö": "Synkooppi",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: darkorange;"
+    }
+  },
+  {
+    "id": "225",
+    "content": {
+      "vari": "oranssi-vihreä",
+      "alue": "Helsinki",
+      "ala": "rakennusala",
+      "ainejärjestö": "Myro",
+      "oppilaitos": "Metropolia"
+    },
+    "metadata": {
+      "hex": "background: darkorange; background-image: linear-gradient(120deg, darkorange 49%, #14780a 51%);"
+    }
+  },
+  {
+    "id": "226",
+    "content": {
+      "vari": "keltainen",
+      "alue": "Espoo",
+      "ala": "Puunjalostustekniikka",
+      "ainejärjestö": "Puunjalostajakilta",
+      "oppilaitos": "Aalto-yliopisto"
+    },
+    "metadata": {
+      "hex": "background: yellow;"
+    }
+  },
+  {
+    "id": "227",
+    "content": {
+      "vari": "keltainen",
+      "alue": "Helsinki",
+      "ala": "liiketalous, kansainvälinen liiketoiminta, turismi",
+      "ainejärjestö": "HanSe SF",
+      "oppilaitos": "Arcada"
+    },
+    "metadata": {
+      "hex": "background: yellow;"
+    }
+  },
+  {
+    "id": "228",
+    "content": {
+      "vari": "keltainen",
+      "alue": "Helsinki",
+      "ala": "sosiaali- ja terveysala, tulkkaus",
+      "ainejärjestö": "O’Diako",
+      "oppilaitos": "Diakonia-AMK"
+    },
+    "metadata": {
+      "hex": "background: yellow;"
+    }
+  },
+  {
+    "id": "229",
+    "content": {
+      "vari": "keltainen",
+      "alue": "Helsinki",
+      "ala": "alue- ja kulttuuritutkimus",
+      "ainejärjestö": "Origo",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: yellow;"
+    }
+  },
+  {
+    "id": "230",
+    "content": {
+      "vari": "keltainen",
+      "alue": "Helsinki",
+      "ala": "kotitalouspedagogiikka",
+      "ainejärjestö": "Kopeda",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: yellow;"
+    }
+  },
+  {
+    "id": "231",
+    "content": {
+      "vari": "keltainen",
+      "alue": "Helsinki",
+      "ala": "meteorologia",
+      "ainejärjestö": "Synop",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: yellow;"
+    }
+  },
+  {
+    "id": "232",
+    "content": {
+      "vari": "keltainen",
+      "alue": "Helsinki",
+      "ala": "tietojenkäsittelytiede",
+      "ainejärjestö": "TKO-äly",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: yellow;"
+    }
+  },
+  {
+    "id": "233",
+    "content": {
+      "vari": "keltainen",
+      "alue": "Helsinki",
+      "ala": "yhteiskuntatieteet (ruotsiksi)",
+      "ainejärjestö": "StudOrg",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: yellow;"
+    }
+  },
+  {
+    "id": "234",
+    "content": {
+      "vari": "neonkeltainen",
+      "alue": "Helsinki",
+      "ala": "optometria",
+      "ainejärjestö": "OJO",
+      "oppilaitos": "Metropolia"
+    },
+    "metadata": {
+      "hex": "background: yellow;"
+    }
+  },
+  {
+    "id": "235",
+    "content": {
+      "vari": "vihreä",
+      "alue": "Helsinki",
+      "ala": "Suomen kieli ja kulttuuri",
+      "ainejärjestö": "Aksentti",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #5adc64;"
+    }
+  },
+  {
+    "id": "236",
+    "content": {
+      "vari": "vaaleanvihreä",
+      "alue": "Helsinki",
+      "ala": "maataloustieteet",
+      "ainejärjestö": "Sampsa",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #5adc64;"
+    }
+  },
+  {
+    "id": "237",
+    "content": {
+      "vari": "vaaleanvihreä",
+      "alue": "Helsinki",
+      "ala": "suomen kieli, suomalais-ugrilaiset kielet",
+      "ainejärjestö": "Siula",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #5adc64;"
+    }
+  },
+  {
+    "id": "238",
+    "content": {
+      "vari": "vaaleanvihreä",
+      "alue": "Helsinki",
+      "ala": "maatalous- ja metsätiede (ruotsiksi)",
+      "ainejärjestö": "Svenska Studenters Agro-Forst Förening",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #5adc64;"
+    }
+  },
+  {
+    "id": "239",
+    "content": {
+      "vari": "viher-musta",
+      "alue": "Helsinki",
+      "ala": "kotimainen kirjallisuus",
+      "ainejärjestö": "Putkinotko",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #5adc64; background-image: linear-gradient(120deg, #5adc64 49%, black 51%);"
+    }
+  },
+  {
+    "id": "240",
+    "content": {
+      "vari": "viher-musta",
+      "alue": "Helsinki",
+      "ala": "suomen kieli, suomalais-ugrilaiset kielet",
+      "ainejärjestö": "Siula",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #5adc64; background-image: linear-gradient(120deg, #5adc64 49%, black 51%);"
+    }
+  },
+  {
+    "id": "241",
+    "content": {
+      "vari": "viher-valko-punainen",
+      "alue": "Helsinki",
+      "ala": "italialainen filologia",
+      "ainejärjestö": "Divina Compagnia",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #5adc64; background-image: linear-gradient(120deg, #5adc64 32%, white 34%, white 65%, red 67%);"
+    }
+  },
+  {
+    "id": "242",
+    "content": {
+      "vari": "oliivinvihreä",
+      "alue": "Helsinki",
+      "ala": "sotatieteet",
+      "ainejärjestö": "Kadettitoverikunta",
+      "oppilaitos": "Maanpuolustuskorkeakoulu"
+    },
+    "metadata": {
+      "hex": "background: olive; color: white;"
+    }
+  },
+  {
+    "id": "243",
+    "content": {
+      "vari": "metsänvihreä",
+      "alue": "Espoo",
+      "ala": "informaatioverkostot",
+      "ainejärjestö": "Athene",
+      "oppilaitos": "Aalto-yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #4b780a; background-image: linear-gradient(to top right, #4b780a 80%, black 81%);"
+    }
+  },
+  {
+    "id": "244",
+    "content": {
+      "vari": "dollarinvihreä",
+      "alue": "Espoo",
+      "ala": "kauppatieteet",
+      "ainejärjestö": "Aalto-yliopiston kauppatieteiden ylioppilaat KY",
+      "oppilaitos": "Aalto-yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #14780a; color: white;"
+    }
+  },
+  {
+    "id": "245",
+    "content": {
+      "vari": "tummanvihreä",
+      "alue": "Espoo",
+      "ala": "terveys- ja hoitoala",
+      "ainejärjestö": "TXO",
+      "oppilaitos": "Metropolia"
+    },
+    "metadata": {
+      "hex": "background: #14780a; color: white;"
+    }
+  },
+  {
+    "id": "246",
+    "content": {
+      "vari": "tummanvihreä",
+      "alue": "Helsinki",
+      "ala": "terveys, hyvinvointi",
+      "ainejärjestö": "HoSK",
+      "oppilaitos": "Arcada"
+    },
+    "metadata": {
+      "hex": "background: #14780a; color: white;"
+    }
+  },
+  {
+    "id": "247",
+    "content": {
+      "vari": "tummanvihreä",
+      "alue": "Helsinki",
+      "ala": "eläinlääketiede",
+      "ainejärjestö": "Eläinlääketieteen kandidaattiyhdistys",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #14780a; color: white;"
+    }
+  },
+  {
+    "id": "248",
+    "content": {
+      "vari": "tummanvihreä",
+      "alue": "Helsinki",
+      "ala": "maantiede",
+      "ainejärjestö": "MaO",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #14780a; color: white;"
+    }
+  },
+  {
+    "id": "249",
+    "content": {
+      "vari": "vihreä",
+      "alue": "Helsinki",
+      "ala": "uskontotiede",
+      "ainejärjestö": "Mythos",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #14780a; color: white;"
+    }
+  },
+  {
+    "id": "250",
+    "content": {
+      "vari": "vihreä",
+      "alue": "Helsinki",
+      "ala": "kansatiede, folkloristiikka",
+      "ainejärjestö": "Nefa-Helsinki",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #14780a; color: white;"
+    }
+  },
+  {
+    "id": "251",
+    "content": {
+      "vari": "metsänvihreä",
+      "alue": "Helsinki",
+      "ala": "biologia",
+      "ainejärjestö": "Symbioosi",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #14780a; color: white;"
+    }
+  },
+  {
+    "id": "252",
+    "content": {
+      "vari": "tummanvihreä",
+      "alue": "Helsinki",
+      "ala": "ympäristöekonomia",
+      "ainejärjestö": "Vuorovaikeutus",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #14780a; color: white;"
+    }
+  },
+  {
+    "id": "253",
+    "content": {
+      "vari": "tummanvihreä",
+      "alue": "Helsinki",
+      "ala": "ympäristötieteet",
+      "ainejärjestö": "MYY",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #14780a; color: white;"
+    }
+  },
+  {
+    "id": "254",
+    "content": {
+      "vari": "tummanvihreä-musta",
+      "alue": "Helsinki",
+      "ala": "farmasia",
+      "ainejärjestö": "Yliopiston farmasiakunta",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #14780a; background-image: linear-gradient(120deg, #14780a 49%, black 51%);"
+    }
+  },
+  {
+    "id": "255",
+    "content": {
+      "vari": "turkoosi",
+      "alue": "Helsinki",
+      "ala": "kulttuurintuottaja",
+      "ainejärjestö": "Kult",
+      "oppilaitos": "Arcada"
+    },
+    "metadata": {
+      "hex": "background: #00ced1;"
+    }
+  },
+  {
+    "id": "256",
+    "content": {
+      "vari": "turkoosi",
+      "alue": "Helsinki",
+      "ala": "aikuiskasvatus",
+      "ainejärjestö": "Aikuiskasvatuksen Kilta",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #00ced1;"
+    }
+  },
+  {
+    "id": "257",
+    "content": {
+      "vari": "turkoosi",
+      "alue": "Helsinki",
+      "ala": "estetiikka",
+      "ainejärjestö": "Aistimus",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #00ced1;"
+    }
+  },
+  {
+    "id": "258",
+    "content": {
+      "vari": "turkoosi",
+      "alue": "Helsinki",
+      "ala": "luokanopettaja, kasvatus- ja aikuiskasvatustiede (ruotsiksi)",
+      "ainejärjestö": "Didacta",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #00ced1;"
+    }
+  },
+  {
+    "id": "259",
+    "content": {
+      "vari": "turkoosi",
+      "alue": "Helsinki",
+      "ala": "elintarviketiede",
+      "ainejärjestö": "Lipidi",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #00ced1;"
+    }
+  },
+  {
+    "id": "260",
+    "content": {
+      "vari": "turkoosi",
+      "alue": "Helsinki",
+      "ala": "kasvatustiede, luokanopettaja",
+      "ainejärjestö": "Peduca",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #00ced1;"
+    }
+  },
+  {
+    "id": "261",
+    "content": {
+      "vari": "turkoosi",
+      "alue": "Helsinki",
+      "ala": "kasvatuspsykologia",
+      "ainejärjestö": "Phenomena",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #00ced1;"
+    }
+  },
+  {
+    "id": "262",
+    "content": {
+      "vari": "turkoosi",
+      "alue": "Helsinki",
+      "ala": "elintarviketieteet",
+      "ainejärjestö": "Viri Lactis",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #00ced1;"
+    }
+  },
+  {
+    "id": "263",
+    "content": {
+      "vari": "turkoosi",
+      "alue": "Vantaa",
+      "ala": "liiketalous",
+      "ainejärjestö": "Trombi",
+      "oppilaitos": "Metropolia"
+    },
+    "metadata": {
+      "hex": "background: #00ced1;"
+    }
+  },
+  {
+    "id": "264",
+    "content": {
+      "vari": "kaljakorin­sininen",
+      "alue": "Espoo",
+      "ala": "materiaalitekniikka",
+      "ainejärjestö": "Vuorimieskilta",
+      "oppilaitos": "Aalto-yliopisto"
+    },
+    "metadata": {
+      "hex": "background: blue; color: white;"
+    }
+  },
+  {
+    "id": "265",
+    "content": {
+      "vari": "sininen",
+      "alue": "Helsinki",
+      "ala": "tekniikka",
+      "ainejärjestö": "TLK",
+      "oppilaitos": "Arcada"
+    },
+    "metadata": {
+      "hex": "background: blue; color: white;"
+    }
+  },
+  {
+    "id": "266",
+    "content": {
+      "vari": "petroolinsininen",
+      "alue": "Helsinki",
+      "ala": "kulttuuri, liiketalous, matkailu",
+      "ainejärjestö": "Helga",
+      "oppilaitos": "Haaga-Helia"
+    },
+    "metadata": {
+      "hex": "background: blue; color: white;"
+    }
+  },
+  {
+    "id": "267",
+    "content": {
+      "vari": "sininen",
+      "alue": "Helsinki",
+      "ala": "varhaiskasvatus",
+      "ainejärjestö": "Ebe",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: blue; color: white;"
+    }
+  },
+  {
+    "id": "268",
+    "content": {
+      "vari": "vaaleansininen",
+      "alue": "Helsinki",
+      "ala": "lääketiede",
+      "ainejärjestö": "Medicinarklubben Thorax",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: blue; color: white;"
+    }
+  },
+  {
+    "id": "269",
+    "content": {
+      "vari": "sininen",
+      "alue": "Espoo",
+      "ala": "prosessitekniikka",
+      "ainejärjestö": "Prosessiteekkarit",
+      "oppilaitos": "Aalto-yliopisto"
+    },
+    "metadata": {
+      "hex": "background: blue; background-image: linear-gradient(to top right, blue 77%, yellow 78%, yellow 88%, red 89%);"
+    }
+  },
+  {
+    "id": "270",
+    "content": {
+      "vari": "tummansininen",
+      "alue": "Helsinki",
+      "ala": "yleinen kielitiede, kieliteknologia",
+      "ainejärjestö": "Aspekti",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: navy; color: white;"
+    }
+  },
+  {
+    "id": "271",
+    "content": {
+      "vari": "tummansininen",
+      "alue": "Helsinki",
+      "ala": "erityispedagogiikka",
+      "ainejärjestö": "Erikeepperi",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: navy; color: white;"
+    }
+  },
+  {
+    "id": "272",
+    "content": {
+      "vari": "tummansininen",
+      "alue": "Helsinki",
+      "ala": "historia (ruotsiksi)",
+      "ainejärjestö": "Historicus",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: navy; color: white;"
+    }
+  },
+  {
+    "id": "273",
+    "content": {
+      "vari": "tummansininen",
+      "alue": "Helsinki",
+      "ala": "historia",
+      "ainejärjestö": "Kronos",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: navy; color: white;"
+    }
+  },
+  {
+    "id": "274",
+    "content": {
+      "vari": "yönsininen",
+      "alue": "Helsinki",
+      "ala": "tähtitiede",
+      "ainejärjestö": "Meridiaani",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: navy; color: white;"
+    }
+  },
+  {
+    "id": "275",
+    "content": {
+      "vari": "tummansininen",
+      "alue": "Helsinki",
+      "ala": "biologia, ympäristötiede (ruotsiksi)",
+      "ainejärjestö": "Svenska Naturvetarklubben",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: navy; color: white;"
+    }
+  },
+  {
+    "id": "276",
+    "content": {
+      "vari": "tummansininen",
+      "alue": "Helsinki",
+      "ala": "ympäristö- ja elintarviketalous",
+      "ainejärjestö": "Viikin Taloustieteilijät",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: navy; color: white;"
+    }
+  },
+  {
+    "id": "277",
+    "content": {
+      "vari": "tummansininen",
+      "alue": "Espoo",
+      "ala": "rakennustekniikka",
+      "ainejärjestö": "Rakennusinsinöörikilta IK",
+      "oppilaitos": "Aalto-yliopisto"
+    },
+    "metadata": {
+      "hex": "background: navy; background-image: linear-gradient(to top right, navy 80%, #14780a 81%);"
+    }
+  },
+  {
+    "id": "278",
+    "content": {
+      "vari": "tummansininen",
+      "alue": "Espoo",
+      "ala": "tekniikka (Karamalmin kampus)",
+      "ainejärjestö": "Kama",
+      "oppilaitos": "Metropolia"
+    },
+    "metadata": {
+      "hex": "background: navy; background-image: linear-gradient(to top right, navy 80%, indigo 81%);"
+    }
+  },
+  {
+    "id": "279",
+    "content": {
+      "vari": "tummansini-valko-punainen",
+      "alue": "Helsinki",
+      "ala": "ranskalainen filologia",
+      "ainejärjestö": "Bouffe",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: navy; background-image: linear-gradient(120deg, navy 32%, white 34%, white 65%, red 67%);"
+    }
+  },
+  {
+    "id": "280",
+    "content": {
+      "vari": "liila",
+      "alue": "Helsinki",
+      "ala": "psykologia",
+      "ainejärjestö": "Kompleksi",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #a064fa;"
+    }
+  },
+  {
+    "id": "281",
+    "content": {
+      "vari": "liila",
+      "alue": "Espoo",
+      "ala": "sairaanhoitaja, terveydenhoitaja, fysioterapeutti, sosionomi, tradenomi, restonomi, tietojenkäsittely, turvallisuus",
+      "ainejärjestö": "Laureamko",
+      "oppilaitos": "Laurea"
+    },
+    "metadata": {
+      "hex": "background: indigo; color: white;"
+    }
+  },
+  {
+    "id": "282",
+    "content": {
+      "vari": "violetti",
+      "alue": "Helsinki",
+      "ala": "logopedia",
+      "ainejärjestö": "Foni",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: indigo; color: white;"
+    }
+  },
+  {
+    "id": "283",
+    "content": {
+      "vari": "violetti",
+      "alue": "Helsinki",
+      "ala": "kuluttajaekonomia, ravitsemustiede",
+      "ainejärjestö": "Oikos",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: indigo; color: white;"
+    }
+  },
+  {
+    "id": "284",
+    "content": {
+      "vari": "violetti",
+      "alue": "Helsinki",
+      "ala": "teologia",
+      "ainejärjestö": "Teologian ylioppilaiden tiedekuntayhdistys",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: indigo; color: white;"
+    }
+  },
+  {
+    "id": "285",
+    "content": {
+      "vari": "liila",
+      "alue": "Vantaa",
+      "ala": "estenomi, sairaanhoitaja, terveydenhoitaja, sosionomi, rikosseuraamusalan sosionomi, tradenomi",
+      "ainejärjestö": "Laureamko",
+      "oppilaitos": "Laurea"
+    },
+    "metadata": {
+      "hex": "background: indigo; color: white;"
+    }
+  },
+  {
+    "id": "286",
+    "content": {
+      "vari": "violetti",
+      "alue": "Espoo",
+      "ala": "automaatio- ja systeemitekniikka",
+      "ainejärjestö": "Automaatio- ja systeemitekniikan kilta",
+      "oppilaitos": "Aalto-yliopisto"
+    },
+    "metadata": {
+      "hex": "background: indigo; background-image: linear-gradient(to top right, indigo 77%, black 78%, black 89%, white 90%);"
+    }
+  },
+  {
+    "id": "287",
+    "content": {
+      "vari": "harmaa",
+      "alue": "Helsinki",
+      "ala": "taidehistoria",
+      "ainejärjestö": "Eidos",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: lightgrey;"
+    }
+  },
+  {
+    "id": "288",
+    "content": {
+      "vari": "harmaa",
+      "alue": "Helsinki",
+      "ala": "pohjoismainen kirjallisuus",
+      "ainejärjestö": "Lycksalighetens ö",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: lightgrey;"
+    }
+  },
+  {
+    "id": "289",
+    "content": {
+      "vari": "harmaa",
+      "alue": "Helsinki",
+      "ala": "geologia",
+      "ainejärjestö": "Vasara",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: lightgrey;"
+    }
+  },
+  {
+    "id": "290",
+    "content": {
+      "vari": "tummanharmaa",
+      "alue": "Helsinki",
+      "ala": "alue- ja kulttuuritutkimus",
+      "ainejärjestö": "Origo",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: dimgrey; color: white;"
+    }
+  },
+  {
+    "id": "291",
+    "content": {
+      "vari": "tummanharmaa",
+      "alue": "Helsinki",
+      "ala": "kulttuurien tutkimuksen kandiohjelma",
+      "ainejärjestö": "Konteksti",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: dimgrey; color: white;"
+    }
+  },
+  {
+    "id": "292",
+    "content": {
+      "vari": "vihreänharmaa",
+      "alue": "Helsinki",
+      "ala": "geofysiikka",
+      "ainejärjestö": "Geysir",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #515350; color: white;"
+    }
+  },
+  {
+    "id": "293",
+    "content": {
+      "vari": "kiiltävänmusta",
+      "alue": "Espoo",
+      "ala": "tietotekniikka",
+      "ainejärjestö": "Tietokilta",
+      "oppilaitos": "Aalto-yliopisto"
+    },
+    "metadata": {
+      "hex": "background: black; color: white;"
+    }
+  },
+  {
+    "id": "294",
+    "content": {
+      "vari": "musta",
+      "alue": "Helsinki",
+      "ala": "taidehistoria",
+      "ainejärjestö": "Eidos",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: black; color: white;"
+    }
+  },
+  {
+    "id": "295",
+    "content": {
+      "vari": "musta",
+      "alue": "Helsinki",
+      "ala": "biokemia, solu- ja molekyylibiologia",
+      "ainejärjestö": "Helix",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: black; color: white;"
+    }
+  },
+  {
+    "id": "296",
+    "content": {
+      "vari": "musta",
+      "alue": "Helsinki",
+      "ala": "kemia",
+      "ainejärjestö": "Helsingin Yliopiston Kemistit",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: black; color: white;"
+    }
+  },
+  {
+    "id": "297",
+    "content": {
+      "vari": "musta",
+      "alue": "Helsinki",
+      "ala": "Aasian ja Afrikan kielet ja kulttuurit",
+      "ainejärjestö": "Karavaani",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: black; color: white;"
+    }
+  },
+  {
+    "id": "298",
+    "content": {
+      "vari": "musta",
+      "alue": "Helsinki",
+      "ala": "yleinen kirjallisuustiede",
+      "ainejärjestö": "Katharsis",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: black; color: white;"
+    }
+  },
+  {
+    "id": "299",
+    "content": {
+      "vari": "musta",
+      "alue": "Helsinki",
+      "ala": "Kumpulan kampuksen aineet (matematiikka, fysikaaliset tieteet, kemia, maantiede, geologia, tietojenkäsittelytiede)",
+      "ainejärjestö": "Limes",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: black; color: white;"
+    }
+  },
+  {
+    "id": "300",
+    "content": {
+      "vari": "musta",
+      "alue": "Helsinki",
+      "ala": "kotimainen kirjallisuus",
+      "ainejärjestö": "Putkinotko",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: black; color: white;"
+    }
+  },
+  {
+    "id": "301",
+    "content": {
+      "vari": "musta",
+      "alue": "Helsinki",
+      "ala": "teatteritiede",
+      "ainejärjestö": "Repliikki",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: black; color: white;"
+    }
+  },
+  {
+    "id": "302",
+    "content": {
+      "vari": "musta",
+      "alue": "Helsinki",
+      "ala": "markkinointi",
+      "ainejärjestö": "Voluntas",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: black; color: white;"
+    }
+  },
+  {
+    "id": "303",
+    "content": {
+      "vari": "musta",
+      "alue": "Helsinki",
+      "ala": "maanmittaustekniikka",
+      "ainejärjestö": "Gooni ry",
+      "oppilaitos": "Metropolia"
+    },
+    "metadata": {
+      "hex": "background: black; color: white;"
+    }
+  },
+  {
+    "id": "304",
+    "content": {
+      "vari": "mattamusta",
+      "alue": "Espoo",
+      "ala": "rakennettu ympäristö, kiinteistötalous ja geoinformatiikka, kestävät yhdyskunnat",
+      "ainejärjestö": "Maanmittarikilta",
+      "oppilaitos": "Aalto-yliopisto"
+    },
+    "metadata": {
+      "hex": "background: black; background-image: linear-gradient(to top right, black 80%, deeppink 81%);"
+    }
+  },
+  {
+    "id": "305",
+    "content": {
+      "vari": "mattamusta",
+      "alue": "Espoo",
+      "ala": "kiinteistötalous",
+      "ainejärjestö": "Maanmittarikilta",
+      "oppilaitos": "Aalto-yliopisto"
+    },
+    "metadata": {
+      "hex": "background: black; background-image: linear-gradient(to top right, black 80%, darkred 81%);"
+    }
+  },
+  {
+    "id": "306",
+    "content": {
+      "vari": "mattamusta",
+      "alue": "Espoo",
+      "ala": "geomatiikka",
+      "ainejärjestö": "Maanmittarikilta",
+      "oppilaitos": "Aalto-yliopisto"
+    },
+    "metadata": {
+      "hex": "background: black; background-image: linear-gradient(to top right, black 80%, #14780a 81%);"
+    }
+  },
+  {
+    "id": "307",
+    "content": {
+      "vari": "kiiltävänmusta",
+      "alue": "Espoo",
+      "ala": "tietojenkäsittelytiede (englanniksi)",
+      "ainejärjestö": "Data Guild",
+      "oppilaitos": "Aalto-yliopisto"
+    },
+    "metadata": {
+      "hex": "background: black; background-image: linear-gradient(to top right, black 80%, lightgrey 81%);"
+    }
+  },
+  {
+    "id": "308",
+    "content": {
+      "vari": "musta",
+      "alue": "Helsinki",
+      "ala": "germaaninen filologia",
+      "ainejärjestö": "Umlaut",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: black; background-image: linear-gradient(to top right, black 77%, yellow 78%, yellow 88%, red 89%);"
+    }
+  },
+  {
+    "id": "309",
+    "content": {
+      "vari": "musta-valkoinen",
+      "alue": "Helsinki",
+      "ala": "translationaalinen lääketiede",
+      "ainejärjestö": "Impactus",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: black; background-image: linear-gradient(120deg, black 49%, white 51%);"
+    }
+  },
+  {
+    "id": "310",
+    "content": {
+      "vari": "”vapputakki”",
+      "alue": "Espoo",
+      "ala": "muotoilu",
+      "ainejärjestö": "NuDe (Nuoret Designerit)",
+      "oppilaitos": "Aalto-yliopisto"
+    },
+    "metadata": {
+      "hex": ""
+    }
+  },
+  {
+    "id": "311",
+    "content": {
+      "vari": "takki",
+      "alue": "Espoo",
+      "ala": "visuaalisen viestinnän muotoilu",
+      "ainejärjestö": "GRRR",
+      "oppilaitos": "Aalto-yliopisto"
+    },
+    "metadata": {
+      "hex": ""
+    }
+  },
+  {
+    "id": "312",
+    "content": {
+      "vari": "ei haalaria",
+      "alue": "Espoo",
+      "ala": "",
+      "ainejärjestö": "Taiteiden ja suunnittelun ylioppilaat TOKYO",
+      "oppilaitos": "Aalto-yliopisto"
+    },
+    "metadata": {
+      "hex": ""
+    }
+  },
+  {
+    "id": "313",
+    "content": {
+      "vari": "ei haalaria",
+      "alue": "Helsinki",
+      "ala": "Urban studies and planning",
+      "ainejärjestö": "Mesta",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": ""
+    }
+  },
+  {
+    "id": "314",
+    "content": {
+      "vari": "ei haalaria",
+      "alue": "Helsinki",
+      "ala": "Venäjän ja Itä-Euroopan tutkimus",
+      "ainejärjestö": "Vietti",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": ""
+    }
+  },
+  {
+    "id": "315",
+    "content": {
+      "vari": "ei haalaria",
+      "alue": "Helsinki",
+      "ala": "Teatterikorkeakoulu, Kuvataideakatemia",
+      "ainejärjestö": "",
+      "oppilaitos": "Taideyliopisto"
+    },
+    "metadata": {
+      "hex": ""
+    }
+  },
+  {
+    "id": "316",
+    "content": {
+      "vari": "punainen",
+      "alue": "Pori",
+      "ala": "kulttuurituotanto, maisemantutkimus",
+      "ainejärjestö": "Kulma",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: red; color: white;"
+    }
+  },
+  {
+    "id": "317",
+    "content": {
+      "vari": "viininpunainen",
+      "alue": "Pori",
+      "ala": "",
+      "ainejärjestö": "Utopia",
+      "oppilaitos": "Tampereen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: darkred; color: white;"
+    }
+  },
+  {
+    "id": "318",
+    "content": {
+      "vari": "keltainen",
+      "alue": "Pori",
+      "ala": "sosiaali-, terveys- ja kirkon alat",
+      "ainejärjestö": "O’Diako",
+      "oppilaitos": "Diakonia-AMK"
+    },
+    "metadata": {
+      "hex": "background: yellow;"
+    }
+  },
+  {
+    "id": "319",
+    "content": {
+      "vari": "tummansininen",
+      "alue": "Pori",
+      "ala": "kauppatieteet",
+      "ainejärjestö": "Porin kylterit (PorKy)",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: navy; color: white;"
+    }
+  },
+  {
+    "id": "320",
+    "content": {
+      "vari": "tummanharmaa",
+      "alue": "Pori",
+      "ala": "tietotekniikka, tuotantotalous",
+      "ainejärjestö": "Porin Teekkarit",
+      "oppilaitos": "Tampereen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: dimgrey; color: white;"
+    }
+  },
+  {
+    "id": "321",
+    "content": {
+      "vari": "petroolinsininen",
+      "alue": "Porvoo",
+      "ala": "liiketalous, matkailu",
+      "ainejärjestö": "Helga",
+      "oppilaitos": "Haaga-Helia"
+    },
+    "metadata": {
+      "hex": "background: blue; color: white;"
+    }
+  },
+  {
+    "id": "322",
+    "content": {
+      "vari": "liila",
+      "alue": "Porvoo",
+      "ala": "sairaanhoitaja, sosionomi",
+      "ainejärjestö": "Laureamko",
+      "oppilaitos": "Laurea"
+    },
+    "metadata": {
+      "hex": "background: indigo; color: white;"
+    }
+  },
+  {
+    "id": "323",
+    "content": {
+      "vari": "vihreä",
+      "alue": "Raasepori",
+      "ala": "metsätalous",
+      "ainejärjestö": "Spiritus Forstis",
+      "oppilaitos": "Novia"
+    },
+    "metadata": {
+      "hex": "background: #14780a; color: white;"
+    }
+  },
+  {
+    "id": "324",
+    "content": {
+      "vari": "tummansininen",
+      "alue": "Raasepori",
+      "ala": "maatalous",
+      "ainejärjestö": "Skuffis",
+      "oppilaitos": "Novia"
+    },
+    "metadata": {
+      "hex": "background: navy; background-image: linear-gradient(to top right, navy 80%, red 81%);"
+    }
+  },
+  {
+    "id": "325",
+    "content": {
+      "vari": "musta",
+      "alue": "Raasepori",
+      "ala": "",
+      "ainejärjestö": "Ekenäs Kåravdelning EKA",
+      "oppilaitos": "Novia"
+    },
+    "metadata": {
+      "hex": "background: black; color: white;"
+    }
+  },
+  {
+    "id": "326",
+    "content": {
+      "vari": "keltainen",
+      "alue": "Rauma",
+      "ala": "luokanopettaja",
+      "ainejärjestö": "Opekas",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: yellow;"
+    }
+  },
+  {
+    "id": "327",
+    "content": {
+      "vari": "musta",
+      "alue": "Riihimäki",
+      "ala": "insinööri",
+      "ainejärjestö": "Riihimäen insinööriopiskelijat RINO",
+      "oppilaitos": "Hämeen AMK"
+    },
+    "metadata": {
+      "hex": "background: black; background-image: linear-gradient(to top right, black 77%, lime 78%, lime 88%, indigo 89%);"
+    }
+  },
+  {
+    "id": "328",
+    "content": {
+      "vari": "fuksianpunainen",
+      "alue": "Rovaniemi",
+      "ala": "taideaineet",
+      "ainejärjestö": "TAO",
+      "oppilaitos": "Lapin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: deeppink; color: white;"
+    }
+  },
+  {
+    "id": "329",
+    "content": {
+      "vari": "punainen",
+      "alue": "Rovaniemi",
+      "ala": "sosiaalityö, kuntoutus",
+      "ainejärjestö": "Lyhty",
+      "oppilaitos": "Lapin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: red; color: white;"
+    }
+  },
+  {
+    "id": "330",
+    "content": {
+      "vari": "bolognanpunainen",
+      "alue": "Rovaniemi",
+      "ala": "oikeustiede",
+      "ainejärjestö": "Artikla",
+      "oppilaitos": "Lapin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: darkred; color: white;"
+    }
+  },
+  {
+    "id": "331",
+    "content": {
+      "vari": "oranssi",
+      "alue": "Rovaniemi",
+      "ala": "kasvatus- ja aikauskasvatustiede, mediakasvatus",
+      "ainejärjestö": "Lastu",
+      "oppilaitos": "Lapin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: darkorange;"
+    }
+  },
+  {
+    "id": "332",
+    "content": {
+      "vari": "vihreä",
+      "alue": "Rovaniemi",
+      "ala": "politiikan tutkimus, sosiologia",
+      "ainejärjestö": "Kosmos Buran",
+      "oppilaitos": "Lapin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #14780a; background-image: linear-gradient(to top right, #14780a 80%, yellow 81%);"
+    }
+  },
+  {
+    "id": "333",
+    "content": {
+      "vari": "sininen",
+      "alue": "Rovaniemi",
+      "ala": "luokanopettaja",
+      "ainejärjestö": "Lapikas",
+      "oppilaitos": "Lapin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: blue; color: white;"
+    }
+  },
+  {
+    "id": "334",
+    "content": {
+      "vari": "poliisinsininen",
+      "alue": "Rovaniemi",
+      "ala": "matkailututkimus",
+      "ainejärjestö": "Jalot Villit",
+      "oppilaitos": "Lapin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: navy; color: white;"
+    }
+  },
+  {
+    "id": "335",
+    "content": {
+      "vari": "musta",
+      "alue": "Rovaniemi",
+      "ala": "hallintotieteet, johtaminen, julkisoikeus, soveltava psykologia",
+      "ainejärjestö": "Remburssi",
+      "oppilaitos": "Lapin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: black; color: white;"
+    }
+  },
+  {
+    "id": "336",
+    "content": {
+      "vari": "keltainen",
+      "alue": "Salo",
+      "ala": "",
+      "ainejärjestö": "",
+      "oppilaitos": "Turun AMK"
+    },
+    "metadata": {
+      "hex": "background: yellow;"
+    }
+  },
+  {
+    "id": "337",
+    "content": {
+      "vari": "valkoinen",
+      "alue": "Savonlinna",
+      "ala": "insinööri",
+      "ainejärjestö": "",
+      "oppilaitos": "Kaakkois-Suomen AMK"
+    },
+    "metadata": {
+      "hex": "background: white;"
+    }
+  },
+  {
+    "id": "338",
+    "content": {
+      "vari": "punainen",
+      "alue": "Savonlinna",
+      "ala": "sairaanhoitaja",
+      "ainejärjestö": "",
+      "oppilaitos": "Kaakkois-Suomen AMK"
+    },
+    "metadata": {
+      "hex": "background: red; color: white;"
+    }
+  },
+  {
+    "id": "339",
+    "content": {
+      "vari": "keltainen",
+      "alue": "Savonlinna",
+      "ala": "liikunnanohjaaja",
+      "ainejärjestö": "",
+      "oppilaitos": "Kaakkois-Suomen AMK"
+    },
+    "metadata": {
+      "hex": "background: yellow;"
+    }
+  },
+  {
+    "id": "340",
+    "content": {
+      "vari": "tummanvihreä",
+      "alue": "Savonlinna",
+      "ala": "jalkaterapeutti",
+      "ainejärjestö": "",
+      "oppilaitos": "Kaakkois-Suomen AMK"
+    },
+    "metadata": {
+      "hex": "background: #14780a; color: white;"
+    }
+  },
+  {
+    "id": "341",
+    "content": {
+      "vari": "violetti",
+      "alue": "Savonlinna",
+      "ala": "fysioterapeutti",
+      "ainejärjestö": "",
+      "oppilaitos": "Kaakkois-Suomen AMK"
+    },
+    "metadata": {
+      "hex": "background: indigo; color: white;"
+    }
+  },
+  {
+    "id": "342",
+    "content": {
+      "vari": "punainen",
+      "alue": "Seinäjoki",
+      "ala": "restonomi",
+      "ainejärjestö": "",
+      "oppilaitos": "Seinäjoen AMK"
+    },
+    "metadata": {
+      "hex": "background: red; color: white;"
+    }
+  },
+  {
+    "id": "343",
+    "content": {
+      "vari": "viininpunainen",
+      "alue": "Seinäjoki",
+      "ala": "liiketalous",
+      "ainejärjestö": "",
+      "oppilaitos": "Seinäjoen AMK"
+    },
+    "metadata": {
+      "hex": "background: darkred; color: white;"
+    }
+  },
+  {
+    "id": "344",
+    "content": {
+      "vari": "oranssi",
+      "alue": "Seinäjoki",
+      "ala": "geronomi",
+      "ainejärjestö": "",
+      "oppilaitos": "Seinäjoen AMK"
+    },
+    "metadata": {
+      "hex": "background: darkorange;"
+    }
+  },
+  {
+    "id": "345",
+    "content": {
+      "vari": "keltainen",
+      "alue": "Seinäjoki",
+      "ala": "sosionomi",
+      "ainejärjestö": "",
+      "oppilaitos": "Seinäjoen AMK"
+    },
+    "metadata": {
+      "hex": "background: yellow;"
+    }
+  },
+  {
+    "id": "346",
+    "content": {
+      "vari": "vihreä",
+      "alue": "Seinäjoki",
+      "ala": "terveysala",
+      "ainejärjestö": "",
+      "oppilaitos": "Seinäjoen AMK"
+    },
+    "metadata": {
+      "hex": "background: #14780a; color: white;"
+    }
+  },
+  {
+    "id": "347",
+    "content": {
+      "vari": "tummansininen",
+      "alue": "Seinäjoki",
+      "ala": "kirjasto- ja tietopalveluala",
+      "ainejärjestö": "",
+      "oppilaitos": "Seinäjoen AMK"
+    },
+    "metadata": {
+      "hex": "background: navy; color: white;"
+    }
+  },
+  {
+    "id": "348",
+    "content": {
+      "vari": "violetti",
+      "alue": "Seinäjoki",
+      "ala": "insinööri",
+      "ainejärjestö": "",
+      "oppilaitos": "Seinäjoen AMK"
+    },
+    "metadata": {
+      "hex": "background: indigo; color: white;"
+    }
+  },
+  {
+    "id": "349",
+    "content": {
+      "vari": "musta",
+      "alue": "Seinäjoki",
+      "ala": "kulttuuri",
+      "ainejärjestö": "",
+      "oppilaitos": "Seinäjoen AMK"
+    },
+    "metadata": {
+      "hex": "background: black; color: white;"
+    }
+  },
+  {
+    "id": "350",
+    "content": {
+      "vari": "valkoinen",
+      "alue": "Tampere",
+      "ala": "tuotantotalous",
+      "ainejärjestö": "Indecs",
+      "oppilaitos": "Tampereen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: white;"
+    }
+  },
+  {
+    "id": "351",
+    "content": {
+      "vari": "valkoinen",
+      "alue": "Tampere",
+      "ala": "sosiaalityö",
+      "ainejärjestö": "SOS",
+      "oppilaitos": "Tampereen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: white;"
+    }
+  },
+  {
+    "id": "352",
+    "content": {
+      "vari": "valkoinen",
+      "alue": "Tampere",
+      "ala": "lääketiede",
+      "ainejärjestö": "Tampereen Lääketieteen Kandidaattiseura",
+      "oppilaitos": "Tampereen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: white;"
+    }
+  },
+  {
+    "id": "353",
+    "content": {
+      "vari": "valkoinen",
+      "alue": "Tampere",
+      "ala": "biotuote- ja prosessitekniikka",
+      "ainejärjestö": "",
+      "oppilaitos": "Tampereen AMK"
+    },
+    "metadata": {
+      "hex": "background: white;"
+    }
+  },
+  {
+    "id": "354",
+    "content": {
+      "vari": "samppanjankultainen",
+      "alue": "Tampere",
+      "ala": "biotekniikka",
+      "ainejärjestö": "Bioner",
+      "oppilaitos": "Tampereen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #d2c896;"
+    }
+  },
+  {
+    "id": "355",
+    "content": {
+      "vari": "vaaleanpunainen",
+      "alue": "Tampere",
+      "ala": "energiamurros",
+      "ainejärjestö": "Energiamurroskilta ry EMU",
+      "oppilaitos": "Tampereen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: lightcoral;"
+    }
+  },
+  {
+    "id": "356",
+    "content": {
+      "vari": "fuksianpunainen",
+      "alue": "Tampere",
+      "ala": "sairaanhoitaja",
+      "ainejärjestö": "Pirate",
+      "oppilaitos": "Tampereen AMK"
+    },
+    "metadata": {
+      "hex": "background: deeppink; color: white;"
+    }
+  },
+  {
+    "id": "357",
+    "content": {
+      "vari": "fuksianpunainen",
+      "alue": "Tampere",
+      "ala": "hoitotiede, kansanterveystiede",
+      "ainejärjestö": "Salus",
+      "oppilaitos": "Tampereen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: deeppink; color: white;"
+    }
+  },
+  {
+    "id": "358",
+    "content": {
+      "vari": "fuksianpunainen",
+      "alue": "Tampere",
+      "ala": "terveydenhoitaja",
+      "ainejärjestö": "Pirate",
+      "oppilaitos": "Tampereen AMK"
+    },
+    "metadata": {
+      "hex": "background: deeppink; background-image: linear-gradient(to top right, deeppink 80%, white 81%);"
+    }
+  },
+  {
+    "id": "359",
+    "content": {
+      "vari": "fuksianpunainen",
+      "alue": "Tampere",
+      "ala": "ensihoitaja",
+      "ainejärjestö": "Pirate",
+      "oppilaitos": "Tampereen AMK"
+    },
+    "metadata": {
+      "hex": "background: deeppink; background-image: linear-gradient(to top right, deeppink 80%, red 81%);"
+    }
+  },
+  {
+    "id": "360",
+    "content": {
+      "vari": "fuksianpunainen",
+      "alue": "Tampere",
+      "ala": "bioanalyytikko",
+      "ainejärjestö": "Pirate",
+      "oppilaitos": "Tampereen AMK"
+    },
+    "metadata": {
+      "hex": "background: deeppink; background-image: linear-gradient(to top right, deeppink 80%, darkred 81%);"
+    }
+  },
+  {
+    "id": "361",
+    "content": {
+      "vari": "fuksianpunainen",
+      "alue": "Tampere",
+      "ala": "röntgenhoitaja",
+      "ainejärjestö": "Pirate",
+      "oppilaitos": "Tampereen AMK"
+    },
+    "metadata": {
+      "hex": "background: deeppink; background-image: linear-gradient(to top right, deeppink 80%, #ebc400 81%);"
+    }
+  },
+  {
+    "id": "362",
+    "content": {
+      "vari": "fuksianpunainen",
+      "alue": "Tampere",
+      "ala": "fysioterapeutti",
+      "ainejärjestö": "Pirate",
+      "oppilaitos": "Tampereen AMK"
+    },
+    "metadata": {
+      "hex": "background: deeppink; background-image: linear-gradient(to top right, deeppink 80%, blue 81%);"
+    }
+  },
+  {
+    "id": "363",
+    "content": {
+      "vari": "fuksianpunainen",
+      "alue": "Tampere",
+      "ala": "kätilö",
+      "ainejärjestö": "Pirate",
+      "oppilaitos": "Tampereen AMK"
+    },
+    "metadata": {
+      "hex": "background: deeppink; background-image: linear-gradient(to top right, deeppink 80%, #a064fa 81%);"
+    }
+  },
+  {
+    "id": "364",
+    "content": {
+      "vari": "punainen",
+      "alue": "Tampere",
+      "ala": "international business",
+      "ainejärjestö": "",
+      "oppilaitos": "Tampereen AMK"
+    },
+    "metadata": {
+      "hex": "background: red; color: white;"
+    }
+  },
+  {
+    "id": "365",
+    "content": {
+      "vari": "punainen",
+      "alue": "Tampere",
+      "ala": "psykologia",
+      "ainejärjestö": "Cortex",
+      "oppilaitos": "Tampereen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: red; color: white;"
+    }
+  },
+  {
+    "id": "366",
+    "content": {
+      "vari": "punainen",
+      "alue": "Tampere",
+      "ala": "konetekniikka",
+      "ainejärjestö": "Koneenrakentajakilta",
+      "oppilaitos": "Tampereen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: red; color: white;"
+    }
+  },
+  {
+    "id": "367",
+    "content": {
+      "vari": "punainen",
+      "alue": "Tampere",
+      "ala": "vieraat kielet",
+      "ainejärjestö": "Lexica",
+      "oppilaitos": "Tampereen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: red; color: white;"
+    }
+  },
+  {
+    "id": "368",
+    "content": {
+      "vari": "viininpunainen",
+      "alue": "Tampere",
+      "ala": "materiaalitekniikka",
+      "ainejärjestö": "Materiaali-insinöörikilta",
+      "oppilaitos": "Tampereen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: darkred; color: white;"
+    }
+  },
+  {
+    "id": "369",
+    "content": {
+      "vari": "viininpunainen",
+      "alue": "Tampere",
+      "ala": "historia",
+      "ainejärjestö": "Patina",
+      "oppilaitos": "Tampereen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: darkred; color: white;"
+    }
+  },
+  {
+    "id": "370",
+    "content": {
+      "vari": "oranssi",
+      "alue": "Tampere",
+      "ala": "robotiikka",
+      "ainejärjestö": "Robo",
+      "oppilaitos": "Tampereen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: darkorange;"
+    }
+  },
+  {
+    "id": "371",
+    "content": {
+      "vari": "oranssi",
+      "alue": "Tampere",
+      "ala": "journalistiikka",
+      "ainejärjestö": "Vostok",
+      "oppilaitos": "Tampereen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: darkorange;"
+    }
+  },
+  {
+    "id": "372",
+    "content": {
+      "vari": "keltainen",
+      "alue": "Tampere",
+      "ala": "automaatiotekniikka",
+      "ainejärjestö": "Automaatiotekniikan kilta",
+      "oppilaitos": "Tampereen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: yellow;"
+    }
+  },
+  {
+    "id": "373",
+    "content": {
+      "vari": "metsänvihreä",
+      "alue": "Tampere",
+      "ala": "ympäristötekniikka",
+      "ainejärjestö": "Ympäristöteekkarikilta",
+      "oppilaitos": "Tampereen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #4b780a; color: white;"
+    }
+  },
+  {
+    "id": "374",
+    "content": {
+      "vari": "vihreä",
+      "alue": "Tampere",
+      "ala": "environmental engineering, metsätalous",
+      "ainejärjestö": "Tampio",
+      "oppilaitos": "Tampereen AMK"
+    },
+    "metadata": {
+      "hex": "background: #14780a; color: white;"
+    }
+  },
+  {
+    "id": "375",
+    "content": {
+      "vari": "tummanvihreä",
+      "alue": "Tampere",
+      "ala": "politiikan tutkimus",
+      "ainejärjestö": "Iltakoulu",
+      "oppilaitos": "Tampereen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #14780a; color: white;"
+    }
+  },
+  {
+    "id": "376",
+    "content": {
+      "vari": "tummanvihreä",
+      "alue": "Tampere",
+      "ala": "varhaiskasvatus",
+      "ainejärjestö": "ITU",
+      "oppilaitos": "Tampereen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #14780a; color: white;"
+    }
+  },
+  {
+    "id": "377",
+    "content": {
+      "vari": "tummanvihreä",
+      "alue": "Tampere",
+      "ala": "elinikäinen oppiminen ja kasvatus",
+      "ainejärjestö": "Mentor",
+      "oppilaitos": "Tampereen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #14780a; color: white;"
+    }
+  },
+  {
+    "id": "378",
+    "content": {
+      "vari": "tummanvihreä",
+      "alue": "Tampere",
+      "ala": "hallintotieteet",
+      "ainejärjestö": "Staabi",
+      "oppilaitos": "Tampereen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #14780a; color: white;"
+    }
+  },
+  {
+    "id": "379",
+    "content": {
+      "vari": "tummanvihreä",
+      "alue": "Tampere",
+      "ala": "informaatiotutkimus, mediatutkimus",
+      "ainejärjestö": "UDK",
+      "oppilaitos": "Tampereen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #14780a; color: white;"
+    }
+  },
+  {
+    "id": "380",
+    "content": {
+      "vari": "turkoosi",
+      "alue": "Tampere",
+      "ala": "palveluliiketoiminta",
+      "ainejärjestö": "TaRe",
+      "oppilaitos": "Tampereen AMK"
+    },
+    "metadata": {
+      "hex": "background: #00ced1;"
+    }
+  },
+  {
+    "id": "381",
+    "content": {
+      "vari": "turkoosi",
+      "alue": "Tampere",
+      "ala": "yhteiskuntatutkimus",
+      "ainejärjestö": "Interaktio",
+      "oppilaitos": "Tampereen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #00ced1;"
+    }
+  },
+  {
+    "id": "382",
+    "content": {
+      "vari": "tummanturkoosi",
+      "alue": "Tampere",
+      "ala": "logopedia",
+      "ainejärjestö": "Ääni",
+      "oppilaitos": "Tampereen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #007896; color: white;"
+    }
+  },
+  {
+    "id": "383",
+    "content": {
+      "vari": "vaaleansininen",
+      "alue": "Tampere",
+      "ala": "sustainable urban development",
+      "ainejärjestö": "Urbanum",
+      "oppilaitos": "Tampereen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: lightskyblue;"
+    }
+  },
+  {
+    "id": "384",
+    "content": {
+      "vari": "sähkönsininen",
+      "alue": "Tampere",
+      "ala": "sähkötekniikka",
+      "ainejärjestö": "Sähkökilta",
+      "oppilaitos": "Tampereen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: blue; color: white;"
+    }
+  },
+  {
+    "id": "385",
+    "content": {
+      "vari": "sini-valkoinen",
+      "alue": "Tampere",
+      "ala": "vaihto-opiskelijat",
+      "ainejärjestö": "",
+      "oppilaitos": "Tampereen AMK"
+    },
+    "metadata": {
+      "hex": "background: blue; background-image: linear-gradient(120deg, blue 49%, white 51%);"
+    }
+  },
+  {
+    "id": "386",
+    "content": {
+      "vari": "tummansininen",
+      "alue": "Tampere",
+      "ala": "sosiaaliala",
+      "ainejärjestö": "Sopu",
+      "oppilaitos": "Tampereen AMK"
+    },
+    "metadata": {
+      "hex": "background: navy; color: white;"
+    }
+  },
+  {
+    "id": "387",
+    "content": {
+      "vari": "laivastonsininen",
+      "alue": "Tampere",
+      "ala": "kauppatieteet",
+      "ainejärjestö": "Boomi",
+      "oppilaitos": "Tampereen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: navy; color: white;"
+    }
+  },
+  {
+    "id": "388",
+    "content": {
+      "vari": "Suomen lipun sininen",
+      "alue": "Tampere",
+      "ala": "suomen kieli",
+      "ainejärjestö": "Kopula",
+      "oppilaitos": "Tampereen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: navy; color: white;"
+    }
+  },
+  {
+    "id": "389",
+    "content": {
+      "vari": "tummansininen",
+      "alue": "Tampere",
+      "ala": "luokanopettaja",
+      "ainejärjestö": "OKA",
+      "oppilaitos": "Tampereen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: navy; color: white;"
+    }
+  },
+  {
+    "id": "390",
+    "content": {
+      "vari": "tummansininen",
+      "alue": "Tampere",
+      "ala": "rakennustekniikka",
+      "ainejärjestö": "Tampereen Rakentajakilta",
+      "oppilaitos": "Tampereen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: navy; color: white;"
+    }
+  },
+  {
+    "id": "391",
+    "content": {
+      "vari": "violetti",
+      "alue": "Tampere",
+      "ala": "liiketalous",
+      "ainejärjestö": "TTO",
+      "oppilaitos": "Tampereen AMK"
+    },
+    "metadata": {
+      "hex": "background: indigo; color: white;"
+    }
+  },
+  {
+    "id": "392",
+    "content": {
+      "vari": "violetti",
+      "alue": "Tampere",
+      "ala": "bioteknologia",
+      "ainejärjestö": "Biopsi",
+      "oppilaitos": "Tampereen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: indigo; color: white;"
+    }
+  },
+  {
+    "id": "393",
+    "content": {
+      "vari": "violetti",
+      "alue": "Tampere",
+      "ala": "teknis-luonnontieteellinen koulutusohjelma",
+      "ainejärjestö": "Hiukkanen",
+      "oppilaitos": "Tampereen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: indigo; color: white;"
+    }
+  },
+  {
+    "id": "394",
+    "content": {
+      "vari": "piinharmaa",
+      "alue": "Tampere",
+      "ala": "matematiikka, tilastotiede, tietojenkäsittelytieteet",
+      "ainejärjestö": "Luuppi",
+      "oppilaitos": "Tampereen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: dimgrey; color: white;"
+    }
+  },
+  {
+    "id": "395",
+    "content": {
+      "vari": "harmaa",
+      "alue": "Tampere",
+      "ala": "tietojohtaminen",
+      "ainejärjestö": "Man@ger",
+      "oppilaitos": "Tampereen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: dimgrey; color: white;"
+    }
+  },
+  {
+    "id": "396",
+    "content": {
+      "vari": "musta",
+      "alue": "Tampere",
+      "ala": "musiikki",
+      "ainejärjestö": "MusTa",
+      "oppilaitos": "Tampereen AMK"
+    },
+    "metadata": {
+      "hex": "background: black; color: white;"
+    }
+  },
+  {
+    "id": "397",
+    "content": {
+      "vari": "musta",
+      "alue": "Tampere",
+      "ala": "media-ala",
+      "ainejärjestö": "Tarina",
+      "oppilaitos": "Tampereen AMK"
+    },
+    "metadata": {
+      "hex": "background: black; color: white;"
+    }
+  },
+  {
+    "id": "398",
+    "content": {
+      "vari": "yökerhonmusta",
+      "alue": "Tampere",
+      "ala": "tietojenkäsittely",
+      "ainejärjestö": "",
+      "oppilaitos": "Tampereen AMK"
+    },
+    "metadata": {
+      "hex": "background: black; color: white;"
+    }
+  },
+  {
+    "id": "399",
+    "content": {
+      "vari": "Filosofinvalkoinen",
+      "alue": "Tampere",
+      "ala": "filosofia",
+      "ainejärjestö": "Aatos",
+      "oppilaitos": "Tampereen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: black; color: white;"
+    }
+  },
+  {
+    "id": "400",
+    "content": {
+      "vari": "musta",
+      "alue": "Tampere",
+      "ala": "puheviestintä",
+      "ainejärjestö": "Reettorit",
+      "oppilaitos": "Tampereen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: black; color: white;"
+    }
+  },
+  {
+    "id": "401",
+    "content": {
+      "vari": "iloisen musta",
+      "alue": "Tampere",
+      "ala": "arkkitehtuuri",
+      "ainejärjestö": "Tampereen Arkkitehtikilta",
+      "oppilaitos": "Tampereen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: black; color: white;"
+    }
+  },
+  {
+    "id": "402",
+    "content": {
+      "vari": "musta",
+      "alue": "Tampere",
+      "ala": "kirjallisuustiede",
+      "ainejärjestö": "Teema",
+      "oppilaitos": "Tampereen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: black; color: white;"
+    }
+  },
+  {
+    "id": "403",
+    "content": {
+      "vari": "musta",
+      "alue": "Tampere",
+      "ala": "tietotekniikka",
+      "ainejärjestö": "TiTe",
+      "oppilaitos": "Tampereen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: black; color: white;"
+    }
+  },
+  {
+    "id": "404",
+    "content": {
+      "vari": "musta",
+      "alue": "Tampere",
+      "ala": "käännöstiede",
+      "ainejärjestö": "Transla",
+      "oppilaitos": "Tampereen yliopisto"
+    },
+    "metadata": {
+      "hex": "background: black; color: white;"
+    }
+  },
+  {
+    "id": "405",
+    "content": {
+      "vari": "ei haalaria",
+      "alue": "Tampere",
+      "ala": "poliisi",
+      "ainejärjestö": "",
+      "oppilaitos": "Poliisi-AMK"
+    },
+    "metadata": {
+      "hex": ""
+    }
+  },
+  {
+    "id": "406",
+    "content": {
+      "vari": "valkoinen",
+      "alue": "Turku",
+      "ala": "merenkulku",
+      "ainejärjestö": "ENÅ",
+      "oppilaitos": "Novia"
+    },
+    "metadata": {
+      "hex": "background: white;"
+    }
+  },
+  {
+    "id": "407",
+    "content": {
+      "vari": "valkoinen",
+      "alue": "Turku",
+      "ala": "suomen kieli",
+      "ainejärjestö": "Kanta",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: white;"
+    }
+  },
+  {
+    "id": "408",
+    "content": {
+      "vari": "valkoinen",
+      "alue": "Turku",
+      "ala": "kotimainen kirjallisuus",
+      "ainejärjestö": "Muusa",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: white;"
+    }
+  },
+  {
+    "id": "409",
+    "content": {
+      "vari": "valkoinen",
+      "alue": "Turku",
+      "ala": "luokanopettaja",
+      "ainejärjestö": "Opex",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: white;"
+    }
+  },
+  {
+    "id": "410",
+    "content": {
+      "vari": "valkoinen",
+      "alue": "Turku",
+      "ala": "farmasia",
+      "ainejärjestö": "Ex Tempore",
+      "oppilaitos": "Åbo Akademi"
+    },
+    "metadata": {
+      "hex": "background: white;"
+    }
+  },
+  {
+    "id": "411",
+    "content": {
+      "vari": "valkoinen",
+      "alue": "Turku",
+      "ala": "tietojenkäsittelytiede",
+      "ainejärjestö": "Infå",
+      "oppilaitos": "Åbo Akademi"
+    },
+    "metadata": {
+      "hex": "background: white;"
+    }
+  },
+  {
+    "id": "412",
+    "content": {
+      "vari": "valkoinen",
+      "alue": "Turku",
+      "ala": "Lääketieteellinen tekniikka ja terveysteknologia",
+      "ainejärjestö": "Asklepio",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: white; background-image: linear-gradient(to top right, white 80%, #a064fa 81%);"
+    }
+  },
+  {
+    "id": "413",
+    "content": {
+      "vari": "vaaleanpunainen",
+      "alue": "Turku",
+      "ala": "etnologia, folkloristiikka",
+      "ainejärjestö": "Kulturisten",
+      "oppilaitos": "Åbo Akademi"
+    },
+    "metadata": {
+      "hex": "background: lightcoral;"
+    }
+  },
+  {
+    "id": "414",
+    "content": {
+      "vari": "vaaleanpunainen",
+      "alue": "Turku",
+      "ala": "kätilö",
+      "ainejärjestö": "",
+      "oppilaitos": "Turun AMK"
+    },
+    "metadata": {
+      "hex": "background: lightcoral; background-image: linear-gradient(to top right, lightcoral 80%, blue 81%);"
+    }
+  },
+  {
+    "id": "415",
+    "content": {
+      "vari": "vaaleanpunainen",
+      "alue": "Turku",
+      "ala": "",
+      "ainejärjestö": "Åbo kåravdelning ÅKA",
+      "oppilaitos": "Novia"
+    },
+    "metadata": {
+      "hex": "background: lightcoral; background-image: linear-gradient(to top right, lightcoral 80%, black 81%);"
+    }
+  },
+  {
+    "id": "416",
+    "content": {
+      "vari": "vaaleanpunainen",
+      "alue": "Turku",
+      "ala": "taloustiede (valtiotieteet)",
+      "ainejärjestö": "T-Klubi",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: deeppink; color: white;"
+    }
+  },
+  {
+    "id": "417",
+    "content": {
+      "vari": "vaaleanpunainen",
+      "alue": "Turku",
+      "ala": "sukupuolentutkimus",
+      "ainejärjestö": "Judith",
+      "oppilaitos": "Åbo Akademi"
+    },
+    "metadata": {
+      "hex": "background: deeppink; color: white;"
+    }
+  },
+  {
+    "id": "418",
+    "content": {
+      "vari": "pinkki",
+      "alue": "Turku",
+      "ala": "konetekniikka",
+      "ainejärjestö": "Machina",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: deeppink; color: white;"
+    }
+  },
+  {
+    "id": "419",
+    "content": {
+      "vari": "punainen",
+      "alue": "Turku",
+      "ala": "yhteisöpedagogi, kulttuurituottaja",
+      "ainejärjestö": "HUMAKO",
+      "oppilaitos": "Humanistinen AMK"
+    },
+    "metadata": {
+      "hex": "background: red; color: white;"
+    }
+  },
+  {
+    "id": "420",
+    "content": {
+      "vari": "punainen",
+      "alue": "Turku",
+      "ala": "kasvatustiede",
+      "ainejärjestö": "Katko",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: red; color: white;"
+    }
+  },
+  {
+    "id": "421",
+    "content": {
+      "vari": "punainen",
+      "alue": "Turku",
+      "ala": "espanjan kieli ja kääntäminen",
+      "ainejärjestö": "Mañana",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: red; color: white;"
+    }
+  },
+  {
+    "id": "422",
+    "content": {
+      "vari": "kemistinpunainen",
+      "alue": "Turku",
+      "ala": "kemia, biokemia",
+      "ainejärjestö": "Turun Yliopiston Kemistit TYK",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: red; color: white;"
+    }
+  },
+  {
+    "id": "423",
+    "content": {
+      "vari": "punainen",
+      "alue": "Turku",
+      "ala": "valtiotiede",
+      "ainejärjestö": "SF-klubben",
+      "oppilaitos": "Åbo Akademi"
+    },
+    "metadata": {
+      "hex": "background: red; color: white;"
+    }
+  },
+  {
+    "id": "424",
+    "content": {
+      "vari": "punainen",
+      "alue": "Turku",
+      "ala": "terveysalat",
+      "ainejärjestö": "TSTS",
+      "oppilaitos": "Turun AMK"
+    },
+    "metadata": {
+      "hex": "background: red; color: white;"
+    }
+  },
+  {
+    "id": "425",
+    "content": {
+      "vari": "punaiset housut",
+      "alue": "Turku",
+      "ala": "ensihoitaja",
+      "ainejärjestö": "",
+      "oppilaitos": "Turun AMK"
+    },
+    "metadata": {
+      "hex": "background: red; background-image: linear-gradient(to top right, red 80%, lightgrey 81%);"
+    }
+  },
+  {
+    "id": "426",
+    "content": {
+      "vari": "viininpunainen",
+      "alue": "Turku",
+      "ala": "sosionomi",
+      "ainejärjestö": "Tasokas",
+      "oppilaitos": "Turun AMK"
+    },
+    "metadata": {
+      "hex": "background: darkred; color: white;"
+    }
+  },
+  {
+    "id": "427",
+    "content": {
+      "vari": "bolognanpunainen",
+      "alue": "Turku",
+      "ala": "oikeustiede",
+      "ainejärjestö": "Lex",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: darkred; color: white;"
+    }
+  },
+  {
+    "id": "428",
+    "content": {
+      "vari": "viininpunainen",
+      "alue": "Turku",
+      "ala": "oikeustiede",
+      "ainejärjestö": "Stadga",
+      "oppilaitos": "Åbo Akademi"
+    },
+    "metadata": {
+      "hex": "background: darkred; color: white;"
+    }
+  },
+  {
+    "id": "429",
+    "content": {
+      "vari": "Pantone 690C / viininpunainen",
+      "alue": "Turku",
+      "ala": "fysiikka",
+      "ainejärjestö": "Quantum",
+      "oppilaitos": "Åbo Akademi"
+    },
+    "metadata": {
+      "hex": "background: darkred; color: white;"
+    }
+  },
+  {
+    "id": "430",
+    "content": {
+      "vari": "viininpunainen",
+      "alue": "Turku",
+      "ala": "ruotsin kieli",
+      "ainejärjestö": "Östsvea",
+      "oppilaitos": "Åbo Akademi"
+    },
+    "metadata": {
+      "hex": "background: darkred; color: white;"
+    }
+  },
+  {
+    "id": "431",
+    "content": {
+      "vari": "viininpunainen",
+      "alue": "Turku",
+      "ala": "prosessi- ja materiaalitekniikka",
+      "ainejärjestö": "Elba",
+      "oppilaitos": "Turun AMK"
+    },
+    "metadata": {
+      "hex": "background: darkred; background-image: linear-gradient(to top right, darkred 80%, yellow 81%);"
+    }
+  },
+  {
+    "id": "432",
+    "content": {
+      "vari": "oranssi",
+      "alue": "Turku",
+      "ala": "tilastotiede",
+      "ainejärjestö": "Statistika",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: darkorange;"
+    }
+  },
+  {
+    "id": "433",
+    "content": {
+      "vari": "oranssi",
+      "alue": "Turku",
+      "ala": "matematiikka",
+      "ainejärjestö": "Sigma",
+      "oppilaitos": "Åbo Akademi"
+    },
+    "metadata": {
+      "hex": "background: darkorange;"
+    }
+  },
+  {
+    "id": "434",
+    "content": {
+      "vari": "oranssi-musta",
+      "alue": "Turku",
+      "ala": "historia",
+      "ainejärjestö": "Kleio",
+      "oppilaitos": "Åbo Akademi"
+    },
+    "metadata": {
+      "hex": "background: darkorange; background-image: linear-gradient(120deg, darkorange 49%, black 51%);"
+    }
+  },
+  {
+    "id": "435",
+    "content": {
+      "vari": "keltainen",
+      "alue": "Turku",
+      "ala": "viittomakieli, tulkkaus, asioimistulkkaus",
+      "ainejärjestö": "O’Diako",
+      "oppilaitos": "Diakonia-AMK"
+    },
+    "metadata": {
+      "hex": "background: yellow;"
+    }
+  },
+  {
+    "id": "436",
+    "content": {
+      "vari": "keltainen",
+      "alue": "Turku",
+      "ala": "liiketalous",
+      "ainejärjestö": "Trade",
+      "oppilaitos": "Turun AMK"
+    },
+    "metadata": {
+      "hex": "background: yellow;"
+    }
+  },
+  {
+    "id": "437",
+    "content": {
+      "vari": "keltainen",
+      "alue": "Turku",
+      "ala": "biolääketiede",
+      "ainejärjestö": "In Vitro Aboensis",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: yellow;"
+    }
+  },
+  {
+    "id": "438",
+    "content": {
+      "vari": "keltainen",
+      "alue": "Turku",
+      "ala": "kauppatieteet",
+      "ainejärjestö": "Merkantila Klubben",
+      "oppilaitos": "Åbo Akademi"
+    },
+    "metadata": {
+      "hex": "background: yellow;"
+    }
+  },
+  {
+    "id": "439",
+    "content": {
+      "vari": "keltainen",
+      "alue": "Turku",
+      "ala": "terveysala",
+      "ainejärjestö": "TSTS",
+      "oppilaitos": "Turun AMK"
+    },
+    "metadata": {
+      "hex": "background: yellow; background-image: linear-gradient(to top right, yellow 80%, red 81%);"
+    }
+  },
+  {
+    "id": "440",
+    "content": {
+      "vari": "vihreä",
+      "alue": "Turku",
+      "ala": "tietojenkäsittelytiede",
+      "ainejärjestö": "Asteriski",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #5adc64;"
+    }
+  },
+  {
+    "id": "441",
+    "content": {
+      "vari": "limenvihreä",
+      "alue": "Turku",
+      "ala": "sosiaalitieteet",
+      "ainejärjestö": "Sosiaalitieteiden klubi",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #5adc64;"
+    }
+  },
+  {
+    "id": "442",
+    "content": {
+      "vari": "vaaleanvihreä",
+      "alue": "Turku",
+      "ala": "kemiantekniikka",
+      "ainejärjestö": "Kemistklubben",
+      "oppilaitos": "Åbo Akademi"
+    },
+    "metadata": {
+      "hex": "background: #5adc64;"
+    }
+  },
+  {
+    "id": "443",
+    "content": {
+      "vari": "maastonvihreä",
+      "alue": "Turku",
+      "ala": "biologia, maantiede",
+      "ainejärjestö": "Synapsi",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #4b780a; color: white;"
+    }
+  },
+  {
+    "id": "444",
+    "content": {
+      "vari": "tummanvihreä",
+      "alue": "Turku",
+      "ala": "hoitotiede",
+      "ainejärjestö": "Adaptus",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #14780a; color: white;"
+    }
+  },
+  {
+    "id": "445",
+    "content": {
+      "vari": "vihreä",
+      "alue": "Turku",
+      "ala": "klassilliset kielet ja antiikin kulttuuri",
+      "ainejärjestö": "Palladion",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #14780a; color: white;"
+    }
+  },
+  {
+    "id": "446",
+    "content": {
+      "vari": "vihreä",
+      "alue": "Turku",
+      "ala": "italian kieli",
+      "ainejärjestö": "Pappagallo",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #14780a; color: white;"
+    }
+  },
+  {
+    "id": "447",
+    "content": {
+      "vari": "vihreä",
+      "alue": "Turku",
+      "ala": "pohjoismaiset kielet",
+      "ainejärjestö": "Skandica",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #14780a; color: white;"
+    }
+  },
+  {
+    "id": "448",
+    "content": {
+      "vari": "tummanvihreä",
+      "alue": "Turku",
+      "ala": "taidehistoria",
+      "ainejärjestö": "Eikon",
+      "oppilaitos": "Åbo Akademi"
+    },
+    "metadata": {
+      "hex": "background: #14780a; color: white;"
+    }
+  },
+  {
+    "id": "449",
+    "content": {
+      "vari": "viher-valkoinen",
+      "alue": "Turku",
+      "ala": "biotieteet",
+      "ainejärjestö": "Biologica",
+      "oppilaitos": "Åbo Akademi"
+    },
+    "metadata": {
+      "hex": "background: #14780a; background-image: linear-gradient(120deg, #14780a 49%, white 51%);"
+    }
+  },
+  {
+    "id": "450",
+    "content": {
+      "vari": "turkoosi",
+      "alue": "Turku",
+      "ala": "suuhygienisti, hammasteknikko",
+      "ainejärjestö": "Suukko",
+      "oppilaitos": "Turun AMK"
+    },
+    "metadata": {
+      "hex": "background: #00ced1;"
+    }
+  },
+  {
+    "id": "451",
+    "content": {
+      "vari": "turkoosi",
+      "alue": "Turku",
+      "ala": "logopedia",
+      "ainejärjestö": "Putex",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #00ced1;"
+    }
+  },
+  {
+    "id": "452",
+    "content": {
+      "vari": "turkoosi",
+      "alue": "Turku",
+      "ala": "venäjän kieli",
+      "ainejärjestö": "Slava",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: #00ced1;"
+    }
+  },
+  {
+    "id": "453",
+    "content": {
+      "vari": "baby blue",
+      "alue": "Turku",
+      "ala": "materiaalitekniikka",
+      "ainejärjestö": "Adamas",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: lightskyblue;"
+    }
+  },
+  {
+    "id": "454",
+    "content": {
+      "vari": "sininen",
+      "alue": "Turku",
+      "ala": "vaihto-opiskelijat",
+      "ainejärjestö": "ESN-IAC",
+      "oppilaitos": "Turun AMK"
+    },
+    "metadata": {
+      "hex": "background: blue; color: white;"
+    }
+  },
+  {
+    "id": "455",
+    "content": {
+      "vari": "sininen",
+      "alue": "Turku",
+      "ala": "laskentatoimi, rahoitus, yritysjuridiikka",
+      "ainejärjestö": "Aktiiva",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: blue; color: white;"
+    }
+  },
+  {
+    "id": "456",
+    "content": {
+      "vari": "sininen",
+      "alue": "Turku",
+      "ala": "tulevaisuudentutkimus",
+      "ainejärjestö": "Black Swans",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: blue; color: white;"
+    }
+  },
+  {
+    "id": "457",
+    "content": {
+      "vari": "sininen",
+      "alue": "Turku",
+      "ala": "taloustiede (kauppatieteet)",
+      "ainejärjestö": "Kartelli",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: blue; color: white;"
+    }
+  },
+  {
+    "id": "458",
+    "content": {
+      "vari": "sininen",
+      "alue": "Turku",
+      "ala": "kansainvälinen liiketoiminta",
+      "ainejärjestö": "KKOY",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: blue; color: white;"
+    }
+  },
+  {
+    "id": "459",
+    "content": {
+      "vari": "sininen",
+      "alue": "Turku",
+      "ala": "toimitusketjujen johtaminen, logistiikka",
+      "ainejärjestö": "Kolmas Osapuoli",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: blue; color: white;"
+    }
+  },
+  {
+    "id": "460",
+    "content": {
+      "vari": "sininen",
+      "alue": "Turku",
+      "ala": "liikesaksa",
+      "ainejärjestö": "KY-Hansa",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: blue; color: white;"
+    }
+  },
+  {
+    "id": "461",
+    "content": {
+      "vari": "sininen",
+      "alue": "Turku",
+      "ala": "Venäjän kieli, kauppa ja kulttuuri",
+      "ainejärjestö": "KY-Perestroika",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: blue; color: white;"
+    }
+  },
+  {
+    "id": "462",
+    "content": {
+      "vari": "sininen",
+      "alue": "Turku",
+      "ala": "liikeranska",
+      "ainejärjestö": "KY-Tricolore",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: blue; color: white;"
+    }
+  },
+  {
+    "id": "463",
+    "content": {
+      "vari": "sininen",
+      "alue": "Turku",
+      "ala": "markkinointi",
+      "ainejärjestö": "M-klubi",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: blue; color: white;"
+    }
+  },
+  {
+    "id": "464",
+    "content": {
+      "vari": "sininen",
+      "alue": "Turku",
+      "ala": "biotekniikan ja elintarvikekehityksen DI",
+      "ainejärjestö": "Nucleus",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: blue; color: white;"
+    }
+  },
+  {
+    "id": "465",
+    "content": {
+      "vari": "sininen",
+      "alue": "Turku",
+      "ala": "tietojärjestelmätiede",
+      "ainejärjestö": "TuKYData",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: blue; color: white;"
+    }
+  },
+  {
+    "id": "466",
+    "content": {
+      "vari": "sininen",
+      "alue": "Turku",
+      "ala": "uskontotiede",
+      "ainejärjestö": "Gnosis",
+      "oppilaitos": "Åbo Akademi"
+    },
+    "metadata": {
+      "hex": "background: blue; color: white;"
+    }
+  },
+  {
+    "id": "467",
+    "content": {
+      "vari": "sininen",
+      "alue": "Turku",
+      "ala": "englannin kieli",
+      "ainejärjestö": "Anglica",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: navy; color: white;"
+    }
+  },
+  {
+    "id": "468",
+    "content": {
+      "vari": "sininen",
+      "alue": "Turku",
+      "ala": "ranskan ja romanian kieli",
+      "ainejärjestö": "Forum Romanum",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: navy; color: white;"
+    }
+  },
+  {
+    "id": "469",
+    "content": {
+      "vari": "sininen",
+      "alue": "Turku",
+      "ala": "käännöstiede",
+      "ainejärjestö": "Kääntöpiiri",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: navy; color: white;"
+    }
+  },
+  {
+    "id": "470",
+    "content": {
+      "vari": "navy blue",
+      "alue": "Turku",
+      "ala": "poliittinen historia, valtio-oppi",
+      "ainejärjestö": "P-klubi",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: navy; color: white;"
+    }
+  },
+  {
+    "id": "471",
+    "content": {
+      "vari": "tummansininen",
+      "alue": "Turku",
+      "ala": "kauppatiede",
+      "ainejärjestö": "Turun KY",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: navy; color: white;"
+    }
+  },
+  {
+    "id": "472",
+    "content": {
+      "vari": "tummansininen",
+      "alue": "Turku",
+      "ala": "psykologia",
+      "ainejärjestö": "Impuls",
+      "oppilaitos": "Åbo Akademi"
+    },
+    "metadata": {
+      "hex": "background: navy; color: white;"
+    }
+  },
+  {
+    "id": "473",
+    "content": {
+      "vari": "tummansininen",
+      "alue": "Turku",
+      "ala": "kirjallisuustiede",
+      "ainejärjestö": "Prosa",
+      "oppilaitos": "Åbo Akademi"
+    },
+    "metadata": {
+      "hex": "background: navy; color: white;"
+    }
+  },
+  {
+    "id": "474",
+    "content": {
+      "vari": "tummansininen",
+      "alue": "Turku",
+      "ala": "logopedia",
+      "ainejärjestö": "Vocalis",
+      "oppilaitos": "Åbo Akademi"
+    },
+    "metadata": {
+      "hex": "background: navy; color: white;"
+    }
+  },
+  {
+    "id": "475",
+    "content": {
+      "vari": "violetti",
+      "alue": "Turku",
+      "ala": "matematiikka, fysiikka",
+      "ainejärjestö": "Delta",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: indigo; color: white;"
+    }
+  },
+  {
+    "id": "476",
+    "content": {
+      "vari": "violetti",
+      "alue": "Turku",
+      "ala": "taidehistoria",
+      "ainejärjestö": "Kuvatus",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: indigo; color: white;"
+    }
+  },
+  {
+    "id": "477",
+    "content": {
+      "vari": "violetti",
+      "alue": "Turku",
+      "ala": "ranskan kieli",
+      "ainejärjestö": "Astérix",
+      "oppilaitos": "Åbo Akademi"
+    },
+    "metadata": {
+      "hex": "background: indigo; color: white;"
+    }
+  },
+  {
+    "id": "478",
+    "content": {
+      "vari": "violetti",
+      "alue": "Turku",
+      "ala": "englannin kieli",
+      "ainejärjestö": "Britannica",
+      "oppilaitos": "Åbo Akademi"
+    },
+    "metadata": {
+      "hex": "background: indigo; color: white;"
+    }
+  },
+  {
+    "id": "479",
+    "content": {
+      "vari": "violetti",
+      "alue": "Turku",
+      "ala": "venäjän kieli",
+      "ainejärjestö": "Druzjba",
+      "oppilaitos": "Åbo Akademi"
+    },
+    "metadata": {
+      "hex": "background: indigo; color: white;"
+    }
+  },
+  {
+    "id": "480",
+    "content": {
+      "vari": "violetti",
+      "alue": "Turku",
+      "ala": "saksan kieli",
+      "ainejärjestö": "Eszett",
+      "oppilaitos": "Åbo Akademi"
+    },
+    "metadata": {
+      "hex": "background: indigo; color: white;"
+    }
+  },
+  {
+    "id": "481",
+    "content": {
+      "vari": "violetti",
+      "alue": "Turku",
+      "ala": "luokanopettaja",
+      "ainejärjestö": "FSLF",
+      "oppilaitos": "Åbo Akademi"
+    },
+    "metadata": {
+      "hex": "background: indigo; color: white;"
+    }
+  },
+  {
+    "id": "482",
+    "content": {
+      "vari": "violetti",
+      "alue": "Turku",
+      "ala": "teologia",
+      "ainejärjestö": "TSF",
+      "oppilaitos": "Åbo Akademi"
+    },
+    "metadata": {
+      "hex": "background: indigo; color: white;"
+    }
+  },
+  {
+    "id": "483",
+    "content": {
+      "vari": "violetti",
+      "alue": "Turku",
+      "ala": "suomen kieli",
+      "ainejärjestö": "Välkky",
+      "oppilaitos": "Åbo Akademi"
+    },
+    "metadata": {
+      "hex": "background: indigo; color: white;"
+    }
+  },
+  {
+    "id": "484",
+    "content": {
+      "vari": "violetti",
+      "alue": "Turku",
+      "ala": "tekniikka",
+      "ainejärjestö": "TIO",
+      "oppilaitos": "Turun AMK"
+    },
+    "metadata": {
+      "hex": "background: indigo; background-image: linear-gradient(to top right, indigo 80%, yellow 81%);"
+    }
+  },
+  {
+    "id": "485",
+    "content": {
+      "vari": "violetti-musta",
+      "alue": "Turku",
+      "ala": "psykologia",
+      "ainejärjestö": "Fobia",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: indigo; background-image: linear-gradient(120deg, indigo 49%, black 51%);"
+    }
+  },
+  {
+    "id": "486",
+    "content": {
+      "vari": "harmaa",
+      "alue": "Turku",
+      "ala": "geologia",
+      "ainejärjestö": "Pulterit",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: lightgrey;"
+    }
+  },
+  {
+    "id": "487",
+    "content": {
+      "vari": "harmaa",
+      "alue": "Turku",
+      "ala": "maantiede",
+      "ainejärjestö": "Pulterit",
+      "oppilaitos": "Åbo Akademi"
+    },
+    "metadata": {
+      "hex": "background: lightgrey;"
+    }
+  },
+  {
+    "id": "488",
+    "content": {
+      "vari": "harmaa",
+      "alue": "Turku",
+      "ala": "muotoilu",
+      "ainejärjestö": "Tom",
+      "oppilaitos": "Turun AMK"
+    },
+    "metadata": {
+      "hex": "background: dimgrey; color: white;"
+    }
+  },
+  {
+    "id": "489",
+    "content": {
+      "vari": "harmaa",
+      "alue": "Turku",
+      "ala": "folkloristiikka, kansatiede, uskontotiede",
+      "ainejärjestö": "Kutu",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: dimgrey; color: white;"
+    }
+  },
+  {
+    "id": "490",
+    "content": {
+      "vari": "musta",
+      "alue": "Turku",
+      "ala": "IB-tradenomi",
+      "ainejärjestö": "",
+      "oppilaitos": "Turun AMK"
+    },
+    "metadata": {
+      "hex": "background: black; color: white;"
+    }
+  },
+  {
+    "id": "491",
+    "content": {
+      "vari": "musta",
+      "alue": "Turku",
+      "ala": "filosofia",
+      "ainejärjestö": "Dialectica",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: black; color: white;"
+    }
+  },
+  {
+    "id": "492",
+    "content": {
+      "vari": "musta",
+      "alue": "Turku",
+      "ala": "tieto- ja viestintätekniikan DI",
+      "ainejärjestö": "Digit",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: black; color: white;"
+    }
+  },
+  {
+    "id": "493",
+    "content": {
+      "vari": "musta",
+      "alue": "Turku",
+      "ala": "mediatutkimus",
+      "ainejärjestö": "Hurma",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: black; color: white;"
+    }
+  },
+  {
+    "id": "494",
+    "content": {
+      "vari": "musta viitta",
+      "alue": "Turku",
+      "ala": "historia",
+      "ainejärjestö": "Kritiikki",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: black; color: white;"
+    }
+  },
+  {
+    "id": "495",
+    "content": {
+      "vari": "musta",
+      "alue": "Turku",
+      "ala": "suomalais-ugrilainen kielentutkimus",
+      "ainejärjestö": "Sugri",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: black; color: white;"
+    }
+  },
+  {
+    "id": "496",
+    "content": {
+      "vari": "musta",
+      "alue": "Turku",
+      "ala": "hammaslääketiede",
+      "ainejärjestö": "THLKS (Turun hammaslääketieteen kandidaattiseura)",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: black; color: white;"
+    }
+  },
+  {
+    "id": "497",
+    "content": {
+      "vari": "musta",
+      "alue": "Turku",
+      "ala": "lääketiede",
+      "ainejärjestö": "TLKS (Turun Lääketieteenkandidaattiseura)",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: black; color: white;"
+    }
+  },
+  {
+    "id": "498",
+    "content": {
+      "vari": "musta",
+      "alue": "Turku",
+      "ala": "musiikkitiede",
+      "ainejärjestö": "Tritonus",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: black; color: white;"
+    }
+  },
+  {
+    "id": "499",
+    "content": {
+      "vari": "musta",
+      "alue": "Turku",
+      "ala": "arkeologia",
+      "ainejärjestö": "Vare",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: black; color: white;"
+    }
+  },
+  {
+    "id": "500",
+    "content": {
+      "vari": "musta",
+      "alue": "Turku",
+      "ala": "tietotekniikka",
+      "ainejärjestö": "DaTe",
+      "oppilaitos": "Åbo Akademi"
+    },
+    "metadata": {
+      "hex": "background: black; color: white;"
+    }
+  },
+  {
+    "id": "501",
+    "content": {
+      "vari": "musta",
+      "alue": "Turku",
+      "ala": "musiikkitiede",
+      "ainejärjestö": "Otto",
+      "oppilaitos": "Åbo Akademi"
+    },
+    "metadata": {
+      "hex": "background: black; color: white;"
+    }
+  },
+  {
+    "id": "502",
+    "content": {
+      "vari": "musta",
+      "alue": "Turku",
+      "ala": "filosofia",
+      "ainejärjestö": "Warum",
+      "oppilaitos": "Åbo Akademi"
+    },
+    "metadata": {
+      "hex": "background: black; color: white;"
+    }
+  },
+  {
+    "id": "503",
+    "content": {
+      "vari": "musta-viininpunainen",
+      "alue": "Turku",
+      "ala": "fonetiikka",
+      "ainejärjestö": "Foneemi",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: black; background-image: linear-gradient(120deg, black 49%, darkred 51%);"
+    }
+  },
+  {
+    "id": "504",
+    "content": {
+      "vari": "musta-neonkeltainen",
+      "alue": "Turku",
+      "ala": "rakennusala",
+      "ainejärjestö": "Trok",
+      "oppilaitos": "Turun AMK"
+    },
+    "metadata": {
+      "hex": "background: black; background-image: linear-gradient(120deg, black 49%, yellow 51%);"
+    }
+  },
+  {
+    "id": "505",
+    "content": {
+      "vari": "musta-turkoosi",
+      "alue": "Turku",
+      "ala": "Taideakatemia",
+      "ainejärjestö": "TOY",
+      "oppilaitos": "Turun AMK"
+    },
+    "metadata": {
+      "hex": "background: black; background-image: linear-gradient(120deg, black 49%, #00ced1 51%);"
+    }
+  },
+  {
+    "id": "506",
+    "content": {
+      "vari": "musta-puna-keltainen",
+      "alue": "Turku",
+      "ala": "saksan kieli",
+      "ainejärjestö": "Germanica",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": "background: black; background-image: linear-gradient(120deg, black 32%, red 34%, red 65%, yellow 67%);"
+    }
+  },
+  {
+    "id": "507",
+    "content": {
+      "vari": "ei haalaria",
+      "alue": "Turku",
+      "ala": "sukupuolentutkimus",
+      "ainejärjestö": "F-piste",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": ""
+    }
+  },
+  {
+    "id": "508",
+    "content": {
+      "vari": "ei haalaria",
+      "alue": "Turku",
+      "ala": "luova kirjoittaminen",
+      "ainejärjestö": "Kammio",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": ""
+    }
+  },
+  {
+    "id": "509",
+    "content": {
+      "vari": "ei haalaria",
+      "alue": "Turku",
+      "ala": "museologia",
+      "ainejärjestö": "Museion",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": ""
+    }
+  },
+  {
+    "id": "510",
+    "content": {
+      "vari": "ei haalaria",
+      "alue": "Turku",
+      "ala": "yleinen kirjallisuustiede",
+      "ainejärjestö": "Prometheus",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": ""
+    }
+  },
+  {
+    "id": "511",
+    "content": {
+      "vari": "ei haalaria",
+      "alue": "Turku",
+      "ala": "Itä-Aasian tutkimus (maisteri)",
+      "ainejärjestö": "Taotao",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": ""
+    }
+  },
+  {
+    "id": "512",
+    "content": {
+      "vari": "ei haalaria",
+      "alue": "Turku",
+      "ala": "aineenopettaja",
+      "ainejärjestö": "Turun Auskultantit (Turaus)",
+      "oppilaitos": "Turun yliopisto"
+    },
+    "metadata": {
+      "hex": ""
+    }
+  },
+  {
+    "id": "513",
+    "content": {
+      "vari": "valkoinen",
+      "alue": "Vaasa",
+      "ala": "kauppatieteet",
+      "ainejärjestö": "SHS",
+      "oppilaitos": "Hanken"
+    },
+    "metadata": {
+      "hex": "background: white;"
+    }
+  },
+  {
+    "id": "514",
+    "content": {
+      "vari": "valkoinen",
+      "alue": "Vaasa",
+      "ala": "kätilö, sairaanhoitaja, terveydenhoitaja; sosionomi, estenomi",
+      "ainejärjestö": "N.U.D.",
+      "oppilaitos": "Novia"
+    },
+    "metadata": {
+      "hex": "background: white;"
+    }
+  },
+  {
+    "id": "515",
+    "content": {
+      "vari": "valkoinen",
+      "alue": "Vaasa",
+      "ala": "hoitoala",
+      "ainejärjestö": "VOSU",
+      "oppilaitos": "Vaasan AMK"
+    },
+    "metadata": {
+      "hex": "background: white;"
+    }
+  },
+  {
+    "id": "516",
+    "content": {
+      "vari": "vaaleanpunainen",
+      "alue": "Vaasa",
+      "ala": "pedagogiikka",
+      "ainejärjestö": "Pedactus",
+      "oppilaitos": "Åbo Akademi"
+    },
+    "metadata": {
+      "hex": "background: lightcoral;"
+    }
+  },
+  {
+    "id": "517",
+    "content": {
+      "vari": "punainen",
+      "alue": "Vaasa",
+      "ala": "kaikki alat",
+      "ainejärjestö": "VYY",
+      "oppilaitos": "Vaasan yliopisto"
+    },
+    "metadata": {
+      "hex": "background: red; color: white;"
+    }
+  },
+  {
+    "id": "518",
+    "content": {
+      "vari": "punainen",
+      "alue": "Vaasa",
+      "ala": "varhaiskasvatus",
+      "ainejärjestö": "StuBi",
+      "oppilaitos": "Åbo Akademi"
+    },
+    "metadata": {
+      "hex": "background: red; color: white;"
+    }
+  },
+  {
+    "id": "519",
+    "content": {
+      "vari": "tummanpunainen",
+      "alue": "Vaasa",
+      "ala": "oikeustiede",
+      "ainejärjestö": "Justus",
+      "oppilaitos": "Helsingin yliopisto"
+    },
+    "metadata": {
+      "hex": "background: darkred; color: white;"
+    }
+  },
+  {
+    "id": "520",
+    "content": {
+      "vari": "keltainen",
+      "alue": "Vaasa",
+      "ala": "",
+      "ainejärjestö": "Filicia",
+      "oppilaitos": "Novia"
+    },
+    "metadata": {
+      "hex": "background: yellow;"
+    }
+  },
+  {
+    "id": "521",
+    "content": {
+      "vari": "keltainen",
+      "alue": "Vaasa",
+      "ala": "sosiaaliala",
+      "ainejärjestö": "VOSU",
+      "oppilaitos": "Vaasan AMK"
+    },
+    "metadata": {
+      "hex": "background: yellow;"
+    }
+  },
+  {
+    "id": "522",
+    "content": {
+      "vari": "keltainen",
+      "alue": "Vaasa",
+      "ala": "energiatekniikka",
+      "ainejärjestö": "EnTech",
+      "oppilaitos": "Åbo Akademi"
+    },
+    "metadata": {
+      "hex": "background: yellow;"
+    }
+  },
+  {
+    "id": "523",
+    "content": {
+      "vari": "vihreä",
+      "alue": "Vaasa",
+      "ala": "liiketalous",
+      "ainejärjestö": "Vaasan tradenomiopiskelijat VATO",
+      "oppilaitos": "Vaasan AMK"
+    },
+    "metadata": {
+      "hex": "background: #14780a; color: white;"
+    }
+  },
+  {
+    "id": "524",
+    "content": {
+      "vari": "suonvihreä",
+      "alue": "Vaasa",
+      "ala": "sosionomi, estenomi",
+      "ainejärjestö": "N.U.D.",
+      "oppilaitos": "Novia"
+    },
+    "metadata": {
+      "hex": "background: #14780a; color: white;"
+    }
+  },
+  {
+    "id": "525",
+    "content": {
+      "vari": "sininen",
+      "alue": "Vaasa",
+      "ala": "sosiaalitieteet, kehityspsykologia",
+      "ainejärjestö": "Katharsis",
+      "oppilaitos": "Åbo Akademi"
+    },
+    "metadata": {
+      "hex": "background: blue; color: white;"
+    }
+  },
+  {
+    "id": "526",
+    "content": {
+      "vari": "sininen",
+      "alue": "Vaasa",
+      "ala": "valtiotiede",
+      "ainejärjestö": "Politivas",
+      "oppilaitos": "Åbo Akademi"
+    },
+    "metadata": {
+      "hex": "background: blue; color: white;"
+    }
+  },
+  {
+    "id": "527",
+    "content": {
+      "vari": "tummansininen",
+      "alue": "Vaasa",
+      "ala": "tekniikka",
+      "ainejärjestö": "Vaasan Insinööriopiskelijat VIO",
+      "oppilaitos": "Vaasan AMK"
+    },
+    "metadata": {
+      "hex": "background: navy; color: white;"
+    }
+  },
+  {
+    "id": "528",
+    "content": {
+      "vari": "violetti",
+      "alue": "Vaasa",
+      "ala": "käsityötiede",
+      "ainejärjestö": "Arte",
+      "oppilaitos": "Åbo Akademi"
+    },
+    "metadata": {
+      "hex": "background: indigo; color: white;"
+    }
+  },
+  {
+    "id": "529",
+    "content": {
+      "vari": "violetti",
+      "alue": "Vaasa",
+      "ala": "kotitaloustiede",
+      "ainejärjestö": "Gastro",
+      "oppilaitos": "Åbo Akademi"
+    },
+    "metadata": {
+      "hex": "background: indigo; color: white;"
+    }
+  },
+  {
+    "id": "530",
+    "content": {
+      "vari": "violetti",
+      "alue": "Vaasa",
+      "ala": "erityispedagogiikka",
+      "ainejärjestö": "SPirre",
+      "oppilaitos": "Åbo Akademi"
+    },
+    "metadata": {
+      "hex": "background: indigo; color: white;"
+    }
+  },
+  {
+    "id": "531",
+    "content": {
+      "vari": "musta",
+      "alue": "Vaasa",
+      "ala": "tekniikka",
+      "ainejärjestö": "Vaasan Insinööriopiskelijat VIO",
+      "oppilaitos": "Vaasan AMK"
+    },
+    "metadata": {
+      "hex": "background: black; color: white;"
+    }
+  },
+  {
+    "id": "532",
+    "content": {
+      "vari": "musta",
+      "alue": "Varkaus",
+      "ala": "insinööri",
+      "ainejärjestö": "WAIO",
+      "oppilaitos": "Savonia"
+    },
+    "metadata": {
+      "hex": "background: black; color: white;"
+    }
+  },
+  {
+    "id": "533",
+    "content": {
+      "vari": "petroolinsininen",
+      "alue": "Vierumäki",
+      "ala": "liikunta ja vapaa-aika",
+      "ainejärjestö": "Helga",
+      "oppilaitos": "Haaga-Helia"
+    },
+    "metadata": {
+      "hex": "background: blue; color: white;"
+    }
+  },
+  {
+    "id": "534",
+    "content": {
+      "vari": "viininpunainen",
+      "alue": "Ylivieska",
+      "ala": "sosiaaliala",
+      "ainejärjestö": "",
+      "oppilaitos": "Centria"
+    },
+    "metadata": {
+      "hex": "background: darkred; color: white;"
+    }
+  },
+  {
+    "id": "535",
+    "content": {
+      "vari": "sininen",
+      "alue": "Ylivieska",
+      "ala": "yhteisöpedagogi",
+      "ainejärjestö": "",
+      "oppilaitos": "Centria"
+    },
+    "metadata": {
+      "hex": "background: blue; color: white;"
+    }
+  },
+  {
+    "id": "536",
+    "content": {
+      "vari": "violetti",
+      "alue": "Ylivieska",
+      "ala": "tekniikka",
+      "ainejärjestö": "",
+      "oppilaitos": "Centria"
+    },
+    "metadata": {
+      "hex": "background: indigo; color: white;"
+    }
+  },
+  {
+    "id": "537",
+    "content": {
+      "vari": "musta",
+      "alue": "Ylivieska",
+      "ala": "liiketalous",
+      "ainejärjestö": "",
+      "oppilaitos": "Centria"
+    },
+    "metadata": {
+      "hex": "background: black; color: white;"
+    }
+  }
+]
