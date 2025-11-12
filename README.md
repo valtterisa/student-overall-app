@@ -40,4 +40,4 @@ For any questions or feedback, feel free to reach out:
 
 ---
 
-Made with ❤️ by [@valtterisa](https://github.com/valtterisa)
+Made by [@valtterisa](https://github.com/valtterisa)

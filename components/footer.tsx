@@ -31,7 +31,7 @@ export default function Footer() {
           </div>
         </div>
         <p className="mt-4 text-center text-sm text-black">
-          Made with 💖 by{" "}
+          Made by{" "}
           <Link
             href="https://valtterisavonen.fi"
             className="font-semibold hover:underline"

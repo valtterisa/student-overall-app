@@ -147,6 +147,12 @@ export default async function ColorPage({ params }: Props) {
         name: `${capitalizedColor} haalari - ${uni.oppilaitos}`,
         description: `${capitalizedColor} haalari ${uni.ala ? `- ${uni.ala}` : ""} ${uni.ainejärjestö ? `(${uni.ainejärjestö})` : ""}`,
         url: `https://haalarikone.fi/haalari/${uni.id}`,
+        offers: {
+          "@type": "Offer",
+          availability: "https://schema.org/InStock",
+          price: "0",
+          priceCurrency: "EUR",
+        },
       },
     })),
   };
