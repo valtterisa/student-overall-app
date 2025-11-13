@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { Button } from "./ui/button";
-import { Card, CardContent } from "./ui/card";
 import {
   Collapsible,
   CollapsibleContent,
@@ -19,12 +18,11 @@ import {
   SelectValue,
 } from "./ui/select";
 import {
-  Search,
+  Search as SearchIcon,
   ChevronDown,
   ChevronUp,
   X,
   Settings,
-  Check,
 } from "lucide-react";
 import { Criteria } from "./search-container";
 import { colorData } from "../data/mockData";
@@ -42,6 +40,7 @@ interface SearchFormProps {
   resultCount: number;
   draftFilterResultCount: number;
   hasSearched: boolean;
+  isSearching?: boolean;
 }
 
 export default function SearchForm({
@@ -57,8 +56,11 @@ export default function SearchForm({
   resultCount,
   draftFilterResultCount,
   hasSearched,
+  isSearching = false,
 }: SearchFormProps) {
   const [isAdvancedSearchOpen, setIsAdvancedSearchOpen] = useState(false);
+  const [isUpserting, setIsUpserting] = useState(false);
+  const [upsertSuccess, setUpsertSuccess] = useState(false);
 
   const handleTextSearchChange = (value: string) => {
     onTextSearchChange(value);
@@ -74,6 +76,23 @@ export default function SearchForm({
   const handleClear = () => {
     onClearAll();
     setIsAdvancedSearchOpen(false);
+  };
+
+  const handleUpsert = async () => {
+    setIsUpserting(true);
+    setUpsertSuccess(false);
+    try {
+      const res = await fetch("/api/upsert", { method: "POST" });
+      const data = await res.json();
+      if (data.success) {
+        setUpsertSuccess(true);
+        setTimeout(() => setUpsertSuccess(false), 3000);
+      }
+    } catch (error) {
+      console.error("Upsert error:", error);
+    } finally {
+      setIsUpserting(false);
+    }
   };
 
   const hasActiveFilters =
@@ -99,7 +118,7 @@ export default function SearchForm({
         <div className="space-y-4">
           <div className="space-y-1.5">
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4 pointer-events-none" />
+              <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4 pointer-events-none" />
               <Input
                 id="text-search"
                 type="text"
@@ -107,8 +126,14 @@ export default function SearchForm({
                 onChange={(e) => handleTextSearchChange(e.target.value)}
                 placeholder="Kirjoita esim. yliopiston nimi, ala tai väri..."
                 className="pl-9 pr-9 h-10 text-sm bg-white text-foreground border-input focus:ring-0 focus-visible:ring-0"
+                disabled={isSearching}
               />
-              {selectedCriteria.textSearch && (
+              {isSearching && (
+                <div className="absolute right-2.5 top-1/2 transform -translate-y-1/2">
+                  <div className="w-4 h-4 border-2 border-green border-t-transparent rounded-full animate-spin" />
+                </div>
+              )}
+              {selectedCriteria.textSearch && !isSearching && (
                 <button
                   type="button"
                   onClick={() => handleTextSearchChange("")}
@@ -119,7 +144,6 @@ export default function SearchForm({
                 </button>
               )}
             </div>
-            
           </div>
 
           <div className="pt-3 border-t border-border/50">
@@ -305,24 +329,27 @@ export default function SearchForm({
                     className="h-10 text-sm bg-green hover:bg-green/90 text-white mt-2"
                   >
                     Suodata{" "}
-                    {draftFilterResultCount >= 0 && `(${draftFilterResultCount})`}
+                    {draftFilterResultCount >= 0 &&
+                      `(${draftFilterResultCount})`}
                   </Button>
                 )}
               </CollapsibleContent>
             </Collapsible>
           </div>
 
-          {(selectedCriteria.textSearch || hasActiveFilters) && (
-            <Button
-              variant="outline"
-              onClick={handleClear}
-              className="h-10 text-sm bg-white text-foreground border-input hover:bg-muted w-full mt-2"
-              type="button"
-            >
-              <X className="w-4 h-4 mr-2" />
-              Tyhjennä
-            </Button>
-          )}
+          <div className="flex mt-2">
+            {(selectedCriteria.textSearch || hasActiveFilters) && (
+              <Button
+                variant="outline"
+                onClick={handleClear}
+                className="h-10 text-sm bg-white text-foreground border-input hover:bg-muted flex-1"
+                type="button"
+              >
+                <X className="w-4 h-4 mr-2" />
+                Tyhjennä
+              </Button>
+            )}
+          </div>
         </div>
       </div>
     </motion.div>

@@ -5,7 +5,11 @@ import { motion } from "framer-motion";
 import SearchForm from "./search-form";
 import ResultsDisplay from "./result-display";
 import PlaceholderDisplay from "./placeholder-display";
-import { createFuseInstance, searchUniversities } from "@/lib/search-utils";
+import {
+  createFuseInstance,
+  searchUniversities,
+  searchUniversitiesAPI,
+} from "@/lib/search-utils";
 import { colorData } from "../data/mockData";
 import type { University } from "@/types/university";
 
@@ -59,6 +63,7 @@ export default function SearchContainer({
 
   const [results, setResults] = useState<University[]>([]);
   const [hasSearched, setHasSearched] = useState(false);
+  const [isSearching, setIsSearching] = useState(false);
 
   const fuse = useMemo(
     () => createFuseInstance(initialUniversities),
@@ -95,14 +100,30 @@ export default function SearchContainer({
     ]
   );
 
-  const performSearch = useCallback(() => {
+  const performSearch = useCallback(async () => {
+    setIsSearching(true);
     let searchResults: University[] = [];
 
     if (selectedCriteria.textSearch.trim().length >= 2) {
-      searchResults = searchUniversities(
-        fuse,
-        selectedCriteria.textSearch.trim()
-      );
+      try {
+        const apiResults = await searchUniversitiesAPI(
+          selectedCriteria.textSearch.trim()
+        );
+        if (apiResults.length > 0) {
+          searchResults = apiResults;
+        } else {
+          searchResults = searchUniversities(
+            fuse,
+            selectedCriteria.textSearch.trim()
+          );
+        }
+      } catch (error) {
+        console.error("API search failed, falling back to Fuse:", error);
+        searchResults = searchUniversities(
+          fuse,
+          selectedCriteria.textSearch.trim()
+        );
+      }
     } else {
       searchResults = initialUniversities;
     }
@@ -121,6 +142,7 @@ export default function SearchContainer({
 
     setResults(orderedResults);
     setHasSearched(true);
+    setIsSearching(false);
   }, [selectedCriteria, fuse, applyFilters, initialUniversities]);
 
   // Load all data on initial mount
@@ -169,7 +191,10 @@ export default function SearchContainer({
         performSearch();
       }, 300);
 
-      return () => clearTimeout(timeoutId);
+      return () => {
+        clearTimeout(timeoutId);
+        setIsSearching(false);
+      };
     }
   }, [performSearch, selectedCriteria, hasSearched, initialUniversities]);
 
@@ -380,6 +405,7 @@ export default function SearchContainer({
         resultCount={results.length}
         draftFilterResultCount={draftFilterResultCount}
         hasSearched={hasSearched}
+        isSearching={isSearching}
       />
       {results.length > 0 && (
         <motion.div
