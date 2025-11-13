@@ -44,7 +44,6 @@ export async function searchUniversitiesAPI(
     });
 
     if (!res.ok) {
-      console.error("Search API error:", res.statusText);
       return [];
     }
 
@@ -55,7 +54,6 @@ export async function searchUniversitiesAPI(
 
     return converted;
   } catch (error) {
-    console.error("Error searching universities:", error);
     return [];
   }
 }
