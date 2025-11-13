@@ -112,40 +112,40 @@ export default function SearchForm({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
-      className="max-w-3xl w-full mx-auto mb-8 px-2"
+      className="max-w-3xl w-full mx-auto mb-4 sm:mb-8 px-2"
     >
       <div className="bg-white rounded-lg border border-border shadow-sm">
-        <div className="px-6 pt-8 pb-6">
+        <div className="px-3 pt-4 pb-3 sm:px-6 sm:pt-8 sm:pb-6">
           <div className="relative">
-            <SearchIcon className="absolute left-6 top-1/2 transform -translate-y-1/2 text-muted-foreground w-6 h-6 pointer-events-none z-10" />
+            <SearchIcon className="absolute left-3 sm:left-6 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4 sm:w-6 sm:h-6 pointer-events-none z-10" />
             <Input
               id="text-search"
               type="text"
               value={selectedCriteria.textSearch}
               onChange={(e) => handleTextSearchChange(e.target.value)}
-              placeholder="Kirjoita esim. yliopiston nimi, ala tai väri..."
-              className="pl-16 pr-16 h-16 text-lg bg-white text-foreground border-input focus:ring-2 focus:ring-green/30 focus-visible:ring-2 focus-visible:ring-green/30 border-2 shadow-sm hover:shadow-md transition-shadow"
+              placeholder="Kerro mitä etsit?"
+              className="pl-10 pr-10 sm:pl-16 sm:pr-16 h-12 sm:h-16 text-sm sm:text-lg bg-white text-foreground border-input focus:ring-2 focus:ring-green/30 focus-visible:ring-2 focus-visible:ring-green/30 border-2 shadow-sm hover:shadow-md transition-shadow"
               disabled={isSearching}
             />
             {isSearching && (
-              <div className="absolute right-6 top-1/2 transform -translate-y-1/2 z-10">
-                <div className="w-6 h-6 border-2 border-green border-t-transparent rounded-full animate-spin" />
+              <div className="absolute right-3 sm:right-6 top-1/2 transform -translate-y-1/2 z-10">
+                <div className="w-4 h-4 sm:w-6 sm:h-6 border-2 border-green border-t-transparent rounded-full animate-spin" />
               </div>
             )}
             {selectedCriteria.textSearch && !isSearching && (
               <button
                 type="button"
                 onClick={() => handleTextSearchChange("")}
-                className="absolute right-6 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground transition p-2 rounded hover:bg-muted z-10"
+                className="absolute right-3 sm:right-6 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground transition p-1 sm:p-2 rounded hover:bg-muted z-10"
                 aria-label="Tyhjennä haku"
               >
-                <X className="w-5 h-5" />
+                <X className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
             )}
           </div>
         </div>
 
-        <div className="px-6 pb-6 pt-4 border-t border-border/50">
+        <div className="px-3 pb-3 pt-3 sm:px-6 sm:pb-6 sm:pt-4 border-t border-border/50">
           <Collapsible
             open={isAdvancedSearchOpen}
             onOpenChange={setIsAdvancedSearchOpen}
@@ -153,15 +153,15 @@ export default function SearchForm({
             <CollapsibleTrigger asChild>
               <button
                 type="button"
-                className="w-full flex items-center justify-between py-1.5 px-0 text-left hover:opacity-70 transition-opacity group"
+                className="w-full flex items-center justify-between py-1 sm:py-1.5 px-0 text-left hover:opacity-70 transition-opacity group"
               >
-                <div className="flex items-center gap-2">
-                  <Settings className="w-3.5 h-3.5 text-muted-foreground" />
-                  <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
+                <div className="flex items-center gap-1.5 sm:gap-2">
+                  <Settings className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-muted-foreground" />
+                  <span className="text-[10px] sm:text-xs font-medium text-muted-foreground uppercase tracking-wider">
                     Suodattimet
                   </span>
                   {hasActiveFilters && (
-                    <span className="ml-1.5 px-1.5 py-0.5 text-[10px] bg-green text-white rounded-full font-medium">
+                    <span className="ml-1 px-1 py-0.5 sm:ml-1.5 sm:px-1.5 text-[9px] sm:text-[10px] bg-green text-white rounded-full font-medium">
                       {
                         [
                           selectedCriteria.color,
@@ -174,17 +174,17 @@ export default function SearchForm({
                   )}
                 </div>
                 {isAdvancedSearchOpen ? (
-                  <ChevronUp className="w-3.5 h-3.5 text-muted-foreground" />
+                  <ChevronUp className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-muted-foreground" />
                 ) : (
-                  <ChevronDown className="w-3.5 h-3.5 text-muted-foreground" />
+                  <ChevronDown className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-muted-foreground" />
                 )}
               </button>
             </CollapsibleTrigger>
-            <CollapsibleContent className="mt-3 pl-4 border-l border-muted/30 space-y-3">
-              <div className="space-y-1.5">
+            <CollapsibleContent className="mt-2 sm:mt-3 pl-2 sm:pl-4 border-l border-muted/30 space-y-2 sm:space-y-3">
+              <div className="space-y-1 sm:space-y-1.5">
                 <Label
                   htmlFor="color"
-                  className="text-xs text-muted-foreground font-medium"
+                  className="text-[10px] sm:text-xs text-muted-foreground font-medium"
                 >
                   Väri
                 </Label>
@@ -195,7 +195,7 @@ export default function SearchForm({
                 >
                   <SelectTrigger
                     id="color"
-                    className="h-8 text-sm bg-white text-foreground border-input focus:ring-0 focus-visible:ring-0"
+                    className="h-7 sm:h-8 text-xs sm:text-sm bg-white text-foreground border-input focus:ring-0 focus-visible:ring-0"
                   >
                     <SelectValue placeholder="Valitse väri" />
                   </SelectTrigger>
@@ -205,11 +205,11 @@ export default function SearchForm({
                         <SelectItem
                           key={colorKey}
                           value={colorKey}
-                          className="text-sm text-foreground"
+                          className="text-xs sm:text-sm text-foreground"
                         >
-                          <div className="flex items-center gap-2">
+                          <div className="flex items-center gap-1.5 sm:gap-2">
                             <div
-                              className="w-3.5 h-3.5 rounded border"
+                              className="w-3 h-3 sm:w-3.5 sm:h-3.5 rounded border"
                               style={{
                                 backgroundImage: `linear-gradient(to bottom right, ${data.color}, ${data.alt})`,
                               }}
@@ -223,10 +223,10 @@ export default function SearchForm({
                 </Select>
               </div>
 
-              <div className="space-y-1.5">
+              <div className="space-y-1 sm:space-y-1.5">
                 <Label
                   htmlFor="area"
-                  className="text-xs text-muted-foreground font-medium"
+                  className="text-[10px] sm:text-xs text-muted-foreground font-medium"
                 >
                   Kaupunki
                 </Label>
@@ -237,7 +237,7 @@ export default function SearchForm({
                 >
                   <SelectTrigger
                     id="area"
-                    className="h-8 text-sm bg-white text-foreground border-input focus:ring-0 focus-visible:ring-0"
+                    className="h-7 sm:h-8 text-xs sm:text-sm bg-white text-foreground border-input focus:ring-0 focus-visible:ring-0"
                   >
                     <SelectValue placeholder="Valitse kaupunki" />
                   </SelectTrigger>
@@ -246,7 +246,7 @@ export default function SearchForm({
                       <SelectItem
                         key={a}
                         value={a}
-                        className="text-sm text-foreground"
+                        className="text-xs sm:text-sm text-foreground"
                       >
                         {a}
                       </SelectItem>
@@ -255,10 +255,10 @@ export default function SearchForm({
                 </Select>
               </div>
 
-              <div className="space-y-1.5">
+              <div className="space-y-1 sm:space-y-1.5">
                 <Label
                   htmlFor="field"
-                  className="text-xs text-muted-foreground font-medium"
+                  className="text-[10px] sm:text-xs text-muted-foreground font-medium"
                 >
                   Opiskeluala
                 </Label>
@@ -269,7 +269,7 @@ export default function SearchForm({
                 >
                   <SelectTrigger
                     id="field"
-                    className="h-8 text-sm bg-white text-foreground border-input focus:ring-0 focus-visible:ring-0"
+                    className="h-7 sm:h-8 text-xs sm:text-sm bg-white text-foreground border-input focus:ring-0 focus-visible:ring-0"
                   >
                     <SelectValue placeholder="Valitse opiskeluala" />
                   </SelectTrigger>
@@ -278,7 +278,7 @@ export default function SearchForm({
                       <SelectItem
                         key={f}
                         value={f}
-                        className="text-sm text-foreground"
+                        className="text-xs sm:text-sm text-foreground"
                       >
                         {f}
                       </SelectItem>
@@ -287,10 +287,10 @@ export default function SearchForm({
                 </Select>
               </div>
 
-              <div className="space-y-1.5">
+              <div className="space-y-1 sm:space-y-1.5">
                 <Label
                   htmlFor="school"
-                  className="text-xs text-muted-foreground font-medium"
+                  className="text-[10px] sm:text-xs text-muted-foreground font-medium"
                 >
                   Oppilaitos
                 </Label>
@@ -301,7 +301,7 @@ export default function SearchForm({
                 >
                   <SelectTrigger
                     id="school"
-                    className="h-8 text-sm bg-white text-foreground border-input focus:ring-0 focus-visible:ring-0"
+                    className="h-7 sm:h-8 text-xs sm:text-sm bg-white text-foreground border-input focus:ring-0 focus-visible:ring-0"
                   >
                     <SelectValue placeholder="Valitse oppilaitos" />
                   </SelectTrigger>
@@ -310,7 +310,7 @@ export default function SearchForm({
                       <SelectItem
                         key={s}
                         value={s}
-                        className="text-sm text-foreground"
+                        className="text-xs sm:text-sm text-foreground"
                       >
                         {s}
                       </SelectItem>
@@ -323,7 +323,7 @@ export default function SearchForm({
                 <Button
                   type="button"
                   onClick={onApplyAdvancedFilters}
-                  className="h-10 text-sm bg-green hover:bg-green/90 text-white mt-2"
+                  className="h-9 sm:h-10 text-xs sm:text-sm bg-green hover:bg-green/90 text-white mt-2"
                 >
                   Suodata{" "}
                   {draftFilterResultCount >= 0 && `(${draftFilterResultCount})`}
@@ -334,14 +334,14 @@ export default function SearchForm({
         </div>
 
         {(selectedCriteria.textSearch || hasActiveFilters) && (
-          <div className="px-6 pb-6 flex mt-2">
+          <div className="px-3 pb-3 sm:px-6 sm:pb-6 flex mt-2">
             <Button
               variant="outline"
               onClick={handleClear}
-              className="h-10 text-sm bg-white text-foreground border-input hover:bg-muted flex-1"
+              className="h-9 sm:h-10 text-xs sm:text-sm bg-white text-foreground border-input hover:bg-muted flex-1"
               type="button"
             >
-              <X className="w-4 h-4 mr-2" />
+              <X className="w-3.5 h-3.5 sm:w-4 sm:h-4 mr-1.5 sm:mr-2" />
               Tyhjennä
             </Button>
           </div>
