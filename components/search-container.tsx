@@ -6,9 +6,8 @@ import SearchForm from "./search-form";
 import ResultsDisplay from "./result-display";
 import PlaceholderDisplay from "./placeholder-display";
 import {
-  createFuseInstance,
-  searchUniversities,
   searchUniversitiesAPI,
+  type UniversityWithScore,
 } from "@/lib/search-utils";
 import { colorData } from "../data/mockData";
 import type { University } from "@/types/university";
@@ -65,11 +64,6 @@ export default function SearchContainer({
   const [hasSearched, setHasSearched] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
 
-  const fuse = useMemo(
-    () => createFuseInstance(initialUniversities),
-    [initialUniversities]
-  );
-
   const applyFilters = useCallback(
     (universities: University[]): University[] => {
       return universities.filter((uni) => {
@@ -106,23 +100,12 @@ export default function SearchContainer({
 
     if (selectedCriteria.textSearch.trim().length >= 2) {
       try {
-        const apiResults = await searchUniversitiesAPI(
+        searchResults = await searchUniversitiesAPI(
           selectedCriteria.textSearch.trim()
         );
-        if (apiResults.length > 0) {
-          searchResults = apiResults;
-        } else {
-          searchResults = searchUniversities(
-            fuse,
-            selectedCriteria.textSearch.trim()
-          );
-        }
       } catch (error) {
-        console.error("API search failed, falling back to Fuse:", error);
-        searchResults = searchUniversities(
-          fuse,
-          selectedCriteria.textSearch.trim()
-        );
+        console.error("API search failed:", error);
+        searchResults = [];
       }
     } else {
       searchResults = initialUniversities;
@@ -131,6 +114,13 @@ export default function SearchContainer({
     const filteredResults = applyFilters(searchResults);
 
     const orderedResults = filteredResults.sort((a, b) => {
+      const aScore = "score" in a ? (a as UniversityWithScore).score : 0;
+      const bScore = "score" in b ? (b as UniversityWithScore).score : 0;
+
+      if (aScore !== bScore) {
+        return bScore - aScore;
+      }
+
       if (a.oppilaitos === b.oppilaitos) {
         if (!a.ainejärjestö && !b.ainejärjestö) return 0;
         if (!a.ainejärjestö) return 1;
@@ -143,7 +133,7 @@ export default function SearchContainer({
     setResults(orderedResults);
     setHasSearched(true);
     setIsSearching(false);
-  }, [selectedCriteria, fuse, applyFilters, initialUniversities]);
+  }, [selectedCriteria, applyFilters, initialUniversities]);
 
   // Load all data on initial mount
   useEffect(() => {
@@ -198,103 +188,6 @@ export default function SearchContainer({
     }
   }, [performSearch, selectedCriteria, hasSearched, initialUniversities]);
 
-  const updateFilteredOptions = useCallback(() => {
-    let baseUniversities = initialUniversities;
-
-    if (selectedCriteria.textSearch.trim().length >= 2) {
-      baseUniversities = searchUniversities(
-        fuse,
-        selectedCriteria.textSearch.trim()
-      );
-    }
-
-    const universitiesWithTextSearch = baseUniversities;
-
-    const universitiesForArea = universitiesWithTextSearch.filter((uni) => {
-      const colorMatch = draftAdvancedFilters.color
-        ? colorData.colors[draftAdvancedFilters.color].main
-            .concat(colorData.colors[draftAdvancedFilters.color].shades)
-            .some((c) => uni.vari.toLowerCase().includes(c.toLowerCase()))
-        : true;
-      const fieldMatch =
-        !draftAdvancedFilters.field ||
-        uni.ala
-          ?.toLowerCase()
-          .includes(draftAdvancedFilters.field.toLowerCase());
-      const schoolMatch =
-        !draftAdvancedFilters.school ||
-        uni.oppilaitos
-          .toLowerCase()
-          .includes(draftAdvancedFilters.school.toLowerCase());
-      return colorMatch && fieldMatch && schoolMatch;
-    });
-
-    const areas = Array.from(
-      new Set(universitiesForArea.map((uni) => uni.alue).filter(Boolean))
-    ).sort((a, b) => a.localeCompare(b));
-
-    const universitiesForField = universitiesWithTextSearch.filter((uni) => {
-      const colorMatch = draftAdvancedFilters.color
-        ? colorData.colors[draftAdvancedFilters.color].main
-            .concat(colorData.colors[draftAdvancedFilters.color].shades)
-            .some((c) => uni.vari.toLowerCase().includes(c.toLowerCase()))
-        : true;
-      const areaMatch =
-        !draftAdvancedFilters.area ||
-        uni.alue
-          .toLowerCase()
-          .includes(draftAdvancedFilters.area.toLowerCase());
-      const schoolMatch =
-        !draftAdvancedFilters.school ||
-        uni.oppilaitos
-          .toLowerCase()
-          .includes(draftAdvancedFilters.school.toLowerCase());
-      return colorMatch && areaMatch && schoolMatch;
-    });
-
-    const fields = Array.from(
-      new Set(
-        universitiesForField
-          .flatMap((uni) => (uni.ala ? uni.ala.split(", ") : []))
-          .filter(Boolean)
-      )
-    ).sort((a, b) => a.localeCompare(b));
-
-    const universitiesForSchool = universitiesWithTextSearch.filter((uni) => {
-      const colorMatch = draftAdvancedFilters.color
-        ? colorData.colors[draftAdvancedFilters.color].main
-            .concat(colorData.colors[draftAdvancedFilters.color].shades)
-            .some((c) => uni.vari.toLowerCase().includes(c.toLowerCase()))
-        : true;
-      const areaMatch =
-        !draftAdvancedFilters.area ||
-        uni.alue
-          .toLowerCase()
-          .includes(draftAdvancedFilters.area.toLowerCase());
-      const fieldMatch =
-        !draftAdvancedFilters.field ||
-        uni.ala
-          ?.toLowerCase()
-          .includes(draftAdvancedFilters.field.toLowerCase());
-      return colorMatch && areaMatch && fieldMatch;
-    });
-
-    const schools = Array.from(
-      new Set(universitiesForSchool.map((uni) => uni.oppilaitos))
-    ).sort((a, b) => a.localeCompare(b));
-
-    setFilteredOptions({ areas, fields, schools });
-  }, [
-    selectedCriteria.textSearch,
-    draftAdvancedFilters,
-    initialUniversities,
-    fuse,
-  ]);
-
-  useEffect(() => {
-    updateFilteredOptions();
-  }, [updateFilteredOptions]);
-
   const handleTextSearchChange = useCallback((textSearch: string) => {
     setSelectedCriteria((prev) => ({ ...prev, textSearch }));
   }, []);
@@ -332,49 +225,54 @@ export default function SearchContainer({
     });
   }, []);
 
-  const draftFilterResultCount = useMemo(() => {
-    let searchResults: University[] = [];
+  const [draftFilterResultCount, setDraftFilterResultCount] = useState(0);
 
-    if (selectedCriteria.textSearch.trim().length >= 2) {
-      searchResults = searchUniversities(
-        fuse,
-        selectedCriteria.textSearch.trim()
-      );
-    } else {
-      searchResults = initialUniversities;
-    }
+  useEffect(() => {
+    const calculateDraftFilterResultCount = async () => {
+      let searchResults: University[] = [];
 
-    const filteredResults = searchResults.filter((uni) => {
-      const colorMatch = draftAdvancedFilters.color
-        ? colorData.colors[draftAdvancedFilters.color].main
-            .concat(colorData.colors[draftAdvancedFilters.color].shades)
-            .some((c) => uni.vari.toLowerCase().includes(c.toLowerCase()))
-        : true;
-      const areaMatch =
-        !draftAdvancedFilters.area ||
-        uni.alue
-          .toLowerCase()
-          .includes(draftAdvancedFilters.area.toLowerCase());
-      const fieldMatch =
-        !draftAdvancedFilters.field ||
-        uni.ala
-          ?.toLowerCase()
-          .includes(draftAdvancedFilters.field.toLowerCase());
-      const schoolMatch =
-        !draftAdvancedFilters.school ||
-        uni.oppilaitos
-          .toLowerCase()
-          .includes(draftAdvancedFilters.school.toLowerCase());
-      return colorMatch && areaMatch && fieldMatch && schoolMatch;
-    });
+      if (selectedCriteria.textSearch.trim().length >= 2) {
+        try {
+          searchResults = await searchUniversitiesAPI(
+            selectedCriteria.textSearch.trim()
+          );
+        } catch (error) {
+          console.error("API search failed in draftFilterResultCount:", error);
+          searchResults = [];
+        }
+      } else {
+        searchResults = initialUniversities;
+      }
 
-    return filteredResults.length;
-  }, [
-    selectedCriteria.textSearch,
-    draftAdvancedFilters,
-    initialUniversities,
-    fuse,
-  ]);
+      const filteredResults = searchResults.filter((uni) => {
+        const colorMatch = draftAdvancedFilters.color
+          ? colorData.colors[draftAdvancedFilters.color].main
+              .concat(colorData.colors[draftAdvancedFilters.color].shades)
+              .some((c) => uni.vari.toLowerCase().includes(c.toLowerCase()))
+          : true;
+        const areaMatch =
+          !draftAdvancedFilters.area ||
+          uni.alue
+            .toLowerCase()
+            .includes(draftAdvancedFilters.area.toLowerCase());
+        const fieldMatch =
+          !draftAdvancedFilters.field ||
+          uni.ala
+            ?.toLowerCase()
+            .includes(draftAdvancedFilters.field.toLowerCase());
+        const schoolMatch =
+          !draftAdvancedFilters.school ||
+          uni.oppilaitos
+            .toLowerCase()
+            .includes(draftAdvancedFilters.school.toLowerCase());
+        return colorMatch && areaMatch && fieldMatch && schoolMatch;
+      });
+
+      setDraftFilterResultCount(filteredResults.length);
+    };
+
+    calculateDraftFilterResultCount();
+  }, [selectedCriteria.textSearch, draftAdvancedFilters, initialUniversities]);
 
   useEffect(() => {
     setDraftAdvancedFilters({

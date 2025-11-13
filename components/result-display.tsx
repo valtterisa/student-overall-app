@@ -57,12 +57,12 @@ export default function ResultsDisplay({ results }: ResultsDisplayProps) {
     <div
       id="top"
       ref={resultsDivRef}
-      className="max-w-2xl w-full mx-auto mb-8 px-2"
+      className="max-w-3xl w-full mx-auto mb-8 px-2"
     >
-      <div className="bg-white rounded-lg border border-border shadow-sm p-4">
-        <h2 className="text-base font-semibold text-foreground mb-4 flex justify-between items-center">
+      <div className="bg-white rounded-lg border border-border shadow-sm px-6 pt-8">
+        <h2 className="text-lg font-semibold text-foreground mb-6 flex justify-between items-center">
           Haun tulokset{" "}
-          <span className="text-xs text-muted-foreground">
+          <span className="text-sm text-muted-foreground">
             {results.length > 1
               ? `${results.length} tulosta`
               : `${results.length} tulos`}
@@ -82,7 +82,7 @@ export default function ResultsDisplay({ results }: ResultsDisplayProps) {
             </p>
           </div>
         ) : (
-          <ul className="space-y-3">
+          <ul className="space-y-4">
             {paginatedResults.map((uni) => (
               <UniversityCard key={uni.id} uni={uni} />
             ))}
@@ -91,22 +91,22 @@ export default function ResultsDisplay({ results }: ResultsDisplayProps) {
 
         {/* Pagination Controls */}
         {results.length > 0 && (
-          <div className="mt-4 pt-4 border-t border-border flex justify-center items-center">
-            <div className="flex gap-2 items-center">
+          <div className="mt-6 p-4 border-t border-border flex justify-center items-center">
+            <div className="flex gap-3 items-center">
               <button
                 onClick={() => handlePageChange(currentPage - 1)}
                 disabled={currentPage === 1}
-                className="h-8 px-3 text-xs bg-white text-foreground border border-input hover:bg-muted rounded-md disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                className="h-10 px-4 text-sm bg-white text-foreground border border-input hover:bg-muted rounded-md disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
               >
                 Edellinen
               </button>
-              <p className="flex items-center text-xs text-muted-foreground px-3">
+              <p className="flex items-center text-sm text-muted-foreground px-4">
                 {currentPage} / {totalPages}
               </p>
               <button
                 onClick={() => handlePageChange(currentPage + 1)}
                 disabled={currentPage === totalPages}
-                className="h-8 px-3 text-xs bg-white text-foreground border border-input hover:bg-muted rounded-md disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                className="h-10 px-4 text-sm bg-white text-foreground border border-input hover:bg-muted rounded-md disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
               >
                 Seuraava
               </button>

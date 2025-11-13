@@ -1,19 +1,38 @@
 import { Search } from "@upstash/search";
 import { NextResponse } from "next/server";
+import { Ratelimit } from "@upstash/ratelimit";
+import { Redis } from "@upstash/redis";
 
 export async function POST(req: Request) {
   try {
     const url = process.env.NEXT_PUBLIC_UPSTASH_SEARCH_REST_URL;
     const token = process.env.UPSTASH_SEARCH_REST_TOKEN;
 
+    const ratelimit = new Ratelimit({
+      redis: Redis.fromEnv(),
+      limiter: Ratelimit.slidingWindow(10, "10 s"),
+    });
+
+    const identifier = token!; // Rate limit by token I don't know is it good idea
+    const { success } = await ratelimit.limit(identifier);
+
+    if (!success) {
+      return "Unable to process at this time";
+    }
+
     if (!url || !token) {
       return NextResponse.json(
-        { success: false, error: "Missing Upstash credentials" },
-        { status: 500 }
+        { success: false, error: "Wrong credentials" },
+        { status: 401 }
       );
     }
 
-    const { query } = (await req.json()) as { query: string };
+    const body = (await req.json()) as {
+      query: string;
+      filter?: string | Record<string, unknown>;
+    };
+
+    const { query, filter } = body;
 
     if (!query || query.trim().length < 2) {
       return NextResponse.json({ results: [] });
@@ -22,11 +41,17 @@ export async function POST(req: Request) {
     const search = new Search({ url, token });
     const index = search.index("haalarikone-db");
 
-    const results = await index.search({
+    const searchParams: Parameters<typeof index.search>[0] = {
       query: query.trim(),
       reranking: true,
-      limit: 100,
-    });
+      limit: 20,
+    };
+
+    if (filter) {
+      searchParams.filter = filter as any;
+    }
+
+    const results = await index.search(searchParams);
 
     return NextResponse.json({ results: results || [] });
   } catch (error) {
