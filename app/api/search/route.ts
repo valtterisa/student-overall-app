@@ -4,7 +4,7 @@ import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
 
 export async function POST(req: Request) {
-  const url = process.env.NEXT_PUBLIC_UPSTASH_SEARCH_REST_URL;
+  const url = process.env.UPSTASH_SEARCH_REST_URL;
   const token = process.env.UPSTASH_SEARCH_REST_TOKEN;
 
   const ratelimit = new Ratelimit({
@@ -16,7 +16,10 @@ export async function POST(req: Request) {
   const { success } = await ratelimit.limit(identifier);
 
   if (!success) {
-    return "Unable to process at this time";
+    return NextResponse.json(
+      { success: false, error: "Unable to process at this time" },
+      { status: 429 }
+    );
   }
 
   if (!url || !token) {

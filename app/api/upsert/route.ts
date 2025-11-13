@@ -5,7 +5,7 @@ import path from "path";
 
 export async function POST() {
   try {
-    const url = process.env.NEXT_PUBLIC_UPSTASH_SEARCH_REST_URL;
+    const url = process.env.UPSTASH_SEARCH_REST_URL;
     const token = process.env.UPSTASH_SEARCH_REST_TOKEN;
     if (!url || !token) {
       return NextResponse.json(

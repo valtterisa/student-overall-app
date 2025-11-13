@@ -62,11 +62,6 @@ export const metadata = {
       fi: "https://haalarikone.fi",
     },
   },
-  verification: {
-    google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION,
-    yandex: process.env.NEXT_PUBLIC_YANDEX_VERIFICATION,
-    yahoo: process.env.NEXT_PUBLIC_YAHOO_VERIFICATION,
-  },
 };
 
 const arvo = Arvo({
