@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
@@ -26,6 +26,7 @@ import {
 } from "lucide-react";
 import { Criteria } from "./search-container";
 import { colorData } from "../data/mockData";
+import { track } from "@databuddy/sdk";
 
 interface SearchFormProps {
   onTextSearchChange: (textSearch: string) => void;
@@ -53,17 +54,51 @@ export default function SearchForm({
   schools,
   selectedCriteria,
   draftAdvancedFilters,
-  resultCount,
   draftFilterResultCount,
-  hasSearched,
   isSearching = false,
 }: SearchFormProps) {
   const [isAdvancedSearchOpen, setIsAdvancedSearchOpen] = useState(false);
-  const [isUpserting, setIsUpserting] = useState(false);
-  const [upsertSuccess, setUpsertSuccess] = useState(false);
+  const [localSearchValue, setLocalSearchValue] = useState(
+    selectedCriteria.textSearch
+  );
+  const lastTrackedSearchRef = useRef<string>("");
+  const debounceTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    setLocalSearchValue(selectedCriteria.textSearch);
+  }, [selectedCriteria.textSearch]);
+
+  useEffect(() => {
+    if (debounceTimeoutRef.current) {
+      clearTimeout(debounceTimeoutRef.current);
+    }
+
+    debounceTimeoutRef.current = setTimeout(() => {
+      const wasEmpty = !lastTrackedSearchRef.current;
+      const isEmpty = !localSearchValue.trim();
+
+      if (wasEmpty && !isEmpty) {
+        track("search_change", {
+          button_text: "Text search change",
+          location: "search_form",
+        });
+        lastTrackedSearchRef.current = localSearchValue;
+      } else if (isEmpty) {
+        lastTrackedSearchRef.current = "";
+      }
+
+      onTextSearchChange(localSearchValue);
+    }, 300);
+
+    return () => {
+      if (debounceTimeoutRef.current) {
+        clearTimeout(debounceTimeoutRef.current);
+      }
+    };
+  }, [localSearchValue, onTextSearchChange]);
 
   const handleTextSearchChange = (value: string) => {
-    onTextSearchChange(value);
+    setLocalSearchValue(value);
   };
 
   const handleDraftChange = (
@@ -76,23 +111,6 @@ export default function SearchForm({
   const handleClear = () => {
     onClearAll();
     setIsAdvancedSearchOpen(false);
-  };
-
-  const handleUpsert = async () => {
-    setIsUpserting(true);
-    setUpsertSuccess(false);
-    try {
-      const res = await fetch("/api/upsert", { method: "POST" });
-      const data = await res.json();
-      if (data.success) {
-        setUpsertSuccess(true);
-        setTimeout(() => setUpsertSuccess(false), 3000);
-      }
-    } catch (error) {
-      console.error("Upsert error:", error);
-    } finally {
-      setIsUpserting(false);
-    }
   };
 
   const hasActiveFilters =
@@ -121,7 +139,7 @@ export default function SearchForm({
             <Input
               id="text-search"
               type="text"
-              value={selectedCriteria.textSearch}
+              value={localSearchValue}
               onChange={(e) => handleTextSearchChange(e.target.value)}
               placeholder="Kerro mitä etsit?"
               className="pl-10 pr-10 sm:pl-16 sm:pr-16 h-12 sm:h-16 text-sm sm:text-lg bg-white text-foreground border-input focus:ring-2 focus:ring-green/30 focus-visible:ring-2 focus-visible:ring-green/30 border-2 shadow-sm hover:shadow-md transition-shadow"
@@ -132,7 +150,7 @@ export default function SearchForm({
                 <div className="w-4 h-4 sm:w-6 sm:h-6 border-2 border-green border-t-transparent rounded-full animate-spin" />
               </div>
             )}
-            {selectedCriteria.textSearch && !isSearching && (
+            {localSearchValue && !isSearching && (
               <button
                 type="button"
                 onClick={() => handleTextSearchChange("")}
