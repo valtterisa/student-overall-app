@@ -3506,7 +3506,7 @@
       "oppilaitos": "Helsingin yliopisto"
     },
     "metadata": {
-      "hex": "background: navy; color: white;"
+      "hex": "background: navy; background-image: linear-gradient(to top right, navy 80%, darkred 81%);"
     }
   },
   {
