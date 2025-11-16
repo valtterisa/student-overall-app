@@ -140,12 +140,7 @@ export default async function UniversityPage({ params }: Props) {
     itemListElement: universityData.slice(0, 50).map((uni, index) => ({
       "@type": "ListItem",
       position: index + 1,
-      item: {
-        "@type": "Product",
-        name: `${uni.vari} haalari - ${capitalizedUniversity}`,
-        description: `${uni.vari} haalari ${uni.ala ? `- ${uni.ala}` : ""} ${uni.ainejärjestö ? `(${uni.ainejärjestö})` : ""}`,
-        url: `https://haalarikone.fi/haalari/${uni.id}`,
-      },
+      item: `https://haalarikone.fi/haalari/${uni.id}`,
     })),
   };
 

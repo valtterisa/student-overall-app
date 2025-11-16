@@ -144,12 +144,7 @@ export default async function FieldPage({ params }: Props) {
     itemListElement: fieldData.slice(0, 50).map((uni, index) => ({
       "@type": "ListItem",
       position: index + 1,
-      item: {
-        "@type": "Product",
-        name: `${uni.vari} haalari - ${capitalizedField}`,
-        description: `${uni.vari} haalari ${uni.oppilaitos} ${uni.ainejärjestö ? `(${uni.ainejärjestö})` : ""}`,
-        url: `https://haalarikone.fi/haalari/${uni.id}`,
-      },
+      item: `https://haalarikone.fi/haalari/${uni.id}`,
     })),
   };
 

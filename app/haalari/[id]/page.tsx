@@ -103,29 +103,6 @@ export default async function OverallPage({ params }: Props) {
     .filter((u) => u.oppilaitos === overall.oppilaitos && u.id !== overall.id)
     .slice(0, 5);
 
-  const productSchema = {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    name: `${overall.vari} haalari - ${overall.oppilaitos}`,
-    description: `Haalariväri: ${overall.vari}${overall.ala ? `, Ala: ${overall.ala}` : ""}${overall.ainejärjestö ? `, Ainejärjestö: ${overall.ainejärjestö}` : ""}`,
-    image: {
-      "@type": "ImageObject",
-      url: "https://haalarikone.fi/haalarikone-og.png",
-      width: 1200,
-      height: 630,
-    },
-    brand: {
-      "@type": "Brand",
-      name: overall.oppilaitos,
-    },
-    category: "Opiskelijahaalarit",
-    offers: {
-      "@type": "Offer",
-      availability: "https://schema.org/InStock",
-      priceCurrency: "EUR",
-    },
-  };
-
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -153,13 +130,6 @@ export default async function OverallPage({ params }: Props) {
 
   return (
     <>
-      <Script
-        id={`product-schema-${id}`}
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(productSchema),
-        }}
-      />
       <Script
         id={`breadcrumb-schema-${id}`}
         type="application/ld+json"

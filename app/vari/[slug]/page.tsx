@@ -142,18 +142,7 @@ export default async function ColorPage({ params }: Props) {
     itemListElement: colorData.slice(0, 50).map((uni, index) => ({
       "@type": "ListItem",
       position: index + 1,
-      item: {
-        "@type": "Product",
-        name: `${capitalizedColor} haalari - ${uni.oppilaitos}`,
-        description: `${capitalizedColor} haalari ${uni.ala ? `- ${uni.ala}` : ""} ${uni.ainejärjestö ? `(${uni.ainejärjestö})` : ""}`,
-        url: `https://haalarikone.fi/haalari/${uni.id}`,
-        offers: {
-          "@type": "Offer",
-          availability: "https://schema.org/InStock",
-          price: "0",
-          priceCurrency: "EUR",
-        },
-      },
+      item: `https://haalarikone.fi/haalari/${uni.id}`,
     })),
   };
 

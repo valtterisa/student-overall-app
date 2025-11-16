@@ -160,12 +160,7 @@ export default async function AreaPage({ params }: Props) {
         itemListElement: areaData.slice(0, 50).map((uni, index) => ({
             '@type': 'ListItem',
             position: index + 1,
-            item: {
-                '@type': 'Product',
-                name: `${uni.vari} haalari - ${capitalizedArea}`,
-                description: `${uni.vari} haalari ${uni.oppilaitos} ${uni.ala ? `- ${uni.ala}` : ''}`,
-                url: `https://haalarikone.fi/haalari/${uni.id}`,
-            },
+            item: `https://haalarikone.fi/haalari/${uni.id}`,
         })),
     };
 
