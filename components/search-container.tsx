@@ -10,6 +10,11 @@ import {
   type UniversityWithScore,
 } from "@/lib/search-utils";
 import { colorData } from "../data/mockData";
+import {
+  getUniqueAreas,
+  getUniqueFields,
+  getUniqueUniversities,
+} from "@/lib/get-unique-values";
 import type { University } from "@/types/university";
 
 export type Criteria = {
@@ -52,12 +57,6 @@ export default function SearchContainer({
     area: "",
     field: "",
     school: "",
-  });
-
-  const [filteredOptions, setFilteredOptions] = useState({
-    areas: [] as string[],
-    fields: [] as string[],
-    schools: [] as string[],
   });
 
   const [results, setResults] = useState<University[]>([]);
@@ -288,6 +287,63 @@ export default function SearchContainer({
     selectedCriteria.school,
   ]);
 
+  const matchesDraftFilters = useCallback(
+    (uni: University, ignore?: "color" | "area" | "field" | "school") => {
+      const colorMatch =
+        ignore === "color" || !draftAdvancedFilters.color
+          ? true
+          : colorData.colors[draftAdvancedFilters.color].main
+              .concat(colorData.colors[draftAdvancedFilters.color].shades)
+              .some((c) => uni.vari.toLowerCase().includes(c.toLowerCase()));
+
+      const areaMatch =
+        ignore === "area" ||
+        !draftAdvancedFilters.area ||
+        uni.alue
+          .toLowerCase()
+          .includes(draftAdvancedFilters.area.toLowerCase());
+
+      const fieldMatch =
+        ignore === "field" ||
+        !draftAdvancedFilters.field ||
+        uni.ala
+          ?.toLowerCase()
+          .includes(draftAdvancedFilters.field.toLowerCase());
+
+      const schoolMatch =
+        ignore === "school" ||
+        !draftAdvancedFilters.school ||
+        uni.oppilaitos
+          .toLowerCase()
+          .includes(draftAdvancedFilters.school.toLowerCase());
+
+      return colorMatch && areaMatch && fieldMatch && schoolMatch;
+    },
+    [draftAdvancedFilters]
+  );
+
+  const areaOptions = useMemo(
+    () =>
+      getUniqueAreas(
+        initialUniversities.filter((uni) => matchesDraftFilters(uni, "area"))
+      ),
+    [initialUniversities, matchesDraftFilters]
+  );
+  const fieldOptions = useMemo(
+    () =>
+      getUniqueFields(
+        initialUniversities.filter((uni) => matchesDraftFilters(uni, "field"))
+      ),
+    [initialUniversities, matchesDraftFilters]
+  );
+  const schoolOptions = useMemo(
+    () =>
+      getUniqueUniversities(
+        initialUniversities.filter((uni) => matchesDraftFilters(uni, "school"))
+      ),
+    [initialUniversities, matchesDraftFilters]
+  );
+
   return (
     <div className="w-full">
       <SearchForm
@@ -295,9 +351,9 @@ export default function SearchContainer({
         onDraftAdvancedFilterChange={handleDraftAdvancedFilterChange}
         onApplyAdvancedFilters={handleApplyAdvancedFilters}
         onClearAll={handleClearAll}
-        areas={filteredOptions.areas}
-        fields={filteredOptions.fields}
-        schools={filteredOptions.schools}
+        areas={areaOptions}
+        fields={fieldOptions}
+        schools={schoolOptions}
         selectedCriteria={selectedCriteria}
         draftAdvancedFilters={draftAdvancedFilters}
         resultCount={results.length}
