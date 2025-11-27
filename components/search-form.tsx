@@ -351,7 +351,7 @@ export default function SearchForm({
           </Collapsible>
         </div>
 
-        {(selectedCriteria.textSearch || hasActiveFilters) && (
+        {hasActiveFilters && (
           <div className="px-3 pb-3 sm:px-6 sm:pb-6 flex mt-2">
             <Button
               variant="outline"
