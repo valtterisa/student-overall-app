@@ -1,3 +1,11 @@
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
 import { loadUniversities } from "@/lib/load-universities";
 import { Metadata } from "next";
 import Link from "next/link";
@@ -50,11 +58,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: `${overall.vari} - ${overall.oppilaitos} | Haalarikone`,
-    description: `${overall.vari} haalari ${overall.oppilaitos} ${overall.ala ? `- ${overall.ala}` : ""} ${overall.ainejärjestö ? `(${overall.ainejärjestö})` : ""}`,
+    description: `${overall.vari} haalari ${overall.oppilaitos} ${
+      overall.ala ? `- ${overall.ala}` : ""
+    } ${overall.ainejärjestö ? `(${overall.ainejärjestö})` : ""}`,
     keywords,
     openGraph: {
       title: `${overall.vari} - ${overall.oppilaitos}`,
-      description: `${overall.vari} haalari ${overall.oppilaitos} ${overall.ala ? `- ${overall.ala}` : ""}`,
+      description: `${overall.vari} haalari ${overall.oppilaitos} ${
+        overall.ala ? `- ${overall.ala}` : ""
+      }`,
       images: [
         {
           url: "/haalarikone-og.png",
@@ -117,7 +129,9 @@ export default async function OverallPage({ params }: Props) {
         "@type": "ListItem",
         position: 2,
         name: overall.oppilaitos,
-        item: `https://haalarikone.fi/yliopisto/${generateSlug(overall.oppilaitos)}`,
+        item: `https://haalarikone.fi/oppilaitos/${generateSlug(
+          overall.oppilaitos
+        )}`,
       },
       {
         "@type": "ListItem",
@@ -138,9 +152,33 @@ export default async function OverallPage({ params }: Props) {
         }}
       />
       <div className="container mx-auto px-4 py-16 max-w-4xl">
-        <Link href="/" className="text-green hover:underline mb-4 inline-block">
-          ← Takaisin etusivulle
-        </Link>
+        <Breadcrumb className="mb-6">
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink asChild>
+                <Link href="/">Etusivu</Link>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbLink asChild>
+                <Link href="/oppilaitos">Oppilaitokset</Link>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbLink asChild>
+                <Link href={`/oppilaitos/${generateSlug(overall.oppilaitos)}`}>
+                  {overall.oppilaitos}
+                </Link>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbPage>{overall.vari} haalari</BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
 
         <div className="bg-white rounded-lg shadow-lg p-8 mb-8">
           <div className="flex flex-col md:flex-row gap-8">
@@ -153,7 +191,11 @@ export default async function OverallPage({ params }: Props) {
               <div className="relative w-32 h-32 mt-4 rounded-lg overflow-hidden border">
                 <Image
                   className="object-contain"
-                  src={`/logos/${overall.oppilaitos.startsWith("Aalto-yliopisto") ? "Aalto-yliopisto" : overall.oppilaitos}.jpg`}
+                  src={`/logos/${
+                    overall.oppilaitos.startsWith("Aalto-yliopisto")
+                      ? "Aalto-yliopisto"
+                      : overall.oppilaitos
+                  }.jpg`}
                   fill
                   alt={`${overall.oppilaitos} logo`}
                 />
@@ -165,7 +207,7 @@ export default async function OverallPage({ params }: Props) {
                 <div>
                   <h2 className="text-xl font-bold mb-2">Oppilaitos</h2>
                   <Link
-                    href={`/yliopisto/${generateSlug(overall.oppilaitos)}`}
+                    href={`/oppilaitos/${generateSlug(overall.oppilaitos)}`}
                     className="text-green hover:underline text-lg"
                   >
                     {overall.oppilaitos}
@@ -263,3 +305,4 @@ export default async function OverallPage({ params }: Props) {
     </>
   );
 }
+

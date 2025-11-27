@@ -1,3 +1,11 @@
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
 import { loadUniversities } from "@/lib/load-universities";
 import { getUniversitiesByColor } from "@/lib/get-universities-by-criteria";
 import { generateSlug } from "@/lib/generate-slug";
@@ -164,12 +172,25 @@ export default async function ColorPage({ params }: Props) {
       />
       <div className="container mx-auto px-4 py-16 max-w-4xl">
         <div className="mb-8">
-          <Link
-            href="/"
-            className="text-green hover:underline mb-4 inline-block"
-          >
-            ← Takaisin etusivulle
-          </Link>
+          <Breadcrumb className="mb-4">
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink asChild>
+                  <Link href="/">Etusivu</Link>
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbLink asChild>
+                  <Link href="/vari">Värit</Link>
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbPage>{capitalizedColor}</BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
           <div className="flex items-center gap-4 mb-4">
             <div
               className="w-16 h-16 rounded-lg border-2 shadow-md"
@@ -197,7 +218,7 @@ export default async function ColorPage({ params }: Props) {
             {universitiesList.slice(0, 10).map((uni) => (
               <Link
                 key={uni}
-                href={`/yliopisto/${generateSlug(uni)}`}
+                href={`/oppilaitos/${generateSlug(uni)}`}
                 className="px-4 py-2 bg-green/10 text-green rounded hover:bg-green/20 transition"
               >
                 {uni}

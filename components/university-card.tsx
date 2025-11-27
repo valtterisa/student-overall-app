@@ -69,7 +69,7 @@ export default function UniversityCard({ uni }: UniversityCardProps) {
               {uni.vari}
             </Link>
             <Link
-              href={`/yliopisto/${generateSlug(uni.oppilaitos)}`}
+              href={`/oppilaitos/${generateSlug(uni.oppilaitos)}`}
               className="inline-flex items-center gap-1 px-2.5 py-1 bg-green/10 text-green rounded-full text-xs font-medium hover:bg-green/20 hover:text-green/90 transition-colors"
               onClick={(e) => e.stopPropagation()}
             >

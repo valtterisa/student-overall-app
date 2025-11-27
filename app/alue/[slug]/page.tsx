@@ -1,11 +1,19 @@
-import { loadUniversities } from '@/lib/load-universities';
-import { getUniversitiesByArea } from '@/lib/get-universities-by-criteria';
-import { generateSlug } from '@/lib/generate-slug';
-import { capitalizeFirstLetter } from '@/lib/utils';
-import { Metadata } from 'next';
-import Link from 'next/link';
-import Script from 'next/script';
-import UniversityCard from '@/components/university-card';
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+import { loadUniversities } from "@/lib/load-universities";
+import { getUniversitiesByArea } from "@/lib/get-universities-by-criteria";
+import { generateSlug } from "@/lib/generate-slug";
+import { capitalizeFirstLetter } from "@/lib/utils";
+import { Metadata } from "next";
+import Link from "next/link";
+import Script from "next/script";
+import UniversityCard from "@/components/university-card";
 
 export const revalidate = 3600;
 
@@ -47,9 +55,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     }
 
     const areaData = getUniversitiesByArea(universities, area);
-    const universitiesList = Array.from(
-        new Set(areaData.map((u) => u.oppilaitos))
-    );
+    const universitiesList = Array.from(new Set(areaData.map((u) => u.oppilaitos)));
 
     const capitalizedArea = capitalizeFirstLetter(area);
 
@@ -120,15 +126,13 @@ export default async function AreaPage({ params }: Props) {
     }
 
     const areaData = getUniversitiesByArea(universities, area);
-    const universitiesList = Array.from(
-        new Set(areaData.map((u) => u.oppilaitos))
-    );
-    const colors = Array.from(new Set(areaData.map((u) => u.vari)));
+    const universitiesList = Array.from(new Set(areaData.map((u) => u.oppilaitos)));
     const fields = Array.from(
         new Set(
             areaData.flatMap((u) => (u.ala ? u.ala.split(', ') : [])).filter(Boolean)
         )
     );
+    const colors = Array.from(new Set(areaData.map((u) => u.vari)));
 
     const capitalizedArea = capitalizeFirstLetter(area);
 
@@ -181,13 +185,20 @@ export default async function AreaPage({ params }: Props) {
                 }}
             />
             <div className="container mx-auto px-4 py-16 max-w-4xl">
+            <Breadcrumb className="mb-6">
+                <BreadcrumbList>
+                    <BreadcrumbItem>
+                        <BreadcrumbLink asChild>
+                            <Link href="/">Etusivu</Link>
+                        </BreadcrumbLink>
+                    </BreadcrumbItem>
+                    <BreadcrumbSeparator />
+                    <BreadcrumbItem>
+                        <BreadcrumbPage>{capitalizedArea}</BreadcrumbPage>
+                    </BreadcrumbItem>
+                </BreadcrumbList>
+            </Breadcrumb>
             <div className="mb-8">
-                <Link
-                    href="/"
-                    className="text-green hover:underline mb-4 inline-block"
-                >
-                    ← Takaisin etusivulle
-                </Link>
                 <h1 className="text-4xl font-bold mb-4">{capitalizedArea}</h1>
                 <p className="text-lg text-gray-700 mb-6">
                     Tässä ovat kaikki {capitalizedArea} alueen haalarivärit opiskelijakulttuurissa.
@@ -208,7 +219,7 @@ export default async function AreaPage({ params }: Props) {
                     {universitiesList.slice(0, 10).map((uni) => (
                         <Link
                             key={uni}
-                            href={`/yliopisto/${generateSlug(uni)}`}
+                            href={`/oppilaitos/${generateSlug(uni)}`}
                             className="px-4 py-2 bg-green/10 text-green rounded hover:bg-green/20 transition"
                         >
                             {uni}

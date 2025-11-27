@@ -1,3 +1,11 @@
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
 import { loadUniversities } from "@/lib/load-universities";
 import { getUniversitiesByField } from "@/lib/get-universities-by-criteria";
 import { generateSlug } from "@/lib/generate-slug";
@@ -192,12 +200,25 @@ export default async function FieldPage({ params }: Props) {
       />
       <div className="container mx-auto px-4 py-16 max-w-4xl">
         <div className="mb-8">
-          <Link
-            href="/"
-            className="text-green hover:underline mb-4 inline-block"
-          >
-            ← Takaisin etusivulle
-          </Link>
+          <Breadcrumb className="mb-4">
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink asChild>
+                  <Link href="/">Etusivu</Link>
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbLink asChild>
+                  <Link href="/ala">Alat</Link>
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbPage>{capitalizedField}</BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
           <h1 className="text-4xl font-bold mb-4">{capitalizedField}</h1>
           <p className="text-lg text-gray-700 mb-6">
             Tässä ovat kaikki {capitalizedField} alan haalarivärit suomalaisissa
@@ -218,7 +239,7 @@ export default async function FieldPage({ params }: Props) {
             {universitiesList.slice(0, 10).map((uni) => (
               <Link
                 key={uni}
-                href={`/yliopisto/${generateSlug(uni)}`}
+                href={`/oppilaitos/${generateSlug(uni)}`}
                 className="px-4 py-2 bg-green/10 text-green rounded hover:bg-green/20 transition"
               >
                 {uni}

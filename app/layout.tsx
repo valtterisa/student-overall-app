@@ -88,6 +88,7 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen bg-white text-foreground">
+        <Header />
         <main className="flex flex-col items-center">
           <div className="flex-1 w-full flex flex-col items-center">
             {children}

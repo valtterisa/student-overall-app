@@ -1,3 +1,11 @@
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
 import { loadUniversities } from "@/lib/load-universities";
 import { getUniversitiesByUniversity } from "@/lib/get-universities-by-criteria";
 import { generateSlug } from "@/lib/generate-slug";
@@ -12,6 +20,8 @@ export const revalidate = 3600;
 type Props = {
   params: Promise<{ slug: string }>;
 };
+
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
   const universities = await loadUniversities();
@@ -34,7 +44,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!university) {
     return {
-      title: "Yliopisto ei löytynyt | Haalarikone",
+      title: "Oppilaitos ei löytynyt | Haalarikone",
     };
   }
 
@@ -63,7 +73,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     ],
     openGraph: {
       title: `${capitalizedUniversity} - Haalarivärit | Haalarikone`,
-      description: `Selvitä kaikki ${capitalizedUniversity} haalarivärit. ${fields.length > 0 ? `Alat: ${fields.slice(0, 5).join(", ")}` : ""}`,
+      description: `Selvitä kaikki ${capitalizedUniversity} haalarivärit. ${
+        fields.length > 0 ? `Alat: ${fields.slice(0, 5).join(", ")}` : ""
+      }`,
       images: [
         {
           url: "/haalarikone-og.png",
@@ -75,7 +87,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       type: "website",
       siteName: "Haalarikone",
       locale: "fi_FI",
-      url: `https://haalarikone.fi/yliopisto/${slug}`,
+      url: `https://haalarikone.fi/oppilaitos/${slug}`,
     },
     twitter: {
       card: "summary_large_image",
@@ -84,9 +96,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       images: ["/haalarikone-og.png"],
     },
     alternates: {
-      canonical: `https://haalarikone.fi/yliopisto/${slug}`,
+      canonical: `https://haalarikone.fi/oppilaitos/${slug}`,
       languages: {
-        fi: `https://haalarikone.fi/yliopisto/${slug}`,
+        fi: `https://haalarikone.fi/oppilaitos/${slug}`,
       },
     },
   };
@@ -103,7 +115,7 @@ export default async function UniversityPage({ params }: Props) {
   if (!university) {
     return (
       <div className="container mx-auto px-4 py-16 text-center">
-        <h1 className="text-2xl font-bold mb-4">Yliopisto ei löytynyt</h1>
+        <h1 className="text-2xl font-bold mb-4">Oppilaitos ei löytynyt</h1>
         <Link href="/" className="text-green hover:underline">
           Palaa etusivulle
         </Link>
@@ -128,7 +140,7 @@ export default async function UniversityPage({ params }: Props) {
     "@type": "EducationalOrganization",
     name: capitalizedUniversity,
     description: `${capitalizedUniversity} haalarivärit ja opiskelijakulttuuri`,
-    url: `https://haalarikone.fi/yliopisto/${slug}`,
+    url: `https://haalarikone.fi/oppilaitos/${slug}`,
   };
 
   const itemListSchema = {
@@ -158,7 +170,7 @@ export default async function UniversityPage({ params }: Props) {
         "@type": "ListItem",
         position: 2,
         name: capitalizedUniversity,
-        item: `https://haalarikone.fi/yliopisto/${slug}`,
+        item: `https://haalarikone.fi/oppilaitos/${slug}`,
       },
     ],
   };
@@ -187,13 +199,26 @@ export default async function UniversityPage({ params }: Props) {
         }}
       />
       <div className="container mx-auto px-4 py-16 max-w-4xl">
+        <Breadcrumb className="mb-6">
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink asChild>
+                <Link href="/">Etusivu</Link>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbLink asChild>
+                <Link href="/oppilaitos">Oppilaitokset</Link>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbPage>{capitalizedUniversity}</BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
         <div className="mb-8">
-          <Link
-            href="/"
-            className="text-green hover:underline mb-4 inline-block"
-          >
-            ← Takaisin etusivulle
-          </Link>
           <h1 className="text-4xl font-bold mb-4">{capitalizedUniversity}</h1>
           <p className="text-lg text-gray-700 mb-6">
             Tässä ovat kaikki {capitalizedUniversity} haalarivärit
@@ -235,3 +260,4 @@ export default async function UniversityPage({ params }: Props) {
     </>
   );
 }
+

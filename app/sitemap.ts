@@ -55,7 +55,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const uniqueUniversities = getUniqueUniversities(universities);
   uniqueUniversities.forEach((uni) => {
     entries.push({
-      url: `${baseUrl}/yliopisto/${generateSlug(uni)}`,
+      url: `${baseUrl}/oppilaitos/${generateSlug(uni)}`,
       lastModified: dataLastModified,
       changeFrequency: "monthly",
       priority: 0.7,

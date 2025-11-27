@@ -27,7 +27,7 @@ importers:
         specifier: ^2.2.6
         version: 2.2.6(@types/react-dom@18.3.1)(@types/react@18.3.26)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@radix-ui/react-slot':
-        specifier: ^1.1.0
+        specifier: ^1.2.4
         version: 1.2.4(@types/react@18.3.26)(react@18.3.1)
       '@supabase/ssr':
         specifier: latest
