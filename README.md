@@ -20,11 +20,11 @@ Check out the live project at: [haalarikone.fi](https://haalarikone.fi)
 - **Language:** TypeScript
 - **Styling:** Tailwind CSS with Radix UI components
 - **Database:** Supabase (PostgreSQL)
-- **Search:** Upstash Search
+- **Search:** Upstash Search + custom logic
 - **Rate Limiting:** Upstash Redis
 - **Testing:** Playwright
 - **Package Manager:** pnpm
-- **Deployment:** Vercel (assumed)
+- **Deployment:** Vercel
 
 ## Prerequisites
 
