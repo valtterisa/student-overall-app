@@ -42,7 +42,13 @@ export default function Header() {
     <header className="sticky top-0 z-40 w-full border-b border-border/60 bg-white/90 backdrop-blur">
       <div className="relative">
         <nav className="container mx-auto flex items-center justify-between px-4 py-4">
-          <div className="flex flex-1 items-center" />
+          <Link
+            href="/"
+            className="text-xs uppercase tracking-[0.3em] text-[#65a30d] transition hover:text-green"
+            onClick={closeMobileMenu}
+          >
+            Haalarikone
+          </Link>
           <div className="hidden items-center gap-6 text-sm font-medium text-muted-foreground md:flex">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -85,7 +91,11 @@ export default function Header() {
             aria-expanded={mobileOpen}
             onClick={() => setMobileOpen((prev) => !prev)}
           >
-            {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {mobileOpen ? (
+              <X className="h-5 w-5" />
+            ) : (
+              <Menu className="h-5 w-5" />
+            )}
           </button>
         </nav>
         {mobileOpen && (
