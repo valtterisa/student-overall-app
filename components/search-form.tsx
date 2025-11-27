@@ -142,7 +142,7 @@ export default function SearchForm({
               value={localSearchValue}
               onChange={(e) => handleTextSearchChange(e.target.value)}
               placeholder="Kerro mitä etsit?"
-              className="pl-10 pr-10 sm:pl-16 sm:pr-16 h-12 sm:h-16 text-sm sm:text-lg bg-white text-foreground border-input focus:ring-2 focus:ring-green/30 focus-visible:ring-2 focus-visible:ring-green/30 border-2 shadow-sm hover:shadow-md transition-shadow"
+              className="pl-10 pr-10 sm:pl-16 sm:pr-16 h-12 sm:h-16 text-base sm:text-lg bg-white text-foreground border-input focus:ring-2 focus:ring-green/30 focus-visible:ring-2 focus-visible:ring-green/30 border-2 shadow-sm hover:shadow-md transition-shadow"
               disabled={isSearching}
             />
             {isSearching && (
