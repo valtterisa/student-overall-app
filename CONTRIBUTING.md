@@ -32,6 +32,7 @@ Feature requests are welcome! Use the [Feature Request template](.github/ISSUE_T
 ### Pull Requests
 
 1. **Fork the repository** and create your branch from `main`:
+
    ```bash
    git checkout -b feature/your-feature-name
    ```
@@ -43,18 +44,23 @@ Feature requests are welcome! Use the [Feature Request template](.github/ISSUE_T
    - Avoid unnecessary comments
 
 3. **Test your changes**:
+
    ```bash
    pnpm test
    ```
+
    Ensure all tests pass before submitting.
 
 4. **Commit your changes**:
+
    ```bash
    git commit -m "Add: brief description of changes"
    ```
+
    Use clear, descriptive commit messages.
 
 5. **Push to your fork**:
+
    ```bash
    git push origin feature/your-feature-name
    ```
@@ -64,12 +70,14 @@ Feature requests are welcome! Use the [Feature Request template](.github/ISSUE_T
 ## Development Setup
 
 1. **Clone your fork**:
+
    ```bash
    git clone https://github.com/YOUR_USERNAME/haalarikone.git
    cd haalarikone
    ```
 
 2. **Install dependencies**:
+
    ```bash
    pnpm install
    ```
@@ -107,20 +115,21 @@ Feature requests are welcome! Use the [Feature Request template](.github/ISSUE_T
 
 ### Git Commit Messages
 
-Use clear, descriptive commit messages:
+Use conventional commits-style prefixes:
 
-- **Add:** for new features
-- **Fix:** for bug fixes
-- **Update:** for updates to existing features
-- **Refactor:** for code refactoring
-- **Docs:** for documentation changes
-- **Test:** for test additions/changes
+- **feat:** new feature or user-facing enhancement
+- **fix:** bug fix
+- **chore:** tooling or dependency updates
+- **docs:** documentation-only changes
+- **refactor:** code refactors without behavior changes
+- **test:** add or update tests
 
 Example:
+
 ```
-Add: search functionality with filters
-Fix: authentication redirect issue
-Update: improve mobile responsiveness
+feat: add advanced search filters
+fix: correct auth redirect loop
+docs: clarify environment setup
 ```
 
 ## Testing
@@ -160,5 +169,3 @@ If you have questions or need help:
 ## Recognition
 
 Contributors will be recognized in the project's README or contributors file. Thank you for helping make Haalarikone better!
-
-
