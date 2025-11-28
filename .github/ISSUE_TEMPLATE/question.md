@@ -1,24 +1,15 @@
 ---
 name: Question
-about: Ask a question about the project
-title: '[QUESTION] '
+about: Ask anything related to Haalarikone
+title: "[question] "
 labels: question
-assignees: ''
+assignees: ""
 ---
 
-## Question
+## Your question
 
-<!-- What is your question? Be as specific as possible -->
+<!-- Be as clear as possible -->
 
-## Context
+## Helpful context (optional)
 
-<!-- Provide any relevant context about your question -->
-
-## What I've Tried
-
-<!-- If applicable, describe what you've already tried or researched -->
-
-## Additional Information
-
-<!-- Any other information that might be helpful -->
-
+<!-- Links, what you already checked, etc. -->
