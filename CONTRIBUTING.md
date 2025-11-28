@@ -161,3 +161,4 @@ If you have questions or need help:
 
 Contributors will be recognized in the project's README or contributors file. Thank you for helping make Haalarikone better!
 
+

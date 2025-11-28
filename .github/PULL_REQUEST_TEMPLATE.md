@@ -26,9 +26,9 @@ Related to #
 
 <!-- List the main changes in this PR -->
 
-- 
-- 
-- 
+-
+-
+-
 
 ## Testing
 
@@ -46,9 +46,9 @@ Related to #
 
 <!-- If manual testing is required, provide steps -->
 
-1. 
-2. 
-3. 
+1.
+2.
+3.
 
 ## Screenshots (if applicable)
 
@@ -68,6 +68,3 @@ Related to #
 - [ ] Any dependent changes have been merged and published
 
 ## Additional Notes
-
-<!-- Add any additional context, notes, or information about the PR -->
-
