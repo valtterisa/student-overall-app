@@ -4,7 +4,6 @@ import { encodedRedirect } from "@/utils/utils";
 import { createClient } from "@/utils/supabase/server";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
-import { sendFeedbackEmail } from "@/lib/send-feedback-email";
 
 export const signUpAction = async (formData: FormData) => {
   const email = formData.get("email")?.toString();
@@ -16,7 +15,7 @@ export const signUpAction = async (formData: FormData) => {
     return encodedRedirect(
       "error",
       "/sign-up",
-      "Email and password are required",
+      "Email and password are required"
     );
   }
 
@@ -35,7 +34,7 @@ export const signUpAction = async (formData: FormData) => {
     return encodedRedirect(
       "success",
       "/sign-up",
-      "Thanks for signing up! Please check your email for a verification link.",
+      "Thanks for signing up! Please check your email for a verification link."
     );
   }
 };
@@ -76,7 +75,7 @@ export const forgotPasswordAction = async (formData: FormData) => {
     return encodedRedirect(
       "error",
       "/forgot-password",
-      "Could not reset password",
+      "Could not reset password"
     );
   }
 
@@ -87,7 +86,7 @@ export const forgotPasswordAction = async (formData: FormData) => {
   return encodedRedirect(
     "success",
     "/forgot-password",
-    "Check your email for a link to reset your password.",
+    "Check your email for a link to reset your password."
   );
 };
 
@@ -101,7 +100,7 @@ export const resetPasswordAction = async (formData: FormData) => {
     encodedRedirect(
       "error",
       "/protected/reset-password",
-      "Password and confirm password are required",
+      "Password and confirm password are required"
     );
   }
 
@@ -109,7 +108,7 @@ export const resetPasswordAction = async (formData: FormData) => {
     encodedRedirect(
       "error",
       "/protected/reset-password",
-      "Passwords do not match",
+      "Passwords do not match"
     );
   }
 
@@ -121,7 +120,7 @@ export const resetPasswordAction = async (formData: FormData) => {
     encodedRedirect(
       "error",
       "/protected/reset-password",
-      "Password update failed",
+      "Password update failed"
     );
   }
 
@@ -132,67 +131,4 @@ export const signOutAction = async () => {
   const supabase = await createClient();
   await supabase.auth.signOut();
   return redirect("/sign-in");
-};
-
-export type FeedbackFormState =
-  | { status: "idle" }
-  | { status: "success"; message: string }
-  | { status: "error"; message: string };
-
-export const submitFeedbackAction = async (
-  _prevState: FeedbackFormState,
-  formData: FormData
-): Promise<FeedbackFormState> => {
-  const message = formData.get("message")?.toString().trim();
-  const type = formData.get("type")?.toString().trim();
-
-  if (!message || message.length < 10 || !type) {
-    return {
-      status: "error",
-      message: "Täytä pakolliset kentät ja kerro hieman tarkemmin.",
-    };
-  }
-
-  const email = formData.get("email")?.toString().trim() || null;
-  const sourceId = formData.get("sourceId")?.toString().trim() || null;
-  const sourceName = formData.get("sourceName")?.toString().trim() || null;
-  const supabase = await createClient();
-  const headerStore = await headers();
-  const origin = headerStore.get("origin") || null;
-  const referer = headerStore.get("referer") || null;
-
-  const payload = {
-    type,
-    message,
-    email,
-    source_id: sourceId,
-    source_name: sourceName,
-    origin,
-    referer,
-  };
-
-  const { error } = await supabase.from("feedback_submissions").insert(payload);
-
-  if (error) {
-    console.error("Feedback submit failed", error);
-    return {
-      status: "error",
-      message: "Palautteen lähetys epäonnistui, yritä hetken päästä uudelleen.",
-    };
-  }
-
-  await sendFeedbackEmail({
-    type,
-    message,
-    email,
-    sourceId,
-    sourceName,
-    origin,
-    referer,
-  });
-
-  return {
-    status: "success",
-    message: "Kiitos palautteesta!",
-  };
 };

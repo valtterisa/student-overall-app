@@ -1,18 +1,18 @@
 "use client";
 
-import { useActionState, useEffect, useId, useRef } from "react";
-import {
-  submitFeedbackAction,
-  type FeedbackFormState,
-} from "@/app/actions";
-import { SubmitButton } from "@/components/submit-button";
+import { useId, useRef, useState, FormEvent } from "react";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { FormMessage } from "@/components/form-message";
 import { cn } from "@/utils/cn";
+import { sendFeedbackEmail } from "@/lib/send-feedback-email";
+
+type FeedbackStatus =
+  | { type: "idle" }
+  | { type: "success"; message: string }
+  | { type: "error"; message: string };
 
 export type FeedbackFormProps = {
-  type: "complaint" | "general";
   title: string;
   description?: string;
   submitLabel: string;
@@ -25,10 +25,7 @@ export type FeedbackFormProps = {
   emailPlaceholder?: string;
 };
 
-const initialState: FeedbackFormState = { status: "idle" };
-
 export function FeedbackForm({
-  type,
   title,
   description,
   submitLabel,
@@ -41,42 +38,141 @@ export function FeedbackForm({
   emailPlaceholder = "sina@example.com",
 }: FeedbackFormProps) {
   const formRef = useRef<HTMLFormElement>(null);
-  const [state, formAction] = useActionState(
-    submitFeedbackAction,
-    initialState
-  );
+  const [status, setStatus] = useState<FeedbackStatus>({ type: "idle" });
+  const [pending, setPending] = useState(false);
   const id = useId();
 
-  useEffect(() => {
-    if (state.status === "success") {
-      formRef.current?.reset();
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (!formRef.current || pending) {
+      return;
     }
-  }, [state]);
 
-  const statusMessage =
-    state.status === "success"
-      ? { success: state.message }
-      : state.status === "error"
-        ? { error: state.message }
-        : null;
+    const formData = new FormData(formRef.current);
+    const honeypot = formData.get("website")?.toString() ?? "";
+    if (honeypot) {
+      setStatus({ type: "success", message: "Kiitos palautteesta!" });
+      return;
+    }
+
+    const message = formData.get("message")?.toString().trim() ?? "";
+
+    if (message.length < 10) {
+      setStatus({
+        type: "error",
+        message: "Täytä pakolliset kentät ja kerro hieman tarkemmin.",
+      });
+      return;
+    }
+
+    setPending(true);
+    setStatus({ type: "idle" });
+
+    try {
+      await sendFeedbackEmail({
+        type: "general",
+        message,
+        email: formData.get("email")?.toString().trim() || null,
+        sourceId: sourceId ?? null,
+        sourceName: sourceName ?? null,
+        origin: window.location.origin,
+        referer: document.referrer || null,
+      });
+
+      setStatus({
+        type: "success",
+        message: "Kiitos palautteesta!",
+      });
+      formRef.current.reset();
+    } catch {
+      setStatus({
+        type: "error",
+        message:
+          "Palautteen lähetys epäonnistui, yritä hetken päästä uudelleen.",
+      });
+    } finally {
+      setPending(false);
+    }
+  };
+
+  if (status.type === "success") {
+    return (
+      <div className={cn("space-y-4", className)}>
+        <div className="rounded-lg border border-green/30 bg-green/10 p-4">
+          <div className="flex items-center gap-3">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-green/20">
+              <svg
+                className="h-5 w-5 text-green"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M5 13l4 4L19 7"
+                />
+              </svg>
+            </div>
+            <div>
+              <h3 className="font-semibold text-green">Palaute lähetetty!</h3>
+              <p className="text-sm text-muted-foreground">{status.message}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <form
       ref={formRef}
-      action={formAction}
-      className={cn("space-y-4", className)}
+      onSubmit={handleSubmit}
+      className={cn("relative space-y-4", className)}
     >
-      <input type="hidden" name="type" value={type} />
-      {sourceId ? <input type="hidden" name="sourceId" value={sourceId} /> : null}
+      {sourceId ? (
+        <input type="hidden" name="sourceId" value={sourceId} />
+      ) : null}
       {sourceName ? (
         <input type="hidden" name="sourceName" value={sourceName} />
       ) : null}
+      <div className="absolute -left-[9999px]" aria-hidden="true">
+        <label htmlFor={`${id}-website`}>Website</label>
+        <input
+          type="text"
+          id={`${id}-website`}
+          name="website"
+          tabIndex={-1}
+          autoComplete="off"
+        />
+      </div>
       <div>
         <h3 className="text-lg font-semibold">{title}</h3>
         {description ? (
           <p className="text-sm text-muted-foreground mt-1">{description}</p>
         ) : null}
       </div>
+      {status.type === "error" && (
+        <div className="rounded-lg border border-destructive/30 bg-destructive/10 p-3">
+          <div className="flex items-center gap-2">
+            <svg
+              className="h-4 w-4 text-destructive shrink-0"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+              />
+            </svg>
+            <p className="text-sm text-destructive">{status.message}</p>
+          </div>
+        </div>
+      )}
       {includeEmailField ? (
         <div className="space-y-2">
           <Label htmlFor={`${id}-email`}>Sähköposti (vapaaehtoinen)</Label>
@@ -100,14 +196,13 @@ export function FeedbackForm({
           className="min-h-[120px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-2"
         />
       </div>
-      <SubmitButton
-        pendingText="Lähetetään..."
+      <Button
+        type="submit"
+        disabled={pending}
         className="bg-green text-white hover:bg-green/90"
       >
-        {submitLabel}
-      </SubmitButton>
-      {statusMessage ? <FormMessage message={statusMessage} /> : null}
+        {pending ? "Lähetetään..." : submitLabel}
+      </Button>
     </form>
   );
 }
-

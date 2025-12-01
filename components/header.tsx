@@ -53,7 +53,7 @@ export default function Header() {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <button className="flex items-center gap-1 rounded-full border border-transparent px-3 py-1.5 transition-colors hover:border-green hover:text-green focus:outline-none focus:ring-2 focus:ring-green/40">
-                  Linkit
+                  Kategoriat
                   <span aria-hidden="true">▾</span>
                 </button>
               </DropdownMenuTrigger>
@@ -61,7 +61,7 @@ export default function Header() {
                 {dropdownLinks.map((link) => {
                   const Icon = link.icon;
                   return (
-                    <DropdownMenuItem key={`pikalinkit-${link.href}`} asChild>
+                    <DropdownMenuItem key={`kategoriat-${link.href}`} asChild>
                       <Link
                         href={link.href}
                         className="flex items-center gap-3 text-muted-foreground hover:text-green"

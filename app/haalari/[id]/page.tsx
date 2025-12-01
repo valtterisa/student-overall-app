@@ -315,7 +315,6 @@ export default async function OverallPage({ params }: Props) {
               triggerLabel="Ilmoita virheestä"
               triggerClassName="bg-green text-white hover:bg-green/90"
               triggerSize="lg"
-              type="complaint"
               title="Huomasitko virheen?"
               description="Kerro mitä tietoa pitäisi päivittää niin korjaamme sen mahdollisimman nopeasti."
               submitLabel="Lähetä korjauspyyntö"

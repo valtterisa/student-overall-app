@@ -1,98 +1,75 @@
-import nodemailer from "nodemailer";
+"use server";
 
-type FeedbackEmailPayload = {
-  type: string;
-  message: string;
-  email: string | null;
-  sourceId: string | null;
-  sourceName: string | null;
-  origin: string | null;
-  referer: string | null;
-};
+import { Resend } from "resend";
+import { z } from "zod";
 
-const smtpHost = process.env.SMTP_HOST;
-const smtpPort = process.env.SMTP_PORT
-  ? Number(process.env.SMTP_PORT)
-  : undefined;
-const smtpUser = process.env.SMTP_USER;
-const smtpPass = process.env.SMTP_PASS;
-const smtpSecure = process.env.SMTP_SECURE === "true";
-const feedbackTo = process.env.FEEDBACK_EMAIL_TO;
-const feedbackFrom =
-  process.env.FEEDBACK_EMAIL_FROM || process.env.SMTP_USER || "noreply@haalarikone.fi";
+const feedbackSchema = z.object({
+  type: z.literal("general"),
+  message: z.string().min(10).max(5000),
+  email: z.email().nullable(),
+  sourceId: z.string().max(100).nullable(),
+  sourceName: z.string().max(200).nullable(),
+  origin: z.url().nullable(),
+  referer: z.string().max(500).nullable(),
+  honeypot: z.literal("").or(z.undefined()).optional(),
+});
 
-const transporter =
-  smtpHost && smtpPort && smtpUser && smtpPass
-    ? nodemailer.createTransport({
-        host: smtpHost,
-        port: smtpPort,
-        secure: smtpSecure,
-        auth: {
-          user: smtpUser,
-          pass: smtpPass,
-        },
-      })
-    : null;
+type FeedbackEmailPayload = z.infer<typeof feedbackSchema>;
+
+const resendApiKey = process.env.RESEND_API_KEY!;
+const feedbackTo = process.env.FEEDBACK_EMAIL_TO!;
+const feedbackFrom = "noreply@haalarikone.fi";
+
+const resend = new Resend(resendApiKey);
 
 export async function sendFeedbackEmail(payload: FeedbackEmailPayload) {
-  if (!transporter || !feedbackTo) {
-    console.warn(
-      "Feedback email skipped: transporter or recipient missing. Check SMTP_* and FEEDBACK_EMAIL_TO env vars."
-    );
-    return;
+  const result = feedbackSchema.safeParse(payload);
+  if (!result.success) {
+    throw new Error("Invalid feedback data");
   }
 
-  const subject =
-    payload.type === "complaint"
-      ? "Haalarikone - uusi korjauspyyntö"
-      : "Haalarikone - uusi palaute";
+  const validated = result.data;
+  const subject = "Haalarikone - uusi palaute";
+
+  const metaLines = [
+    ["Tyyppi", validated.type],
+    ["Kohde", validated.sourceName],
+    ["Kohteen ID", validated.sourceId],
+    ["Yhteystieto", validated.email],
+    ["Origin", validated.origin],
+    ["Referer", validated.referer],
+  ].filter(([, value]) => value);
+
+  const htmlMeta = metaLines
+    .map(
+      ([label, value]) => `<li><strong>${label}:</strong> ${String(value)}</li>`
+    )
+    .join("");
 
   const html = `
     <p>Uusi palaute Haalarikoneesta.</p>
-    <ul>
-      <li><strong>Tyyppi:</strong> ${payload.type}</li>
-      ${
-        payload.sourceName
-          ? `<li><strong>Kohde:</strong> ${payload.sourceName}</li>`
-          : ""
-      }
-      ${
-        payload.sourceId
-          ? `<li><strong>Kohteen ID:</strong> ${payload.sourceId}</li>`
-          : ""
-      }
-      ${
-        payload.email
-          ? `<li><strong>Yhteystieto:</strong> ${payload.email}</li>`
-          : ""
-      }
-      ${payload.origin ? `<li><strong>Origin:</strong> ${payload.origin}</li>` : ""}
-      ${payload.referer ? `<li><strong>Referer:</strong> ${payload.referer}</li>` : ""}
-    </ul>
+    <ul>${htmlMeta}</ul>
     <p><strong>Viesti:</strong></p>
-    <pre style="padding:12px;background:#f7f7f7;border-radius:8px;">${payload.message}</pre>
+    <pre style="padding:12px;background:#f7f7f7;border-radius:8px;">${validated.message}</pre>
   `;
 
   const textLines = [
-    `Uusi palaute (${payload.type})`,
-    payload.sourceName ? `Kohde: ${payload.sourceName}` : null,
-    payload.sourceId ? `Kohteen ID: ${payload.sourceId}` : null,
-    payload.email ? `Yhteystieto: ${payload.email}` : null,
-    payload.origin ? `Origin: ${payload.origin}` : null,
-    payload.referer ? `Referer: ${payload.referer}` : null,
+    `Uusi palaute (${validated.type})`,
+    ...metaLines.map(([label, value]) => `${label}: ${String(value)}`),
     "",
     "Viesti:",
-    payload.message,
-  ]
-    .filter(Boolean)
-    .join("\n");
+    validated.message,
+  ].join("\n");
 
-  await transporter.sendMail({
+  const { error } = await resend.emails.send({
     from: feedbackFrom,
     to: feedbackTo,
     subject,
     text: textLines,
     html,
   });
-}
 
+  if (error) {
+    throw error;
+  }
+}

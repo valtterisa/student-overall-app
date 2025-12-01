@@ -108,7 +108,6 @@ export default async function Index() {
                 triggerLabel="Anna palautetta"
                 triggerClassName="bg-green text-white hover:bg-green/90 self-center"
                 triggerSize="lg"
-                type="general"
                 title="Anna palautetta tai ideoita"
                 description="Kaikki kehitysehdotukset, bugiraportit ja ideat auttavat meitä parantamaan Haalarikonetta."
                 submitLabel="Lähetä palaute"
