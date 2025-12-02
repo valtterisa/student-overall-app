@@ -7,15 +7,23 @@ export default function FAQSchema() {
         mainEntity: [
             {
                 '@type': 'Question',
-                name: 'Minkä värinen haalari tietyn alan opiskelijalla on?',
+                name: 'Mistä löydän kaikki haalarivärit Suomessa?',
                 acceptedAnswer: {
                     '@type': 'Answer',
-                    text: 'Haalarivärit vaihtelevat alan ja oppilaitoksen mukaan. Käytä Haalarikonetta löytääksesi tarkat haalarivärit eri alojen opiskelijoille yliopisto- ja AMK-tasolla.',
+                    text: 'Haalarikone on Suomen kattavin haalarivärit-tietokanta, josta löydät yli 500 haalariväriä kaikille suomalaisille yliopistoille ja AMK:lle. Voit hakea haalarivärejä alan, oppilaitoksen, alueen tai värin perusteella.',
                 },
             },
             {
                 '@type': 'Question',
-                name: 'Miten haalarivärit valitaan?',
+                name: 'Mitkä ovat suosituimmat haalarivärit?',
+                acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: 'Suosituimpia haalarivärejä Suomessa ovat punainen, sininen, musta ja vihreä. Esimerkiksi teekkarit käyttävät usein eri sävyisiä haalareita kuin kauppatieteilijät tai lääketieteilijät.',
+                },
+            },
+            {
+                '@type': 'Question',
+                name: 'Miten haalarivärit valitaan opiskelijajärjestöissä?',
                 acceptedAnswer: {
                     '@type': 'Answer',
                     text: 'Haalarivärit valitaan yleensä opiskelijajärjestöjen ja oppilaitosten kesken yhteisesti. Jokaisella alalla ja yliopistolla voi olla omat perinteet ja säännöt haalarivärien valintaan.',
@@ -23,18 +31,18 @@ export default function FAQSchema() {
             },
             {
                 '@type': 'Question',
-                name: 'Onko kaikilla yliopistoilla samat haalarivärit?',
+                name: 'Onko yliopistojen ja AMK:iden haalarivärit samat?',
                 acceptedAnswer: {
                     '@type': 'Answer',
-                    text: 'Ei, haalarivärit vaihtelevat huomattavasti yliopistojen ja alojen välillä. Jopa sama ala voi käyttää eri värejä eri yliopistoissa.',
+                    text: 'Ei, haalarivärit vaihtelevat huomattavasti yliopistojen ja AMK:iden välillä. AMK:lla ja yliopistoilla on yleensä omat haalarivärit, vaikka ala olisi sama. Myös eri alueilla saman oppilaitoksen haalarivärit voivat vaihdella.',
                 },
             },
             {
                 '@type': 'Question',
-                name: 'Mitä eroa on AMK:n ja yliopiston haalariväreillä?',
+                name: 'Mikä on haalarivärien merkitys opiskelijakulttuurissa?',
                 acceptedAnswer: {
                     '@type': 'Answer',
-                    text: 'AMK:lla ja yliopistoilla on yleensä omat haalarivärit, vaikka ala olisi sama. Usein myös eri alueilla saman oppilaitoksen haalarivärit voivat vaihdella.',
+                    text: 'Haalarivärit ovat tärkeä osa suomalaista opiskelijakulttuuria. Ne auttavat tunnistamaan opiskelijan alan ja oppilaitoksen, ja luovat yhteisöllisyyttä opiskelijoiden kesken. Haalarivärit näkyvät erityisesti opiskelijatapahtumissa ja vappu-juhlissa.',
                 },
             },
             {
@@ -42,15 +50,7 @@ export default function FAQSchema() {
                 name: 'Voiko haalariväri muuttua?',
                 acceptedAnswer: {
                     '@type': 'Answer',
-                    text: 'Haalarivärit voivat muuttua ajan myötä, kun opiskelijajärjestöt päättävät vaihtaa värejä. Tämä on suhteellisen harvinaista, mutta ei mahdotonta.',
-                },
-            },
-            {
-                '@type': 'Question',
-                name: 'Mistä löydän kaikki haalarivärit?',
-                acceptedAnswer: {
-                    '@type': 'Answer',
-                    text: 'Haalarikone on Suomen kattavin haalaritietokanta, josta löydät haalarivärit kaikille suomalaisille yliopistoille ja AMK:lle. Voit hakea väriä, alaa, yliopistoa tai aluetta.',
+                    text: 'Haalarivärit voivat muuttua ajan myötä, kun opiskelijajärjestöt päättävät vaihtaa värejä. Tämä on suhteellisen harvinaista, mutta ei mahdotonta. Haalarikone päivittää haalarivärit säännöllisesti.',
                 },
             },
         ],

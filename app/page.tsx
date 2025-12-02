@@ -85,12 +85,13 @@ export default async function Index() {
           </div>
 
           <p className="text-center max-w-2xl mx-auto px-4 mt-6 mb-4">
-            Tutustu Suomen opiskelijakulttuuriin värien kautta. Haalarikone{" "}
-            <strong>auttaa sinua tunnistamaan</strong> eri alojen opiskelijat
-            haalarivärien perusteella.
+            Suomen kattavin haalareiden tietokanta. Löydä yli 500 haalariväriä
+            yliopistoista ja AMK:ista. Selvitä minkä värinen haalari tietyn alan
+            opiskelijalla on.
           </p>
         </div>
         <SearchContainer initialUniversities={universities} />
+
         <section
           id="palaute"
           className="w-full border-t border-border/60 bg-[#f8faf3] mt-12"
@@ -99,7 +100,7 @@ export default async function Index() {
             <div className="max-w-2xl mx-auto text-center flex flex-col gap-4">
               <h3 className="text-2xl font-bold">
                 Anna palautetta tai ideoita
-              </h3> 
+              </h3>
               <p className="text-muted-foreground">
                 Kaikki kehitysehdotukset, bugiraportit ja ideat auttavat meitä
                 parantamaan Haalarikonetta.

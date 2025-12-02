@@ -2,23 +2,24 @@ import Footer from "@/components/footer";
 import Header from "@/components/header";
 import { Arvo } from "next/font/google";
 import "./globals.css";
-import Script from "next/script";
 import { Databuddy } from "@databuddy/sdk/react";
 
 export const metadata = {
   metadataBase: new URL("https://haalarikone.fi"),
-  title:
-    "Haalarikone | Selvitä minkä värinen haalari tietyn alan opiskelijalla on!",
+  title: "Haalarikone | Kaikki opiskelijahaalarivärit Suomessa",
   description:
-    "Tutustu Suomen opiskelijakulttuuriin värien kautta. Haalarikone auttaa sinua tunnistamaan eri alojen opiskelijat haalarivärien perusteella.",
+    "Löydä kaikki Suomen opiskelijoiden haalarivärit yhdestä paikasta. Yli 500 haalariväriä yliopistoista ja AMK:ista. Selvitä minkä värinen haalari tietyn alan opiskelijalla on!",
   keywords: [
+    "haalarivärit",
+    "opiskelijahaalarivärit",
     "haalarikone",
     "haalaritietokanta",
-    "haalarien värit",
     "opiskelijahaalarit",
-    "suomen opiskelijakulttuuri",
     "yliopiston haalarivärit",
-    "AMK haalarit",
+    "AMK haalarivärit",
+    "suomen opiskelijakulttuuri",
+    "haalarivärit 2025",
+    "opiskelijan haalari",
   ],
   authors: [{ name: "Haalarikone" }],
   robots: {
@@ -33,10 +34,9 @@ export const metadata = {
     },
   },
   openGraph: {
-    title:
-      "Haalarikone | Selvitä minkä värinen haalari tietyn alan opiskelijalla on!",
+    title: "Haalarikone | Kaikki opiskelijahaalarivärit Suomessa",
     description:
-      "Tutustu Suomen opiskelijakulttuuriin värien kautta. Haalarikone auttaa sinua tunnistamaan eri alojen opiskelijat haalarivärien perusteella.",
+      "Löydä kaikki Suomen opiskelijoiden haalarivärit yhdestä paikasta. Yli 500 haalariväriä yliopistoista ja AMK:ista.",
     images: [
       {
         url: "/haalarikone-og.png",
@@ -52,8 +52,9 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Haalarikone | Suomen helpoin haalaritietokanta",
-    description: "Tutustu Suomen opiskelijakulttuuriin värien kautta",
+    title: "Haalarikone | Kaikki opiskelijahaalarivärit",
+    description:
+      "Löydä kaikki Suomen opiskelijoiden haalarivärit yhdestä paikasta. Yli 500 haalariväriä.",
     images: ["/haalarikone-og.png"],
   },
   alternates: {
