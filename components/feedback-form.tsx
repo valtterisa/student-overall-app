@@ -23,6 +23,7 @@ export type FeedbackFormProps = {
   messageLabel?: string;
   messagePlaceholder?: string;
   emailPlaceholder?: string;
+  onClose?: () => void;
 };
 
 export function FeedbackForm({
@@ -36,6 +37,7 @@ export function FeedbackForm({
   messageLabel = "Viesti",
   messagePlaceholder = "Kerro ajatuksesi...",
   emailPlaceholder = "sina@example.com",
+  onClose,
 }: FeedbackFormProps) {
   const formRef = useRef<HTMLFormElement>(null);
   const [status, setStatus] = useState<FeedbackStatus>({ type: "idle" });
@@ -121,6 +123,11 @@ export function FeedbackForm({
             </div>
           </div>
         </div>
+        {onClose && (
+          <Button type="button" variant="outline" onClick={onClose}>
+            Sulje
+          </Button>
+        )}
       </div>
     );
   }
@@ -196,13 +203,25 @@ export function FeedbackForm({
           className="min-h-[120px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-2"
         />
       </div>
-      <Button
-        type="submit"
-        disabled={pending}
-        className="bg-green text-white hover:bg-green/90"
+      <div
+        className={cn(
+          "flex justify-between gap-3",
+          onClose && "flex-col sm:flex-row"
+        )}
       >
-        {pending ? "Lähetetään..." : submitLabel}
-      </Button>
+        <Button
+          type="submit"
+          disabled={pending}
+          className="bg-green text-white hover:bg-green/90"
+        >
+          {pending ? "Lähetetään..." : submitLabel}
+        </Button>
+        {onClose && (
+          <Button type="button" variant="outline" onClick={onClose}>
+            Sulje
+          </Button>
+        )}
+      </div>
     </form>
   );
 }

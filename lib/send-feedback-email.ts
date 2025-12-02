@@ -1,7 +1,16 @@
 "use server";
 
+import { headers } from "next/headers";
 import { Resend } from "resend";
+import { Ratelimit } from "@upstash/ratelimit";
+import { Redis } from "@upstash/redis";
 import { z } from "zod";
+
+const ratelimit = new Ratelimit({
+  redis: Redis.fromEnv(),
+  limiter: Ratelimit.slidingWindow(5, "1 m"),
+  prefix: "feedback",
+});
 
 const feedbackSchema = z.object({
   type: z.literal("general"),
@@ -23,6 +32,18 @@ const feedbackFrom = "noreply@haalarikone.fi";
 const resend = new Resend(resendApiKey);
 
 export async function sendFeedbackEmail(payload: FeedbackEmailPayload) {
+  const headersList = await headers();
+  const ip =
+    headersList.get("x-forwarded-for")?.split(",")[0] ??
+    headersList.get("x-real-ip")?.split(",")[0] ??
+    "anonymous";
+
+  console.log(ip);
+  const { success } = await ratelimit.limit(ip);
+  if (!success) {
+    throw new Error("Rate limit exceeded");
+  }
+
   const result = feedbackSchema.safeParse(payload);
   if (!result.success) {
     throw new Error("Invalid feedback data");
