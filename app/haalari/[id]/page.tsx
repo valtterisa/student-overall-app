@@ -13,6 +13,7 @@ import Script from "next/script";
 import { parseStyles } from "@/lib/utils";
 import { generateSlug } from "@/lib/generate-slug";
 import Image from "next/image";
+import { FeedbackModal } from "@/components/feedback-modal";
 
 export const revalidate = 3600;
 
@@ -180,15 +181,15 @@ export default async function OverallPage({ params }: Props) {
           </BreadcrumbList>
         </Breadcrumb>
 
-        <div className="bg-white rounded-lg shadow-lg p-8 mb-8">
+        <div className="bg-white rounded-lg shadow-lg p-4 mb-8">
           <div className="flex flex-col md:flex-row gap-8">
-            <div className="flex-shrink-0">
+            <div className="flex flex-row md:flex-col items-center gap-4">
               <div
-                className="w-32 h-32 rounded-lg border-4 shadow-lg"
+                className="w-32 h-32 rounded-lg border-4 shadow-lg flex-shrink-0"
                 style={parseStyles(overall.hex)}
                 title={`Väri: ${overall.vari}`}
               />
-              <div className="relative w-32 h-32 mt-4 rounded-lg overflow-hidden border">
+              <div className="relative w-32 h-32 rounded-lg overflow-hidden border">
                 <Image
                   className="object-contain"
                   src={`/logos/${
@@ -301,8 +302,30 @@ export default async function OverallPage({ params }: Props) {
             </div>
           </div>
         )}
+        <div className="bg-white rounded-lg shadow-lg p-8 mt-10">
+          <div className="flex flex-col gap-4">
+            <div>
+              <h3 className="text-xl font-semibold">Huomasitko virheen?</h3>
+              <p className="text-muted-foreground mt-1">
+                Kerro, mikä tieto on pielessä, niin päivitämme sen
+                mahdollisimman nopeasti.
+              </p>
+            </div>
+            <FeedbackModal
+              triggerLabel="Ilmoita virheestä"
+              triggerClassName="bg-green text-white hover:bg-green/90"
+              triggerSize="lg"
+              title="Huomasitko virheen?"
+              description="Kerro mitä tietoa pitäisi päivittää niin korjaamme sen mahdollisimman nopeasti."
+              submitLabel="Lähetä korjauspyyntö"
+              sourceId={overall.id.toString()}
+              sourceName={`${overall.vari} - ${overall.oppilaitos}`}
+              messageLabel="Virheen kuvaus"
+              messagePlaceholder="Mikä tieto on väärin ja miten sen pitäisi olla?"
+            />
+          </div>
+        </div>
       </div>
     </>
   );
 }
-
