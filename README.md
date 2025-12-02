@@ -65,9 +65,13 @@ UPSTASH_SEARCH_REST_TOKEN=your_upstash_search_token
 # Upstash Redis (for rate limiting)
 UPSTASH_REDIS_REST_URL=your_upstash_redis_url
 UPSTASH_REDIS_REST_TOKEN=your_upstash_redis_token
+
+# Resend (feedback form)
+RESEND_API_KEY=your_resend_api_key
+FEEDBACK_EMAIL_TO=email_to_send_feedback_to
 ```
 
-**Note:** Set up your own Supabase and Upstash instances.
+**Note:** Set up your own Supabase and Upstash instances. Resend can't be used without admin's API-key. So just let it be :)
 
 ### 4. Run the Development Server
 
