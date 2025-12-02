@@ -38,7 +38,6 @@ export async function sendFeedbackEmail(payload: FeedbackEmailPayload) {
     headersList.get("x-real-ip")?.split(",")[0] ??
     "anonymous";
 
-  console.log(ip);
   const { success } = await ratelimit.limit(ip);
   if (!success) {
     throw new Error("Rate limit exceeded");
