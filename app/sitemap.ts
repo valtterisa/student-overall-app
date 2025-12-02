@@ -52,6 +52,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
+  entries.push({
+    url: `${baseUrl}/oppilaitos`,
+    lastModified: dataLastModified,
+    changeFrequency: "weekly",
+    priority: 0.8,
+  });
+
   const uniqueUniversities = getUniqueUniversities(universities);
   uniqueUniversities.forEach((uni) => {
     entries.push({
@@ -62,6 +69,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     });
   });
 
+  entries.push({
+    url: `${baseUrl}/ala`,
+    lastModified: dataLastModified,
+    changeFrequency: "weekly",
+    priority: 0.8,
+  });
+
   const uniqueFields = getUniqueFields(universities);
   uniqueFields.forEach((field) => {
     entries.push({
@@ -70,6 +84,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly",
       priority: 0.7,
     });
+  });
+
+  entries.push({
+    url: `${baseUrl}/vari`,
+    lastModified: dataLastModified,
+    changeFrequency: "weekly",
+    priority: 0.9,
   });
 
   const uniqueColors = getUniqueColors(universities);
