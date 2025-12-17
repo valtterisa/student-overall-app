@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Menu, X, Palette, Layers, GraduationCap } from "lucide-react";
+import Logo from "@/components/logo";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -42,13 +43,9 @@ export default function Header() {
     <header className="sticky top-0 z-40 w-full border-b border-border/60 bg-white/90 backdrop-blur">
       <div className="relative">
         <nav className="container mx-auto flex items-center justify-between px-4 py-4">
-          <Link
-            href="/"
-            className="text-xs uppercase tracking-[0.3em] text-[#65a30d] transition hover:text-green"
-            onClick={closeMobileMenu}
-          >
-            Haalarikone
-          </Link>
+          <div onClick={closeMobileMenu}>
+            <Logo priority />
+          </div>
           <div className="hidden items-center gap-6 text-sm font-medium text-muted-foreground md:flex">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>

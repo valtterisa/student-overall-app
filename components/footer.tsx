@@ -1,5 +1,6 @@
 import { Github, Mail } from "lucide-react";
 import Link from "next/link";
+import Logo from "@/components/logo";
 
 const footerLinks = [
   { label: "Etusivu", href: "/" },
@@ -14,9 +15,7 @@ export default function Footer() {
       <div className="container mx-auto flex w-full flex-col gap-10 px-4 pt-8 pb-4">
         <div className="flex flex-col w-full text-center md:flex-row md:items-center  md:justify-between md:text-left">
           <div className="mx-auto max-w-xl md:mx-0">
-            <p className="text-sm uppercase tracking-[0.3em] text-[#65a30d]">
-              Haalarikone
-            </p>
+            <Logo />
 
             <p className="mt-3 max-w-sm text-sm text-muted-foreground">
               Inspiraatiota, värejä ja perinteitä opiskelijahaalareihin. Pidä
