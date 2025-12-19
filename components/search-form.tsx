@@ -89,22 +89,24 @@ export default function SearchForm({
     const down = (e: KeyboardEvent) => {
       if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
         e.preventDefault();
-        setCommandOpen((open) => {
-          if (!open) {
-            setTimeout(() => {
-              searchInputRef.current?.focus();
-            }, 0);
-          }
-          return !open;
-        });
+        e.stopPropagation();
+        setCommandOpen((prev) => !prev);
       }
       if (e.key === "Escape") {
         setCommandOpen(false);
       }
     };
-    document.addEventListener("keydown", down);
-    return () => document.removeEventListener("keydown", down);
+    document.addEventListener("keydown", down, true);
+    return () => document.removeEventListener("keydown", down, true);
   }, []);
+
+  useEffect(() => {
+    if (commandOpen && searchInputRef.current) {
+      requestAnimationFrame(() => {
+        searchInputRef.current?.focus();
+      });
+    }
+  }, [commandOpen]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -171,15 +173,7 @@ export default function SearchForm({
     setIsAdvancedSearchOpen(false);
   };
 
-  const handleCommandSelect = (
-    type: "color" | "area" | "field" | "school",
-    value: string
-  ) => {
-    onDraftAdvancedFilterChange({ ...draftAdvancedFilters, [type]: value });
-    onApplyAdvancedFilters();
-    setCommandOpen(false);
-    searchInputRef.current?.focus();
-  };
+
 
   const hasActiveFilters =
     selectedCriteria.color ||
@@ -193,21 +187,8 @@ export default function SearchForm({
     draftAdvancedFilters.field !== selectedCriteria.field ||
     draftAdvancedFilters.school !== selectedCriteria.school;
 
-  const filterItems = (items: string[], search: string) => {
-    if (!search) return items;
-    const normalizedSearch = search.toLowerCase();
-    return items.filter((item) =>
-      item.toLowerCase().includes(normalizedSearch)
-    );
-  };
 
-  const filteredColors = filterItems(
-    Object.keys(colorData.colors),
-    localSearchValue
-  );
-  const filteredAreas = filterItems(areas, localSearchValue);
-  const filteredFields = filterItems(fields, localSearchValue);
-  const filteredSchools = filterItems(schools, localSearchValue);
+
 
   return (
     <motion.div
@@ -226,7 +207,6 @@ export default function SearchForm({
               type="text"
               value={localSearchValue}
               onChange={(e) => handleTextSearchChange(e.target.value)}
-              onFocus={() => setCommandOpen(true)}
               placeholder="Kerro mitä etsit?"
               className="pl-10 pr-24 sm:pl-16 sm:pr-28 h-12 sm:h-16 text-base sm:text-lg bg-white text-foreground border-input focus:ring-2 focus:ring-green/30 focus-visible:ring-2 focus-visible:ring-green/30 border-2 shadow-sm hover:shadow-md transition-shadow"
               aria-disabled={isSearching}
@@ -252,99 +232,6 @@ export default function SearchForm({
               </button>
             )}
           </div>
-          {commandOpen && (
-            <div ref={commandRef} className="absolute top-full left-0 right-0 mt-2 z-50">
-              <Command
-                className="rounded-lg border border-border bg-white shadow-lg"
-                shouldFilter={false}
-              >
-                <CommandList className="max-h-[300px]">
-                  {filteredColors.length === 0 &&
-                    filteredAreas.length === 0 &&
-                    filteredFields.length === 0 &&
-                    filteredSchools.length === 0 && (
-                      <CommandEmpty>Ei tuloksia.</CommandEmpty>
-                    )}
-                  {filteredColors.length > 0 && (
-                    <CommandGroup heading="Värit">
-                      {filteredColors.map((colorKey) => {
-                        const data = colorData.colors[colorKey as keyof typeof colorData.colors];
-                        return (
-                          <CommandItem
-                            key={colorKey}
-                            value={`${data.main[0]} ${colorKey}`}
-                            onSelect={() => handleCommandSelect("color", colorKey)}
-                          >
-                            <Palette className="mr-2 h-4 w-4" />
-                            <div className="flex items-center gap-2">
-                              <div
-                                className="w-3 h-3 rounded border"
-                                style={{
-                                  backgroundImage: `linear-gradient(to bottom right, ${data.color}, ${data.alt})`,
-                                }}
-                              />
-                              <span>{data.main[0]}</span>
-                            </div>
-                          </CommandItem>
-                        );
-                      })}
-                    </CommandGroup>
-                  )}
-                  {filteredColors.length > 0 && (filteredAreas.length > 0 || filteredFields.length > 0 || filteredSchools.length > 0) && (
-                    <CommandSeparator />
-                  )}
-                  {filteredAreas.length > 0 && (
-                    <CommandGroup heading="Kaupungit">
-                      {filteredAreas.map((area) => (
-                        <CommandItem
-                          key={area}
-                          value={area}
-                          onSelect={() => handleCommandSelect("area", area)}
-                        >
-                          <MapPin className="mr-2 h-4 w-4" />
-                          <span>{area}</span>
-                        </CommandItem>
-                      ))}
-                    </CommandGroup>
-                  )}
-                  {filteredAreas.length > 0 && (filteredFields.length > 0 || filteredSchools.length > 0) && (
-                    <CommandSeparator />
-                  )}
-                  {filteredFields.length > 0 && (
-                    <CommandGroup heading="Opiskelualat">
-                      {filteredFields.map((field) => (
-                        <CommandItem
-                          key={field}
-                          value={field}
-                          onSelect={() => handleCommandSelect("field", field)}
-                        >
-                          <GraduationCap className="mr-2 h-4 w-4" />
-                          <span>{field}</span>
-                        </CommandItem>
-                      ))}
-                    </CommandGroup>
-                  )}
-                  {filteredFields.length > 0 && filteredSchools.length > 0 && (
-                    <CommandSeparator />
-                  )}
-                  {filteredSchools.length > 0 && (
-                    <CommandGroup heading="Oppilaitokset">
-                      {filteredSchools.map((school) => (
-                        <CommandItem
-                          key={school}
-                          value={school}
-                          onSelect={() => handleCommandSelect("school", school)}
-                        >
-                          <School className="mr-2 h-4 w-4" />
-                          <span>{school}</span>
-                        </CommandItem>
-                      ))}
-                    </CommandGroup>
-                  )}
-                </CommandList>
-              </Command>
-            </div>
-          )}
         </div>
 
         <div className="px-3 pb-3 pt-3 sm:px-6 sm:pb-6 sm:pt-4 border-t border-border/50">
