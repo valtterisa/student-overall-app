@@ -1,0 +1,274 @@
+"use client";
+
+import { useState, useEffect, useMemo } from "react";
+import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import {
+    Dialog,
+    DialogContent,
+    DialogTitle,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Search as SearchIcon, X, Loader2, ChevronRight } from "lucide-react";
+import { searchUniversitiesAPI, type UniversityWithScore } from "@/lib/search-utils";
+import { parseStyles } from "@/lib/utils";
+import { generateSlug } from "@/lib/generate-slug";
+import type { University } from "@/types/university";
+
+interface SearchModalProps {
+    triggerLabel?: string;
+    placeholder?: string;
+    modalTitle?: string;
+}
+
+export function SearchModal({
+    triggerLabel = "Etsi haalarikoneesta",
+    placeholder = "Etsi värejä, aloja, oppilaitoksia...",
+    modalTitle = "Haku",
+}: SearchModalProps) {
+    const [open, setOpen] = useState(false);
+    const [searchQuery, setSearchQuery] = useState("");
+    const [results, setResults] = useState<UniversityWithScore[]>([]);
+    const [isSearching, setIsSearching] = useState(false);
+    const [showAllHaalarit, setShowAllHaalarit] = useState(false);
+    const router = useRouter();
+
+    useEffect(() => {
+        if (!open) {
+            setSearchQuery("");
+            setResults([]);
+            setShowAllHaalarit(false);
+        }
+    }, [open]);
+
+    useEffect(() => {
+        if (searchQuery.trim().length < 2) {
+            setResults([]);
+            return;
+        }
+
+        setShowAllHaalarit(false);
+        const timeoutId = setTimeout(async () => {
+            setIsSearching(true);
+            try {
+                const searchResults = await searchUniversitiesAPI(searchQuery.trim());
+                setResults(searchResults);
+            } catch (error) {
+                console.error("Search failed:", error);
+                setResults([]);
+            } finally {
+                setIsSearching(false);
+            }
+        }, 300);
+
+        return () => clearTimeout(timeoutId);
+    }, [searchQuery]);
+
+    const handleSelect = (uni: University) => {
+        router.push(`/haalari/${uni.id}`);
+        setOpen(false);
+    };
+
+    const groupedByColor = useMemo(() => {
+        const groups = new Map<string, { unis: University[]; hex: string | null }>();
+        results.forEach((uni) => {
+            if (!groups.has(uni.vari)) {
+                groups.set(uni.vari, { unis: [], hex: null });
+            }
+            const group = groups.get(uni.vari)!;
+            group.unis.push(uni);
+            if (!group.hex && uni.hex) {
+                group.hex = uni.hex;
+            }
+        });
+        return groups;
+    }, [results]);
+
+    const groupedByInstitution = useMemo(() => {
+        const groups = new Map<string, University[]>();
+        results.forEach((uni) => {
+            if (!groups.has(uni.oppilaitos)) {
+                groups.set(uni.oppilaitos, []);
+            }
+            groups.get(uni.oppilaitos)!.push(uni);
+        });
+        return groups;
+    }, [results]);
+
+    const visibleHaalaritCount = showAllHaalarit ? results.length : 5;
+
+    return (
+        <>
+            <Button
+                onClick={() => setOpen(true)}
+                variant="outline"
+                className="w-full sm:w-auto gap-2"
+            >
+                <SearchIcon className="h-4 w-4" />
+                {triggerLabel}
+            </Button>
+            <Dialog open={open} onOpenChange={setOpen}>
+                <DialogContent className="max-w-2xl max-h-[80vh] overflow-hidden flex flex-col p-0" hideCloseButton>
+                    <DialogTitle className="sr-only">{modalTitle}</DialogTitle>
+                    <div className="p-4 border-b">
+                        <div className="flex items-center gap-3">
+                            <div className="relative flex-1">
+                                <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5 pointer-events-none" />
+                                <Input
+                                    type="text"
+                                    value={searchQuery}
+                                    onChange={(e) => setSearchQuery(e.target.value)}
+                                    placeholder={placeholder}
+                                    className="pl-10 pr-10 h-12 text-base"
+                                    autoFocus
+                                />
+                                {searchQuery && (
+                                    <button
+                                        type="button"
+                                        onClick={() => setSearchQuery("")}
+                                        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground transition p-1 rounded hover:bg-muted"
+                                        aria-label="Tyhjennä haku"
+                                    >
+                                        <X className="w-4 h-4" />
+                                    </button>
+                                )}
+                            </div>
+                            <button
+                                type="button"
+                                onClick={() => setOpen(false)}
+                                className="text-sm text-muted-foreground hover:text-foreground transition px-2 py-1 rounded hover:bg-muted flex-shrink-0"
+                            >
+                                Sulje
+                            </button>
+                        </div>
+                    </div>
+
+                    <div className="flex-1 overflow-y-auto p-4">
+                        {isSearching && (
+                            <div className="flex items-center justify-center py-8">
+                                <Loader2 className="w-6 h-6 animate-spin text-green" />
+                            </div>
+                        )}
+
+                        {!isSearching && searchQuery.trim().length < 2 && (
+                            <div className="py-8 text-center text-sm text-muted-foreground">
+                                Kirjoita hakusana aloittaaksesi haun
+                            </div>
+                        )}
+
+                        {!isSearching && searchQuery.trim().length >= 2 && results.length === 0 && (
+                            <div className="py-8 text-center text-sm text-muted-foreground">
+                                Ei tuloksia haulle "{searchQuery}"
+                            </div>
+                        )}
+
+                        {!isSearching && results.length > 0 && (
+                            <div className="space-y-6">
+                                <div>
+                                    <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">
+                                        Haalarit ({results.length})
+                                    </h3>
+                                    <div className="space-y-2">
+                                        {results.slice(0, visibleHaalaritCount).map((uni) => (
+                                            <button
+                                                key={uni.id}
+                                                onClick={() => handleSelect(uni)}
+                                                className="w-full flex items-center gap-3 p-3 rounded-lg border hover:bg-muted/50 transition text-left"
+                                            >
+                                                <div
+                                                    className="w-10 h-10 rounded-md border-2 shadow-sm flex-shrink-0"
+                                                    style={uni.hex ? parseStyles(uni.hex) : { backgroundColor: '#e5e7eb' }}
+                                                />
+                                                <div className="flex-1 min-w-0">
+                                                    <div className="font-medium text-sm">
+                                                        {uni.ainejärjestö || uni.ala || "Ainejärjestö ei tiedossa"}
+                                                    </div>
+                                                    <div className="text-xs text-muted-foreground">
+                                                        {uni.oppilaitos} • {uni.vari}
+                                                    </div>
+                                                </div>
+                                                <ChevronRight className="w-4 h-4 text-muted-foreground flex-shrink-0" />
+                                            </button>
+                                        ))}
+                                    </div>
+                                    {results.length > 5 && !showAllHaalarit && (
+                                        <Button
+                                            variant="ghost"
+                                            onClick={() => setShowAllHaalarit(true)}
+                                            className="w-full mt-3 text-sm text-muted-foreground hover:text-foreground"
+                                        >
+                                            Näytä kaikki {results.length} haalaria
+                                            <ChevronRight className="w-4 h-4 ml-1" />
+                                        </Button>
+                                    )}
+                                </div>
+
+                                {groupedByColor.size > 0 && (
+                                    <div>
+                                        <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">
+                                            Värit ({groupedByColor.size})
+                                        </h3>
+                                        <div className="grid gap-2 sm:grid-cols-2">
+                                            {Array.from(groupedByColor.entries())
+                                                .slice(0, 4)
+                                                .map(([color, data]) => (
+                                                    <button
+                                                        key={color}
+                                                        onClick={() => {
+                                                            router.push(`/vari/${generateSlug(color)}`);
+                                                            setOpen(false);
+                                                        }}
+                                                        className="flex items-center gap-3 p-3 rounded-lg border hover:bg-muted/50 transition text-left"
+                                                    >
+                                                        <div
+                                                            className="w-8 h-8 rounded-md border-2 shadow-sm flex-shrink-0"
+                                                            style={data.hex ? parseStyles(data.hex) : { backgroundColor: '#e5e7eb' }}
+                                                        />
+                                                        <div className="flex-1 min-w-0">
+                                                            <div className="font-medium text-sm">{color}</div>
+                                                            <div className="text-xs text-muted-foreground">
+                                                                {data.unis.length} haalaria
+                                                            </div>
+                                                        </div>
+                                                    </button>
+                                                ))}
+                                        </div>
+                                    </div>
+                                )}
+
+                                {groupedByInstitution.size > 0 && (
+                                    <div>
+                                        <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">
+                                            Oppilaitokset ({groupedByInstitution.size})
+                                        </h3>
+                                        <div className="grid gap-2 sm:grid-cols-2">
+                                            {Array.from(groupedByInstitution.entries())
+                                                .slice(0, 4)
+                                                .map(([institution, unis]) => (
+                                                    <button
+                                                        key={institution}
+                                                        onClick={() => {
+                                                            router.push(`/oppilaitos/${generateSlug(institution)}`);
+                                                            setOpen(false);
+                                                        }}
+                                                        className="flex items-center gap-3 p-3 rounded-lg border hover:bg-muted/50 transition text-left"
+                                                    >
+                                                        <div className="flex-1 min-w-0">
+                                                            <div className="font-medium text-sm">{institution}</div>
+                                                            <div className="text-xs text-muted-foreground">
+                                                                {unis.length} haalaria
+                                                            </div>
+                                                        </div>
+                                                    </button>
+                                                ))}
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                        )}
+                    </div>
+                </DialogContent>
+            </Dialog>
+        </>
+    );
+}
