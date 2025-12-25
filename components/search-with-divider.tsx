@@ -1,4 +1,7 @@
+"use client";
+
 import { SearchModal } from "./search-modal";
+import { useTranslations } from 'next-intl';
 
 interface SearchWithDividerProps {
     dividerText?: string;
@@ -8,18 +11,24 @@ interface SearchWithDividerProps {
 }
 
 export function SearchWithDivider({
-    dividerText = "TAI",
-    triggerLabel = "Etsi haalarikoneesta",
-    placeholder = "Etsi värejä, aloja, oppilaitoksia...",
-    modalTitle = "Haku",
+    dividerText,
+    triggerLabel,
+    placeholder,
+    modalTitle,
 }: SearchWithDividerProps) {
+    const t = useTranslations('search');
+
+    const finalDividerText = dividerText ?? t('orSelect');
+    const finalTriggerLabel = triggerLabel ?? t('title');
+    const finalPlaceholder = placeholder ?? t('searchPlaceholder');
+    const finalModalTitle = modalTitle ?? t('title');
     return (
         <>
             <div className="mb-8 flex justify-center">
                 <SearchModal
-                    triggerLabel={triggerLabel}
-                    placeholder={placeholder}
-                    modalTitle={modalTitle}
+                    triggerLabel={finalTriggerLabel}
+                    placeholder={finalPlaceholder}
+                    modalTitle={finalModalTitle}
                 />
             </div>
 
@@ -28,7 +37,7 @@ export function SearchWithDivider({
                     <span className="w-full border-t" />
                 </div>
                 <div className="relative flex justify-center text-xs uppercase">
-                    <span className="bg-white px-2 text-muted-foreground">{dividerText}</span>
+                    <span className="bg-white px-2 text-muted-foreground">{finalDividerText}</span>
                 </div>
             </div>
         </>

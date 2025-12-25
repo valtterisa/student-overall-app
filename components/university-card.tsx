@@ -1,11 +1,13 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { parseStyles } from "@/lib/utils";
-import { generateSlug } from "@/lib/generate-slug";
+import { getSlugForEntity } from "@/lib/slug-translations";
 import type { University } from "@/types/university";
+import { useLocale } from 'next-intl';
+import { useTranslations } from 'next-intl';
 
 interface UniversityCardProps {
   uni: University;
@@ -13,6 +15,8 @@ interface UniversityCardProps {
 
 export default function UniversityCard({ uni }: UniversityCardProps) {
   const router = useRouter();
+  const locale = useLocale() as 'fi' | 'en' | 'sv';
+  const t = useTranslations('overall');
 
   return (
     <li
@@ -54,7 +58,7 @@ export default function UniversityCard({ uni }: UniversityCardProps) {
 
         <div className="flex-1 min-w-0 pr-6">
           <h3 className="text-sm font-semibold text-foreground mb-2.5 break-words leading-tight">
-            {uni.ainejärjestö ?? "Ainejärjestö ei tiedossa"}
+            {uni.ainejärjestö ?? t('unknownOrganization')}
           </h3>
 
           <div
@@ -62,14 +66,14 @@ export default function UniversityCard({ uni }: UniversityCardProps) {
             onClick={(e) => e.stopPropagation()}
           >
             <Link
-              href={`/vari/${generateSlug(uni.vari)}`}
+              href={`/vari/${getSlugForEntity(uni.vari, locale, 'color')}`}
               className="inline-flex items-center gap-1 px-2.5 py-1 bg-green/10 text-green rounded-full text-xs font-medium hover:bg-green/20 hover:text-green/90 transition-colors"
               onClick={(e) => e.stopPropagation()}
             >
               {uni.vari}
             </Link>
             <Link
-              href={`/oppilaitos/${generateSlug(uni.oppilaitos)}`}
+              href={`/oppilaitos/${getSlugForEntity(uni.oppilaitos, locale, 'university')}`}
               className="inline-flex items-center gap-1 px-2.5 py-1 bg-green/10 text-green rounded-full text-xs font-medium hover:bg-green/20 hover:text-green/90 transition-colors"
               onClick={(e) => e.stopPropagation()}
             >
@@ -77,7 +81,7 @@ export default function UniversityCard({ uni }: UniversityCardProps) {
             </Link>
             {uni.ala && (
               <Link
-                href={`/ala/${generateSlug(uni.ala.split(",")[0].trim())}`}
+                href={`/ala/${getSlugForEntity(uni.ala.split(",")[0].trim(), locale, 'field')}`}
                 className="inline-flex items-center gap-1 px-2.5 py-1 bg-green/10 text-green rounded-full text-xs font-medium hover:bg-green/20 hover:text-green/90 transition-colors"
                 onClick={(e) => e.stopPropagation()}
               >
@@ -86,7 +90,7 @@ export default function UniversityCard({ uni }: UniversityCardProps) {
             )}
             {uni.alue && (
               <Link
-                href={`/alue/${generateSlug(uni.alue.split(",")[0].trim())}`}
+                href={`/alue/${getSlugForEntity(uni.alue.split(",")[0].trim(), locale, 'area')}`}
                 className="inline-flex items-center gap-1 px-2.5 py-1 bg-green/10 text-green rounded-full text-xs font-medium hover:bg-green/20 hover:text-green/90 transition-colors"
                 onClick={(e) => e.stopPropagation()}
               >

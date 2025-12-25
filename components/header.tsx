@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { useState } from "react";
 import { Menu, X, Palette, Layers, GraduationCap } from "lucide-react";
 import Logo from "@/components/logo";
@@ -10,34 +10,38 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-
-const navLinks = [{ label: "Blogi", href: "/blog" }];
-
-const dropdownLinks = [
-  {
-    label: "Kaikki värit",
-    href: "/vari",
-    description: "Selaa haalareiden sävyvalikoimaa",
-    icon: Palette,
-  },
-  {
-    label: "Kaikki alat",
-    href: "/ala",
-    description: "Etsi opiskelualat ja kiinnostukset",
-    icon: Layers,
-  },
-  {
-    label: "Kaikki oppilaitokset",
-    href: "/oppilaitos",
-    description: "Tarkastele oppilaitoskohtaiset tiedot",
-    icon: GraduationCap,
-  },
-];
+import { useTranslations } from 'next-intl';
+import { LanguageSwitcher } from './language-switcher';
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const t = useTranslations();
+  const tNav = useTranslations('nav');
 
   const closeMobileMenu = () => setMobileOpen(false);
+
+  const navLinks = [{ label: t('common.blog'), href: "/blog" }];
+
+  const dropdownLinks = [
+    {
+      label: tNav('allColors'),
+      href: "/vari",
+      description: tNav('colorsDescription'),
+      icon: Palette,
+    },
+    {
+      label: tNav('allFields'),
+      href: "/ala",
+      description: tNav('fieldsDescription'),
+      icon: Layers,
+    },
+    {
+      label: tNav('allSchools'),
+      href: "/oppilaitos",
+      description: tNav('schoolsDescription'),
+      icon: GraduationCap,
+    },
+  ];
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border/60 bg-white/90 backdrop-blur">
@@ -50,7 +54,7 @@ export default function Header() {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <button className="flex items-center gap-1 rounded-full border border-transparent px-3 py-1.5 transition-colors hover:border-green hover:text-green focus:outline-none focus:ring-2 focus:ring-green/40">
-                  Kategoriat
+                  {t('common.categories')}
                   <span aria-hidden="true">▾</span>
                 </button>
               </DropdownMenuTrigger>
@@ -80,20 +84,24 @@ export default function Header() {
                 {link.label}
               </Link>
             ))}
+            <LanguageSwitcher />
           </div>
-          <button
-            type="button"
-            className="inline-flex items-center justify-center rounded-full border border-border/80 p-2 text-muted-foreground transition-colors hover:border-green hover:text-green focus:outline-none focus:ring-2 focus:ring-green/40 md:hidden"
-            aria-label={mobileOpen ? "Sulje valikko" : "Avaa valikko"}
-            aria-expanded={mobileOpen}
-            onClick={() => setMobileOpen((prev) => !prev)}
-          >
+          <div className="flex items-center gap-2 md:hidden">
+            <LanguageSwitcher />
+            <button
+              type="button"
+              className="inline-flex items-center justify-center rounded-full border border-border/80 p-2 text-muted-foreground transition-colors hover:border-green hover:text-green focus:outline-none focus:ring-2 focus:ring-green/40"
+              aria-label={mobileOpen ? tNav('closeMenu') : tNav('openMenu')}
+              aria-expanded={mobileOpen}
+              onClick={() => setMobileOpen((prev) => !prev)}
+            >
             {mobileOpen ? (
               <X className="h-5 w-5" />
             ) : (
               <Menu className="h-5 w-5" />
             )}
           </button>
+          </div>
         </nav>
         {mobileOpen && (
           <div className="absolute inset-x-0 top-full border-t border-border/60 bg-gradient-to-b from-white via-white to-white/95 shadow-[0_40px_80px_rgba(15,23,42,0.18)] md:hidden">
@@ -102,10 +110,10 @@ export default function Header() {
                 <div className="space-y-6">
                   <div className="space-y-1">
                     <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-                      Navigoi
+                      {tNav('navigate')}
                     </p>
                     <p className="text-sm text-muted-foreground">
-                      Valitse sinulle sopiva polku ja jatka selaamista.
+                      {tNav('navigateDescription')}
                     </p>
                   </div>
                   <div className="grid gap-3">
@@ -141,7 +149,7 @@ export default function Header() {
                   {navLinks.length > 0 && (
                     <div className="space-y-2">
                       <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-                        Muut sivut
+                        {tNav('otherPages')}
                       </p>
                       <div className="flex flex-wrap gap-2">
                         {navLinks.map((link) => (
