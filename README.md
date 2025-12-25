@@ -19,9 +19,12 @@ Check out the live project at: [haalarikone.fi](https://haalarikone.fi)
 - **Framework:** Next.js 15 (App Router) with React 18
 - **Language:** TypeScript
 - **Styling:** Tailwind CSS with Radix UI components
+- **Internationalization:** next-intl (Finnish, English, Swedish)
 - **Database:** Supabase (PostgreSQL)
 - **Search:** Upstash Search + custom logic
 - **Rate Limiting:** Upstash Redis
+- **Email:** Resend (for feedback forms)
+- **Analytics:** Databuddy
 - **Testing:** Playwright
 - **Package Manager:** pnpm
 - **Deployment:** Vercel
@@ -71,7 +74,10 @@ RESEND_API_KEY=your_resend_api_key
 FEEDBACK_EMAIL_TO=email_to_send_feedback_to
 ```
 
-**Note:** Set up your own Supabase and Upstash instances. Resend can't be used without admin's API-key. So just let it be :)
+**Note:** 
+- Set up your own Supabase and Upstash instances
+- Resend API key is optional (only needed for feedback form functionality)
+- The app uses `localePrefix: 'as-needed'` - Finnish (default) has no prefix, other locales use `/en` or `/sv`
 
 ### 4. Run the Development Server
 
@@ -98,20 +104,34 @@ pnpm exec playwright show-report
 ```
 student-overall-app/
 ├── app/                    # Next.js App Router pages
+│   ├── [locale]/          # Localized routes (fi, en, sv)
+│   │   ├── ala/           # Field pages
+│   │   ├── alue/          # Area pages
+│   │   ├── blog/          # Blog posts
+│   │   ├── haalari/       # Overall detail pages
+│   │   ├── oppilaitos/    # University pages
+│   │   ├── vari/          # Color pages
+│   │   └── page.tsx       # Home page
 │   ├── (auth-pages)/      # Authentication pages (sign-in, sign-up, etc.)
-│   ├── api/               # API routes
-│   ├── ala/               # Field pages
-│   ├── alue/              # Area pages
-│   ├── blog/              # Blog posts
-│   ├── haalari/           # Overall detail pages
-│   ├── oppilaitos/        # University pages
-│   └── vari/              # Color pages
+│   ├── api/               # API routes (search, translate-path, upsert)
+│   └── auth/              # Auth callbacks
 ├── components/            # React components
 │   ├── ui/                # Reusable UI components (Radix UI)
+│   ├── search-modal.tsx   # Search functionality
+│   ├── language-switcher.tsx  # i18n language switcher
+│   ├── theme-switcher.tsx # Dark/light mode toggle
 │   └── ...                # Feature components
 ├── content/               # Blog post content (JSON)
 ├── data/                  # Static data files
+├── i18n/                  # Internationalization config
+│   ├── routing.ts         # Route configuration
+│   └── request.ts         # Request locale handling
 ├── lib/                   # Utility functions and helpers
+│   ├── route-translations.ts  # Route segment translations
+│   ├── slug-translations.ts   # Entity slug translations
+│   ├── translate-path-client.ts  # Client-side path translation
+│   └── ...                # Other utilities
+├── messages/              # Translation files (fi.json, en.json, sv.json)
 ├── types/                 # TypeScript type definitions
 ├── utils/                 # Utility functions
 │   └── supabase/          # Supabase client utilities
@@ -124,6 +144,17 @@ student-overall-app/
 - `pnpm run build` - Build production bundle with Turbopack
 - `pnpm run start` - Start production server
 - `pnpm test` - Run Playwright tests
+- `pnpm exec playwright show-report` - View test report after running tests
+
+## Features
+
+- **Multi-language Support:** Finnish (default), English, and Swedish
+- **Smart Search:** Real-time search with Upstash Search integration
+- **Route Translation:** Automatic translation of route segments and slugs
+- **Blog System:** Static blog posts with multi-language support
+- **Theme Support:** Dark and light mode
+- **Responsive Design:** Mobile-first approach with Tailwind CSS
+- **SEO Optimized:** Dynamic metadata, sitemap, and structured data
 
 ## Development Guidelines
 
@@ -141,11 +172,20 @@ student-overall-app/
 - Client components should be marked with `"use client"` directive
 - Use path aliases (`@/`) for imports
 
+### Internationalization
+
+- All user-facing text should be in translation files (`messages/*.json`)
+- Use `useTranslations` hook for client components
+- Use `getTranslations` for server components
+- Route segments are automatically translated via `route-translations.ts`
+- Entity slugs (universities, fields, colors) are translated via `slug-translations.ts`
+
 ### Styling
 
 - Use Tailwind CSS utility classes
 - Custom components in `components/ui/` use Radix UI primitives
 - Theme support via `next-themes`
+- Responsive breakpoints: `sm:`, `md:`, `lg:`, `xl:`
 
 ## Testing
 
