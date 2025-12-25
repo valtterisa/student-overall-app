@@ -38,11 +38,20 @@ export function LanguageSwitcher() {
     
     setIsTranslating(true);
     try {
-      const translatedPath = translatePathClient(pathname, locale, newLocale as Locale);
-      router.push(translatedPath, { locale: newLocale });
+      let translatedPath = translatePathClient(pathname, locale, newLocale as Locale);
+      
+      if (translatedPath === '/' && newLocale === 'fi') {
+        router.push('/', { locale: 'fi' });
+      } else {
+        router.push(translatedPath, { locale: newLocale });
+      }
     } catch (error) {
       console.error('Error translating path:', error);
-      router.push(pathname, { locale: newLocale });
+      if (pathname === '/' && newLocale === 'fi') {
+        router.push('/', { locale: 'fi' });
+      } else {
+        router.push(pathname, { locale: newLocale });
+      }
     } finally {
       setIsTranslating(false);
     }

@@ -120,7 +120,18 @@ export function translatePathClient(
     return '/';
   }
 
-  const routeSegment = segments[0];
+  const locales: Locale[] = ['fi', 'en', 'sv'];
+  let routeSegmentIndex = 0;
+  
+  if (locales.includes(segments[0] as Locale)) {
+    routeSegmentIndex = 1;
+  }
+
+  if (segments.length <= routeSegmentIndex) {
+    return '/';
+  }
+
+  const routeSegment = segments[routeSegmentIndex];
   const routeType = getRouteTypeFromSegment(routeSegment);
   
   if (!routeType) {
@@ -129,11 +140,11 @@ export function translatePathClient(
 
   const translatedRouteSegment = getRouteSegment(routeType, toLocale);
   
-  if (segments.length === 1) {
+  if (segments.length === routeSegmentIndex + 1) {
     return `/${translatedRouteSegment}`;
   }
 
-  const slug = segments[1];
+  const slug = segments[routeSegmentIndex + 1];
   const entityType = routeTypeToEntityType[routeType];
   
   if (!entityType) {
