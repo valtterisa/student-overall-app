@@ -70,7 +70,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default async function ColorIndexPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  const universities = await loadUniversities();
+  const universities = await loadUniversities(locale as 'fi' | 'en' | 'sv');
   const colors = getUniqueColors(universities).sort((a, b) =>
     a.localeCompare(b, "fi")
   );
@@ -143,7 +143,7 @@ export default async function ColorIndexPage({ params }: { params: Promise<{ loc
           {t('colors.pageDescription')}
         </p>
 
-        <SearchWithDivider dividerText={t('search.orSelect') + ' ' + t('colors.title').toUpperCase()} />
+        <SearchWithDivider section="colors" />
 
         <div className="grid gap-2 sm:grid-cols-2 md:grid-cols-3">
           {colors.map((color) => (

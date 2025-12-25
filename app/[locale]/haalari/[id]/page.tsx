@@ -23,7 +23,7 @@ type Props = {
 };
 
 export async function generateStaticParams() {
-  const universities = await loadUniversities();
+  const universities = await loadUniversities('fi');
   const params = [];
   for (const uni of universities) {
     for (const locale of ['fi', 'en', 'sv'] as const) {
@@ -38,7 +38,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, id } = await params;
-  const universities = await loadUniversities();
+  const universities = await loadUniversities(locale as 'fi' | 'en' | 'sv');
   const overall = universities.find((u) => u.id.toString() === id);
 
   if (!overall) {
@@ -112,7 +112,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function OverallPage({ params }: Props) {
   const { locale, id } = await params;
-  const universities = await loadUniversities();
+  const universities = await loadUniversities(locale as 'fi' | 'en' | 'sv');
   const overall = universities.find((u) => u.id.toString() === id);
   const t = await getTranslations({ locale });
 

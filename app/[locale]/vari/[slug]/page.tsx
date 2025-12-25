@@ -24,7 +24,7 @@ type Props = {
 };
 
 export async function generateStaticParams() {
-  const universities = await loadUniversities();
+  const universities = await loadUniversities('fi');
   const uniqueColors = Array.from(new Set(universities.map((u) => u.vari)));
 
   const params = [];
@@ -41,7 +41,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
-  const universities = await loadUniversities();
+  const universities = await loadUniversities(locale as 'fi' | 'en' | 'sv');
   const uniqueColors = Array.from(new Set(universities.map((u) => u.vari)));
   const color = getEntityFromSlug(slug, locale as 'fi' | 'en' | 'sv', 'color', uniqueColors);
 
@@ -76,7 +76,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     ],
     openGraph: {
       title: `${capitalizedColor} - ${t('colors.title')} | Haalarikone`,
-      description: t('colors.description', { color: capitalizedColor }),
+      description: t('colors.description', { color: capitalizedColor, count: colorData.length, schoolCount: universitiesList.length }),
       images: [
         {
           url: "/haalarikone-og.png",
@@ -88,16 +88,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       type: "website",
       siteName: "Haalarikone",
       locale: locale === 'fi' ? 'fi_FI' : locale === 'en' ? 'en_US' : 'sv_SE',
-      url: `${baseUrl}/vari/${slug}`,
+      url: `${baseUrl}/vari/${getSlugForEntity(color, locale as 'fi' | 'en' | 'sv', 'color')}`,
     },
     twitter: {
       card: "summary_large_image",
       title: `${capitalizedColor} - ${t('colors.title')} | Haalarikone`,
-      description: t('colors.description', { color: capitalizedColor }),
+      description: t('colors.description', { color: capitalizedColor, count: colorData.length, schoolCount: universitiesList.length }),
       images: ["/haalarikone-og.png"],
     },
     alternates: {
-      canonical: `${baseUrl}/vari/${slug}`,
+      canonical: `${baseUrl}/vari/${getSlugForEntity(color, locale as 'fi' | 'en' | 'sv', 'color')}`,
       languages: {
         fi: `https://haalarikone.fi/vari/${getSlugForEntity(color, 'fi', 'color')}`,
         en: `https://haalarikone.fi/en/vari/${getSlugForEntity(color, 'en', 'color')}`,
@@ -109,7 +109,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ColorPage({ params }: Props) {
   const { locale, slug } = await params;
-  const universities = await loadUniversities();
+  const universities = await loadUniversities(locale as 'fi' | 'en' | 'sv');
   const uniqueColors = Array.from(new Set(universities.map((u) => u.vari)));
   const color = getEntityFromSlug(slug, locale as 'fi' | 'en' | 'sv', 'color', uniqueColors);
   const t = await getTranslations({ locale });
@@ -163,7 +163,7 @@ export default async function ColorPage({ params }: Props) {
     "@context": "https://schema.org",
     "@type": "ItemList",
     name: `${capitalizedColor} ${t('colors.title').toLowerCase()}`,
-    description: t('colors.description', { color: capitalizedColor }),
+    description: t('colors.description', { color: capitalizedColor, count: colorData.length, schoolCount: universitiesList.length }),
     numberOfItems: colorData.length,
     itemListElement: colorData.slice(0, 50).map((uni, index) => ({
       "@type": "ListItem",

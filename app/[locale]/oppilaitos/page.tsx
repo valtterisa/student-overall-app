@@ -69,7 +69,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default async function UniversityIndexPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  const universities = await loadUniversities();
+  const universities = await loadUniversities(locale as 'fi' | 'en' | 'sv');
   const unique = getUniqueUniversities(universities).sort((a, b) =>
     a.localeCompare(b, "fi")
   );
@@ -138,10 +138,10 @@ export default async function UniversityIndexPage({ params }: { params: Promise<
         </Breadcrumb>
         <h1 className="text-4xl font-bold mb-4">{t('universities.title')}</h1>
         <p className="text-lg text-muted-foreground mb-8">
-          {t('universities.description')}
+          {t('universities.pageDescription')}
         </p>
 
-        <SearchWithDivider dividerText={t('search.orSelect') + ' ' + t('universities.title').toUpperCase()} />
+        <SearchWithDivider section="universities" />
 
         <div className="grid gap-2 sm:grid-cols-2">
           {unique.map((uni) => (

@@ -10,7 +10,7 @@ import { Link } from "@/i18n/routing";
 import Script from "next/script";
 import { Metadata } from "next";
 import { loadUniversities } from "@/lib/load-universities";
-import { getUniqueFields } from "@/lib/get-unique-values";
+import { getUniqueFields, getUniqueUniversities } from "@/lib/get-unique-values";
 import { getSlugForEntity } from "@/lib/slug-translations";
 import { SearchWithDivider } from "@/components/search-with-divider";
 import { getTranslations } from 'next-intl/server';
@@ -69,11 +69,15 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default async function FieldIndexPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  const universities = await loadUniversities();
+  const universities = await loadUniversities(locale as 'fi' | 'en' | 'sv');
   const fields = getUniqueFields(universities).sort((a, b) =>
     a.localeCompare(b, "fi")
   );
   const t = await getTranslations({ locale });
+  
+  // Calculate counts for description
+  const count = universities.length;
+  const schoolCount = getUniqueUniversities(universities).length;
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -138,10 +142,10 @@ export default async function FieldIndexPage({ params }: { params: Promise<{ loc
         </Breadcrumb>
         <h1 className="text-4xl font-bold mb-4">{t('fields.title')}</h1>
         <p className="text-lg text-muted-foreground mb-8">
-          {t('fields.description')}
+          {t('fields.description', { count, schoolCount })}
         </p>
 
-        <SearchWithDivider dividerText={t('search.orSelect') + ' ' + t('fields.title').toUpperCase()} />
+        <SearchWithDivider section="fields" />
 
         <div className="grid gap-2 sm:grid-cols-2">
           {fields.map((field) => (

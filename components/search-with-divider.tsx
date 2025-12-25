@@ -3,8 +3,15 @@
 import { SearchModal } from "./search-modal";
 import { useTranslations } from 'next-intl';
 
-export function SearchWithDivider() {
+interface SearchWithDividerProps {
+    section: 'fields' | 'colors' | 'universities';
+}
+
+export function SearchWithDivider({ section }: SearchWithDividerProps) {
     const t = useTranslations('search');
+    const tSection = useTranslations(section);
+    
+    const dividerText = t('orSelect') + ' ' + tSection('title').toUpperCase();
 
     return (
         <>
@@ -21,7 +28,7 @@ export function SearchWithDivider() {
                     <span className="w-full border-t" />
                 </div>
                 <div className="relative flex justify-center text-xs uppercase">
-                    <span className="bg-white px-2 text-muted-foreground">{t('orSelect')}</span>
+                    <span className="bg-white px-2 text-muted-foreground">{dividerText}</span>
                 </div>
             </div>
         </>

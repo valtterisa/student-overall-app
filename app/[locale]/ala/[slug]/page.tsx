@@ -24,7 +24,7 @@ type Props = {
 };
 
 export async function generateStaticParams() {
-  const universities = await loadUniversities();
+  const universities = await loadUniversities('fi');
   const uniqueFields = Array.from(
     new Set(
       universities
@@ -47,7 +47,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
-  const universities = await loadUniversities();
+  const universities = await loadUniversities(locale as 'fi' | 'en' | 'sv');
   const uniqueFields = Array.from(
     new Set(
       universities
@@ -76,7 +76,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: `${capitalizedField} - ${t('colors.title')} | Haalarikone`,
-    description: t('fields.description', { field: capitalizedField, count: universitiesList.length }),
+    description: t('fields.description', { count: fieldData.length, schoolCount: universitiesList.length }),
     keywords: [
       `${capitalizedField} ${t('colors.title').toLowerCase()}`,
       `${capitalizedField} haalarit`,
@@ -88,7 +88,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     ],
     openGraph: {
       title: `${capitalizedField} - ${t('colors.title')} | Haalarikone`,
-      description: t('fields.description', { field: capitalizedField }),
+      description: t('fields.description', { count: fieldData.length, schoolCount: universitiesList.length }),
       images: [
         {
           url: "/haalarikone-og.png",
@@ -100,16 +100,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       type: "website",
       siteName: "Haalarikone",
       locale: locale === 'fi' ? 'fi_FI' : locale === 'en' ? 'en_US' : 'sv_SE',
-      url: `${baseUrl}/ala/${slug}`,
+      url: `${baseUrl}/ala/${getSlugForEntity(field, locale as 'fi' | 'en' | 'sv', 'field')}`,
     },
     twitter: {
       card: "summary_large_image",
       title: `${capitalizedField} - ${t('colors.title')} | Haalarikone`,
-      description: t('fields.description', { field: capitalizedField }),
+      description: t('fields.description', { count: fieldData.length, schoolCount: universitiesList.length }),
       images: ["/haalarikone-og.png"],
     },
     alternates: {
-      canonical: `${baseUrl}/ala/${slug}`,
+      canonical: `${baseUrl}/ala/${getSlugForEntity(field, locale as 'fi' | 'en' | 'sv', 'field')}`,
       languages: {
         fi: `https://haalarikone.fi/ala/${getSlugForEntity(field, 'fi', 'field')}`,
         en: `https://haalarikone.fi/en/ala/${getSlugForEntity(field, 'en', 'field')}`,
@@ -121,7 +121,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function FieldPage({ params }: Props) {
   const { locale, slug } = await params;
-  const universities = await loadUniversities();
+  const universities = await loadUniversities(locale as 'fi' | 'en' | 'sv');
   const uniqueFields = Array.from(
     new Set(
       universities
@@ -157,7 +157,7 @@ export default async function FieldPage({ params }: Props) {
     "@context": "https://schema.org",
     "@type": "EducationalOccupationalCredential",
     credentialCategory: capitalizedField,
-    description: t('fields.description', { field: capitalizedField }),
+    description: t('fields.description', { count: fieldData.length, schoolCount: universitiesList.length }),
     url: `${baseUrl}/ala/${slug}`,
   };
 
@@ -165,7 +165,7 @@ export default async function FieldPage({ params }: Props) {
     "@context": "https://schema.org",
     "@type": "ItemList",
     name: `${capitalizedField} ${t('colors.title').toLowerCase()}`,
-    description: t('fields.description', { field: capitalizedField }),
+    description: t('fields.description', { count: fieldData.length, schoolCount: universitiesList.length }),
     numberOfItems: fieldData.length,
     itemListElement: fieldData.slice(0, 50).map((uni, index) => ({
       "@type": "ListItem",
@@ -239,7 +239,7 @@ export default async function FieldPage({ params }: Props) {
           </Breadcrumb>
           <h1 className="text-4xl font-bold mb-4">{capitalizedField}</h1>
           <p className="text-lg text-gray-700 mb-6">
-            {t('fields.description')} {t('fields.overallCount', { count: fieldData.length })} {t('fields.schoolCount', { count: universitiesList.length })}.
+            {t('fields.description', { count: fieldData.length, schoolCount: universitiesList.length })}.
           </p>
         </div>
 

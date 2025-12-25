@@ -51,7 +51,7 @@ function normalizeJsonToUniversity(row: any, locale: 'fi' | 'en' | 'sv', transla
     vari: vari ? getLocalizedValue(vari, 'color') : "",
     hex: metadata.hex ?? "",
     alue: alue ? getLocalizedValue(alue, 'area') : "",
-    ala: ala ? ala.split(', ').map(f => {
+    ala: ala ? ala.split(', ').map((f: string) => {
       const field = f.trim();
       return getLocalizedValue(field, 'field');
     }).join(', ') : null,

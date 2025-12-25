@@ -14,7 +14,7 @@ import { routing } from '@/i18n/routing';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://haalarikone.fi";
-  const universities = await loadUniversities();
+  const universities = await loadUniversities('fi');
   const blogPosts = await loadBlogPosts();
 
   const jsonFilePath = path.join(

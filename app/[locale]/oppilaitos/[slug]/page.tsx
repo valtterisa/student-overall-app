@@ -26,7 +26,7 @@ type Props = {
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
-  const universities = await loadUniversities();
+  const universities = await loadUniversities('fi');
   const uniqueUniversities = Array.from(
     new Set(universities.map((u) => u.oppilaitos))
   );
@@ -45,7 +45,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
-  const universities = await loadUniversities();
+  const universities = await loadUniversities(locale as 'fi' | 'en' | 'sv');
   const uniqueUniversities = Array.from(
     new Set(universities.map((u) => u.oppilaitos))
   );
@@ -86,7 +86,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     ],
     openGraph: {
       title: `${capitalizedUniversity} - ${t('colors.title')} | Haalarikone`,
-      description: t('universities.description', { university: capitalizedUniversity }),
+      description: t('universities.description', { university: capitalizedUniversity, count: universityData.length }),
       images: [
         {
           url: "/haalarikone-og.png",
@@ -98,16 +98,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       type: "website",
       siteName: "Haalarikone",
       locale: locale === 'fi' ? 'fi_FI' : locale === 'en' ? 'en_US' : 'sv_SE',
-      url: `${baseUrl}/oppilaitos/${slug}`,
+      url: `${baseUrl}/oppilaitos/${getSlugForEntity(university, locale as 'fi' | 'en' | 'sv', 'university')}`,
     },
     twitter: {
       card: "summary_large_image",
       title: `${capitalizedUniversity} - ${t('colors.title')} | Haalarikone`,
-      description: t('universities.description', { university: capitalizedUniversity }),
+      description: t('universities.description', { university: capitalizedUniversity, count: universityData.length }),
       images: ["/haalarikone-og.png"],
     },
     alternates: {
-      canonical: `${baseUrl}/oppilaitos/${slug}`,
+      canonical: `${baseUrl}/oppilaitos/${getSlugForEntity(university, locale as 'fi' | 'en' | 'sv', 'university')}`,
       languages: {
         fi: `https://haalarikone.fi/oppilaitos/${getSlugForEntity(university, 'fi', 'university')}`,
         en: `https://haalarikone.fi/en/oppilaitos/${getSlugForEntity(university, 'en', 'university')}`,
@@ -119,7 +119,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function UniversityPage({ params }: Props) {
   const { locale, slug } = await params;
-  const universities = await loadUniversities();
+  const universities = await loadUniversities(locale as 'fi' | 'en' | 'sv');
   const uniqueUniversities = Array.from(
     new Set(universities.map((u) => u.oppilaitos))
   );
@@ -155,15 +155,15 @@ export default async function UniversityPage({ params }: Props) {
     "@context": "https://schema.org",
     "@type": "EducationalOrganization",
     name: capitalizedUniversity,
-    description: t('universities.description', { university: capitalizedUniversity }),
-    url: `${baseUrl}/oppilaitos/${slug}`,
+    description: t('universities.description', { university: capitalizedUniversity, count: universityData.length }),
+    url: `${baseUrl}/oppilaitos/${getSlugForEntity(university, locale as 'fi' | 'en' | 'sv', 'university')}`,
   };
 
   const itemListSchema = {
     "@context": "https://schema.org",
     "@type": "ItemList",
     name: `${capitalizedUniversity} ${t('colors.title').toLowerCase()}`,
-    description: t('universities.description', { university: capitalizedUniversity }),
+    description: t('universities.description', { university: capitalizedUniversity, count: universityData.length }),
     numberOfItems: universityData.length,
     itemListElement: universityData.slice(0, 50).map((uni, index) => ({
       "@type": "ListItem",
@@ -237,7 +237,7 @@ export default async function UniversityPage({ params }: Props) {
         <div className="mb-8">
           <h1 className="text-4xl font-bold mb-4">{capitalizedUniversity}</h1>
           <p className="text-lg text-gray-700 mb-6">
-            {t('universities.description')} {t('universities.overallCount', { count: universityData.length })}.
+            {t('universities.description', { university: capitalizedUniversity, count: universityData.length })}.
           </p>
         </div>
 

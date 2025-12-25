@@ -19,9 +19,15 @@ export function convertUpstashResultToUniversity(
   const metadata = result.metadata;
 
   const getLocalizedValue = (field: unknown): string => {
-    if (typeof field === 'object' && field !== null && !Array.isArray(field)) {
+    if (field === null || field === undefined) {
+      return '';
+    }
+    if (typeof field === 'object' && !Array.isArray(field)) {
       const nested = field as Record<string, string>;
       return nested[locale] || nested.fi || '';
+    }
+    if (typeof field === 'string') {
+      return field;
     }
     return '';
   };
