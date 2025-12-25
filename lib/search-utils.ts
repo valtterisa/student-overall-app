@@ -12,25 +12,41 @@ export type UniversityWithScore = University & {
 };
 
 export function convertUpstashResultToUniversity(
-  result: UpstashSearchResult
+  result: UpstashSearchResult,
+  locale: 'fi' | 'en' | 'sv' = 'fi'
 ): UniversityWithScore {
   const content = result.content;
   const metadata = result.metadata;
 
+  const getLocalizedValue = (field: unknown): string => {
+    if (field === null || field === undefined) {
+      return '';
+    }
+    if (typeof field === 'object' && !Array.isArray(field)) {
+      const nested = field as Record<string, string>;
+      return nested[locale] || nested.fi || '';
+    }
+    if (typeof field === 'string') {
+      return field;
+    }
+    return '';
+  };
+
   return {
     id: parseInt(result.id, 10),
-    vari: (content.vari as string) || "",
+    vari: getLocalizedValue(content.vari),
     hex: (metadata.hex as string) || "",
-    alue: (content.alue as string) || "",
-    ala: (content.ala as string) || null,
+    alue: getLocalizedValue(content.alue),
+    ala: getLocalizedValue(content.ala) || null,
     ainejärjestö: (content.ainejärjestö as string) || null,
-    oppilaitos: (content.oppilaitos as string) || "",
+    oppilaitos: getLocalizedValue(content.oppilaitos),
     score: result.score || 0,
   };
 }
 
 export async function searchUniversitiesAPI(
-  query: string
+  query: string,
+  locale: 'fi' | 'en' | 'sv' = 'fi'
 ): Promise<UniversityWithScore[]> {
   if (!query || query.trim().length < 2) {
     return [];
@@ -40,7 +56,7 @@ export async function searchUniversitiesAPI(
     const res = await fetch("/api/search", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ query }),
+      body: JSON.stringify({ query, locale }),
     });
 
     if (!res.ok) {
@@ -50,7 +66,9 @@ export async function searchUniversitiesAPI(
     const data = await res.json();
     const results = data.results || [];
 
-    const converted = results.map(convertUpstashResultToUniversity);
+    const converted = results.map((result: UpstashSearchResult) =>
+      convertUpstashResultToUniversity(result, locale)
+    );
 
     return converted;
   } catch (error) {

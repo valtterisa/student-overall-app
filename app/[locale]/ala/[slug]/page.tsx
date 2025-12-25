@@ -8,21 +8,24 @@ import {
 } from "@/components/ui/breadcrumb";
 import { loadUniversities } from "@/lib/load-universities";
 import { getUniversitiesByField } from "@/lib/get-universities-by-criteria";
-import { generateSlug } from "@/lib/generate-slug";
+import { getSlugForEntity, getEntityFromSlug, getEntityTranslation } from "@/lib/slug-translations";
 import { capitalizeFirstLetter } from "@/lib/utils";
 import { Metadata } from "next";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import Script from "next/script";
 import UniversityCard from "@/components/university-card";
+import { getTranslations } from 'next-intl/server';
+import { routing } from '@/i18n/routing';
+import { getTranslatedRoute } from '@/lib/use-translated-routes';
 
 export const revalidate = 3600;
 
 type Props = {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 };
 
 export async function generateStaticParams() {
-  const universities = await loadUniversities();
+  const universities = await loadUniversities('fi');
   const uniqueFields = Array.from(
     new Set(
       universities
@@ -31,14 +34,21 @@ export async function generateStaticParams() {
     )
   );
 
-  return uniqueFields.map((field) => ({
-    slug: generateSlug(field),
-  }));
+  const params = [];
+  for (const locale of routing.locales) {
+    for (const field of uniqueFields) {
+      params.push({
+        locale,
+        slug: getSlugForEntity(field, locale as 'fi' | 'en' | 'sv', 'field'),
+      });
+    }
+  }
+  return params;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
-  const universities = await loadUniversities();
+  const { locale, slug } = await params;
+  const universities = await loadUniversities(locale as 'fi' | 'en' | 'sv');
   const uniqueFields = Array.from(
     new Set(
       universities
@@ -46,11 +56,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         .filter(Boolean)
     )
   );
-  const field = uniqueFields.find((f) => generateSlug(f) === slug);
+  const field = getEntityFromSlug(slug, locale as 'fi' | 'en' | 'sv', 'field', uniqueFields);
 
   if (!field) {
+    const t = await getTranslations({ locale, namespace: 'fields' });
     return {
-      title: "Ala ei löytynyt | Haalarikone",
+      title: `${t('notFound')} | Haalarikone`,
     };
   }
 
@@ -59,13 +70,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     new Set(fieldData.map((u) => u.oppilaitos))
   );
 
-  const capitalizedField = capitalizeFirstLetter(field);
+  const t = await getTranslations({ locale });
+  const translatedField = getEntityTranslation(field, locale as 'fi' | 'en' | 'sv', 'field');
+  const capitalizedField = capitalizeFirstLetter(translatedField);
+  const baseUrl = locale === 'fi' ? 'https://haalarikone.fi' : `https://haalarikone.fi/${locale}`;
+  const fieldSlug = getSlugForEntity(field, locale as 'fi' | 'en' | 'sv', 'field');
 
   return {
-    title: `${capitalizedField} - Haalarivärit | Haalarikone`,
-    description: `Selvitä minkä värinen haalari ${capitalizedField} alan opiskelijalla on. Tietokanta sisältää haalarivärit ${universitiesList.length} eri oppilaitokselle.`,
+    title: `${capitalizedField} - ${t('colors.title')} | Haalarikone`,
+    description: t('fields.description', { count: fieldData.length, schoolCount: universitiesList.length }),
     keywords: [
-      `${capitalizedField} haalarivärit`,
+      `${capitalizedField} ${t('colors.title').toLowerCase()}`,
       `${capitalizedField} haalarit`,
       `${capitalizedField} opiskelijahaalarit`,
       "haalarivärit",
@@ -74,39 +89,41 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       ...universitiesList.slice(0, 5).map((u) => `${capitalizedField} ${u}`),
     ],
     openGraph: {
-      title: `${capitalizedField} - Haalarivärit | Haalarikone`,
-      description: `Minkä värinen haalari ${capitalizedField} alan opiskelijalla on? Löydä vastaus Haalarikoneesta.`,
+      title: `${capitalizedField} - ${t('colors.title')} | Haalarikone`,
+      description: t('fields.description', { count: fieldData.length, schoolCount: universitiesList.length }),
       images: [
         {
           url: "/haalarikone-og.png",
           width: 1200,
           height: 630,
-          alt: `${capitalizedField} haalarivärit`,
+          alt: `${capitalizedField} ${t('colors.title').toLowerCase()}`,
         },
       ],
       type: "website",
       siteName: "Haalarikone",
-      locale: "fi_FI",
-      url: `https://haalarikone.fi/ala/${slug}`,
+      locale: locale === 'fi' ? 'fi_FI' : locale === 'en' ? 'en_US' : 'sv_SE',
+      url: `${baseUrl}${getTranslatedRoute('fields', locale as 'fi' | 'en' | 'sv', fieldSlug)}`,
     },
     twitter: {
       card: "summary_large_image",
-      title: `${capitalizedField} - Haalarivärit | Haalarikone`,
-      description: `Minkä värinen haalari ${capitalizedField} alan opiskelijalla on?`,
+      title: `${capitalizedField} - ${t('colors.title')} | Haalarikone`,
+      description: t('fields.description', { count: fieldData.length, schoolCount: universitiesList.length }),
       images: ["/haalarikone-og.png"],
     },
     alternates: {
-      canonical: `https://haalarikone.fi/ala/${slug}`,
+      canonical: `${baseUrl}${getTranslatedRoute('fields', locale as 'fi' | 'en' | 'sv', fieldSlug)}`,
       languages: {
-        fi: `https://haalarikone.fi/ala/${slug}`,
+        fi: `https://haalarikone.fi${getTranslatedRoute('fields', 'fi', getSlugForEntity(field, 'fi', 'field'))}`,
+        en: `https://haalarikone.fi/en${getTranslatedRoute('fields', 'en', getSlugForEntity(field, 'en', 'field'))}`,
+        sv: `https://haalarikone.fi/sv${getTranslatedRoute('fields', 'sv', getSlugForEntity(field, 'sv', 'field'))}`,
       },
     },
   };
 }
 
 export default async function FieldPage({ params }: Props) {
-  const { slug } = await params;
-  const universities = await loadUniversities();
+  const { locale, slug } = await params;
+  const universities = await loadUniversities(locale as 'fi' | 'en' | 'sv');
   const uniqueFields = Array.from(
     new Set(
       universities
@@ -114,14 +131,15 @@ export default async function FieldPage({ params }: Props) {
         .filter(Boolean)
     )
   );
-  const field = uniqueFields.find((f) => generateSlug(f) === slug);
+  const field = getEntityFromSlug(slug, locale as 'fi' | 'en' | 'sv', 'field', uniqueFields);
+  const t = await getTranslations({ locale });
 
   if (!field) {
     return (
       <div className="container mx-auto px-4 py-16 text-center">
-        <h1 className="text-2xl font-bold mb-4">Ala ei löytynyt</h1>
+        <h1 className="text-2xl font-bold mb-4">{t('fields.notFound')}</h1>
         <Link href="/" className="text-green hover:underline">
-          Palaa etusivulle
+          {t('common.backToHome')}
         </Link>
       </div>
     );
@@ -133,26 +151,29 @@ export default async function FieldPage({ params }: Props) {
   );
   const colors = Array.from(new Set(fieldData.map((u) => u.vari)));
 
-  const capitalizedField = capitalizeFirstLetter(field);
+  const translatedField = getEntityTranslation(field, locale as 'fi' | 'en' | 'sv', 'field');
+  const capitalizedField = capitalizeFirstLetter(translatedField);
+  const baseUrl = locale === 'fi' ? 'https://haalarikone.fi' : `https://haalarikone.fi/${locale}`;
+  const fieldSlug = getSlugForEntity(field, locale as 'fi' | 'en' | 'sv', 'field');
 
   const credentialSchema = {
     "@context": "https://schema.org",
     "@type": "EducationalOccupationalCredential",
     credentialCategory: capitalizedField,
-    description: `${capitalizedField} alan haalarivärit suomalaisissa oppilaitoksissa`,
-    url: `https://haalarikone.fi/ala/${slug}`,
+    description: t('fields.description', { count: fieldData.length, schoolCount: universitiesList.length }),
+    url: `${baseUrl}${getTranslatedRoute('fields', locale as 'fi' | 'en' | 'sv', fieldSlug)}`,
   };
 
   const itemListSchema = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    name: `${capitalizedField} haalarivärit`,
-    description: `Kaikki ${capitalizedField} alan haalarivärit suomalaisissa oppilaitoksissa`,
+    name: `${capitalizedField} ${t('colors.title').toLowerCase()}`,
+    description: t('fields.description', { count: fieldData.length, schoolCount: universitiesList.length }),
     numberOfItems: fieldData.length,
     itemListElement: fieldData.slice(0, 50).map((uni, index) => ({
       "@type": "ListItem",
       position: index + 1,
-      item: `https://haalarikone.fi/haalari/${uni.id}`,
+      item: `${baseUrl}${getTranslatedRoute('overall', locale as 'fi' | 'en' | 'sv', String(uni.id))}`,
     })),
   };
 
@@ -163,14 +184,14 @@ export default async function FieldPage({ params }: Props) {
       {
         "@type": "ListItem",
         position: 1,
-        name: "Etusivu",
-        item: "https://haalarikone.fi",
+        name: t('footer.home'),
+        item: baseUrl,
       },
       {
         "@type": "ListItem",
         position: 2,
         name: capitalizedField,
-        item: `https://haalarikone.fi/ala/${slug}`,
+        item: `${baseUrl}${getTranslatedRoute('fields', locale as 'fi' | 'en' | 'sv', fieldSlug)}`,
       },
     ],
   };
@@ -204,13 +225,13 @@ export default async function FieldPage({ params }: Props) {
             <BreadcrumbList>
               <BreadcrumbItem>
                 <BreadcrumbLink asChild>
-                  <Link href="/">Etusivu</Link>
+                  <Link href="/">{t('footer.home')}</Link>
                 </BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator />
               <BreadcrumbItem>
                 <BreadcrumbLink asChild>
-                  <Link href="/ala">Alat</Link>
+                  <Link href={getTranslatedRoute('fields', locale as 'fi' | 'en' | 'sv')}>{t('fields.title')}</Link>
                 </BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator />
@@ -221,9 +242,7 @@ export default async function FieldPage({ params }: Props) {
           </Breadcrumb>
           <h1 className="text-4xl font-bold mb-4">{capitalizedField}</h1>
           <p className="text-lg text-gray-700 mb-6">
-            Tässä ovat kaikki {capitalizedField} alan haalarivärit suomalaisissa
-            oppilaitoksissa. Yhteensä {fieldData.length} eri haalaria{" "}
-            {universitiesList.length} eri oppilaitoksella.
+            {t('fields.description', { count: fieldData.length, schoolCount: universitiesList.length })}.
           </p>
         </div>
 
@@ -234,12 +253,12 @@ export default async function FieldPage({ params }: Props) {
         </ul>
 
         <div className="mt-12 pt-8 border-t">
-          <h2 className="text-2xl font-bold mb-4">Liittyvät aiheet</h2>
+          <h2 className="text-2xl font-bold mb-4">{t('fields.relatedTopics')}</h2>
           <div className="flex flex-wrap gap-2">
             {universitiesList.slice(0, 10).map((uni) => (
               <Link
                 key={uni}
-                href={`/oppilaitos/${generateSlug(uni)}`}
+                href={getTranslatedRoute('universities', locale as 'fi' | 'en' | 'sv', getSlugForEntity(uni, locale as 'fi' | 'en' | 'sv', 'university'))}
                 className="px-4 py-2 bg-green/10 text-green rounded hover:bg-green/20 transition"
               >
                 {uni}
@@ -248,7 +267,7 @@ export default async function FieldPage({ params }: Props) {
             {colors.slice(0, 5).map((color) => (
               <Link
                 key={color}
-                href={`/vari/${generateSlug(color)}`}
+                href={getTranslatedRoute('colors', locale as 'fi' | 'en' | 'sv', getSlugForEntity(color, locale as 'fi' | 'en' | 'sv', 'color'))}
                 className="px-4 py-2 bg-green/10 text-green rounded hover:bg-green/20 transition"
               >
                 {color}
@@ -260,3 +279,4 @@ export default async function FieldPage({ params }: Props) {
     </>
   );
 }
+

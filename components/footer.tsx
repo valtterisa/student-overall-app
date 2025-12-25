@@ -1,15 +1,12 @@
-import { Github, Mail } from "lucide-react";
-import Link from "next/link";
-import Logo from "@/components/logo";
+"use client";
 
-const footerLinks = [
-  { label: "Etusivu", href: "/" },
-  { label: "Blogi", href: "/blog" },
-  { label: "Värit", href: "/vari/sininen" },
-  { label: "Alat", href: "/ala/matematiikka" },
-];
+import { Github, Mail } from "lucide-react";
+import { Link } from "@/i18n/routing";
+import Logo from "@/components/logo";
+import { useTranslations } from 'next-intl';
 
 export default function Footer() {
+  const t = useTranslations('footer');
   return (
     <footer className="w-full border-t border-border/60 bg-white">
       <div className="container mx-auto flex w-full flex-col gap-10 px-4 pt-8 pb-4">
@@ -18,13 +15,12 @@ export default function Footer() {
             <Logo />
 
             <p className="mt-3 max-w-sm text-sm text-muted-foreground">
-              Inspiraatiota, värejä ja perinteitä opiskelijahaalareihin. Pidä
-              kulttuuri helposti löydettävänä.
+              {t('description')}
             </p>
             <div className="mt-6 flex items-center justify-center gap-4 text-muted-foreground md:justify-start">
               <Link
                 href="mailto:savonen.emppu@gmail.com"
-                aria-label="Lähetä sähköpostia"
+                aria-label={t('sendEmail')}
                 className="transition hover:text-green"
               >
                 <Mail className="h-5 w-5" />
@@ -33,7 +29,7 @@ export default function Footer() {
                 href="https://github.com/valtterisa/student-overall-app"
                 target="_blank"
                 rel="noreferrer"
-                aria-label="Avaa GitHub"
+                aria-label={t('openGithub')}
                 className="transition hover:text-green"
               >
                 <Github className="h-5 w-5" />
@@ -42,25 +38,35 @@ export default function Footer() {
           </div>
           <div className="w-auto pt-4 md:pt-0">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-              Navigaatio
+              {t('navigation')}
             </p>
             <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-              {footerLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="transition hover:text-green"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
+              <li>
+                <Link href="/" className="transition hover:text-green">
+                  {t('home')}
+                </Link>
+              </li>
+              <li>
+                <Link href="/blog" className="transition hover:text-green">
+                  {t('blog')}
+                </Link>
+              </li>
+              <li>
+                <Link href="/vari" className="transition hover:text-green">
+                  {t('colors')}
+                </Link>
+              </li>
+              <li>
+                <Link href="/ala" className="transition hover:text-green">
+                  {t('fields')}
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
         <div className="flex justify-center border-t border-border/60 pt-4 text-center text-xs text-muted-foreground md:flex-row md:items-center ">
           <p>
-            Built by{" "}
+            {t('builtBy')}{" "}
             <Link
               href="https://valtterisavonen.fi"
               target="_blank"

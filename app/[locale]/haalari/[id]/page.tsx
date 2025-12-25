@@ -8,40 +8,52 @@ import {
 } from "@/components/ui/breadcrumb";
 import { loadUniversities } from "@/lib/load-universities";
 import { Metadata } from "next";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import Script from "next/script";
 import { parseStyles } from "@/lib/utils";
-import { generateSlug } from "@/lib/generate-slug";
+import { getSlugForEntity } from "@/lib/slug-translations";
 import Image from "next/image";
 import { FeedbackModal } from "@/components/feedback-modal";
+import { getTranslations } from 'next-intl/server';
 
 export const revalidate = 3600;
 
 type Props = {
-  params: Promise<{ id: string }>;
+  params: Promise<{ locale: string; id: string }>;
 };
 
 export async function generateStaticParams() {
-  const universities = await loadUniversities();
-  return universities.map((uni) => ({
-    id: uni.id.toString(),
-  }));
+  const universities = await loadUniversities('fi');
+  const params = [];
+  for (const uni of universities) {
+    for (const locale of ['fi', 'en', 'sv'] as const) {
+      params.push({
+        locale,
+        id: uni.id.toString(),
+      });
+    }
+  }
+  return params;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { id } = await params;
-  const universities = await loadUniversities();
+  const { locale, id } = await params;
+  const universities = await loadUniversities(locale as 'fi' | 'en' | 'sv');
   const overall = universities.find((u) => u.id.toString() === id);
 
   if (!overall) {
+    const t = await getTranslations({ locale, namespace: 'overall' });
     return {
-      title: "Haalari ei löytynyt | Haalarikone",
+      title: `${t('notFound')} | Haalarikone`,
     };
   }
 
+  const t = await getTranslations({ locale });
+  const baseUrl = locale === 'fi' ? 'https://haalarikone.fi' : `https://haalarikone.fi/${locale}`;
+
   const keywords = [
     `${overall.vari} haalari`,
-    `${overall.oppilaitos} haalarivärit`,
+    `${overall.oppilaitos} ${t('colors.title').toLowerCase()}`,
     "haalarivärit",
     "opiskelijahaalarit",
     "suomen opiskelijakulttuuri",
@@ -49,7 +61,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (overall.ala) {
     overall.ala.split(", ").forEach((field) => {
-      keywords.push(`${field} haalarivärit`, `${overall.oppilaitos} ${field}`);
+      keywords.push(`${field} ${t('colors.title').toLowerCase()}`, `${overall.oppilaitos} ${field}`);
     });
   }
 
@@ -78,8 +90,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       ],
       type: "website",
       siteName: "Haalarikone",
-      locale: "fi_FI",
-      url: `https://haalarikone.fi/haalari/${id}`,
+      locale: locale === 'fi' ? 'fi_FI' : locale === 'en' ? 'en_US' : 'sv_SE',
+      url: `${baseUrl}/haalari/${id}`,
     },
     twitter: {
       card: "summary_large_image",
@@ -88,25 +100,28 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       images: ["/haalarikone-og.png"],
     },
     alternates: {
-      canonical: `https://haalarikone.fi/haalari/${id}`,
+      canonical: `${baseUrl}/haalari/${id}`,
       languages: {
         fi: `https://haalarikone.fi/haalari/${id}`,
+        en: `https://haalarikone.fi/en/haalari/${id}`,
+        sv: `https://haalarikone.fi/sv/haalari/${id}`,
       },
     },
   };
 }
 
 export default async function OverallPage({ params }: Props) {
-  const { id } = await params;
-  const universities = await loadUniversities();
+  const { locale, id } = await params;
+  const universities = await loadUniversities(locale as 'fi' | 'en' | 'sv');
   const overall = universities.find((u) => u.id.toString() === id);
+  const t = await getTranslations({ locale });
 
   if (!overall) {
     return (
       <div className="container mx-auto px-4 py-16 text-center">
-        <h1 className="text-2xl font-bold mb-4">Haalari ei löytynyt</h1>
+        <h1 className="text-2xl font-bold mb-4">{t('overall.notFound')}</h1>
         <Link href="/" className="text-green hover:underline">
-          Palaa etusivulle
+          {t('common.backToHome')}
         </Link>
       </div>
     );
@@ -116,6 +131,8 @@ export default async function OverallPage({ params }: Props) {
     .filter((u) => u.oppilaitos === overall.oppilaitos && u.id !== overall.id)
     .slice(0, 5);
 
+  const baseUrl = locale === 'fi' ? 'https://haalarikone.fi' : `https://haalarikone.fi/${locale}`;
+
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -123,22 +140,20 @@ export default async function OverallPage({ params }: Props) {
       {
         "@type": "ListItem",
         position: 1,
-        name: "Etusivu",
-        item: "https://haalarikone.fi",
+        name: t('footer.home'),
+        item: baseUrl,
       },
       {
         "@type": "ListItem",
         position: 2,
         name: overall.oppilaitos,
-        item: `https://haalarikone.fi/oppilaitos/${generateSlug(
-          overall.oppilaitos
-        )}`,
+        item: `${baseUrl}/oppilaitos/${getSlugForEntity(overall.oppilaitos, locale as 'fi' | 'en' | 'sv', 'university')}`,
       },
       {
         "@type": "ListItem",
         position: 3,
         name: `${overall.vari} haalari`,
-        item: `https://haalarikone.fi/haalari/${id}`,
+        item: `${baseUrl}/haalari/${id}`,
       },
     ],
   };
@@ -157,19 +172,19 @@ export default async function OverallPage({ params }: Props) {
           <BreadcrumbList>
             <BreadcrumbItem>
               <BreadcrumbLink asChild>
-                <Link href="/">Etusivu</Link>
+                <Link href="/">{t('footer.home')}</Link>
               </BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
               <BreadcrumbLink asChild>
-                <Link href="/oppilaitos">Oppilaitokset</Link>
+                <Link href="/oppilaitos">{t('universities.title')}</Link>
               </BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
               <BreadcrumbLink asChild>
-                <Link href={`/oppilaitos/${generateSlug(overall.oppilaitos)}`}>
+                <Link href={`/oppilaitos/${getSlugForEntity(overall.oppilaitos, locale as 'fi' | 'en' | 'sv', 'university')}`}>
                   {overall.oppilaitos}
                 </Link>
               </BreadcrumbLink>
@@ -187,7 +202,7 @@ export default async function OverallPage({ params }: Props) {
               <div
                 className="w-32 h-32 rounded-lg border-4 shadow-lg flex-shrink-0"
                 style={parseStyles(overall.hex)}
-                title={`Väri: ${overall.vari}`}
+                title={`${t('overall.color')}: ${overall.vari}`}
               />
               <div className="relative w-32 h-32 rounded-lg overflow-hidden border">
                 <Image
@@ -206,9 +221,9 @@ export default async function OverallPage({ params }: Props) {
             <div className="flex-1">
               <div className="space-y-3">
                 <div>
-                  <h2 className="text-xl font-bold mb-2">Oppilaitos</h2>
+                  <h2 className="text-xl font-bold mb-2">{t('overall.institution')}</h2>
                   <Link
-                    href={`/oppilaitos/${generateSlug(overall.oppilaitos)}`}
+                    href={`/oppilaitos/${getSlugForEntity(overall.oppilaitos, locale as 'fi' | 'en' | 'sv', 'university')}`}
                     className="text-green hover:underline text-lg"
                   >
                     {overall.oppilaitos}
@@ -217,19 +232,19 @@ export default async function OverallPage({ params }: Props) {
 
                 {overall.ainejärjestö && (
                   <div>
-                    <h2 className="text-xl font-bold mb-2">Ainejärjestö</h2>
+                    <h2 className="text-xl font-bold mb-2">{t('overall.organization')}</h2>
                     <p className="text-lg">{overall.ainejärjestö}</p>
                   </div>
                 )}
 
                 {overall.ala && (
                   <div>
-                    <h2 className="text-xl font-bold mb-2">Ala</h2>
+                    <h2 className="text-xl font-bold mb-2">{t('overall.field')}</h2>
                     <div className="flex flex-wrap gap-2">
                       {overall.ala.split(", ").map((field) => (
                         <Link
                           key={field}
-                          href={`/ala/${generateSlug(field.trim())}`}
+                          href={`/ala/${getSlugForEntity(field.trim(), locale as 'fi' | 'en' | 'sv', 'field')}`}
                           className="px-3 py-1 bg-green/10 text-green rounded-full text-sm font-medium hover:bg-green/20 transition"
                         >
                           {field.trim()}
@@ -241,12 +256,12 @@ export default async function OverallPage({ params }: Props) {
 
                 {overall.alue && (
                   <div>
-                    <h2 className="text-xl font-bold mb-2">Alue</h2>
+                    <h2 className="text-xl font-bold mb-2">{t('overall.area')}</h2>
                     <div className="flex flex-wrap gap-2">
                       {overall.alue.split(", ").map((area) => (
                         <Link
                           key={area}
-                          href={`/alue/${generateSlug(area.trim())}`}
+                          href={`/alue/${getSlugForEntity(area.trim(), locale as 'fi' | 'en' | 'sv', 'area')}`}
                           className="px-3 py-1 bg-green/10 text-green rounded-full text-sm font-medium hover:bg-green/20 transition"
                         >
                           {area.trim()}
@@ -257,9 +272,9 @@ export default async function OverallPage({ params }: Props) {
                 )}
 
                 <div>
-                  <h2 className="text-xl font-bold mb-2">Väri</h2>
+                  <h2 className="text-xl font-bold mb-2">{t('overall.color')}</h2>
                   <Link
-                    href={`/vari/${generateSlug(overall.vari)}`}
+                    href={`/vari/${getSlugForEntity(overall.vari, locale as 'fi' | 'en' | 'sv', 'color')}`}
                     className="px-3 py-1 bg-green/10 text-green rounded-full text-sm font-medium hover:bg-green/20 transition inline-block"
                   >
                     {overall.vari}
@@ -273,7 +288,7 @@ export default async function OverallPage({ params }: Props) {
         {relatedOveralls.length > 0 && (
           <div className="mt-8">
             <h2 className="text-2xl font-bold mb-4">
-              Muut haalarit {overall.oppilaitos}
+              {t('overall.otherOveralls')} {overall.oppilaitos}
             </h2>
             <div className="grid gap-4">
               {relatedOveralls.map((rel) => (
@@ -305,23 +320,22 @@ export default async function OverallPage({ params }: Props) {
         <div className="bg-white rounded-lg shadow-lg p-8 mt-10">
           <div className="flex flex-col gap-4">
             <div>
-              <h3 className="text-xl font-semibold">Huomasitko virheen?</h3>
+              <h3 className="text-xl font-semibold">{t('overall.errorTitle')}</h3>
               <p className="text-muted-foreground mt-1">
-                Kerro, mikä tieto on pielessä, niin päivitämme sen
-                mahdollisimman nopeasti.
+                {t('overall.errorDescription')}
               </p>
             </div>
             <FeedbackModal
-              triggerLabel="Ilmoita virheestä"
+              triggerLabel={t('overall.errorButton')}
               triggerClassName="bg-green text-white hover:bg-green/90"
               triggerSize="lg"
-              title="Huomasitko virheen?"
-              description="Kerro mitä tietoa pitäisi päivittää niin korjaamme sen mahdollisimman nopeasti."
-              submitLabel="Lähetä korjauspyyntö"
+              title={t('overall.errorModalTitle')}
+              description={t('overall.errorModalDescription')}
+              submitLabel={t('overall.errorSubmit')}
               sourceId={overall.id.toString()}
               sourceName={`${overall.vari} - ${overall.oppilaitos}`}
-              messageLabel="Virheen kuvaus"
-              messagePlaceholder="Mikä tieto on väärin ja miten sen pitäisi olla?"
+              messageLabel={t('overall.errorLabel')}
+              messagePlaceholder={t('overall.errorPlaceholder')}
             />
           </div>
         </div>
@@ -329,3 +343,4 @@ export default async function OverallPage({ params }: Props) {
     </>
   );
 }
+
