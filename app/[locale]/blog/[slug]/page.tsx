@@ -35,13 +35,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 
-  const wordCount = post.content.replace(/<[^>]*>/g, '').split(/\s+/).length;
+  const contentString = typeof post.content === 'string' ? post.content : (post.content[locale as keyof typeof post.content] || post.content.fi || '');
+  const titleString = typeof post.title === 'string' ? post.title : (post.title[locale as keyof typeof post.title] || post.title.en || post.title.fi || '');
+  const descriptionString = typeof post.description === 'string' ? post.description : (post.description[locale as keyof typeof post.description] || post.description.en || post.description.fi || '');
+  const authorString = typeof post.author === 'string' ? post.author : (post.author[locale as keyof typeof post.author] || post.author.en || post.author.fi || '');
+  const wordCount = contentString.replace(/<[^>]*>/g, '').split(/\s+/).length;
   const category = 'Opiskelijakulttuuri';
   const baseUrl = locale === 'fi' ? 'https://haalarikone.fi' : `https://haalarikone.fi/${locale}`;
 
   return {
-    title: `${post.title} | Haalarikone`,
-    description: post.description,
+    title: `${titleString} | Haalarikone`,
+    description: descriptionString,
     keywords: [
       'haalarivärit',
       'opiskelijahaalarit',
@@ -49,31 +53,31 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       'haalaritietokanta',
       'opiskelijakulttuuri',
       category.toLowerCase(),
-      ...post.title.toLowerCase().split(' ').slice(0, 5),
+      ...titleString.toLowerCase().split(' ').slice(0, 5),
     ],
     openGraph: {
-      title: post.title,
-      description: post.description,
+      title: titleString,
+      description: descriptionString,
       images: [
         {
           url: '/haalarikone-og.png',
           width: 1200,
           height: 630,
-          alt: post.title,
+          alt: titleString,
         },
       ],
       type: 'article',
       publishedTime: post.publishDate,
       modifiedTime: post.publishDate,
-      authors: [post.author],
+      authors: [authorString],
       siteName: 'Haalarikone',
       locale: locale === 'fi' ? 'fi_FI' : locale === 'en' ? 'en_US' : 'sv_SE',
       url: `${baseUrl}/blog/${slug}`,
     },
     twitter: {
       card: 'summary_large_image',
-      title: post.title,
-      description: post.description,
+      title: titleString,
+      description: descriptionString,
       images: ['/haalarikone-og.png'],
     },
     alternates: {
@@ -85,7 +89,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       },
     },
     other: {
-      'article:author': post.author,
+      'article:author': authorString,
       'article:section': category,
       'article:published_time': post.publishDate,
       'article:modified_time': post.publishDate,
@@ -102,15 +106,19 @@ export default async function BlogPostPage({ params }: Props) {
     notFound();
   }
 
-  const wordCount = post.content.replace(/<[^>]*>/g, '').split(/\s+/).length;
+  const contentString = typeof post.content === 'string' ? post.content : (post.content[locale as keyof typeof post.content] || post.content.fi || '');
+  const titleString = typeof post.title === 'string' ? post.title : (post.title[locale as keyof typeof post.title] || post.title.en || post.title.fi || '');
+  const descriptionString = typeof post.description === 'string' ? post.description : (post.description[locale as keyof typeof post.description] || post.description.en || post.description.fi || '');
+  const authorString = typeof post.author === 'string' ? post.author : (post.author[locale as keyof typeof post.author] || post.author.en || post.author.fi || '');
+  const wordCount = contentString.replace(/<[^>]*>/g, '').split(/\s+/).length;
   const timeRequired = post.readingTime ? `PT${post.readingTime}M` : undefined;
   const baseUrl = locale === 'fi' ? 'https://haalarikone.fi' : `https://haalarikone.fi/${locale}`;
 
   const blogPostingSchema = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
-    headline: post.title,
-    description: post.description,
+    headline: titleString,
+    description: descriptionString,
     image: {
       '@type': 'ImageObject',
       url: 'https://haalarikone.fi/haalarikone-og.png',
@@ -119,7 +127,7 @@ export default async function BlogPostPage({ params }: Props) {
     },
     author: {
       '@type': 'Person',
-      name: post.author,
+      name: authorString,
       url: 'https://haalarikone.fi',
     },
     publisher: {
@@ -164,7 +172,7 @@ export default async function BlogPostPage({ params }: Props) {
       {
         '@type': 'ListItem',
         position: 3,
-        name: post.title,
+        name: titleString,
         item: `${baseUrl}/blog/${slug}`,
       },
     ],
@@ -196,8 +204,8 @@ export default async function BlogPostPage({ params }: Props) {
 
         <article>
           <header className="mb-8">
-            <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
-            <p className="text-xl text-gray-700 mb-6">{post.description}</p>
+            <h1 className="text-4xl font-bold mb-4">{titleString}</h1>
+            <p className="text-xl text-gray-700 mb-6">{descriptionString}</p>
             <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600 border-b pb-4">
               <time dateTime={post.publishDate}>
                 {new Date(post.publishDate).toLocaleDateString(locale === 'fi' ? 'fi-FI' : locale === 'en' ? 'en-US' : 'sv-SE', {
@@ -209,13 +217,13 @@ export default async function BlogPostPage({ params }: Props) {
               {post.readingTime && (
                 <span>{t('blog.readingTime')}: {post.readingTime} min</span>
               )}
-              <span>{t('blog.author')}: {post.author}</span>
+              <span>{t('blog.author')}: {authorString}</span>
             </div>
           </header>
 
           <div
             className="prose prose-lg prose-green max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-green prose-a:no-underline hover:prose-a:underline prose-strong:text-gray-900 prose-ul:text-gray-700 prose-ol:text-gray-700"
-            dangerouslySetInnerHTML={{ __html: post.content }}
+            dangerouslySetInnerHTML={{ __html: contentString }}
           />
         </article>
 

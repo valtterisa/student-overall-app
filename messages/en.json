@@ -191,6 +191,14 @@
     "siteName": "Overall Machine",
     "defaultTitle": "Overall Machine | All student overall colors in Finland",
     "defaultDescription": "Find all Finnish students' overall colors in one place. Over 500 overall colors from universities and UAS. Find out what color overall a student in a certain field has!"
+  },
+  "routes": {
+    "fields": "fields",
+    "colors": "colors",
+    "universities": "institutions",
+    "areas": "areas",
+    "blog": "blog",
+    "overall": "overall"
   }
 }
 

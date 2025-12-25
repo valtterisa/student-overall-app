@@ -16,6 +16,7 @@ import UniversityCard from "@/components/university-card";
 import Script from "next/script";
 import { getTranslations } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
+import { getTranslatedRoute } from '@/lib/use-translated-routes';
 
 export const revalidate = 3600;
 
@@ -61,6 +62,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const translatedColor = getEntityTranslation(color, locale as 'fi' | 'en' | 'sv', 'color');
   const capitalizedColor = capitalizeFirstLetter(translatedColor);
   const baseUrl = locale === 'fi' ? 'https://haalarikone.fi' : `https://haalarikone.fi/${locale}`;
+  const colorSlug = getSlugForEntity(color, locale as 'fi' | 'en' | 'sv', 'color');
 
   return {
     title: `${capitalizedColor} - ${t('colors.title')} | Haalarikone`,
@@ -88,7 +90,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       type: "website",
       siteName: "Haalarikone",
       locale: locale === 'fi' ? 'fi_FI' : locale === 'en' ? 'en_US' : 'sv_SE',
-      url: `${baseUrl}/vari/${getSlugForEntity(color, locale as 'fi' | 'en' | 'sv', 'color')}`,
+      url: `${baseUrl}${getTranslatedRoute('colors', locale as 'fi' | 'en' | 'sv', colorSlug)}`,
     },
     twitter: {
       card: "summary_large_image",
@@ -97,11 +99,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       images: ["/haalarikone-og.png"],
     },
     alternates: {
-      canonical: `${baseUrl}/vari/${getSlugForEntity(color, locale as 'fi' | 'en' | 'sv', 'color')}`,
+      canonical: `${baseUrl}${getTranslatedRoute('colors', locale as 'fi' | 'en' | 'sv', colorSlug)}`,
       languages: {
-        fi: `https://haalarikone.fi/vari/${getSlugForEntity(color, 'fi', 'color')}`,
-        en: `https://haalarikone.fi/en/vari/${getSlugForEntity(color, 'en', 'color')}`,
-        sv: `https://haalarikone.fi/sv/vari/${getSlugForEntity(color, 'sv', 'color')}`,
+        fi: `https://haalarikone.fi${getTranslatedRoute('colors', 'fi', getSlugForEntity(color, 'fi', 'color'))}`,
+        en: `https://haalarikone.fi/en${getTranslatedRoute('colors', 'en', getSlugForEntity(color, 'en', 'color'))}`,
+        sv: `https://haalarikone.fi/sv${getTranslatedRoute('colors', 'sv', getSlugForEntity(color, 'sv', 'color'))}`,
       },
     },
   };
@@ -139,6 +141,7 @@ export default async function ColorPage({ params }: Props) {
   const translatedColor = getEntityTranslation(color, locale as 'fi' | 'en' | 'sv', 'color');
   const capitalizedColor = capitalizeFirstLetter(translatedColor);
   const baseUrl = locale === 'fi' ? 'https://haalarikone.fi' : `https://haalarikone.fi/${locale}`;
+  const colorSlug = getSlugForEntity(color, locale as 'fi' | 'en' | 'sv', 'color');
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -154,7 +157,7 @@ export default async function ColorPage({ params }: Props) {
         "@type": "ListItem",
         position: 2,
         name: `${capitalizedColor} haalari`,
-        item: `${baseUrl}/vari/${slug}`,
+        item: `${baseUrl}${getTranslatedRoute('colors', locale as 'fi' | 'en' | 'sv', colorSlug)}`,
       },
     ],
   };
@@ -168,7 +171,7 @@ export default async function ColorPage({ params }: Props) {
     itemListElement: colorData.slice(0, 50).map((uni, index) => ({
       "@type": "ListItem",
       position: index + 1,
-      item: `${baseUrl}/haalari/${uni.id}`,
+      item: `${baseUrl}${getTranslatedRoute('overall', locale as 'fi' | 'en' | 'sv', String(uni.id))}`,
     })),
   };
 
@@ -200,7 +203,7 @@ export default async function ColorPage({ params }: Props) {
               <BreadcrumbSeparator />
               <BreadcrumbItem>
                 <BreadcrumbLink asChild>
-                  <Link href="/vari">{t('colors.title')}</Link>
+                  <Link href={getTranslatedRoute('colors', locale as 'fi' | 'en' | 'sv')}>{t('colors.title')}</Link>
                 </BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator />
@@ -235,7 +238,7 @@ export default async function ColorPage({ params }: Props) {
             {universitiesList.slice(0, 10).map((uni) => (
               <Link
                 key={uni}
-                href={`/oppilaitos/${getSlugForEntity(uni, locale as 'fi' | 'en' | 'sv', 'university')}`}
+                href={getTranslatedRoute('universities', locale as 'fi' | 'en' | 'sv', getSlugForEntity(uni, locale as 'fi' | 'en' | 'sv', 'university'))}
                 className="px-4 py-2 bg-green/10 text-green rounded hover:bg-green/20 transition"
               >
                 {uni}
@@ -244,7 +247,7 @@ export default async function ColorPage({ params }: Props) {
             {fields.slice(0, 10).map((field) => (
               <Link
                 key={field}
-                href={`/ala/${getSlugForEntity(field, locale as 'fi' | 'en' | 'sv', 'field')}`}
+                href={getTranslatedRoute('fields', locale as 'fi' | 'en' | 'sv', getSlugForEntity(field, locale as 'fi' | 'en' | 'sv', 'field'))}
                 className="px-4 py-2 bg-green/10 text-green rounded hover:bg-green/20 transition"
               >
                 {field}

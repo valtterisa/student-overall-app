@@ -1,6 +1,6 @@
 import { generateSlug } from './generate-slug';
 
-type Locale = 'fi' | 'en' | 'sv';
+export type Locale = 'fi' | 'en' | 'sv';
 
 type EntityTranslations = {
     fi: string;

@@ -16,6 +16,7 @@ import Script from "next/script";
 import UniversityCard from "@/components/university-card";
 import { getTranslations } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
+import { getTranslatedRoute } from '@/lib/use-translated-routes';
 
 export const revalidate = 3600;
 
@@ -73,6 +74,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const translatedField = getEntityTranslation(field, locale as 'fi' | 'en' | 'sv', 'field');
   const capitalizedField = capitalizeFirstLetter(translatedField);
   const baseUrl = locale === 'fi' ? 'https://haalarikone.fi' : `https://haalarikone.fi/${locale}`;
+  const fieldSlug = getSlugForEntity(field, locale as 'fi' | 'en' | 'sv', 'field');
 
   return {
     title: `${capitalizedField} - ${t('colors.title')} | Haalarikone`,
@@ -100,7 +102,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       type: "website",
       siteName: "Haalarikone",
       locale: locale === 'fi' ? 'fi_FI' : locale === 'en' ? 'en_US' : 'sv_SE',
-      url: `${baseUrl}/ala/${getSlugForEntity(field, locale as 'fi' | 'en' | 'sv', 'field')}`,
+      url: `${baseUrl}${getTranslatedRoute('fields', locale as 'fi' | 'en' | 'sv', fieldSlug)}`,
     },
     twitter: {
       card: "summary_large_image",
@@ -109,11 +111,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       images: ["/haalarikone-og.png"],
     },
     alternates: {
-      canonical: `${baseUrl}/ala/${getSlugForEntity(field, locale as 'fi' | 'en' | 'sv', 'field')}`,
+      canonical: `${baseUrl}${getTranslatedRoute('fields', locale as 'fi' | 'en' | 'sv', fieldSlug)}`,
       languages: {
-        fi: `https://haalarikone.fi/ala/${getSlugForEntity(field, 'fi', 'field')}`,
-        en: `https://haalarikone.fi/en/ala/${getSlugForEntity(field, 'en', 'field')}`,
-        sv: `https://haalarikone.fi/sv/ala/${getSlugForEntity(field, 'sv', 'field')}`,
+        fi: `https://haalarikone.fi${getTranslatedRoute('fields', 'fi', getSlugForEntity(field, 'fi', 'field'))}`,
+        en: `https://haalarikone.fi/en${getTranslatedRoute('fields', 'en', getSlugForEntity(field, 'en', 'field'))}`,
+        sv: `https://haalarikone.fi/sv${getTranslatedRoute('fields', 'sv', getSlugForEntity(field, 'sv', 'field'))}`,
       },
     },
   };
@@ -152,13 +154,14 @@ export default async function FieldPage({ params }: Props) {
   const translatedField = getEntityTranslation(field, locale as 'fi' | 'en' | 'sv', 'field');
   const capitalizedField = capitalizeFirstLetter(translatedField);
   const baseUrl = locale === 'fi' ? 'https://haalarikone.fi' : `https://haalarikone.fi/${locale}`;
+  const fieldSlug = getSlugForEntity(field, locale as 'fi' | 'en' | 'sv', 'field');
 
   const credentialSchema = {
     "@context": "https://schema.org",
     "@type": "EducationalOccupationalCredential",
     credentialCategory: capitalizedField,
     description: t('fields.description', { count: fieldData.length, schoolCount: universitiesList.length }),
-    url: `${baseUrl}/ala/${slug}`,
+    url: `${baseUrl}${getTranslatedRoute('fields', locale as 'fi' | 'en' | 'sv', fieldSlug)}`,
   };
 
   const itemListSchema = {
@@ -170,7 +173,7 @@ export default async function FieldPage({ params }: Props) {
     itemListElement: fieldData.slice(0, 50).map((uni, index) => ({
       "@type": "ListItem",
       position: index + 1,
-      item: `${baseUrl}/haalari/${uni.id}`,
+      item: `${baseUrl}${getTranslatedRoute('overall', locale as 'fi' | 'en' | 'sv', String(uni.id))}`,
     })),
   };
 
@@ -188,7 +191,7 @@ export default async function FieldPage({ params }: Props) {
         "@type": "ListItem",
         position: 2,
         name: capitalizedField,
-        item: `${baseUrl}/ala/${slug}`,
+        item: `${baseUrl}${getTranslatedRoute('fields', locale as 'fi' | 'en' | 'sv', fieldSlug)}`,
       },
     ],
   };
@@ -228,7 +231,7 @@ export default async function FieldPage({ params }: Props) {
               <BreadcrumbSeparator />
               <BreadcrumbItem>
                 <BreadcrumbLink asChild>
-                  <Link href="/ala">{t('fields.title')}</Link>
+                  <Link href={getTranslatedRoute('fields', locale as 'fi' | 'en' | 'sv')}>{t('fields.title')}</Link>
                 </BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator />
@@ -255,7 +258,7 @@ export default async function FieldPage({ params }: Props) {
             {universitiesList.slice(0, 10).map((uni) => (
               <Link
                 key={uni}
-                href={`/oppilaitos/${getSlugForEntity(uni, locale as 'fi' | 'en' | 'sv', 'university')}`}
+                href={getTranslatedRoute('universities', locale as 'fi' | 'en' | 'sv', getSlugForEntity(uni, locale as 'fi' | 'en' | 'sv', 'university'))}
                 className="px-4 py-2 bg-green/10 text-green rounded hover:bg-green/20 transition"
               >
                 {uni}
@@ -264,7 +267,7 @@ export default async function FieldPage({ params }: Props) {
             {colors.slice(0, 5).map((color) => (
               <Link
                 key={color}
-                href={`/vari/${getSlugForEntity(color, locale as 'fi' | 'en' | 'sv', 'color')}`}
+                href={getTranslatedRoute('colors', locale as 'fi' | 'en' | 'sv', getSlugForEntity(color, locale as 'fi' | 'en' | 'sv', 'color'))}
                 className="px-4 py-2 bg-green/10 text-green rounded hover:bg-green/20 transition"
               >
                 {color}

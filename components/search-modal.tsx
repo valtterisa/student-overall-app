@@ -18,6 +18,7 @@ import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/routing';
 import { getSlugForEntity } from '@/lib/slug-translations';
 import { useLocale } from 'next-intl';
+import { useTranslatedRoutes } from '@/lib/use-translated-routes';
 
 interface SearchModalProps {
     triggerLabel: string;
@@ -34,6 +35,7 @@ export function SearchModal({
     const tCommon = useTranslations('common');
     const tOverall = useTranslations('overall');
     const locale = useLocale() as 'fi' | 'en' | 'sv';
+    const routes = useTranslatedRoutes();
     const [open, setOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
     const [results, setResults] = useState<UniversityWithScore[]>([]);
@@ -73,17 +75,17 @@ export function SearchModal({
     }, [searchQuery]);
 
     const handleSelect = (uni: University) => {
-        router.push(`/haalari/${uni.id}`);
+        router.push(routes.overall(String(uni.id)));
         setOpen(false);
     };
 
     const handleColorClick = (color: string) => {
-        router.push(`/vari/${getSlugForEntity(color, locale, 'color')}`);
+        router.push(routes.colors(getSlugForEntity(color, locale, 'color')));
         setOpen(false);
     };
 
     const handleInstitutionClick = (institution: string) => {
-        router.push(`/oppilaitos/${getSlugForEntity(institution, locale, 'university')}`);
+        router.push(routes.universities(getSlugForEntity(institution, locale, 'university')));
         setOpen(false);
     };
 

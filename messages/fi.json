@@ -192,6 +192,14 @@
     "siteName": "Haalarikone",
     "defaultTitle": "Haalarikone | Kaikki opiskelijahaalarivärit Suomessa",
     "defaultDescription": "Löydä kaikki Suomen opiskelijoiden haalarivärit yhdestä paikasta. Yli 500 haalariväriä yliopistoista ja AMK:ista. Selvitä minkä värinen haalari tietyn alan opiskelijalla on!"
+  },
+  "routes": {
+    "fields": "ala",
+    "colors": "vari",
+    "universities": "oppilaitos",
+    "areas": "alue",
+    "blog": "blog",
+    "overall": "haalari"
   }
 }
 

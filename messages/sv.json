@@ -191,6 +191,14 @@
     "siteName": "Overallmaskinen",
     "defaultTitle": "Overallmaskinen | Alla studentoverallfärger i Finland",
     "defaultDescription": "Hitta alla finska studenters overallfärger på ett ställe. Över 500 overallfärger från universitet och yrkeshögskolor. Ta reda på vilken färg overall en student inom ett visst område har!"
+  },
+  "routes": {
+    "fields": "omraden",
+    "colors": "farger",
+    "universities": "institutioner",
+    "areas": "omraden",
+    "blog": "blogg",
+    "overall": "overall"
   }
 }
 

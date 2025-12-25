@@ -123,17 +123,22 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
           {posts.length === 0 ? (
             <p className="text-gray-600">{t('blog.noPosts')}</p>
           ) : (
-            posts.map((post) => (
+            posts.map((post) => {
+              const titleString = typeof post.title === 'string' ? post.title : (post.title[locale as keyof typeof post.title] || post.title.en || post.title.fi || '');
+              const descriptionString = typeof post.description === 'string' ? post.description : (post.description[locale as keyof typeof post.description] || post.description.en || post.description.fi || '');
+              const authorString = typeof post.author === 'string' ? post.author : (post.author[locale as keyof typeof post.author] || post.author.en || post.author.fi || '');
+              
+              return (
               <article
                 key={post.slug}
                 className="border rounded-lg p-6 bg-white shadow-sm hover:shadow-md transition"
               >
                 <Link href={`/blog/${post.slug}`}>
                   <h2 className="text-2xl font-bold mb-2 hover:text-green transition">
-                    {post.title}
+                    {titleString}
                   </h2>
                 </Link>
-                <p className="text-gray-700 mb-4">{post.description}</p>
+                <p className="text-gray-700 mb-4">{descriptionString}</p>
                 <div className="flex items-center gap-4 text-sm text-gray-600">
                   <time dateTime={post.publishDate}>
                     {new Date(post.publishDate).toLocaleDateString(locale === 'fi' ? "fi-FI" : locale === 'en' ? "en-US" : "sv-SE", {
@@ -145,7 +150,7 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
                   {post.readingTime && (
                     <span>{t('blog.readingTime')}: {post.readingTime} min</span>
                   )}
-                  <span>{t('blog.author')}: {post.author}</span>
+                  <span>{t('blog.author')}: {authorString}</span>
                 </div>
                 <Link
                   href={`/blog/${post.slug}`}
@@ -154,7 +159,8 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
                   {t('common.readMore')} →
                 </Link>
               </article>
-            ))
+              );
+            })
           )}
         </div>
       </div>

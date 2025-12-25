@@ -13,32 +13,34 @@ import {
 import { Button } from "@/components/ui/button";
 import { useTranslations } from 'next-intl';
 import { LanguageSwitcher } from './language-switcher';
+import { useTranslatedRoutes } from '@/lib/use-translated-routes';
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const t = useTranslations();
   const tNav = useTranslations('nav');
+  const routes = useTranslatedRoutes();
 
   const closeMobileMenu = () => setMobileOpen(false);
 
-  const navLinks = [{ label: t('common.blog'), href: "/blog" }];
+  const navLinks = [{ label: t('common.blog'), href: routes.blog() }];
 
   const dropdownLinks = [
     {
       label: tNav('allColors'),
-      href: "/vari",
+      href: routes.colors(),
       description: tNav('colorsDescription'),
       icon: Palette,
     },
     {
       label: tNav('allFields'),
-      href: "/ala",
+      href: routes.fields(),
       description: tNav('fieldsDescription'),
       icon: Layers,
     },
     {
       label: tNav('allSchools'),
-      href: "/oppilaitos",
+      href: routes.universities(),
       description: tNav('schoolsDescription'),
       icon: GraduationCap,
     },

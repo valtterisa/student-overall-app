@@ -9,6 +9,7 @@ import { getFinnishName } from "@/lib/get-finnish-name";
 import type { University } from "@/types/university";
 import { useLocale } from 'next-intl';
 import { useTranslations } from 'next-intl';
+import { useTranslatedRoutes } from '@/lib/use-translated-routes';
 
 interface UniversityCardProps {
   uni: University;
@@ -18,6 +19,7 @@ export default function UniversityCard({ uni }: UniversityCardProps) {
   const router = useRouter();
   const locale = useLocale() as 'fi' | 'en' | 'sv';
   const t = useTranslations('overall');
+  const routes = useTranslatedRoutes();
 
   // Get Finnish name for logo path (logos are named based on Finnish names)
   const oppilaitosFi = getFinnishName(uni.oppilaitos, locale, 'university');
@@ -26,7 +28,7 @@ export default function UniversityCard({ uni }: UniversityCardProps) {
   return (
     <li
       className="group bg-white rounded-lg border border-border hover:border-green/30 hover:shadow-sm transition-all p-4 cursor-pointer relative"
-      onClick={() => router.push(`/haalari/${uni.id}`)}
+      onClick={() => router.push(routes.overall(String(uni.id)))}
     >
       <div className="absolute top-3 right-3 text-green/40 group-hover:text-green/60 transition-colors">
         <svg
@@ -71,14 +73,14 @@ export default function UniversityCard({ uni }: UniversityCardProps) {
             onClick={(e) => e.stopPropagation()}
           >
             <Link
-              href={`/vari/${getSlugForEntity(uni.vari, locale, 'color')}`}
+              href={routes.colors(getSlugForEntity(uni.vari, locale, 'color'))}
               className="inline-flex items-center gap-1 px-2.5 py-1 bg-green/10 text-green rounded-full text-xs font-medium hover:bg-green/20 hover:text-green/90 transition-colors"
               onClick={(e) => e.stopPropagation()}
             >
               {uni.vari}
             </Link>
             <Link
-              href={`/oppilaitos/${getSlugForEntity(uni.oppilaitos, locale, 'university')}`}
+              href={routes.universities(getSlugForEntity(uni.oppilaitos, locale, 'university'))}
               className="inline-flex items-center gap-1 px-2.5 py-1 bg-green/10 text-green rounded-full text-xs font-medium hover:bg-green/20 hover:text-green/90 transition-colors"
               onClick={(e) => e.stopPropagation()}
             >
@@ -86,7 +88,7 @@ export default function UniversityCard({ uni }: UniversityCardProps) {
             </Link>
             {uni.ala && (
               <Link
-                href={`/ala/${getSlugForEntity(uni.ala.split(",")[0].trim(), locale, 'field')}`}
+                href={routes.fields(getSlugForEntity(uni.ala.split(",")[0].trim(), locale, 'field'))}
                 className="inline-flex items-center gap-1 px-2.5 py-1 bg-green/10 text-green rounded-full text-xs font-medium hover:bg-green/20 hover:text-green/90 transition-colors"
                 onClick={(e) => e.stopPropagation()}
               >
@@ -95,7 +97,7 @@ export default function UniversityCard({ uni }: UniversityCardProps) {
             )}
             {uni.alue && (
               <Link
-                href={`/alue/${getSlugForEntity(uni.alue.split(",")[0].trim(), locale, 'area')}`}
+                href={routes.areas(getSlugForEntity(uni.alue.split(",")[0].trim(), locale, 'area'))}
                 className="inline-flex items-center gap-1 px-2.5 py-1 bg-green/10 text-green rounded-full text-xs font-medium hover:bg-green/20 hover:text-green/90 transition-colors"
                 onClick={(e) => e.stopPropagation()}
               >

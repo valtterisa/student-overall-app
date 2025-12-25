@@ -11,6 +11,9 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Check, ChevronDown } from 'lucide-react';
+import { useState } from 'react';
+import type { Locale } from '@/lib/slug-translations';
+import { translatePathClient } from '@/lib/translate-path-client';
 
 const languages = [
   { code: 'fi', name: 'Suomi', flag: '🇫🇮' },
@@ -22,15 +25,27 @@ export function LanguageSwitcher() {
   const params = useParams();
   const router = useRouter();
   const pathname = usePathname();
+  const [isTranslating, setIsTranslating] = useState(false);
   
   const localeFromParams = params?.locale as string | undefined;
   const localeFromHook = useLocale();
-  const locale = localeFromParams || localeFromHook || 'fi';
+  const locale = (localeFromParams || localeFromHook || 'fi') as Locale;
 
   const currentLanguage = languages.find(lang => lang.code === locale) || languages[0];
 
   const switchLocale = (newLocale: string) => {
-    router.push(pathname, { locale: newLocale });
+    if (isTranslating) return;
+    
+    setIsTranslating(true);
+    try {
+      const translatedPath = translatePathClient(pathname, locale, newLocale as Locale);
+      router.push(translatedPath, { locale: newLocale });
+    } catch (error) {
+      console.error('Error translating path:', error);
+      router.push(pathname, { locale: newLocale });
+    } finally {
+      setIsTranslating(false);
+    }
   };
 
   return (
@@ -52,11 +67,15 @@ export function LanguageSwitcher() {
             key={lang.code}
             onClick={() => switchLocale(lang.code)}
             className="cursor-pointer"
+            disabled={isTranslating}
           >
             <span className="text-lg mr-2">{lang.flag}</span>
             <span className="flex-1">{lang.name}</span>
-            {locale === lang.code && (
+            {locale === lang.code && !isTranslating && (
               <Check className="h-4 w-4 text-green" />
+            )}
+            {isTranslating && locale !== lang.code && (
+              <div className="h-4 w-4 border-2 border-green border-t-transparent rounded-full animate-spin" />
             )}
           </DropdownMenuItem>
         ))}
