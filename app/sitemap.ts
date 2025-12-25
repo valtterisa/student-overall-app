@@ -29,13 +29,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     if (stats) {
       dataLastModified = stats.mtime;
     }
-  } catch {}
+  } catch { }
 
   const entries: MetadataRoute.Sitemap = [];
 
   for (const locale of routing.locales) {
     const localePrefix = locale === 'fi' ? '' : `/${locale}`;
-    
+
     entries.push({
       url: `${baseUrl}${localePrefix}`,
       lastModified: dataLastModified,
@@ -48,10 +48,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified:
         blogPosts.length > 0
           ? new Date(
-              Math.max(
-                ...blogPosts.map((p) => new Date(p.publishDate).getTime())
-              )
+            Math.max(
+              ...blogPosts.map((p) => new Date(p.publishDate).getTime())
             )
+          )
           : dataLastModified,
       changeFrequency: "weekly",
       priority: 0.9,

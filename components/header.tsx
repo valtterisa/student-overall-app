@@ -2,7 +2,7 @@
 
 import { Link } from "@/i18n/routing";
 import { useState } from "react";
-import { Menu, X, Palette, Layers, GraduationCap } from "lucide-react";
+import { Menu, X, Palette, Layers, GraduationCap, ChevronDown } from "lucide-react";
 import Logo from "@/components/logo";
 import {
   DropdownMenu,
@@ -10,6 +10,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button";
 import { useTranslations } from 'next-intl';
 import { LanguageSwitcher } from './language-switcher';
 
@@ -53,10 +54,14 @@ export default function Header() {
           <div className="hidden items-center gap-6 text-sm font-medium text-muted-foreground md:flex">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <button className="flex items-center gap-1 rounded-full border border-transparent px-3 py-1.5 transition-colors hover:border-green hover:text-green focus:outline-none focus:ring-2 focus:ring-green/40">
-                  {t('common.categories')}
-                  <span aria-hidden="true">▾</span>
-                </button>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="gap-2 h-9 px-3 focus-visible:ring-0 focus-visible:ring-offset-0 group"
+                >
+                  <span>{t('common.categories')}</span>
+                  <ChevronDown className="h-4 w-4 opacity-50 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="start" className="w-56">
                 {dropdownLinks.map((link) => {
@@ -65,10 +70,10 @@ export default function Header() {
                     <DropdownMenuItem key={`kategoriat-${link.href}`} asChild>
                       <Link
                         href={link.href}
-                        className="flex items-center gap-3 text-muted-foreground hover:text-green"
+                        className="flex items-center gap-3 cursor-pointer"
                       >
-                        <Icon className="h-3.5 w-3.5 text-muted-foreground" />
-                        {link.label}
+                        <Icon className="h-4 w-4 text-muted-foreground" />
+                        <span className="flex-1">{link.label}</span>
                       </Link>
                     </DropdownMenuItem>
                   );
