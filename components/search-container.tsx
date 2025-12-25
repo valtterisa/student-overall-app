@@ -20,16 +20,16 @@ import type { University } from "@/types/university";
 export type Criteria = {
   textSearch: string;
   color:
-    | ""
-    | "punainen"
-    | "sininen"
-    | "vihreä"
-    | "keltainen"
-    | "oranssi"
-    | "violetti"
-    | "pinkki"
-    | "black"
-    | "white";
+  | ""
+  | "punainen"
+  | "sininen"
+  | "vihreä"
+  | "keltainen"
+  | "oranssi"
+  | "violetti"
+  | "pinkki"
+  | "black"
+  | "white";
   area: string;
   field: string;
   school: string;
@@ -68,8 +68,8 @@ export default function SearchContainer({
       return universities.filter((uni) => {
         const colorMatch = selectedCriteria.color
           ? colorData.colors[selectedCriteria.color].main
-              .concat(colorData.colors[selectedCriteria.color].shades)
-              .some((c) => uni.vari.toLowerCase().includes(c.toLowerCase()))
+            .concat(colorData.colors[selectedCriteria.color].shades)
+            .some((c) => uni.vari.toLowerCase().includes(c.toLowerCase()))
           : true;
         const areaMatch =
           !selectedCriteria.area ||
@@ -94,7 +94,6 @@ export default function SearchContainer({
   );
 
   const performSearch = useCallback(async () => {
-    setIsSearching(true);
     let searchResults: University[] = [];
 
     if (selectedCriteria.textSearch.trim().length >= 2) {
@@ -103,7 +102,7 @@ export default function SearchContainer({
           selectedCriteria.textSearch.trim()
         );
       } catch (error) {
-        console.error("API search failed:", error);
+        console.error("Search failed");
         searchResults = [];
       }
     } else {
@@ -176,6 +175,7 @@ export default function SearchContainer({
 
     // Only perform search if user has entered text or applied filters
     if (hasTextSearch || hasFilters) {
+      setIsSearching(true);
       const timeoutId = setTimeout(() => {
         performSearch();
       }, 300);
@@ -246,8 +246,8 @@ export default function SearchContainer({
       const filteredResults = searchResults.filter((uni) => {
         const colorMatch = draftAdvancedFilters.color
           ? colorData.colors[draftAdvancedFilters.color].main
-              .concat(colorData.colors[draftAdvancedFilters.color].shades)
-              .some((c) => uni.vari.toLowerCase().includes(c.toLowerCase()))
+            .concat(colorData.colors[draftAdvancedFilters.color].shades)
+            .some((c) => uni.vari.toLowerCase().includes(c.toLowerCase()))
           : true;
         const areaMatch =
           !draftAdvancedFilters.area ||
@@ -293,8 +293,8 @@ export default function SearchContainer({
         ignore === "color" || !draftAdvancedFilters.color
           ? true
           : colorData.colors[draftAdvancedFilters.color].main
-              .concat(colorData.colors[draftAdvancedFilters.color].shades)
-              .some((c) => uni.vari.toLowerCase().includes(c.toLowerCase()));
+            .concat(colorData.colors[draftAdvancedFilters.color].shades)
+            .some((c) => uni.vari.toLowerCase().includes(c.toLowerCase()));
 
       const areaMatch =
         ignore === "area" ||

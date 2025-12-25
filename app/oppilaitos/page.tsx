@@ -12,7 +12,7 @@ import { Metadata } from "next";
 import { loadUniversities } from "@/lib/load-universities";
 import { getUniqueUniversities } from "@/lib/get-unique-values";
 import { generateSlug } from "@/lib/generate-slug";
-import { SearchModal } from "@/components/search-modal";
+import { SearchWithDivider } from "@/components/search-with-divider";
 
 export const revalidate = 3600;
 
@@ -130,22 +130,7 @@ export default async function UniversityIndexPage() {
           Valitse oppilaitos nähdäksesi sen haalarivärit ja ainejärjestötiedot.
         </p>
 
-        <div className="mb-8 flex justify-center">
-          <SearchModal
-            triggerLabel="Etsi haalarikoneesta"
-            placeholder="Etsi värejä, aloja, oppilaitoksia..."
-            modalTitle="Haku"
-          />
-        </div>
-
-        <div className="relative my-8">
-          <div className="absolute inset-0 flex items-center">
-            <span className="w-full border-t" />
-          </div>
-          <div className="relative flex justify-center text-xs uppercase">
-            <span className="bg-white px-2 text-muted-foreground">TAI</span>
-          </div>
-        </div>
+        <SearchWithDivider dividerText="TAI VALITSE OPPILAITOS" />
 
         <div className="grid gap-2 sm:grid-cols-2">
           {unique.map((uni) => (

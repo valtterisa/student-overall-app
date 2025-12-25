@@ -98,7 +98,7 @@ export function SearchModal({
     const visibleHaalaritCount = showAllHaalarit ? results.length : 5;
 
     return (
-        <>
+        <div className="p-2">
             <Button
                 onClick={() => setOpen(true)}
                 variant="outline"
@@ -108,28 +108,37 @@ export function SearchModal({
                 {triggerLabel}
             </Button>
             <Dialog open={open} onOpenChange={setOpen}>
-                <DialogContent className="max-w-2xl max-h-[80vh] overflow-hidden flex flex-col p-0" hideCloseButton>
+                <DialogContent
+                    className={`max-w-2xl overflow-hidden flex flex-col p-0 rounded-2xl transition-all duration-300 ${results.length > 0 || isSearching ? 'h-[600px]' : 'h-auto'
+                        }`}
+                    hideCloseButton
+                >
                     <DialogTitle className="sr-only">{modalTitle}</DialogTitle>
-                    <div className="p-4 border-b">
+                    <div className="px-3 pt-4 pb-3 sm:px-6 sm:pt-8 sm:pb-6 border-b">
                         <div className="flex items-center gap-3">
                             <div className="relative flex-1">
-                                <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5 pointer-events-none" />
+                                <SearchIcon className="absolute left-3 sm:left-6 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4 sm:w-6 sm:h-6 pointer-events-none z-10" />
                                 <Input
                                     type="text"
                                     value={searchQuery}
                                     onChange={(e) => setSearchQuery(e.target.value)}
                                     placeholder={placeholder}
-                                    className="pl-10 pr-10 h-12 text-base"
+                                    className="pl-10 pr-24 sm:pl-16 sm:pr-28 h-12 sm:h-16 text-base sm:text-lg bg-white text-foreground border-input focus:ring-2 focus:ring-green/30 focus-visible:ring-2 focus-visible:ring-green/30 border-2 shadow-sm hover:shadow-md transition-shadow"
                                     autoFocus
                                 />
-                                {searchQuery && (
+                                {isSearching && (
+                                    <div className="absolute right-3 sm:right-6 top-1/2 transform -translate-y-1/2 z-10">
+                                        <div className="w-4 h-4 sm:w-6 sm:h-6 border-2 border-green border-t-transparent rounded-full animate-spin" />
+                                    </div>
+                                )}
+                                {searchQuery && !isSearching && (
                                     <button
                                         type="button"
                                         onClick={() => setSearchQuery("")}
-                                        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground transition p-1 rounded hover:bg-muted"
+                                        className="absolute right-3 sm:right-6 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground transition p-1 sm:p-2 rounded hover:bg-muted z-10"
                                         aria-label="Tyhjennä haku"
                                     >
-                                        <X className="w-4 h-4" />
+                                        <X className="w-4 h-4 sm:w-5 sm:h-5" />
                                     </button>
                                 )}
                             </div>
@@ -143,132 +152,128 @@ export function SearchModal({
                         </div>
                     </div>
 
-                    <div className="flex-1 overflow-y-auto p-4">
-                        {isSearching && (
-                            <div className="flex items-center justify-center py-8">
-                                <Loader2 className="w-6 h-6 animate-spin text-green" />
-                            </div>
-                        )}
+                    {(results.length > 0 || isSearching || (searchQuery.trim().length >= 2 && results.length === 0)) && (
+                        <div className="flex-1 overflow-y-auto p-4 transition-all duration-300 ease-in-out animate-in fade-in slide-in-from-top-2">
+                            {isSearching && (
+                                <div className="flex items-center justify-center py-8">
+                                    <Loader2 className="w-6 h-6 animate-spin text-green" />
+                                </div>
+                            )}
 
-                        {!isSearching && searchQuery.trim().length < 2 && (
-                            <div className="py-8 text-center text-sm text-muted-foreground">
-                                Kirjoita hakusana aloittaaksesi haun
-                            </div>
-                        )}
+                            {!isSearching && searchQuery.trim().length >= 2 && results.length === 0 && (
+                                <div className="py-8 text-center text-sm text-muted-foreground">
+                                    Ei tuloksia haulle "{searchQuery}"
+                                </div>
+                            )}
 
-                        {!isSearching && searchQuery.trim().length >= 2 && results.length === 0 && (
-                            <div className="py-8 text-center text-sm text-muted-foreground">
-                                Ei tuloksia haulle "{searchQuery}"
-                            </div>
-                        )}
-
-                        {!isSearching && results.length > 0 && (
-                            <div className="space-y-6">
-                                <div>
-                                    <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">
-                                        Haalarit ({results.length})
-                                    </h3>
-                                    <div className="space-y-2">
-                                        {results.slice(0, visibleHaalaritCount).map((uni) => (
-                                            <button
-                                                key={uni.id}
-                                                onClick={() => handleSelect(uni)}
-                                                className="w-full flex items-center gap-3 p-3 rounded-lg border hover:bg-muted/50 transition text-left"
+                            {!isSearching && results.length > 0 && (
+                                <div className="space-y-6">
+                                    <div>
+                                        <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">
+                                            Haalarit ({results.length})
+                                        </h3>
+                                        <div className="space-y-2">
+                                            {results.slice(0, visibleHaalaritCount).map((uni) => (
+                                                <button
+                                                    key={uni.id}
+                                                    onClick={() => handleSelect(uni)}
+                                                    className="w-full flex items-center gap-3 p-3 rounded-lg border hover:bg-muted/50 transition text-left"
+                                                >
+                                                    <div
+                                                        className="w-10 h-10 rounded-md border-2 shadow-sm flex-shrink-0"
+                                                        style={uni.hex ? parseStyles(uni.hex) : { backgroundColor: '#e5e7eb' }}
+                                                    />
+                                                    <div className="flex-1 min-w-0">
+                                                        <div className="font-medium text-sm">
+                                                            {uni.ainejärjestö || uni.ala || "Ainejärjestö ei tiedossa"}
+                                                        </div>
+                                                        <div className="text-xs text-muted-foreground">
+                                                            {uni.oppilaitos} • {uni.vari}
+                                                        </div>
+                                                    </div>
+                                                    <ChevronRight className="w-4 h-4 text-muted-foreground flex-shrink-0" />
+                                                </button>
+                                            ))}
+                                        </div>
+                                        {results.length > 5 && !showAllHaalarit && (
+                                            <Button
+                                                variant="ghost"
+                                                onClick={() => setShowAllHaalarit(true)}
+                                                className="w-full mt-3 text-sm text-muted-foreground hover:text-foreground"
                                             >
-                                                <div
-                                                    className="w-10 h-10 rounded-md border-2 shadow-sm flex-shrink-0"
-                                                    style={uni.hex ? parseStyles(uni.hex) : { backgroundColor: '#e5e7eb' }}
-                                                />
-                                                <div className="flex-1 min-w-0">
-                                                    <div className="font-medium text-sm">
-                                                        {uni.ainejärjestö || uni.ala || "Ainejärjestö ei tiedossa"}
-                                                    </div>
-                                                    <div className="text-xs text-muted-foreground">
-                                                        {uni.oppilaitos} • {uni.vari}
-                                                    </div>
-                                                </div>
-                                                <ChevronRight className="w-4 h-4 text-muted-foreground flex-shrink-0" />
-                                            </button>
-                                        ))}
+                                                Näytä kaikki {results.length} haalaria
+                                                <ChevronRight className="w-4 h-4 ml-1" />
+                                            </Button>
+                                        )}
                                     </div>
-                                    {results.length > 5 && !showAllHaalarit && (
-                                        <Button
-                                            variant="ghost"
-                                            onClick={() => setShowAllHaalarit(true)}
-                                            className="w-full mt-3 text-sm text-muted-foreground hover:text-foreground"
-                                        >
-                                            Näytä kaikki {results.length} haalaria
-                                            <ChevronRight className="w-4 h-4 ml-1" />
-                                        </Button>
+
+                                    {groupedByColor.size > 0 && (
+                                        <div>
+                                            <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">
+                                                Värit ({groupedByColor.size})
+                                            </h3>
+                                            <div className="grid gap-2 sm:grid-cols-2">
+                                                {Array.from(groupedByColor.entries())
+                                                    .slice(0, 4)
+                                                    .map(([color, data]) => (
+                                                        <button
+                                                            key={color}
+                                                            onClick={() => {
+                                                                router.push(`/vari/${generateSlug(color)}`);
+                                                                setOpen(false);
+                                                            }}
+                                                            className="flex items-center gap-3 p-3 rounded-lg border hover:bg-muted/50 transition text-left"
+                                                        >
+                                                            <div
+                                                                className="w-8 h-8 rounded-md border-2 shadow-sm flex-shrink-0"
+                                                                style={data.hex ? parseStyles(data.hex) : { backgroundColor: '#e5e7eb' }}
+                                                            />
+                                                            <div className="flex-1 min-w-0">
+                                                                <div className="font-medium text-sm">{color}</div>
+                                                                <div className="text-xs text-muted-foreground">
+                                                                    {data.unis.length} haalaria
+                                                                </div>
+                                                            </div>
+                                                        </button>
+                                                    ))}
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    {groupedByInstitution.size > 0 && (
+                                        <div>
+                                            <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">
+                                                Oppilaitokset ({groupedByInstitution.size})
+                                            </h3>
+                                            <div className="grid gap-2 sm:grid-cols-2">
+                                                {Array.from(groupedByInstitution.entries())
+                                                    .slice(0, 4)
+                                                    .map(([institution, unis]) => (
+                                                        <button
+                                                            key={institution}
+                                                            onClick={() => {
+                                                                router.push(`/oppilaitos/${generateSlug(institution)}`);
+                                                                setOpen(false);
+                                                            }}
+                                                            className="flex items-center gap-3 p-3 rounded-lg border hover:bg-muted/50 transition text-left"
+                                                        >
+                                                            <div className="flex-1 min-w-0">
+                                                                <div className="font-medium text-sm">{institution}</div>
+                                                                <div className="text-xs text-muted-foreground">
+                                                                    {unis.length} haalaria
+                                                                </div>
+                                                            </div>
+                                                        </button>
+                                                    ))}
+                                            </div>
+                                        </div>
                                     )}
                                 </div>
-
-                                {groupedByColor.size > 0 && (
-                                    <div>
-                                        <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">
-                                            Värit ({groupedByColor.size})
-                                        </h3>
-                                        <div className="grid gap-2 sm:grid-cols-2">
-                                            {Array.from(groupedByColor.entries())
-                                                .slice(0, 4)
-                                                .map(([color, data]) => (
-                                                    <button
-                                                        key={color}
-                                                        onClick={() => {
-                                                            router.push(`/vari/${generateSlug(color)}`);
-                                                            setOpen(false);
-                                                        }}
-                                                        className="flex items-center gap-3 p-3 rounded-lg border hover:bg-muted/50 transition text-left"
-                                                    >
-                                                        <div
-                                                            className="w-8 h-8 rounded-md border-2 shadow-sm flex-shrink-0"
-                                                            style={data.hex ? parseStyles(data.hex) : { backgroundColor: '#e5e7eb' }}
-                                                        />
-                                                        <div className="flex-1 min-w-0">
-                                                            <div className="font-medium text-sm">{color}</div>
-                                                            <div className="text-xs text-muted-foreground">
-                                                                {data.unis.length} haalaria
-                                                            </div>
-                                                        </div>
-                                                    </button>
-                                                ))}
-                                        </div>
-                                    </div>
-                                )}
-
-                                {groupedByInstitution.size > 0 && (
-                                    <div>
-                                        <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">
-                                            Oppilaitokset ({groupedByInstitution.size})
-                                        </h3>
-                                        <div className="grid gap-2 sm:grid-cols-2">
-                                            {Array.from(groupedByInstitution.entries())
-                                                .slice(0, 4)
-                                                .map(([institution, unis]) => (
-                                                    <button
-                                                        key={institution}
-                                                        onClick={() => {
-                                                            router.push(`/oppilaitos/${generateSlug(institution)}`);
-                                                            setOpen(false);
-                                                        }}
-                                                        className="flex items-center gap-3 p-3 rounded-lg border hover:bg-muted/50 transition text-left"
-                                                    >
-                                                        <div className="flex-1 min-w-0">
-                                                            <div className="font-medium text-sm">{institution}</div>
-                                                            <div className="text-xs text-muted-foreground">
-                                                                {unis.length} haalaria
-                                                            </div>
-                                                        </div>
-                                                    </button>
-                                                ))}
-                                        </div>
-                                    </div>
-                                )}
-                            </div>
-                        )}
-                    </div>
+                            )}
+                        </div>
+                    )}
                 </DialogContent>
             </Dialog>
-        </>
+        </div>
     );
 }
