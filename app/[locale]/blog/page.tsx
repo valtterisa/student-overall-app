@@ -49,6 +49,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
+export async function generateStaticParams() {
+  return ['fi', 'en', 'sv'].map((locale) => ({
+    locale,
+  }));
+}
+
 export default async function BlogPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const posts = await loadBlogPosts(locale);
