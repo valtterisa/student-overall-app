@@ -12,7 +12,7 @@ type Props = {
 };
 
 export async function generateStaticParams() {
-  const posts = await loadBlogPosts();
+  const posts = await loadBlogPosts('fi');
   const params = [];
   for (const post of posts) {
     for (const locale of ['fi', 'en', 'sv'] as const) {
@@ -27,7 +27,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
-  const post = await loadBlogPost(slug);
+  const post = await loadBlogPost(slug, locale);
 
   if (!post) {
     return {
@@ -95,7 +95,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function BlogPostPage({ params }: Props) {
   const { locale, slug } = await params;
-  const post = await loadBlogPost(slug);
+  const post = await loadBlogPost(slug, locale);
   const t = await getTranslations({ locale });
 
   if (!post) {

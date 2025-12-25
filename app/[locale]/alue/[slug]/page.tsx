@@ -238,7 +238,7 @@ export default async function AreaPage({ params }: Props) {
                 href={`/oppilaitos/${getSlugForEntity(uni, locale as 'fi' | 'en' | 'sv', 'university')}`}
                 className="px-4 py-2 bg-green/10 text-green rounded hover:bg-green/20 transition"
               >
-                {uni}
+                {getEntityTranslation(uni, locale as 'fi' | 'en' | 'sv', 'university')}
               </Link>
             ))}
             {fields.slice(0, 10).map((field) => (
@@ -247,7 +247,7 @@ export default async function AreaPage({ params }: Props) {
                 href={`/ala/${getSlugForEntity(field, locale as 'fi' | 'en' | 'sv', 'field')}`}
                 className="px-4 py-2 bg-green/10 text-green rounded hover:bg-green/20 transition"
               >
-                {field}
+                {getEntityTranslation(field, locale as 'fi' | 'en' | 'sv', 'field')}
               </Link>
             ))}
             {colors.slice(0, 5).map((color) => (
@@ -256,7 +256,7 @@ export default async function AreaPage({ params }: Props) {
                 href={`/vari/${getSlugForEntity(color, locale as 'fi' | 'en' | 'sv', 'color')}`}
                 className="px-4 py-2 bg-green/10 text-green rounded hover:bg-green/20 transition"
               >
-                {color}
+                {getEntityTranslation(color, locale as 'fi' | 'en' | 'sv', 'color')}
               </Link>
             ))}
           </div>

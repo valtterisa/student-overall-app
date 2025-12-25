@@ -5,13 +5,14 @@ import { useTranslations } from 'next-intl';
 
 interface SearchWithDividerProps {
     section: 'fields' | 'colors' | 'universities';
+    dividerText?: string;
 }
 
-export function SearchWithDivider({ section }: SearchWithDividerProps) {
+export function SearchWithDivider({ section, dividerText }: SearchWithDividerProps) {
     const t = useTranslations('search');
     const tSection = useTranslations(section);
     
-    const dividerText = t('orSelect') + ' ' + tSection('title').toUpperCase();
+    const displayDividerText = dividerText ?? (t('orSelect') + ' ' + tSection('title').toUpperCase());
 
     return (
         <>
@@ -28,7 +29,7 @@ export function SearchWithDivider({ section }: SearchWithDividerProps) {
                     <span className="w-full border-t" />
                 </div>
                 <div className="relative flex justify-center text-xs uppercase">
-                    <span className="bg-white px-2 text-muted-foreground">{dividerText}</span>
+                    <span className="bg-white px-2 text-muted-foreground">{displayDividerText}</span>
                 </div>
             </div>
         </>

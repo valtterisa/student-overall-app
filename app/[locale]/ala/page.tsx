@@ -11,7 +11,7 @@ import Script from "next/script";
 import { Metadata } from "next";
 import { loadUniversities } from "@/lib/load-universities";
 import { getUniqueFields, getUniqueUniversities } from "@/lib/get-unique-values";
-import { getSlugForEntity } from "@/lib/slug-translations";
+import { getSlugForEntity, getEntityTranslation } from "@/lib/slug-translations";
 import { SearchWithDivider } from "@/components/search-with-divider";
 import { getTranslations } from 'next-intl/server';
 
@@ -70,9 +70,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function FieldIndexPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const universities = await loadUniversities(locale as 'fi' | 'en' | 'sv');
-  const fields = getUniqueFields(universities).sort((a, b) =>
-    a.localeCompare(b, "fi")
-  );
+  const uniqueFields = getUniqueFields(universities);
+  const fieldsWithTranslations = uniqueFields
+    .map(field => ({
+      finnishName: field,
+      translatedName: getEntityTranslation(field, locale as 'fi' | 'en' | 'sv', 'field')
+    }))
+    .sort((a, b) => a.translatedName.localeCompare(b.translatedName, locale));
   const t = await getTranslations({ locale });
   
   // Calculate counts for description
@@ -103,14 +107,14 @@ export default async function FieldIndexPage({ params }: { params: Promise<{ loc
     "@type": "ItemList",
     name: t('fields.title'),
     description: t('fields.pageDescription'),
-    numberOfItems: fields.length,
-    itemListElement: fields.map((field, index) => ({
+    numberOfItems: fieldsWithTranslations.length,
+    itemListElement: fieldsWithTranslations.map((field, index) => ({
       "@type": "ListItem",
       position: index + 1,
-      name: field,
+      name: field.translatedName,
       url: locale === 'fi' 
-        ? `https://haalarikone.fi/ala/${getSlugForEntity(field, 'fi', 'field')}`
-        : `https://haalarikone.fi/${locale}/ala/${getSlugForEntity(field, locale as 'fi' | 'en' | 'sv', 'field')}`,
+        ? `https://haalarikone.fi/ala/${getSlugForEntity(field.finnishName, 'fi', 'field')}`
+        : `https://haalarikone.fi/${locale}/ala/${getSlugForEntity(field.finnishName, locale as 'fi' | 'en' | 'sv', 'field')}`,
     })),
   };
 
@@ -148,13 +152,13 @@ export default async function FieldIndexPage({ params }: { params: Promise<{ loc
         <SearchWithDivider section="fields" />
 
         <div className="grid gap-2 sm:grid-cols-2">
-          {fields.map((field) => (
+          {fieldsWithTranslations.map((field) => (
             <Link
-              key={field}
-              href={`/ala/${getSlugForEntity(field, locale as 'fi' | 'en' | 'sv', 'field')}`}
+              key={field.finnishName}
+              href={`/ala/${getSlugForEntity(field.finnishName, locale as 'fi' | 'en' | 'sv', 'field')}`}
               className="rounded-lg border px-4 py-3 font-medium text-green hover:bg-green/5"
             >
-              {field}
+              {field.translatedName}
             </Link>
           ))}
         </div>
