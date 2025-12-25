@@ -2,6 +2,7 @@ import { Search } from "@upstash/search";
 import { NextResponse } from "next/server";
 import { readFile } from "fs/promises";
 import path from "path";
+import { enrichDocumentWithTranslations } from "@/lib/enrich-search-data";
 
 export async function POST() {
   try {
@@ -15,7 +16,7 @@ export async function POST() {
     }
     const search = new Search({ url, token });
     const index = search.index("haalarikone-db");
-    const filePath = path.join(process.cwd(), "overall_colors_upstash.json");
+    const filePath = path.join(process.cwd(), "data", "overall_colors_upstash.json");
     const fileContents = await readFile(filePath, "utf-8");
     type Document = {
       id: string;
@@ -29,10 +30,13 @@ export async function POST() {
         { status: 400 }
       );
     }
+    const enrichedDocuments = await Promise.all(
+      documents.map(enrichDocumentWithTranslations)
+    );
     const batchSize = 100;
     let uploaded = 0;
-    for (let i = 0; i < documents.length; i += batchSize) {
-      const batch = documents.slice(i, i + batchSize);
+    for (let i = 0; i < enrichedDocuments.length; i += batchSize) {
+      const batch = enrichedDocuments.slice(i, i + batchSize);
       await index.upsert(batch);
       uploaded += batch.length;
     }

@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default async function Index({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params;
-    const universities = await loadUniversities();
+    const universities = await loadUniversities(locale as 'fi' | 'en' | 'sv');
     const t = await getTranslations({ locale });
 
     const websiteSchema = {

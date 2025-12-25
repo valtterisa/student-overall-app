@@ -59,7 +59,7 @@ export function SearchModal({
         const timeoutId = setTimeout(async () => {
             setIsSearching(true);
             try {
-                const searchResults = await searchUniversitiesAPI(searchQuery.trim());
+                const searchResults = await searchUniversitiesAPI(searchQuery.trim(), locale);
                 setResults(searchResults);
             } catch (error) {
                 console.error("Search failed:", error);

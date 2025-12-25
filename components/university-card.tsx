@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { parseStyles } from "@/lib/utils";
 import { getSlugForEntity } from "@/lib/slug-translations";
+import { getFinnishName } from "@/lib/get-finnish-name";
 import type { University } from "@/types/university";
 import { useLocale } from 'next-intl';
 import { useTranslations } from 'next-intl';
@@ -17,6 +18,10 @@ export default function UniversityCard({ uni }: UniversityCardProps) {
   const router = useRouter();
   const locale = useLocale() as 'fi' | 'en' | 'sv';
   const t = useTranslations('overall');
+
+  // Get Finnish name for logo path (logos are named based on Finnish names)
+  const oppilaitosFi = getFinnishName(uni.oppilaitos, locale, 'university');
+  const logoName = oppilaitosFi.startsWith("Aalto-yliopisto") ? "Aalto-yliopisto" : oppilaitosFi;
 
   return (
     <li
@@ -44,7 +49,7 @@ export default function UniversityCard({ uni }: UniversityCardProps) {
           <div className="relative w-12 h-12 rounded-md overflow-hidden border border-border/50 bg-white p-1.5">
             <Image
               className="object-contain"
-              src={`/logos/${uni.oppilaitos.startsWith("Aalto-yliopisto") ? "Aalto-yliopisto" : uni.oppilaitos}.jpg`}
+              src={`/logos/${logoName}.jpg`}
               fill
               alt={`${uni.oppilaitos} logo`}
             />
@@ -52,7 +57,7 @@ export default function UniversityCard({ uni }: UniversityCardProps) {
           <div
             className="w-12 h-12 rounded-md border border-border/50 shadow-sm"
             style={parseStyles(uni.hex)}
-            title={`Väri: ${uni.vari}`}
+            title={`${t('color')}: ${uni.vari}`}
           />
         </div>
 

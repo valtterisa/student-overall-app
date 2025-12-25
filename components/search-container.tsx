@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useMemo, useCallback } from "react";
 import { motion } from "framer-motion";
+import { useLocale } from 'next-intl';
 import SearchForm from "./search-form";
 import ResultsDisplay from "./result-display";
 import PlaceholderDisplay from "./placeholder-display";
@@ -42,6 +43,7 @@ interface SearchContainerProps {
 export default function SearchContainer({
   initialUniversities,
 }: SearchContainerProps) {
+  const locale = useLocale() as 'fi' | 'en' | 'sv';
   const [selectedCriteria, setSelectedCriteria] = useState<Criteria>({
     textSearch: "",
     color: "",
@@ -99,7 +101,8 @@ export default function SearchContainer({
     if (selectedCriteria.textSearch.trim().length >= 2) {
       try {
         searchResults = await searchUniversitiesAPI(
-          selectedCriteria.textSearch.trim()
+          selectedCriteria.textSearch.trim(),
+          locale
         );
       } catch (error) {
         console.error("Search failed");
@@ -131,7 +134,7 @@ export default function SearchContainer({
     setResults(orderedResults);
     setHasSearched(true);
     setIsSearching(false);
-  }, [selectedCriteria, applyFilters, initialUniversities]);
+  }, [selectedCriteria, applyFilters, initialUniversities, locale]);
 
   // Load all data on initial mount
   useEffect(() => {
@@ -233,7 +236,8 @@ export default function SearchContainer({
       if (selectedCriteria.textSearch.trim().length >= 2) {
         try {
           searchResults = await searchUniversitiesAPI(
-            selectedCriteria.textSearch.trim()
+            selectedCriteria.textSearch.trim(),
+            locale
           );
         } catch (error) {
           console.error("API search failed in draftFilterResultCount:", error);
@@ -271,7 +275,7 @@ export default function SearchContainer({
     };
 
     calculateDraftFilterResultCount();
-  }, [selectedCriteria.textSearch, draftAdvancedFilters, initialUniversities]);
+  }, [selectedCriteria.textSearch, draftAdvancedFilters, initialUniversities, locale]);
 
   useEffect(() => {
     setDraftAdvancedFilters({
