@@ -52,6 +52,7 @@
   "search": {
     "title": "Haku",
     "placeholder": "Kerro mitä etsit?",
+    "searchPlaceholder": "Etsi värejä, aloja, oppilaitoksia...",
     "clearSearch": "Tyhjennä haku",
     "filters": "Suodattimet",
     "selectColor": "Valitse väri",

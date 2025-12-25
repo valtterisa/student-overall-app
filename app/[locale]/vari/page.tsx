@@ -140,7 +140,7 @@ export default async function ColorIndexPage({ params }: { params: Promise<{ loc
 
         <h1 className="text-4xl font-bold mb-4">{t('colors.title')}</h1>
         <p className="text-lg text-gray-700 mb-8">
-          {t('colors.description')}
+          {t('colors.pageDescription')}
         </p>
 
         <SearchWithDivider dividerText={t('search.orSelect') + ' ' + t('colors.title').toUpperCase()} />

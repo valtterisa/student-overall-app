@@ -14,18 +14,26 @@ import { searchUniversitiesAPI, type UniversityWithScore } from "@/lib/search-ut
 import { parseStyles } from "@/lib/utils";
 import { generateSlug } from "@/lib/generate-slug";
 import type { University } from "@/types/university";
+import { useTranslations } from 'next-intl';
+import { Link } from '@/i18n/routing';
+import { getSlugForEntity } from '@/lib/slug-translations';
+import { useLocale } from 'next-intl';
 
 interface SearchModalProps {
-    triggerLabel?: string;
-    placeholder?: string;
-    modalTitle?: string;
+    triggerLabel: string;
+    placeholder: string;
+    modalTitle: string;
 }
 
 export function SearchModal({
-    triggerLabel = "Etsi haalarikoneesta",
-    placeholder = "Etsi värejä, aloja, oppilaitoksia...",
-    modalTitle = "Haku",
+    triggerLabel,
+    placeholder,
+    modalTitle,
 }: SearchModalProps) {
+    const t = useTranslations('search');
+    const tCommon = useTranslations('common');
+    const tOverall = useTranslations('overall');
+    const locale = useLocale() as 'fi' | 'en' | 'sv';
     const [open, setOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
     const [results, setResults] = useState<UniversityWithScore[]>([]);
@@ -66,6 +74,16 @@ export function SearchModal({
 
     const handleSelect = (uni: University) => {
         router.push(`/haalari/${uni.id}`);
+        setOpen(false);
+    };
+
+    const handleColorClick = (color: string) => {
+        router.push(`/vari/${getSlugForEntity(color, locale, 'color')}`);
+        setOpen(false);
+    };
+
+    const handleInstitutionClick = (institution: string) => {
+        router.push(`/oppilaitos/${getSlugForEntity(institution, locale, 'university')}`);
         setOpen(false);
     };
 
@@ -136,7 +154,7 @@ export function SearchModal({
                                         type="button"
                                         onClick={() => setSearchQuery("")}
                                         className="absolute right-3 sm:right-6 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground transition p-1 sm:p-2 rounded hover:bg-muted z-10"
-                                        aria-label="Tyhjennä haku"
+                                        aria-label={t('clearSearch')}
                                     >
                                         <X className="w-4 h-4 sm:w-5 sm:h-5" />
                                     </button>
@@ -147,7 +165,7 @@ export function SearchModal({
                                 onClick={() => setOpen(false)}
                                 className="text-sm text-muted-foreground hover:text-foreground transition px-2 py-1 rounded hover:bg-muted flex-shrink-0"
                             >
-                                Sulje
+                                {tCommon('close')}
                             </button>
                         </div>
                     </div>
@@ -162,7 +180,7 @@ export function SearchModal({
 
                             {!isSearching && searchQuery.trim().length >= 2 && results.length === 0 && (
                                 <div className="py-8 text-center text-sm text-muted-foreground">
-                                    Ei tuloksia haulle "{searchQuery}"
+                                    {t('noResults')} "{searchQuery}"
                                 </div>
                             )}
 
@@ -170,7 +188,7 @@ export function SearchModal({
                                 <div className="space-y-6">
                                     <div>
                                         <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">
-                                            Haalarit ({results.length})
+                                            {t('overalls')} ({results.length})
                                         </h3>
                                         <div className="space-y-2">
                                             {results.slice(0, visibleHaalaritCount).map((uni) => (
@@ -185,7 +203,7 @@ export function SearchModal({
                                                     />
                                                     <div className="flex-1 min-w-0">
                                                         <div className="font-medium text-sm">
-                                                            {uni.ainejärjestö || uni.ala || "Ainejärjestö ei tiedossa"}
+                                                            {uni.ainejärjestö || uni.ala || tOverall('unknownOrganization')}
                                                         </div>
                                                         <div className="text-xs text-muted-foreground">
                                                             {uni.oppilaitos} • {uni.vari}
@@ -201,7 +219,7 @@ export function SearchModal({
                                                 onClick={() => setShowAllHaalarit(true)}
                                                 className="w-full mt-3 text-sm text-muted-foreground hover:text-foreground"
                                             >
-                                                Näytä kaikki {results.length} haalaria
+                                                {t('showAll')} {results.length} {t('overallCount')}
                                                 <ChevronRight className="w-4 h-4 ml-1" />
                                             </Button>
                                         )}
@@ -210,7 +228,7 @@ export function SearchModal({
                                     {groupedByColor.size > 0 && (
                                         <div>
                                             <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">
-                                                Värit ({groupedByColor.size})
+                                                {t('colors')} ({groupedByColor.size})
                                             </h3>
                                             <div className="grid gap-2 sm:grid-cols-2">
                                                 {Array.from(groupedByColor.entries())
@@ -218,10 +236,7 @@ export function SearchModal({
                                                     .map(([color, data]) => (
                                                         <button
                                                             key={color}
-                                                            onClick={() => {
-                                                                router.push(`/vari/${generateSlug(color)}`);
-                                                                setOpen(false);
-                                                            }}
+                                                            onClick={() => handleColorClick(color)}
                                                             className="flex items-center gap-3 p-3 rounded-lg border hover:bg-muted/50 transition text-left"
                                                         >
                                                             <div
@@ -231,7 +246,7 @@ export function SearchModal({
                                                             <div className="flex-1 min-w-0">
                                                                 <div className="font-medium text-sm">{color}</div>
                                                                 <div className="text-xs text-muted-foreground">
-                                                                    {data.unis.length} haalaria
+                                                                    {data.unis.length} {t('overallCount')}
                                                                 </div>
                                                             </div>
                                                         </button>
@@ -243,7 +258,7 @@ export function SearchModal({
                                     {groupedByInstitution.size > 0 && (
                                         <div>
                                             <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">
-                                                Oppilaitokset ({groupedByInstitution.size})
+                                                {t('schools')} ({groupedByInstitution.size})
                                             </h3>
                                             <div className="grid gap-2 sm:grid-cols-2">
                                                 {Array.from(groupedByInstitution.entries())
@@ -251,16 +266,13 @@ export function SearchModal({
                                                     .map(([institution, unis]) => (
                                                         <button
                                                             key={institution}
-                                                            onClick={() => {
-                                                                router.push(`/oppilaitos/${generateSlug(institution)}`);
-                                                                setOpen(false);
-                                                            }}
+                                                            onClick={() => handleInstitutionClick(institution)}
                                                             className="flex items-center gap-3 p-3 rounded-lg border hover:bg-muted/50 transition text-left"
                                                         >
                                                             <div className="flex-1 min-w-0">
                                                                 <div className="font-medium text-sm">{institution}</div>
                                                                 <div className="text-xs text-muted-foreground">
-                                                                    {unis.length} haalaria
+                                                                    {unis.length} {t('overallCount')}
                                                                 </div>
                                                             </div>
                                                         </button>
