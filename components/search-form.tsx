@@ -272,7 +272,7 @@ export default function SearchForm({
           </div>
         </div>
 
-        <div className="px-3 pb-3 pt-3 sm:px-6 sm:pb-6 sm:pt-4 border-t border-border/50">
+        <div className="px-3 pb-3 pt-3 sm:px-6 border-t border-border/50">
           <Collapsible
             open={isAdvancedSearchOpen}
             onOpenChange={setIsAdvancedSearchOpen}
