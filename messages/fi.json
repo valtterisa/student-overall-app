@@ -77,7 +77,8 @@
     "schools": "Oppilaitokset",
     "overallCount": "haalaria",
     "showAll": "Näytä kaikki",
-    "orSelect": "TAI VALITSE"
+    "orSelect": "TAI VALITSE",
+    "filter": "Suodata"
   },
   "fields": {
     "title": "Opiskelualat",

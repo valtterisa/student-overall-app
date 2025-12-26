@@ -76,7 +76,8 @@
     "schools": "Institutioner",
     "overallCount": "overallar",
     "showAll": "Visa alla",
-    "orSelect": "ELLER VÄLJ"
+    "orSelect": "ELLER VÄLJ",
+    "filter": "Filtrera"
   },
   "fields": {
     "title": "Studieområden",

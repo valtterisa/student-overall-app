@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
@@ -40,7 +40,8 @@ import {
 import { Criteria } from "./search-container";
 import { colorData } from "../data/mockData";
 import { track } from "@databuddy/sdk";
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
+import translationsData from '../data/translations.json';
 
 interface SearchFormProps {
   onTextSearchChange: (textSearch: string) => void;
@@ -58,6 +59,15 @@ interface SearchFormProps {
   isSearching?: boolean;
 }
 
+type Translations = {
+  fields: Record<string, { fi: string; en: string; sv: string }>;
+  colors: Record<string, { fi: string; en: string; sv: string }>;
+  universities: Record<string, { fi: string; en: string; sv: string }>;
+  areas: Record<string, { fi: string; en: string; sv: string }>;
+};
+
+const translations = translationsData as Translations;
+
 export default function SearchForm({
   onTextSearchChange,
   onDraftAdvancedFilterChange,
@@ -72,6 +82,32 @@ export default function SearchForm({
   isSearching = false,
 }: SearchFormProps) {
   const t = useTranslations('search');
+  const locale = useLocale() as 'fi' | 'en' | 'sv';
+
+  // Helper function to translate entity values
+  const translateEntity = (
+    value: string,
+    type: 'color' | 'area' | 'field' | 'university'
+  ): string => {
+    const translationsMap =
+      type === 'color' ? translations.colors :
+        type === 'area' ? translations.areas :
+          type === 'field' ? translations.fields :
+            translations.universities;
+
+    const translation = translationsMap[value];
+    return translation?.[locale] || value;
+  };
+
+  // Translate color options for display (colors need translation since colorData uses Finnish keys)
+  const translatedColorOptions = useMemo(() => {
+    return Object.entries(colorData.colors).map(([colorKey, data]) => ({
+      key: colorKey,
+      displayName: translateEntity(colorKey, 'color'),
+      data,
+    }));
+  }, [locale]);
+
   const [isAdvancedSearchOpen, setIsAdvancedSearchOpen] = useState(false);
   const [commandOpen, setCommandOpen] = useState(false);
   const [localSearchValue, setLocalSearchValue] = useState(
@@ -291,25 +327,23 @@ export default function SearchForm({
                     <SelectValue placeholder={t('selectColor')} />
                   </SelectTrigger>
                   <SelectContent className="bg-white">
-                    {Object.entries(colorData.colors).map(
-                      ([colorKey, data]) => (
-                        <SelectItem
-                          key={colorKey}
-                          value={colorKey}
-                          className="text-xs sm:text-sm text-foreground"
-                        >
-                          <div className="flex items-center gap-1.5 sm:gap-2">
-                            <div
-                              className="w-3 h-3 sm:w-3.5 sm:h-3.5 rounded border"
-                              style={{
-                                backgroundImage: `linear-gradient(to bottom right, ${data.color}, ${data.alt})`,
-                              }}
-                            />
-                            <span>{data.main[0]}</span>
-                          </div>
-                        </SelectItem>
-                      )
-                    )}
+                    {translatedColorOptions.map(({ key, displayName, data }) => (
+                      <SelectItem
+                        key={key}
+                        value={key}
+                        className="text-xs sm:text-sm text-foreground"
+                      >
+                        <div className="flex items-center gap-1.5 sm:gap-2">
+                          <div
+                            className="w-3 h-3 sm:w-3.5 sm:h-3.5 rounded border"
+                            style={{
+                              backgroundImage: `linear-gradient(to bottom right, ${data.color}, ${data.alt})`,
+                            }}
+                          />
+                          <span>{displayName}</span>
+                        </div>
+                      </SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
               </div>
@@ -333,13 +367,13 @@ export default function SearchForm({
                     <SelectValue placeholder={t('selectCity')} />
                   </SelectTrigger>
                   <SelectContent className="bg-white">
-                    {areas.map((a) => (
+                    {areas.map((area) => (
                       <SelectItem
-                        key={a}
-                        value={a}
+                        key={area}
+                        value={area}
                         className="text-xs sm:text-sm text-foreground"
                       >
-                        {a}
+                        {area}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -365,13 +399,13 @@ export default function SearchForm({
                     <SelectValue placeholder={t('selectField')} />
                   </SelectTrigger>
                   <SelectContent className="bg-white">
-                    {fields.map((f) => (
+                    {fields.map((field) => (
                       <SelectItem
-                        key={f}
-                        value={f}
+                        key={field}
+                        value={field}
                         className="text-xs sm:text-sm text-foreground"
                       >
-                        {f}
+                        {field}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -397,13 +431,13 @@ export default function SearchForm({
                     <SelectValue placeholder={t('selectSchool')} />
                   </SelectTrigger>
                   <SelectContent className="bg-white">
-                    {schools.map((s) => (
+                    {schools.map((school) => (
                       <SelectItem
-                        key={s}
-                        value={s}
+                        key={school}
+                        value={school}
                         className="text-xs sm:text-sm text-foreground"
                       >
-                        {s}
+                        {school}
                       </SelectItem>
                     ))}
                   </SelectContent>

@@ -76,7 +76,8 @@
     "schools": "Institutions",
     "overallCount": "overalls",
     "showAll": "Show all",
-    "orSelect": "OR SELECT"
+    "orSelect": "OR SELECT",
+    "filter": "Filter"
   },
   "fields": {
     "title": "Fields of Study",
