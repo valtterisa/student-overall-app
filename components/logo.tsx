@@ -16,7 +16,7 @@ export default function Logo({
 }: LogoProps) {
 
 
-    return <Link href={"/"} className="flex items-center"><Image
+    return <Link href={"/"} className="flex items-center w-fit"><Image
         src="/haalarikone-logo.png"
         alt="Haalarikone"
         width={width}
