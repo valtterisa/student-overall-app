@@ -21,3 +21,4 @@ export function getTranslatedRoute(routeType: RouteType, locale: Locale, slug?: 
   return getRoutePath(routeType, locale, slug);
 }
 
+

@@ -77,7 +77,8 @@
     "overallCount": "overalls",
     "showAll": "Show all",
     "orSelect": "OR SELECT",
-    "filter": "Filter"
+    "filter": "Filter",
+    "clear": "Clear"
   },
   "fields": {
     "title": "Fields of Study",

@@ -84,3 +84,4 @@ export function normalizeRouteSegment(segment: string): string {
   return routeTranslations[routeType]['fi'];
 }
 
+

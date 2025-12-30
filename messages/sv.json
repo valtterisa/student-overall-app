@@ -77,7 +77,8 @@
     "overallCount": "overallar",
     "showAll": "Visa alla",
     "orSelect": "ELLER VÄLJ",
-    "filter": "Filtrera"
+    "filter": "Filtrera",
+    "clear": "Rensa"
   },
   "fields": {
     "title": "Studieområden",

@@ -78,7 +78,8 @@
     "overallCount": "haalaria",
     "showAll": "Näytä kaikki",
     "orSelect": "TAI VALITSE",
-    "filter": "Suodata"
+    "filter": "Suodata",
+    "clear": "Tyhjennä"
   },
   "fields": {
     "title": "Opiskelualat",
