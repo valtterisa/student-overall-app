@@ -22,3 +22,4 @@ export function getTranslatedRoute(routeType: RouteType, locale: Locale, slug?: 
 }
 
 
+

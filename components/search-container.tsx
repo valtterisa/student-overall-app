@@ -8,7 +8,6 @@ import ResultsDisplay from "./result-display";
 import PlaceholderDisplay from "./placeholder-display";
 import {
   searchUniversitiesAPI,
-  type UniversityWithScore,
 } from "@/lib/search-utils";
 import { colorData } from "../data/mockData";
 import {
@@ -98,7 +97,7 @@ export default function SearchContainer({
   const performSearch = useCallback(async () => {
     let searchResults: University[] = [];
 
-    if (selectedCriteria.textSearch.trim().length >= 2) {
+    if (selectedCriteria.textSearch.trim().length >= 3) {
       try {
         searchResults = await searchUniversitiesAPI(
           selectedCriteria.textSearch.trim(),
@@ -115,13 +114,6 @@ export default function SearchContainer({
     const filteredResults = applyFilters(searchResults);
 
     const orderedResults = filteredResults.sort((a, b) => {
-      const aScore = "score" in a ? (a as UniversityWithScore).score : 0;
-      const bScore = "score" in b ? (b as UniversityWithScore).score : 0;
-
-      if (aScore !== bScore) {
-        return bScore - aScore;
-      }
-
       if (a.oppilaitos === b.oppilaitos) {
         if (!a.ainejärjestö && !b.ainejärjestö) return 0;
         if (!a.ainejärjestö) return 1;
@@ -154,7 +146,7 @@ export default function SearchContainer({
   }, [hasSearched, initialUniversities]);
 
   useEffect(() => {
-    const hasTextSearch = selectedCriteria.textSearch.trim().length >= 2;
+    const hasTextSearch = selectedCriteria.textSearch.trim().length >= 3;
     const hasFilters =
       selectedCriteria.color ||
       selectedCriteria.area ||
@@ -181,7 +173,7 @@ export default function SearchContainer({
       setIsSearching(true);
       const timeoutId = setTimeout(() => {
         performSearch();
-      }, 300);
+      }, 1000);
 
       return () => {
         clearTimeout(timeoutId);
@@ -230,10 +222,10 @@ export default function SearchContainer({
   const [draftFilterResultCount, setDraftFilterResultCount] = useState(0);
 
   useEffect(() => {
-    const calculateDraftFilterResultCount = async () => {
+      const calculateDraftFilterResultCount = async () => {
       let searchResults: University[] = [];
 
-      if (selectedCriteria.textSearch.trim().length >= 2) {
+      if (selectedCriteria.textSearch.trim().length >= 3) {
         try {
           searchResults = await searchUniversitiesAPI(
             selectedCriteria.textSearch.trim(),

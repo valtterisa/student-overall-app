@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Search as SearchIcon, X, Loader2, ChevronRight } from "lucide-react";
-import { searchUniversitiesAPI, type UniversityWithScore } from "@/lib/search-utils";
+import { searchUniversitiesAPI } from "@/lib/search-utils";
 import { parseStyles } from "@/lib/utils";
 import { generateSlug } from "@/lib/generate-slug";
 import type { University } from "@/types/university";
@@ -38,7 +38,7 @@ export function SearchModal({
     const routes = useTranslatedRoutes();
     const [open, setOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
-    const [results, setResults] = useState<UniversityWithScore[]>([]);
+    const [results, setResults] = useState<University[]>([]);
     const [isSearching, setIsSearching] = useState(false);
     const [showAllHaalarit, setShowAllHaalarit] = useState(false);
     const router = useRouter();
@@ -52,7 +52,7 @@ export function SearchModal({
     }, [open]);
 
     useEffect(() => {
-        if (searchQuery.trim().length < 2) {
+        if (searchQuery.trim().length < 3) {
             setResults([]);
             return;
         }
@@ -69,7 +69,7 @@ export function SearchModal({
             } finally {
                 setIsSearching(false);
             }
-        }, 300);
+        }, 1000);
 
         return () => clearTimeout(timeoutId);
     }, [searchQuery]);

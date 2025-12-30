@@ -1,54 +1,22 @@
 import type { University } from "@/types/university";
 
-export type UpstashSearchResult = {
-  id: string;
-  content: Record<string, unknown>;
-  metadata: Record<string, unknown>;
-  score: number;
-};
-
-export type UniversityWithScore = University & {
-  score: number;
-};
-
-export function convertUpstashResultToUniversity(
-  result: UpstashSearchResult,
-  locale: 'fi' | 'en' | 'sv' = 'fi'
-): UniversityWithScore {
-  const content = result.content;
-  const metadata = result.metadata;
-
-  const getLocalizedValue = (field: unknown): string => {
-    if (field === null || field === undefined) {
-      return '';
-    }
-    if (typeof field === 'object' && !Array.isArray(field)) {
-      const nested = field as Record<string, string>;
-      return nested[locale] || nested.fi || '';
-    }
-    if (typeof field === 'string') {
-      return field;
-    }
-    return '';
+export type SearchResponse = {
+  results: University[];
+  totalCount: number;
+  filters?: {
+    color?: string;
+    area?: string;
+    field?: string;
+    school?: string;
   };
-
-  return {
-    id: parseInt(result.id, 10),
-    vari: getLocalizedValue(content.vari),
-    hex: (metadata.hex as string) || "",
-    alue: getLocalizedValue(content.alue),
-    ala: getLocalizedValue(content.ala) || null,
-    ainejärjestö: (content.ainejärjestö as string) || null,
-    oppilaitos: getLocalizedValue(content.oppilaitos),
-    score: result.score || 0,
-  };
-}
+  semanticQuery?: string;
+};
 
 export async function searchUniversitiesAPI(
   query: string,
   locale: 'fi' | 'en' | 'sv' = 'fi'
-): Promise<UniversityWithScore[]> {
-  if (!query || query.trim().length < 2) {
+): Promise<University[]> {
+  if (!query || query.trim().length < 3) {
     return [];
   }
 
@@ -63,15 +31,10 @@ export async function searchUniversitiesAPI(
       return [];
     }
 
-    const data = await res.json();
-    const results = data.results || [];
-
-    const converted = results.map((result: UpstashSearchResult) =>
-      convertUpstashResultToUniversity(result, locale)
-    );
-
-    return converted;
+    const data = await res.json() as SearchResponse;
+    return data.results || [];
   } catch (error) {
+    console.error('Search API error:', error);
     return [];
   }
 }

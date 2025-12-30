@@ -21,7 +21,8 @@ Check out the live project at: [haalarikone.fi](https://haalarikone.fi)
 - **Styling:** Tailwind CSS with Radix UI components
 - **Internationalization:** next-intl (Finnish, English, Swedish)
 - **Database:** Supabase (PostgreSQL)
-- **Search:** Upstash Search + custom logic
+- **Search:** AI-powered query understanding (Anthropic Claude) + deterministic filtering + semantic search (Upstash)
+- **AI/ML:** Vercel AI SDK with Anthropic Claude 3 Haiku
 - **Rate Limiting:** Upstash Redis
 - **Email:** Resend (for feedback forms)
 - **Analytics:** Databuddy
@@ -69,6 +70,9 @@ UPSTASH_SEARCH_REST_TOKEN=your_upstash_search_token
 UPSTASH_REDIS_REST_URL=your_upstash_redis_url
 UPSTASH_REDIS_REST_TOKEN=your_upstash_redis_token
 
+# Anthropic (for AI-powered search)
+ANTHROPIC_API_KEY=your_anthropic_api_key
+
 # Resend (feedback form)
 RESEND_API_KEY=your_resend_api_key
 FEEDBACK_EMAIL_TO=email_to_send_feedback_to
@@ -76,6 +80,7 @@ FEEDBACK_EMAIL_TO=email_to_send_feedback_to
 
 **Note:** 
 - Set up your own Supabase and Upstash instances
+- Anthropic API key is required for AI-powered search functionality
 - Resend API key is optional (only needed for feedback form functionality)
 - The app uses `localePrefix: 'as-needed'` - Finnish (default) has no prefix, other locales use `/en` or `/sv`
 
@@ -130,6 +135,11 @@ student-overall-app/
 │   ├── route-translations.ts  # Route segment translations
 │   ├── slug-translations.ts   # Entity slug translations
 │   ├── translate-path-client.ts  # Client-side path translation
+│   ├── query-understanding.ts  # AI-powered query parsing
+│   ├── deterministic-filter.ts  # Exact filter matching
+│   ├── semantic-search.ts      # Vector/semantic search fallback
+│   ├── semantic-ranking.ts     # Result ranking by relevance
+│   ├── color-normalizer.ts     # Color name normalization
 │   └── ...                # Other utilities
 ├── messages/              # Translation files (fi.json, en.json, sv.json)
 ├── types/                 # TypeScript type definitions
@@ -149,12 +159,73 @@ student-overall-app/
 ## Features
 
 - **Multi-language Support:** Finnish (default), English, and Swedish
-- **Smart Search:** Real-time search with Upstash Search integration
+- **AI-Powered Search:** Intelligent query understanding with exact result counts
 - **Route Translation:** Automatic translation of route segments and slugs
 - **Blog System:** Static blog posts with multi-language support
 - **Theme Support:** Dark and light mode
 - **Responsive Design:** Mobile-first approach with Tailwind CSS
 - **SEO Optimized:** Dynamic metadata, sitemap, and structured data
+
+## Search Architecture
+
+The search system uses a hybrid approach combining AI-powered query understanding with deterministic filtering and semantic search fallback.
+
+### How It Works
+
+```mermaid
+flowchart TD
+    A[User Query] --> B[Query Understanding AI]
+    B --> C{Is Gibberish?}
+    C -->|Yes| D[Return Empty Results]
+    C -->|No| E[Extract Filters]
+    E --> F[Apply Deterministic Filters]
+    F --> G{Exact Matches Found?}
+    G -->|Yes| H[Return Exact Results]
+    G -->|No| I[Semantic Search Fallback]
+    I --> J[Filter Semantic Results]
+    J --> K{Filtered Results?}
+    K -->|Yes| L[Return Filtered Semantic Results]
+    K -->|No| M[Return Empty]
+    H --> N{Semantic Query?}
+    N -->|Yes| O[Rank by Semantic Relevance]
+    N -->|No| P[Sort Deterministically]
+    O --> Q[Return Final Results]
+    P --> Q
+    L --> Q
+```
+
+### Search Flow
+
+1. **Query Understanding (AI)**
+   - Uses Anthropic Claude 3 Haiku to parse natural language queries
+   - Extracts structured filters: color, area, field, school
+   - Handles Finnish morphology (plural forms, case endings, genitive case)
+   - Detects gibberish queries for early exit
+   - Returns remaining semantic query text for ranking
+
+2. **Deterministic Filtering**
+   - Applies exact filters on local JSON dataset (~6000 records)
+   - Guarantees exact result counts (no arbitrary limits)
+   - Filters by: color (with variant matching), area, field, school
+   - Fast in-memory filtering with caching
+
+3. **Semantic Search Fallback**
+   - Only triggered when exact filters return 0 results
+   - Uses Upstash Search for vector/semantic search
+   - Applies same filters to semantic results
+   - Ensures semantic results still match filter criteria
+
+4. **Ranking**
+   - If semantic query exists, ranks results by keyword relevance
+   - Otherwise, sorts deterministically (by school, then field)
+   - Exact matches are always prioritized
+
+### Key Benefits
+
+- **Exact Counts:** Always returns complete result sets, not limited to top N
+- **Intelligent Parsing:** Understands natural language queries in Finnish, English, Swedish
+- **Fast Performance:** Deterministic filtering is ~10-50ms, AI parsing ~200-400ms
+- **Fallback Safety:** Semantic search only when needed, still respects filters
 
 ## Development Guidelines
 

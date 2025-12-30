@@ -18,24 +18,11 @@ import {
   SelectValue,
 } from "./ui/select";
 import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-  CommandSeparator,
-} from "./ui/command";
-import {
   Search as SearchIcon,
   ChevronDown,
   ChevronUp,
   X,
   Settings,
-  Palette,
-  MapPin,
-  GraduationCap,
-  School,
 } from "lucide-react";
 import { Criteria } from "./search-container";
 import { colorData } from "../data/mockData";
@@ -84,7 +71,6 @@ export default function SearchForm({
   const t = useTranslations('search');
   const locale = useLocale() as 'fi' | 'en' | 'sv';
 
-  // Helper function to translate entity values
   const translateEntity = (
     value: string,
     type: 'color' | 'area' | 'field' | 'university'
@@ -211,8 +197,6 @@ export default function SearchForm({
     setIsAdvancedSearchOpen(false);
   };
 
-
-
   const hasActiveFilters =
     selectedCriteria.color ||
     selectedCriteria.area ||
@@ -224,9 +208,6 @@ export default function SearchForm({
     draftAdvancedFilters.area !== selectedCriteria.area ||
     draftAdvancedFilters.field !== selectedCriteria.field ||
     draftAdvancedFilters.school !== selectedCriteria.school;
-
-
-
 
   return (
     <motion.div
