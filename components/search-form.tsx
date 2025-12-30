@@ -194,6 +194,14 @@ export default function SearchForm({
     onDraftAdvancedFilterChange({ ...draftAdvancedFilters, [field]: value });
   };
 
+  const handleApplyFilters = () => {
+    track("advanced_filters", {
+      button_text: "Advanced filters apply",
+      location: "search_form",
+    });
+    onApplyAdvancedFilters();
+  };
+
   const handleClear = () => {
     onClearAll();
     setIsAdvancedSearchOpen(false);
@@ -430,7 +438,7 @@ export default function SearchForm({
               {hasDraftChanges && (
                 <Button
                   type="button"
-                  onClick={onApplyAdvancedFilters}
+                  onClick={handleApplyFilters}
                   className="h-9 sm:h-10 text-xs sm:text-sm bg-green hover:bg-green/90 text-white mt-2"
                 >
                   {t('filter')}{" "}
