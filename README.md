@@ -18,7 +18,7 @@ Check out the live project at: [haalarikone.fi](https://haalarikone.fi)
 
 - **Framework:** Next.js 15 (App Router) with React 18
 - **Language:** TypeScript
-- **Styling:** Tailwind CSS with Radix UI components
+- **Styling:** Tailwind CSS with Radix UI components (Shadcn/ui)
 - **Internationalization:** next-intl (Finnish, English, Swedish)
 - **Database:** Supabase (PostgreSQL)
 - **Search:** AI-powered query understanding (Anthropic Claude) + deterministic filtering + semantic search (Upstash)
