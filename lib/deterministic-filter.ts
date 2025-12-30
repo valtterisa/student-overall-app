@@ -1,8 +1,7 @@
 import type { University } from '@/types/university';
 import { loadUniversities } from './load-universities';
 import type { QueryUnderstanding } from './query-understanding';
-import { normalizeColorKey } from './color-normalizer';
-import { colorData } from '@/data/mockData';
+import { loadColorData } from './load-color-data';
 
 let universitiesCache: Map<string, University[]> = new Map();
 
@@ -24,20 +23,24 @@ export async function filterUniversities(
         universitiesCache.set(cacheKey, allUniversities);
     }
 
+    const colorData = await loadColorData();
+
     return allUniversities.filter((uni) => {
         if (qu.filters.color) {
-            const colorKey = normalizeColorKey(qu.filters.color);
-            if (!colorKey) return false;
+            const colorLower = qu.filters.color.toLowerCase();
+            let colorMatched = false;
 
-            if (!(colorKey in colorData.colors)) return false;
-            const colorInfo = colorData.colors[colorKey as keyof typeof colorData.colors];
-            if (!colorInfo) return false;
+            for (const colorInfo of Object.values(colorData.colors)) {
+                const allVariants = [...colorInfo.main, ...colorInfo.shades];
+                if (allVariants.some(c => c.toLowerCase() === colorLower)) {
+                    if (allVariants.some(c => uni.vari.toLowerCase().includes(c.toLowerCase()))) {
+                        colorMatched = true;
+                        break;
+                    }
+                }
+            }
 
-            const allColorVariants = [...colorInfo.main, ...colorInfo.shades];
-            const matches = allColorVariants.some(c =>
-                uni.vari.toLowerCase().includes(c.toLowerCase())
-            );
-            if (!matches) return false;
+            if (!colorMatched) return false;
         }
 
         if (qu.filters.area) {

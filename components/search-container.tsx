@@ -9,7 +9,7 @@ import PlaceholderDisplay from "./placeholder-display";
 import {
   searchUniversitiesAPI,
 } from "@/lib/search-utils";
-import { colorData } from "../data/mockData";
+import type { ColorData } from "@/lib/load-color-data";
 import {
   getUniqueAreas,
   getUniqueFields,
@@ -37,10 +37,12 @@ export type Criteria = {
 
 interface SearchContainerProps {
   initialUniversities: University[];
+  colorData: ColorData;
 }
 
 export default function SearchContainer({
   initialUniversities,
+  colorData,
 }: SearchContainerProps) {
   const locale = useLocale() as 'fi' | 'en' | 'sv';
   const [selectedCriteria, setSelectedCriteria] = useState<Criteria>({
@@ -68,8 +70,7 @@ export default function SearchContainer({
     (universities: University[]): University[] => {
       return universities.filter((uni) => {
         const colorMatch = selectedCriteria.color
-          ? colorData.colors[selectedCriteria.color].main
-            .concat(colorData.colors[selectedCriteria.color].shades)
+          ? [...colorData.colors[selectedCriteria.color].main, ...colorData.colors[selectedCriteria.color].shades]
             .some((c) => uni.vari.toLowerCase().includes(c.toLowerCase()))
           : true;
         const areaMatch =
@@ -241,8 +242,7 @@ export default function SearchContainer({
 
       const filteredResults = searchResults.filter((uni) => {
         const colorMatch = draftAdvancedFilters.color
-          ? colorData.colors[draftAdvancedFilters.color].main
-            .concat(colorData.colors[draftAdvancedFilters.color].shades)
+          ? [...colorData.colors[draftAdvancedFilters.color].main, ...colorData.colors[draftAdvancedFilters.color].shades]
             .some((c) => uni.vari.toLowerCase().includes(c.toLowerCase()))
           : true;
         const areaMatch =
@@ -288,8 +288,7 @@ export default function SearchContainer({
       const colorMatch =
         ignore === "color" || !draftAdvancedFilters.color
           ? true
-          : colorData.colors[draftAdvancedFilters.color].main
-            .concat(colorData.colors[draftAdvancedFilters.color].shades)
+          : [...colorData.colors[draftAdvancedFilters.color].main, ...colorData.colors[draftAdvancedFilters.color].shades]
             .some((c) => uni.vari.toLowerCase().includes(c.toLowerCase()));
 
       const areaMatch =
@@ -356,6 +355,7 @@ export default function SearchContainer({
         draftFilterResultCount={draftFilterResultCount}
         hasSearched={hasSearched}
         isSearching={isSearching}
+        colorData={colorData}
       />
       {results.length > 0 && (
         <motion.div

@@ -2,8 +2,7 @@ import { understandQuery } from '@/lib/query-understanding';
 import { filterUniversities } from '@/lib/deterministic-filter';
 import { rankSemantically } from '@/lib/semantic-ranking';
 import { semanticSearch } from '@/lib/semantic-search';
-import { normalizeColorKey } from '@/lib/color-normalizer';
-import { colorData } from '@/data/mockData';
+import { loadColorData } from '@/lib/load-color-data';
 import { NextResponse } from 'next/server';
 import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
@@ -59,15 +58,23 @@ export async function POST(req: Request) {
       const semanticResults = await semanticSearch(query.trim(), locale, 100);
 
       if (semanticResults.length > 0) {
+        const colorData = await loadColorData();
         const filteredSemantic = semanticResults.filter((uni) => {
           if (qu.filters.color) {
-            const colorKey = normalizeColorKey(qu.filters.color);
-            if (!colorKey || !(colorKey in colorData.colors)) return false;
-            const colorInfo = colorData.colors[colorKey as keyof typeof colorData.colors];
-            const allColorVariants = [...colorInfo.main, ...colorInfo.shades];
-            if (!allColorVariants.some(c => uni.vari.toLowerCase().includes(c.toLowerCase()))) {
-              return false;
+            const colorLower = qu.filters.color.toLowerCase();
+            let colorMatched = false;
+
+            for (const colorInfo of Object.values(colorData.colors)) {
+              const allVariants = [...colorInfo.main, ...colorInfo.shades];
+              if (allVariants.some(c => c.toLowerCase() === colorLower)) {
+                if (allVariants.some(c => uni.vari.toLowerCase().includes(c.toLowerCase()))) {
+                  colorMatched = true;
+                  break;
+                }
+              }
             }
+
+            if (!colorMatched) return false;
           }
           if (qu.filters.area) {
             if (!uni.alue.toLowerCase().includes(qu.filters.area.toLowerCase())) {
@@ -86,7 +93,7 @@ export async function POST(req: Request) {
           }
           return true;
         });
-        
+
         if (filteredSemantic.length > 0) {
           finalResults = filteredSemantic;
           totalCount = filteredSemantic.length;

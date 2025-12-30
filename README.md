@@ -139,7 +139,7 @@ student-overall-app/
 │   ├── deterministic-filter.ts  # Exact filter matching
 │   ├── semantic-search.ts      # Vector/semantic search fallback
 │   ├── semantic-ranking.ts     # Result ranking by relevance
-│   ├── color-normalizer.ts     # Color name normalization
+│   ├── load-color-data.ts      # Dynamic color data from JSON
 │   └── ...                # Other utilities
 ├── messages/              # Translation files (fi.json, en.json, sv.json)
 ├── types/                 # TypeScript type definitions

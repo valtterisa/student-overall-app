@@ -1,8 +1,7 @@
 import { generateText, Output } from 'ai';
 import { anthropic } from '@ai-sdk/anthropic';
 import { Redis } from '@upstash/redis';
-import { colorData } from '@/data/mockData';
-import { normalizeColorKey } from './color-normalizer';
+import { loadColorData } from './load-color-data';
 import { z } from 'zod';
 
 const QueryUnderstandingSchema = z.object({
@@ -21,32 +20,36 @@ export type QueryUnderstanding = z.infer<typeof QueryUnderstandingSchema>;
 const redis = Redis.fromEnv();
 const CACHE_TTL = 3600;
 
-function parseSimpleQuery(query: string): QueryUnderstanding | null {
+async function parseSimpleQuery(query: string): Promise<QueryUnderstanding | null> {
     const lower = query.toLowerCase().trim();
     const words = lower.split(/\s+/).filter(w => w.length > 1);
 
-    if (words.length === 0) return null;
+    if (words.length === 0 || words.length > 2) return null;
 
-    let colorKey: string | null = null;
-    const colorWords = words.filter(word => {
-        const normalized = normalizeColorKey(word);
-        if (normalized) {
-            colorKey = normalized;
-            return true;
+    const colorData = await loadColorData();
+    let detectedColor: string | null = null;
+
+    for (const word of words) {
+        for (const colorInfo of Object.values(colorData.colors)) {
+            const allVariants = [...colorInfo.main, ...colorInfo.shades];
+            if (allVariants.some(c => c.toLowerCase() === word)) {
+                detectedColor = word;
+                break;
+            }
         }
-        return false;
-    });
+        if (detectedColor) break;
+    }
 
-    if (colorWords.length === 1 && words.length <= 2) {
+    if (detectedColor && words.length <= 2) {
         return {
             isGibberish: false,
             filters: {
-                color: colorKey || undefined,
+                color: detectedColor,
                 area: undefined,
                 field: undefined,
                 school: undefined,
             },
-            semanticQuery: words.length === 2 ? words.find(w => w !== colorWords[0]) || '' : '',
+            semanticQuery: words.length === 2 ? words.find(w => w !== detectedColor) || '' : '',
         };
     }
 
@@ -69,7 +72,7 @@ export async function understandQuery(
         console.error('Cache read error:', error);
     }
 
-    const simple = parseSimpleQuery(query);
+    const simple = await parseSimpleQuery(query);
     if (simple) {
         try {
             await redis.setex(cacheKey, CACHE_TTL, simple);

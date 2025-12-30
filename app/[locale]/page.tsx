@@ -1,5 +1,6 @@
 import SearchContainer from "@/components/search-container";
 import { loadUniversities } from "@/lib/load-universities";
+import { loadColorData } from "@/lib/load-color-data";
 import FAQSchema from "@/components/faq-schema";
 import Script from "next/script";
 import { FeedbackModal } from "@/components/feedback-modal";
@@ -22,6 +23,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function Index({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params;
     const universities = await loadUniversities(locale as 'fi' | 'en' | 'sv');
+    const colorData = await loadColorData();
     const t = await getTranslations({ locale });
 
     const websiteSchema = {
@@ -100,7 +102,7 @@ export default async function Index({ params }: { params: Promise<{ locale: stri
                         {t('home.description')}
                     </p>
                 </div>
-                <SearchContainer initialUniversities={universities} />
+                <SearchContainer initialUniversities={universities} colorData={colorData} />
 
                 <section className="w-full border-t border-border/60 mt-12">
                     <div className="container mx-auto px-4 py-12">

@@ -25,7 +25,7 @@ import {
   Settings,
 } from "lucide-react";
 import { Criteria } from "./search-container";
-import { colorData } from "../data/mockData";
+import type { ColorData } from "@/lib/load-color-data";
 import { track } from "@databuddy/sdk";
 import { useTranslations, useLocale } from 'next-intl';
 import translationsData from '../data/translations.json';
@@ -44,6 +44,7 @@ interface SearchFormProps {
   draftFilterResultCount: number;
   hasSearched: boolean;
   isSearching?: boolean;
+  colorData: ColorData;
 }
 
 type Translations = {
@@ -67,6 +68,7 @@ export default function SearchForm({
   draftAdvancedFilters,
   draftFilterResultCount,
   isSearching = false,
+  colorData,
 }: SearchFormProps) {
   const t = useTranslations('search');
   const locale = useLocale() as 'fi' | 'en' | 'sv';
@@ -318,7 +320,7 @@ export default function SearchForm({
                           <div
                             className="w-3 h-3 sm:w-3.5 sm:h-3.5 rounded border"
                             style={{
-                              backgroundImage: `linear-gradient(to bottom right, ${data.color}, ${data.alt})`,
+                              backgroundColor: data.color,
                             }}
                           />
                           <span>{displayName}</span>
