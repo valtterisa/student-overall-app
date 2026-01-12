@@ -87,7 +87,7 @@ export default function ResultsDisplay({ results }: ResultsDisplayProps) {
             </p>
           </div>
         ) : (
-          <ul className="space-y-3 sm:space-y-4">
+          <ul className="space-y-2.5 sm:space-y-3">
             {paginatedResults.map((uni) => (
               <UniversityCard key={uni.id} uni={uni} />
             ))}

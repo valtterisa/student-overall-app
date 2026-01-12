@@ -4,6 +4,7 @@ import { Github, Mail } from "lucide-react";
 import { Link } from "@/i18n/routing";
 import Logo from "@/components/logo";
 import { useTranslations } from 'next-intl';
+import DiscordLogo from "./discord-logo";
 
 export default function Footer() {
   const t = useTranslations('footer');
@@ -71,6 +72,19 @@ export default function Footer() {
                   >
                     <Github className="h-4 w-4" />
                     {t('github')}
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="https://discord.gg/NqwQwduM"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="Join Discord"
+                    className="flex items-center gap-2 transition hover:text-green"
+                  >
+
+                    <DiscordLogo className="h-4 w-4" />
+                    Discord
                   </Link>
                 </li>
               </ul>

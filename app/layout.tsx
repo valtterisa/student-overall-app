@@ -2,6 +2,7 @@ import { Arvo } from "next/font/google";
 import "./globals.css";
 import { getLocale } from 'next-intl/server';
 import { ThemeProvider } from "@/components/theme-provider";
+import Script from "next/script";
 
 const arvo = Arvo({
   weight: ["400", "700"],
@@ -15,7 +16,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const locale = await getLocale();
-  
+
   return (
     <html lang={locale} suppressHydrationWarning>
       <head>
@@ -27,6 +28,13 @@ export default async function RootLayout({
           href="https://fonts.gstatic.com"
           crossOrigin="anonymous"
         />
+        {process.env.NODE_ENV === "development" && (
+          <Script
+            src="//unpkg.com/react-grab/dist/index.global.js"
+            crossOrigin="anonymous"
+            strategy="beforeInteractive"
+          />
+        )}
       </head>
       <body className={arvo.className}>
         <ThemeProvider
