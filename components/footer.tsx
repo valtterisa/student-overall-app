@@ -8,7 +8,7 @@ import { useTranslations } from 'next-intl';
 export default function Footer() {
   const t = useTranslations('footer');
   return (
-    <footer className="w-full border-t border-border/60 bg-white">
+    <footer className="w-full border-t border-border/60 bg-white dark:bg-background">
       <div className="container mx-auto flex w-full flex-col gap-10 px-4 pt-8 pb-4">
         <div className="flex flex-col w-full text-center md:flex-row items-center justify-center md:justify-between md:text-left">
           <div className="mx-auto max-w-xl md:mx-0 w-full flex flex-col items-center md:items-start">
