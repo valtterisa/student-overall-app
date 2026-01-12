@@ -20,10 +20,9 @@ Check out the live project at: [haalarikone.fi](https://haalarikone.fi)
 - **Language:** TypeScript
 - **Styling:** Tailwind CSS with Radix UI components (Shadcn/ui)
 - **Internationalization:** next-intl (Finnish, English, Swedish)
-- **Database:** Supabase (PostgreSQL)
 - **Search:** AI-powered query understanding (Anthropic Claude) + deterministic filtering + semantic search (Upstash)
 - **AI/ML:** Vercel AI SDK with Anthropic Claude 3 Haiku
-- **Rate Limiting:** Upstash Redis
+- **Rate Limiting & Caching:** Upstash Redis
 - **Email:** Resend (for feedback forms)
 - **Analytics:** Databuddy
 - **Testing:** Playwright
@@ -53,38 +52,68 @@ cd haalarikone
 pnpm install
 ```
 
-### 3. Environment Variables
+### 3. Set Up Required Services
+
+#### Upstash (Required)
+
+The application requires Upstash for search functionality and rate limiting. Follow these steps to set up Upstash:
+
+1. **Create an Upstash account:**
+   - Go to [upstash.com](https://upstash.com) and sign up for a free account
+
+2. **Create an Upstash Redis database:**
+   - Navigate to the Redis tab in your Upstash console
+   - Click "Create Database"
+   - Choose a name and region closest to your deployment
+   - Copy the **REST URL** and **REST TOKEN** from the database details page
+
+3. **Create an Upstash Search index:**
+   - Navigate to the Search tab in your Upstash console
+   - Click "Create Index"
+   - Name it `haalarikone-db`
+   - Copy the **REST URL** and **REST TOKEN** from the index details page
+
+4. **Get an Anthropic API key:**
+   - Go to [console.anthropic.com](https://console.anthropic.com)
+   - Sign up or log in
+   - Navigate to API Keys
+   - Create a new API key and copy it
+
+#### Resend (Optional - for feedback form)
+
+5. **Get a Resend API key (optional):**
+   - Go to [resend.com](https://resend.com)
+   - Sign up or log in
+   - Create an API key
+   - Note: If not configured, the feedback form will fail silently without visible errors
+
+### 4. Environment Variables
 
 Create a `.env.local` file in the root directory with the following variables:
 
 ```env
-# Supabase
-NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+# Upstash Search (Required)
+UPSTASH_SEARCH_REST_URL=your_upstash_search_rest_url
+UPSTASH_SEARCH_REST_TOKEN=your_upstash_search_rest_token
 
-# Upstash Search
-UPSTASH_SEARCH_REST_URL=your_upstash_search_url
-UPSTASH_SEARCH_REST_TOKEN=your_upstash_search_token
+# Upstash Redis (Required - for rate limiting and caching)
+UPSTASH_REDIS_REST_URL=your_upstash_redis_rest_url
+UPSTASH_REDIS_REST_TOKEN=your_upstash_redis_rest_token
 
-# Upstash Redis (for rate limiting)
-UPSTASH_REDIS_REST_URL=your_upstash_redis_url
-UPSTASH_REDIS_REST_TOKEN=your_upstash_redis_token
-
-# Anthropic (for AI-powered search)
+# Anthropic (Required - for AI-powered search)
 ANTHROPIC_API_KEY=your_anthropic_api_key
 
-# Resend (feedback form)
+# Resend (Optional - feedback form only, fails silently if missing)
 RESEND_API_KEY=your_resend_api_key
-FEEDBACK_EMAIL_TO=email_to_send_feedback_to
+FEEDBACK_EMAIL_TO=your_email@example.com
 ```
 
 **Note:** 
-- Set up your own Supabase and Upstash instances
-- Anthropic API key is required for AI-powered search functionality
-- Resend API key is optional (only needed for feedback form functionality)
+- **Required keys:** UPSTASH_SEARCH_REST_URL, UPSTASH_SEARCH_REST_TOKEN, UPSTASH_REDIS_REST_URL, UPSTASH_REDIS_REST_TOKEN, ANTHROPIC_API_KEY
+- **Optional keys:** RESEND_API_KEY, FEEDBACK_EMAIL_TO (feedback form fails silently if missing)
 - The app uses `localePrefix: 'as-needed'` - Finnish (default) has no prefix, other locales use `/en` or `/sv`
 
-### 4. Run the Development Server
+### 5. Run the Development Server
 
 ```bash
 pnpm run dev
@@ -92,7 +121,7 @@ pnpm run dev
 
 Open [http://localhost:3000](http://localhost:3000) in your browser to see the app.
 
-### 5. Run Tests
+### 6. Run Tests
 
 ```bash
 pnpm test
@@ -117,9 +146,7 @@ student-overall-app/
 │   │   ├── oppilaitos/    # University pages
 │   │   ├── vari/          # Color pages
 │   │   └── page.tsx       # Home page
-│   ├── (auth-pages)/      # Authentication pages (sign-in, sign-up, etc.)
-│   ├── api/               # API routes (search, translate-path, upsert)
-│   └── auth/              # Auth callbacks
+│   ├── api/               # API routes (search, upsert)
 ├── components/            # React components
 │   ├── ui/                # Reusable UI components (Radix UI)
 │   ├── search-modal.tsx   # Search functionality
@@ -144,7 +171,6 @@ student-overall-app/
 ├── messages/              # Translation files (fi.json, en.json, sv.json)
 ├── types/                 # TypeScript type definitions
 ├── utils/                 # Utility functions
-│   └── supabase/          # Supabase client utilities
 └── tests/                 # Playwright tests
 ```
 

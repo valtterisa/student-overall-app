@@ -1,7 +1,6 @@
 import createMiddleware from 'next-intl/middleware';
 import { routing } from './i18n/routing';
-import { NextRequest, NextResponse } from "next/server";
-import { updateSession } from "@/utils/supabase/middleware";
+import { NextRequest } from "next/server";
 import { normalizeRouteSegment } from '@/lib/route-translations';
 
 const intlMiddleware = createMiddleware(routing);
@@ -47,22 +46,6 @@ function translateRoute(request: NextRequest): NextRequest | null {
 export async function middleware(request: NextRequest) {
   const translatedRequest = translateRoute(request);
   const requestToUse = translatedRequest || request;
-
-  const supabaseResponse = await updateSession(requestToUse);
-
-  if (supabaseResponse instanceof NextResponse) {
-    const intlResponse = intlMiddleware(requestToUse);
-    if (intlResponse instanceof NextResponse) {
-      supabaseResponse.headers.forEach((value, key) => {
-        intlResponse.headers.set(key, value);
-      });
-      supabaseResponse.cookies.getAll().forEach((cookie) => {
-        intlResponse.cookies.set(cookie.name, cookie.value, cookie);
-      });
-      return intlResponse;
-    }
-    return supabaseResponse;
-  }
 
   return intlMiddleware(requestToUse);
 }
